@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Killed The Scientists?</title>
+<meta name="description" content="13+ scientists connected to classified US defense, aerospace, and nuclear programs have died or vanished since 2022. An interactive investigation.">
+<meta property="og:title" content="Who Killed The Scientists?">
+<meta property="og:description" content="13+ scientists connected to classified US defense, aerospace, and nuclear programs have died or vanished since 2022. An interactive investigation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://whokilledthescientists.com">
+<meta property="og:image" content="https://whokilledthescientists.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Who Killed The Scientists?">
+<meta name="twitter:description" content="13+ scientists connected to classified US programs have died or vanished since 2022.">
+<meta name="twitter:image" content="https://whokilledthescientists.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://whokilledthescientists.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050508;--card:#0e0f16;--ink:#e8eaf2;--ink2:#9aa0b8;--ink3:#505570;--border:#1e2030;--border2:#2a2e48;--pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;--green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,32,110,.08),transparent 70%);pointer-events:none;}
+header h1{font-family:"DM Serif Display",serif;font-size:clamp(32px,6vw,64px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1;text-shadow:0 0 60px rgba(255,32,110,.4),0 0 120px rgba(255,32,110,.15);position:relative;}
+header h1 span{color:var(--pink);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+.status-bar{display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap;position:relative;}
+.stat .num{font-family:"DM Serif Display",serif;font-size:36px;line-height:1;text-shadow:0 0 20px currentColor;}
+.nd{color:var(--pink);}.nm{color:var(--orange);}.nc{color:var(--teal);}.np{color:var(--green);}
+.stat .lbl{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:4px;}
+.legend-bar{background:#000;border-bottom:1px solid var(--border);padding:10px 40px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.lbar-lbl{font-family:"DM Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);}
+.leg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2);}
+.pill{font-family:"DM Mono",monospace;font-size:9px;padding:2px 8px;border-radius:2px;font-weight:500;letter-spacing:.05em;}
+.pill-dead{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.5);}
+.pill-missing{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.5);}
+.pill-closed{background:rgba(0,245,212,.1);color:var(--teal);border:1px solid rgba(0,245,212,.4);}
+.canvas{padding:32px 40px 48px;}
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:16px;margin-top:36px;}
+.sh:first-child{margin-top:0;}
+.stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
+.sh h2{font-family:"DM Serif Display",serif;font-size:22px;font-weight:400;color:var(--ink);}
+.sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .15s,border-color .2s;position:relative;display:flex;flex-direction:column;}
+.pcard:hover{transform:translateY(-3px);}
+.pcard:hover .pimg{filter:grayscale(0%) !important;}
+.sc-dead{border-top:3px solid var(--pink);}.sc-dead:hover{box-shadow:0 0 28px rgba(255,32,110,.25);border-color:rgba(255,32,110,.5);}
+.sc-missing{border-top:3px solid var(--orange);}.sc-missing:hover{box-shadow:0 0 28px rgba(255,139,51,.25);border-color:rgba(255,139,51,.5);}
+.sc-closed{border-top:3px solid var(--teal);}.sc-closed:hover{box-shadow:0 0 28px rgba(0,245,212,.2);border-color:rgba(0,245,212,.4);}
+.pcard.active{box-shadow:0 0 0 1px var(--yellow),0 0 24px rgba(225,255,0,.2)!important;border-color:var(--yellow)!important;}
+.ppill{position:absolute;top:10px;right:10px;z-index:2;}
+.pphoto{width:100%;height:180px;overflow:hidden;flex-shrink:0;background:#080910;line-height:0;}
+.pimg{width:100%;height:180px;object-fit:cover;object-position:top center;display:block;filter:grayscale(15%);transition:filter .3s;}
+.pfallback{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-family:"DM Serif Display",serif;font-size:48px;color:rgba(255,255,255,.15);}
+.pbody{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1;}
+.pname{font-family:"DM Serif Display",serif;font-size:17px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:3px;padding-right:72px;}
+.prole{font-size:11px;color:var(--ink3);margin-bottom:6px;line-height:1.4;}
+.pdate{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;}
+.psummary{font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:10px;}
+.ptags{display:flex;flex-wrap:wrap;gap:4px;}
+.tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 6px;border-radius:2px;color:var(--ink3);background:rgba(255,255,255,.04);border:1px solid var(--border2);}
+.tag.hot{background:rgba(255,32,110,.12);border-color:rgba(255,32,110,.35);color:var(--pink);}
+.tag.key{background:rgba(0,187,249,.1);border-color:rgba(0,187,249,.35);color:var(--blue);}
+.tag.ok{background:rgba(0,245,212,.08);border-color:rgba(0,245,212,.3);color:var(--teal);}
+.tag.uap{background:rgba(206,0,224,.12);border-color:rgba(206,0,224,.35);color:var(--purple);}
+.pcta{margin-top:12px;width:100%;padding:7px;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:4px;font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .15s;}
+.pcta:hover{border-color:var(--yellow);color:var(--yellow);}
+.divider{border:none;border-top:1px solid var(--border);margin:8px 0;}
+.wp-notice{background:rgba(255,32,110,.06);border:1px solid rgba(255,32,110,.2);border-radius:6px;padding:14px 18px;margin-bottom:16px;font-size:12px;color:var(--ink2);line-height:1.6;}
+.wp-notice strong{color:var(--pink);font-size:13px;display:block;margin-bottom:4px;}
+.devs{display:flex;flex-direction:column;gap:10px;}
+.dev{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:6px;padding:14px 18px;display:flex;gap:16px;align-items:flex-start;}
+.dev.urgent{border-left-color:var(--pink);}.dev.notable{border-left-color:var(--orange);}.dev.uap{border-left-color:var(--purple);}.dev.gov{border-left-color:var(--green);}
+.dev-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;width:80px;padding-top:2px;line-height:1.5;}
+.dev-body{flex:1;}.dev-body strong{font-size:13px;color:var(--ink);font-weight:600;display:block;margin-bottom:4px;}.dev-body p{font-size:12px;color:var(--ink2);line-height:1.6;}.dev-body a{font-size:11px;color:var(--blue);margin-top:4px;display:inline-block;}
+.dev-tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 7px;border-radius:2px;display:inline-block;margin-bottom:4px;}
+.dev-tag.urgent{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.4);animation:blink 1.5s ease-in-out infinite;}
+.dev-tag.notable{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.4);}
+.dev-tag.uap{background:rgba(206,0,224,.15);color:var(--purple);border:1px solid rgba(206,0,224,.4);}
+.dev-tag.gov{background:rgba(14,251,34,.1);color:var(--green);border:1px solid rgba(14,251,34,.3);}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.5;}}
+.ctable{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+.ctable th{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:500;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border2);}
+.ctable td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--ink2);line-height:1.5;}
+.ctable tr:last-child td{border-bottom:none;}.ctable tr:hover td{background:rgba(255,255,255,.02);}
+.cwho{font-weight:600;color:var(--ink);}
+.cdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+.ch{background:var(--pink);box-shadow:0 0 6px var(--pink);}.cm{background:var(--orange);box-shadow:0 0 6px var(--orange);}.cl{background:var(--ink3);}
+.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+.icard{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px 16px;border-top:2px solid var(--blue);}
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.inst-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;}
+.inst-header{display:flex;align-items:center;gap:12px;}
+.inst-icon{width:44px;height:44px;border-radius:6px;border:1px solid;display:flex;align-items:center;justify-content:center;font-family:"DM Mono",monospace;font-size:9px;font-weight:500;letter-spacing:.05em;text-align:center;flex-shrink:0;padding:4px;}
+.inst-name{font-family:"DM Serif Display",serif;font-size:14px;font-weight:400;color:var(--ink);line-height:1.2;}
+.inst-loc{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
+.inst-people{display:flex;flex-direction:column;gap:4px;}
+.inst-person{font-size:11px;line-height:1.4;padding:4px 8px;border-radius:3px;border-left:2px solid;}
+.inst-person.dead{background:rgba(255,32,110,.06);border-color:var(--pink);color:var(--ink2);}
+.inst-person.miss{background:rgba(255,139,51,.06);border-color:var(--orange);color:var(--ink2);}
+.inst-person.closed{background:rgba(0,245,212,.04);border-color:var(--teal);color:var(--ink2);}
+.inst-person.gov{background:rgba(0,187,249,.04);border-color:var(--blue);color:var(--ink2);}
+.inst-note{font-size:11px;color:var(--ink3);line-height:1.6;border-top:1px solid var(--border);padding-top:10px;}
+.threads{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.tcard{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:18px 20px;}
+.tcard h4{font-family:"DM Serif Display",serif;font-size:16px;font-weight:400;margin-bottom:10px;color:var(--ink);display:flex;align-items:center;gap:10px;}
+.tnum{font-family:"DM Mono",monospace;font-size:11px;padding:2px 8px;border-radius:2px;font-weight:700;}
+.t1{background:var(--pink);color:#000;}.t2{background:var(--purple);color:#fff;}.t3{background:var(--blue);color:#000;}
+.tcard ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.tcard li{font-size:12px;color:var(--ink2);line-height:1.5;padding-left:14px;position:relative;}
+.tcard li::before{content:"\2192";position:absolute;left:0;color:var(--ink3);font-size:11px;}
+.tcard li strong{color:var(--ink);font-weight:600;}
+.timeline{position:relative;padding:8px 0 8px 24px;border-left:2px solid var(--border2);margin-left:8px;}
+.tli{position:relative;padding:10px 0 10px 20px;display:flex;align-items:flex-start;gap:12px;}
+.tldot{position:absolute;left:-29px;top:15px;width:12px;height:12px;border-radius:50%;border:2px solid var(--bg);flex-shrink:0;}
+.tldot.d{background:var(--pink);box-shadow:0 0 8px var(--pink);}.tldot.m{background:var(--orange);box-shadow:0 0 8px var(--orange);}.tldot.c{background:var(--teal);box-shadow:0 0 8px var(--teal);}.tldot.e{background:var(--blue);box-shadow:0 0 8px var(--blue);}
+.tldate{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;flex-shrink:0;width:88px;padding-top:1px;}
+.tlbody{flex:1;font-size:12px;color:var(--ink2);line-height:1.5;}
+.tlbody strong{font-size:13px;color:var(--ink);font-weight:600;}
+#dp{position:fixed;right:0;top:0;bottom:0;width:380px;background:#03040a;border-left:1px solid var(--border2);padding:28px 24px;overflow-y:auto;transform:translateX(100%);transition:transform .25s ease;z-index:200;box-shadow:-8px 0 40px rgba(0,0,0,.8);}
+#dp.open{transform:translateX(0);}
+#dp h3{font-family:"DM Serif Display",serif;font-size:22px;font-weight:400;line-height:1.2;margin-bottom:4px;color:var(--ink);}
+.dprole{font-size:13px;color:var(--ink3);margin-bottom:12px;}
+.dpbody{font-size:13px;color:var(--ink2);line-height:1.7;}
+.dpsect{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:16px 0 8px;border-bottom:1px solid var(--border);padding-bottom:4px;}
+#dp ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+#dp li{font-size:12px;color:var(--ink2);line-height:1.6;padding-left:14px;position:relative;}
+#dp li::before{content:"\00B7";position:absolute;left:0;color:var(--ink3);}
+#closebtn{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--border2);border-radius:4px;cursor:pointer;font-size:13px;color:var(--ink3);padding:4px 10px;font-family:"DM Mono",monospace;transition:all .15s;letter-spacing:.05em;}
+#closebtn:hover{border-color:var(--pink);color:var(--pink);}
+.dplinks{display:flex;flex-direction:column;gap:6px;margin-top:4px;}
+.dplink{display:block;font-size:11px;color:var(--blue);padding:6px 8px;background:rgba(0,187,249,.05);border:1px solid rgba(0,187,249,.2);border-radius:4px;transition:background .15s;line-height:1.4;}
+.dplink:hover{background:rgba(0,187,249,.12);text-decoration:none;}
+.dplink small{display:block;font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);margin-top:2px;}
+.nmwrap{background:#000;padding:48px 40px 32px;}
+.nm-sh{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+#nmsvgwrap{width:100%;height:680px;position:relative;overflow:hidden;cursor:grab;background:#000;border:1px solid var(--border2);border-radius:6px;}
+#nmsvgwrap.drag{cursor:grabbing;}
+#nmsvg{position:absolute;top:0;left:0;width:100%;height:100%;}
+.nmedge{stroke-width:1.2px;fill:none;opacity:.3;transition:opacity .2s;}
+.nmedge.jpl{stroke:#00BBF9;}.nmedge.nuclear{stroke:#FF206E;}.nmedge.military{stroke:#FF8B33;}.nmedge.uap{stroke:#CE00E0;}.nmedge.congress{stroke:#0EFB22;}.nmedge.other{stroke:#505570;}
+.nmedge.hi{opacity:1!important;stroke-width:2.5px;}.nmedge.dim{opacity:.03!important;}
+.nmnode{cursor:pointer;}
+.nmlbl{font-family:"DM Sans",sans-serif;font-weight:600;font-size:11px;fill:#e8eaf2;pointer-events:none;text-anchor:middle;}
+.nmsub{font-family:"DM Mono",monospace;font-size:8px;fill:#505570;pointer-events:none;text-anchor:middle;}
+#nmtip{position:absolute;background:rgba(3,4,10,.97);border:1px solid #2a2e48;border-radius:6px;padding:10px 14px;max-width:240px;pointer-events:none;opacity:0;transition:opacity .12s;z-index:10;font-size:12px;line-height:1.5;box-shadow:0 4px 24px rgba(0,0,0,.9);}
+#nmtip.v{opacity:1;}
+#nmtip strong{display:block;color:#fff;margin-bottom:3px;font-size:13px;}
+#nmtip span{color:#8899bb;font-size:11px;}
+.nmleg{display:flex;gap:20px;flex-wrap:wrap;padding:0 0 14px;}
+.nmleg-i{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink3);font-family:"DM Mono",monospace;}
+.nmleg-l{width:20px;height:2px;flex-shrink:0;border-radius:1px;}
+.nmbtns{display:flex;gap:10px;padding-top:14px;}
+.nmbtn{background:rgba(0,0,0,.9);border:1px solid var(--border2);border-radius:4px;color:var(--ink3);padding:6px 14px;font-family:"DM Mono",monospace;font-size:10px;cursor:pointer;letter-spacing:.05em;transition:all .15s;}
+.nmbtn:hover{border-color:var(--blue);color:var(--blue);}
+.pcard:focus-visible{outline:2px solid var(--yellow);outline-offset:2px;}
+@media(max-width:768px){
+header{padding:32px 20px 28px;}
+.canvas{padding:20px 16px 32px;}
+.legend-bar{padding:10px 16px;gap:12px;}
+.pgrid{grid-template-columns:1fr;}
+.threads{grid-template-columns:1fr;}
+.tcard[style*="grid-column"]{grid-column:auto!important;}
+.inst-grid{grid-template-columns:1fr;}
+.status-bar{gap:20px;}
+.stat .num{font-size:28px;}
+#dp{width:100%;max-width:380px;}
+.nmwrap{padding:32px 16px 24px;}
+#nmsvgwrap{height:400px;}
+.dev{flex-direction:column;gap:6px;}
+.dev-date{width:auto;}
+}
+@media(max-width:480px){
+header h1{font-size:28px;}
+.tagline{font-size:9px;letter-spacing:.12em;}
+.pphoto,.pimg,.pfallback{height:140px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Who <span>Killed</span> The Scientists?</h1>
+  <div class="tagline">13+ cases &middot; classified programs &middot; 2022&ndash;2026 &middot; click any card for full profile + sources</div>
+  <div class="status-bar">
+    <div class="stat"><div class="num nd">7</div><div class="lbl">Dead</div></div>
+    <div class="stat"><div class="num nm">5</div><div class="lbl">Missing</div></div>
+    <div class="stat"><div class="num nc">3</div><div class="lbl">&ldquo;Solved&rdquo;</div></div>
+    <div class="stat"><div class="num np">4+</div><div class="lbl">Agencies<br>Probing</div></div>
+  </div>
+</header>
+
+<div class="legend-bar">
+  <span class="lbar-lbl">Status:</span>
+  <div class="leg"><span class="pill pill-dead">DECEASED</span> Died &mdash; no cause or suspicious</div>
+  <div class="leg"><span class="pill pill-missing">MISSING</span> Vanished, not found</div>
+  <div class="leg"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span> Officially explained</div>
+</div>
+
+<div class="canvas">
+
+<div class="sh">
+  <div class="stripe" style="background:var(--pink)"></div>
+  <div><h2>The Scientists</h2><div class="sub">13 cases &middot; Click any card for full profile, investigative notes, and source links</div></div>
+</div>
+<div class="pgrid">
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('hicks')" onkeydown="if(event.key==='Enter')showDetail('hicks')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/hicks.jpg" alt="Michael David Hicks" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Michael David Hicks</div>
+    <div class="prole">Research Scientist, NASA JPL &mdash; 24 years</div>
+    <div class="pdate">Died Jul 30, 2023 &middot; Age 59</div>
+    <div class="psummary">24 years at JPL on planetary defense. 80+ papers on comets and asteroids. No cause disclosed, no autopsy, zero statement from NASA.</div>
+    <div class="ptags"><span class="tag hot">No cause disclosed</span><span class="tag hot">No autopsy</span><span class="tag key">DART Mission</span><span class="tag key">Deep Space 1</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('maiwald')" onkeydown="if(event.key==='Enter')showDetail('maiwald')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/maiwald.jpg" alt="Frank Maiwald" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Frank Maiwald</div>
+    <div class="prole">JPL Principal Researcher &mdash; highest individual honor</div>
+    <div class="pdate">Died Jul 4, 2024 &middot; Age 61</div>
+    <div class="psummary">JPL&rsquo;s most distinguished researcher designation. Led 2023 breakthrough on detecting biosignatures on other worlds. No cause, no autopsy, no NASA statement.</div>
+    <div class="ptags"><span class="tag hot">No cause disclosed</span><span class="tag hot">No autopsy</span><span class="tag ">Biomarker detection</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('reza')" onkeydown="if(event.key==='Enter')showDetail('reza')">
+  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
+  <div class="pphoto"><img src="images/reza.jpg" alt="Monica Reza" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Monica Reza</div>
+    <div class="prole">Director, JPL Materials Processing / Aerojet Rocketdyne</div>
+    <div class="pdate">Vanished Jun 22, 2025 &middot; Age 60 &middot; No body found</div>
+    <div class="psummary">Co-invented Mondaloy superalloy freeing US rocket launches from Russian RD-180 dependency. Directly funded by McCasland. Vanished 30ft from hiking companion &mdash; smiling and waving &mdash; then gone.</div>
+    <div class="ptags"><span class="tag hot">Key link: McCasland</span><span class="tag key">Mondaloy patent</span><span class="tag key">Air Force-funded</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('chavez')" onkeydown="if(event.key==='Enter')showDetail('chavez')">
+  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
+  <div class="pphoto"><img src="images/chavez.jpg" alt="Anthony Chavez" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Anthony Chavez</div>
+    <div class="prole">Former employee, Los Alamos National Laboratory</div>
+    <div class="pdate">Vanished May 4, 2025 &middot; Age 78 &middot; On foot</div>
+    <div class="psummary">LANL veteran who walked out of his home on foot. Car locked in driveway. Exhaustive searches produced nothing. Family: completely out of character.</div>
+    <div class="ptags"><span class="tag hot">Left on foot, car in driveway</span><span class="tag ">LANL</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('casias')" onkeydown="if(event.key==='Enter')showDetail('casias')">
+  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
+  <div class="pphoto"><img src="images/casias.jpg" alt="Melissa Casias" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Melissa Casias</div>
+    <div class="prole">LANL Administrative Staff &middot; Top security clearance</div>
+    <div class="pdate">Vanished Jun 26, 2025 &middot; On foot</div>
+    <div class="psummary">Top clearance LANL staff who factory-wiped both phones before walking out. Left car, keys, wallet, all money. Most unusual detail in any case here.</div>
+    <div class="ptags"><span class="tag hot">Both phones factory-wiped</span><span class="tag hot">Left all belongings</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('garcia')" onkeydown="if(event.key==='Enter')showDetail('garcia')">
+  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
+  <div class="pphoto"><img src="images/garcia.jpg" alt="Steven Garcia" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Steven Garcia</div>
+    <div class="prole">Contractor, Kansas City National Security Campus</div>
+    <div class="pdate">Vanished Aug 28, 2025 &middot; Age 48 &middot; Armed</div>
+    <div class="psummary">Oversaw classified nuclear weapon assets at KCNSC &mdash; makes 80%+ of US nuclear weapon components. Left in camouflage with handgun, no phone. Never seen again.</div>
+    <div class="ptags"><span class="tag hot">Carried handgun, left phone</span><span class="tag key">Nuclear weapons campus</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('sullivan')" onkeydown="if(event.key==='Enter')showDetail('sullivan')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/sullivan.jpg" alt="Matthew Sullivan" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Matthew Sullivan</div>
+    <div class="prole">USAF Intelligence Officer &middot; NASIC Deputy Director, Wright-Patterson</div>
+    <div class="pdate">Died May 12, 2024 &middot; Age 39</div>
+    <div class="psummary">Bronze Star recipient. Died by reported suicide &mdash; exactly 2 weeks before his scheduled UAP whistleblower testimony to Congress. IC Inspector General flagged &ldquo;severe allegations of misconduct.&rdquo;</div>
+    <div class="ptags"><span class="tag hot">Died 2wks before UAP testimony</span><span class="tag hot">IC IG: severe misconduct</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('eskridge')" onkeydown="if(event.key==='Enter')showDetail('eskridge')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/eskridge.jpg" alt="Amy Eskridge" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Amy Eskridge</div>
+    <div class="prole">Antigravity researcher &middot; Institute for Exotic Science, Huntsville AL</div>
+    <div class="pdate">Died Jun 11, 2022 &middot; Age 34</div>
+    <div class="psummary">Said publicly &ldquo;I&rsquo;m scared, it&rsquo;s escalating&rdquo; before her death. Co-founded antigravity institute with her NASA-engineer father. No official report ever released. Website went dark.</div>
+    <div class="ptags"><span class="tag hot">Said "I'm scared" publicly</span><span class="tag hot">No official investigation report</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-closed" tabindex="0" role="button" onclick="showDetail('loureiro')" onkeydown="if(event.key==='Enter')showDetail('loureiro')">
+  <div class="ppill"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span></div>
+  <div class="pphoto"><img src="images/loureiro.jpg" alt="Nuno Loureiro" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Nuno Loureiro</div>
+    <div class="prole">Director, MIT Plasma Science &amp; Fusion Center</div>
+    <div class="pdate">Murdered Dec 15, 2025 &middot; Age 47</div>
+    <div class="psummary">World-leading plasma physicist near a fusion breakthrough. Murdered by former Portuguese classmate who also carried out the Brown University shooting. Case closed &mdash; personal grudge.</div>
+    <div class="ptags"><span class="tag ">Near fusion breakthrough</span><span class="tag ok">Personal grudge &middot; &ldquo;case closed&rdquo;</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-closed" tabindex="0" role="button" onclick="showDetail('grillmair')" onkeydown="if(event.key==='Enter')showDetail('grillmair')">
+  <div class="ppill"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span></div>
+  <div class="pphoto"><img src="images/grillmair.jpg" alt="Carl Grillmair" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Carl Grillmair</div>
+    <div class="prole">Astrophysicist, Caltech / JPL-affiliated</div>
+    <div class="pdate">Murdered Feb 16, 2026 &middot; Age 67</div>
+    <div class="psummary">Expert in asteroid surveillance and Air Force missile tracking. Shot on his rural porch at 6 AM. Suspect charged in unrelated crime spree &mdash; no national security motive established.</div>
+    <div class="ptags"><span class="tag ">NEOWISE &middot; NEO Surveyor</span><span class="tag ok">Suspect charged (unrelated motive?)</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('mccasland')" onkeydown="if(event.key==='Enter')showDetail('mccasland')">
+  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
+  <div class="pphoto"><img src="images/mccasland.jpg" alt="Gen. Neil McCasland" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Gen. Neil McCasland</div>
+    <div class="prole">Ret. USAF Maj. General &middot; AFRL Commander, Wright-Patterson</div>
+    <div class="pdate">Vanished Feb 27, 2026 &middot; 4 days after Trump UAP order</div>
+    <div class="psummary">Had legal visibility over every classified DoD program. Funded Reza&rsquo;s Mondaloy. Vanished 4 days after Trump UAP disclosure order. Left without phone or glasses. Carried revolver.</div>
+    <div class="ptags"><span class="tag hot">4 days after Trump UAP order</span><span class="tag hot">No phone/glasses; carried revolver</span><span class="tag key">ALL classified DoD programs</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-closed" tabindex="0" role="button" onclick="showDetail('thomas')" onkeydown="if(event.key==='Enter')showDetail('thomas')">
+  <div class="ppill"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span></div>
+  <div class="pphoto"><img src="images/thomas.jpg" alt="Jason Thomas" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Jason Thomas</div>
+    <div class="prole">Cancer researcher, Novartis</div>
+    <div class="pdate">Missing Dec 2025 &middot; Found dead Mar 2026</div>
+    <div class="psummary">Novartis cancer researcher. Body found in Massachusetts lake March 2026. No foul play suspected. Included for completeness &mdash; no clear national security connection.</div>
+    <div class="ptags"><span class="tag ok">&ldquo;No foul play suspected&rdquo;</span><span class="tag ">Pharmaceutical research</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('wilcock')" onkeydown="if(event.key==='Enter')showDetail('wilcock')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/wilcock.jpg" alt="David Wilcock" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">David Wilcock</div>
+    <div class="prole">UAP disclosure researcher, author &middot; Ancient Aliens / YouTube</div>
+    <div class="pdate">Died Apr 20, 2026 &middot; Age 53 &middot; Boulder County, CO</div>
+    <div class="psummary">Prominent UAP disclosure researcher and author. Died by apparent self-inflicted gunshot. Two days prior posted video saying it was &ldquo;scary&rdquo; that scientists are going missing. Had publicly stated he was not suicidal. Biographer Wynn Free died two days before him.</div>
+    <div class="ptags"><span class="tag hot">Died 2 days after warning about missing scientists</span><span class="tag hot">Previously stated: not suicidal</span><span class="tag uap">UAP disclosure advocate</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+</div>
+
+<hr class="divider" style="margin:36px 0">
+
+<div class="sh">
+  <div class="stripe" style="background:var(--green)"></div>
+  <div><h2>Recent Developments</h2><div class="sub">Government intervention &middot; Congressional action &middot; Breaking coverage &middot; Updated Apr 22, 2026</div></div>
+</div>
+<div class="devs">
+<div class="dev urgent">
+  <div class="dev-date">Apr 20<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag urgent">BREAKING</span>
+    <strong>David Wilcock &mdash; prominent UAP disclosure researcher &mdash; found dead by apparent suicide</strong>
+    <p>Wilcock, 53, died at his Colorado home. Two days prior posted video warning missing scientists were &ldquo;scary.&rdquo; Had previously stated he was not suicidal. Biographer Wynn Free also died two days before him. Rep. Anna Paulina Luna confirmed the death on X.</p>
+    <a href="https://www.thegatewaypundit.com/2026/04/famous-ufo-researcher-david-wilcock-dead-apparent-suicide/" target="_blank">Gateway Pundit: Wilcock death &#8594;</a>
+  </div>
+</div>
+<div class="dev urgent">
+  <div class="dev-date">Apr 27<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag urgent">DEADLINE TODAY</span>
+    <strong>House Oversight briefing deadline &mdash; FBI, DOE, DOD, NASA must respond today</strong>
+    <p>Comer and Burlison issued formal letters demanding staff-level briefings. DOD&rsquo;s prior response &mdash; &ldquo;no active national security investigations&rdquo; &mdash; was deemed insufficient.</p>
+    <a href="https://oversight.house.gov/release/comer-burlison-seek-information-on-missing-nuclear-and-rocket-scientists/" target="_blank">House Oversight official release &#8594;</a>
+  </div>
+</div>
+<div class="dev urgent">
+  <div class="dev-date">Apr 21<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag urgent">FBI CONFIRMS</span>
+    <strong>FBI &ldquo;spearheading the effort to look for connections&rdquo; between all cases</strong>
+    <p>First formal confirmation the FBI is treating cases as potentially linked rather than isolated incidents. FBI spokesperson confirmed to Fox News Digital.</p>
+    <a href="https://www.foxnews.com/politics/lawmakers-demand-answers-scientists-tied-us-secrets-die-vanish" target="_blank">Fox News: FBI statement &#8594;</a>
+  </div>
+</div>
+<div class="dev notable">
+  <div class="dev-date">Apr 21<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag notable">FORTUNE</span>
+    <strong>SpaceX and Blue Origin connection &mdash; Reza&rsquo;s Mondaloy linked to commercial rocket programs</strong>
+    <p>Reza&rsquo;s superalloy connects to tech now used by SpaceX and Blue Origin. Blue Origin added to $151B SHIELD missile defense contract.</p>
+    <a href="https://fortune.com/2026/04/21/scientists-disappear-die-nasa-space-blue-origin-spacex/" target="_blank">Fortune: SpaceX / Blue Origin &#8594;</a>
+  </div>
+</div>
+<div class="dev notable">
+  <div class="dev-date">Apr 21<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag notable">CNN</span>
+    <strong>Hicks&rsquo;s daughter speaks out: &ldquo;I don&rsquo;t understand the connection &hellip; it&rsquo;s getting serious&rdquo;</strong>
+    <p>Julia Hicks told CNN her father had known medical issues. First family member of any case to speak publicly to a major outlet.</p>
+    <a href="https://www.cnn.com/2026/04/21/us/deaths-disappearances-scientists-investigation" target="_blank">CNN: Federal investigation &#8594;</a>
+  </div>
+</div>
+<div class="dev gov">
+  <div class="dev-date">Apr 20<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag gov">CONGRESS</span>
+    <strong>House Oversight formally demands answers from FBI &middot; DOE &middot; DOD &middot; NASA</strong>
+    <p>Comer and Burlison: &ldquo;If the reports are accurate, these deaths may represent a grave threat to U.S. national security.&rdquo;</p>
+    <a href="https://oversight.house.gov/release/comer-burlison-seek-information-on-missing-nuclear-and-rocket-scientists/" target="_blank">House Oversight official release &#8594;</a>
+  </div>
+</div>
+<div class="dev notable">
+  <div class="dev-date">Apr 18<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag notable">MICHIO KAKU</span>
+    <strong>Physicist Michio Kaku calls pattern &ldquo;unheard of&rdquo; &middot; NNSA confirms investigating</strong>
+    <p>NNSA: &ldquo;aware of reports related to employees of our labs, plants and sites and is looking into the matter.&rdquo;</p>
+    <a href="https://www.foxnews.com/us/renowned-physicist-alarmed-unheard-number-scientists-dying-vanishing-white-houses-radar" target="_blank">Fox News: Kaku + NNSA &#8594;</a>
+  </div>
+</div>
+<div class="dev gov">
+  <div class="dev-date">Apr 17<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag gov">WHITE HOUSE</span>
+    <strong>Trump: &ldquo;pretty serious stuff &hellip; I hope it&rsquo;s random. We&rsquo;ll know in a week and a half.&rdquo;</strong>
+    <p>Press Secretary Leavitt: &ldquo;no stone will be unturned.&rdquo; First White House acknowledgment of the cluster as a potential national security matter.</p>
+    <a href="https://www.newsweek.com/white-house-investigating-wave-mystery-dead-scientists-11836410" target="_blank">Newsweek: White House statement &#8594;</a>
+  </div>
+</div>
+<div class="dev uap">
+  <div class="dev-date">Apr 16<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag uap">UAP</span>
+    <strong>Burlison adds Sullivan: UAP whistleblower who died 2 weeks before scheduled testimony</strong>
+    <p>Formally requested FBI Director Kash Patel open murder investigation. IC IG had flagged &ldquo;severe misconduct.&rdquo;</p>
+    <a href="https://brobible.com/culture/article/congressman-death-air-force-whistleblower-ufo-secrets-suspicious/" target="_blank">BroBible: Sullivan report &#8594;</a>
+  </div>
+</div>
+<div class="dev uap">
+  <div class="dev-date">Mar 25<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag uap">CLASSIFIED SCIF</span>
+    <strong>Classified congressional SCIF briefing held regarding McCasland disappearance and UAP programs</strong>
+    <p>Burlison: &ldquo;one of the most bipartisan topics in Washington.&rdquo; Content not made public.</p>
+    <a href="https://lamag.com/news-and-politics/what-happened-inside-congress-classified-uap-briefing/" target="_blank">LA Mag: Inside the SCIF briefing &#8594;</a>
+  </div>
+</div>
+<div class="dev gov">
+  <div class="dev-date">Feb 19<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag gov">TRUMP ORDER</span>
+    <strong>Trump signs UAP disclosure directive &mdash; McCasland vanishes 4 days later</strong>
+    <p>Ordered all agencies to identify and release UAP files. Four days later the man with legal visibility over every classified DoD program walked out of his home and was never seen again.</p>
+    <a href="https://defensescoop.com/2026/02/20/trump-ufo-uap-government-files-disclosure/" target="_blank">DefenseScoop: Trump UAP directive &#8594;</a>
+  </div>
+</div>
+</div>
+
+<hr class="divider" style="margin:36px 0">
+
+<div class="sh">
+  <div class="stripe" style="background:var(--orange)"></div>
+  <div><h2>Critical Connections</h2><div class="sub">The threads that link cases &mdash; ranked by investigative weight</div></div>
+</div>
+<table class="ctable">
+  <thead><tr><th>Weight</th><th>Who</th><th>What links them</th><th>Why it matters</th></tr></thead>
+  <tbody>
+    <tr><td><span class="cdot ch"></span><strong style="color:var(--pink)">STRONGEST</strong></td><td><span class="cwho">McCasland &#8596; Reza</span></td><td>McCasland&rsquo;s AFRL funded Reza&rsquo;s Mondaloy from 1999. She worked directly under his oversight.</td><td>Both vanished. The inventor and her funder &mdash; gone 8 months apart.</td></tr>
+    <tr><td><span class="cdot ch"></span><strong style="color:var(--pink)">STRONGEST</strong></td><td><span class="cwho">Sullivan &#8594; UAP testimony</span></td><td>Scheduled as UAP whistleblower before Congress. Dead within 2 weeks. IC IG flagged &ldquo;severe misconduct.&rdquo;</td><td>Only case with direct pre-death testimony link. FBI now probing.</td></tr>
+    <tr><td><span class="cdot ch"></span><strong style="color:var(--pink)">STRONGEST</strong></td><td><span class="cwho">McCasland &#8594; Trump UAP order</span></td><td>Trump signed UAP disclosure directive Feb 19. McCasland vanished 4 days later. Held legal visibility over ALL classified DoD programs.</td><td>The man who knew everything disappeared the moment disclosure was ordered.</td></tr>
+    <tr><td><span class="cdot ch"></span><strong style="color:var(--pink)">STRONGEST</strong></td><td><span class="cwho">Wilcock &#8594; scientists warning</span></td><td>Posted video 2 days before death warning about missing scientists. Had publicly stated he was not suicidal. Biographer died 2 days before him.</td><td>Most prominent public disclosure figure dead, same week as congressional deadline.</td></tr>
+    <tr><td><span class="cdot cm"></span><strong style="color:var(--orange)">NOTABLE</strong></td><td><span class="cwho">Wright-Patterson &times; 3 events</span></td><td>McCasland commanded it. Sullivan worked NASIC there. 3 AFRL personnel died Oct 2025 &mdash; no findings released.</td><td>Same base, three separate death events. Never connected by mainstream coverage.</td></tr>
+    <tr><td><span class="cdot cm"></span><strong style="color:var(--orange)">NOTABLE</strong></td><td><span class="cwho">NM walkaway pattern</span></td><td>Chavez, Casias, Garcia, McCasland all left Albuquerque-area homes on foot without phones. Casias wiped devices first.</td><td>Four people, same region, same behavioral signature.</td></tr>
+    <tr><td><span class="cdot cm"></span><strong style="color:var(--orange)">NOTABLE</strong></td><td><span class="cwho">JPL institutional silence</span></td><td>Hicks, Maiwald, Reza all died or vanished. NASA issued zero statements. No autopsies. No comment to press.</td><td>Institutions announce prominent deaths. Active silence warrants FOIA.</td></tr>
+    <tr><td><span class="cdot cl"></span><strong style="color:var(--ink3)">CONTEXT</strong></td><td><span class="cwho">Mondaloy &#8594; national security</span></td><td>Reza&rsquo;s patent freed US classified satellite launches from Russian RD-180 dependency. Now linked to SpaceX/Blue Origin.</td><td>The tech is strategically critical. Inventor and funder are both gone.</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider" style="margin:28px 0">
+
+<div class="sh">
+  <div class="stripe" style="background:var(--blue)"></div>
+  <div><h2>Key Institutions &amp; Organizations</h2><div class="sub">Every entity connected to the cluster &mdash; who worked there, what happened, why it matters</div></div>
+</div>
+<div class="inst-grid">
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(0,187,249,.15);border-color:rgba(0,187,249,.3);color:var(--blue)">JPL</div>
+      <div>
+        <div class="inst-name">NASA Jet Propulsion Laboratory</div>
+        <div class="inst-loc">Pasadena, CA &middot; NASA / Caltech</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person dead">Michael David Hicks &mdash; died Jul 2023, no cause</div>
+      <div class="inst-person dead">Frank Maiwald &mdash; died Jul 2024, no cause</div>
+      <div class="inst-person miss">Monica Reza &mdash; vanished Jun 2025, no body found</div>
+      <div class="inst-person closed">Carl Grillmair &mdash; murdered Feb 2026 (affiliated)</div>
+    </div>
+    <div class="inst-note">4 connected cases. Zero public statements from NASA or JPL on any death or disappearance. No autopsies conducted. No response to repeated press inquiries. Institutional silence of this scale &mdash; for researchers of this stature &mdash; is anomalous.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(255,32,110,.12);border-color:rgba(255,32,110,.3);color:var(--pink)">LANL</div>
+      <div>
+        <div class="inst-name">Los Alamos National Laboratory</div>
+        <div class="inst-loc">Los Alamos, NM &middot; NNSA / DOE</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person miss">Anthony Chavez &mdash; vanished May 2025, on foot</div>
+      <div class="inst-person miss">Melissa Casias &mdash; vanished Jun 2025, wiped both phones</div>
+    </div>
+    <div class="inst-note">Founded during the Manhattan Project. LANL designs and engineers US nuclear warheads. NNSA confirmed April 2026 it is investigating employee cases. Both employees vanished within 7 weeks of each other, 50 miles from each other, both on foot. Casias had top security clearance.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(255,139,51,.12);border-color:rgba(255,139,51,.3);color:var(--orange)">WP</div>
+      <div>
+        <div class="inst-name">Wright-Patterson Air Force Base</div>
+        <div class="inst-loc">Dayton, OH &middot; AFRL &middot; NASIC &middot; Project Blue Book heritage</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person miss">Gen. Neil McCasland &mdash; commanded AFRL here, vanished Feb 2026</div>
+      <div class="inst-person dead">Matthew Sullivan &mdash; NASIC Deputy Director, died May 2024</div>
+      <div class="inst-person dead">Jaime Gustitus &mdash; AFRL, died Oct 2025</div>
+      <div class="inst-person dead">Jacob Prichard &mdash; AFRL, died Oct 2025</div>
+      <div class="inst-person dead">Jaymee Prichard &mdash; AFLCMC, died Oct 2025</div>
+    </div>
+    <div class="inst-note">The single institution most connected to the cluster. Three separate death events. No investigative findings from the Oct 2025 murders ever publicly released. Long associated with Project Blue Book and advanced classified aerospace research. Sullivan worked at NASIC, the nation&rsquo;s top air and space intelligence center.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(255,32,110,.12);border-color:rgba(255,32,110,.3);color:var(--pink)">KCNSC</div>
+      <div>
+        <div class="inst-name">Kansas City National Security Campus</div>
+        <div class="inst-loc">Kansas City, MO / Albuquerque, NM &middot; NNSA / Honeywell</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person miss">Steven Garcia &mdash; property custodian, vanished Aug 2025</div>
+    </div>
+    <div class="inst-note">Manufactures over 80% of all non-nuclear components for every US nuclear weapon &mdash; fuzes, arming systems, firing sets, radar components. Garcia&rsquo;s role as property custodian gave him asset-level visibility across the entire facility. Left home in camouflage carrying a handgun. Never seen again.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(206,0,224,.12);border-color:rgba(206,0,224,.3);color:var(--purple)">SAP</div>
+      <div>
+        <div class="inst-name">Special Access Program Oversight Committee</div>
+        <div class="inst-loc">Department of Defense &middot; McCasland was Executive Secretary</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person miss">Gen. Neil McCasland &mdash; executive secretary, vanished Feb 2026</div>
+    </div>
+    <div class="inst-note">The SAP Oversight Committee holds legal visibility over every compartmented, above-top-secret program in the entire US Department of Defense. McCasland was its executive secretary &mdash; meaning he had authorized access to the full universe of classified programs. He vanished 4 days after Trump ordered UAP file disclosure.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(0,187,249,.12);border-color:rgba(0,187,249,.3);color:var(--blue)">AFRL</div>
+      <div>
+        <div class="inst-name">Air Force Research Laboratory</div>
+        <div class="inst-loc">Wright-Patterson AFB, OH &middot; $4.4B annual portfolio</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person miss">Gen. McCasland &mdash; commanded AFRL 2011&ndash;2013</div>
+      <div class="inst-person miss">Monica Reza &mdash; Mondaloy funded by AFRL from 1999</div>
+      <div class="inst-person dead">Jaime Gustitus &mdash; 711th Human Performance Wing</div>
+      <div class="inst-person dead">Jacob Prichard &mdash; AFRL researcher</div>
+    </div>
+    <div class="inst-note">The Air Force&rsquo;s primary science and technology organization. McCasland oversaw a $4.4B portfolio here. AFRL directly funded Monica Reza&rsquo;s Mondaloy research &mdash; the tech that freed US classified satellite launches from Russian engine dependency. Three AFRL personnel died in Oct 2025 with no findings released.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(14,251,34,.08);border-color:rgba(14,251,34,.25);color:var(--green)">HOC</div>
+      <div>
+        <div class="inst-name">House Oversight Committee</div>
+        <div class="inst-loc">US Congress &middot; Comer (chair) &middot; Burlison (subcommittee)</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person gov">Rep. James Comer &mdash; chair, issued formal demand letters</div>
+      <div class="inst-person gov">Rep. Eric Burlison &mdash; hired David Grusch as senior UAP adviser</div>
+      <div class="inst-person gov">David Grusch &mdash; former NRO/NGA officer, UAP whistleblower</div>
+    </div>
+    <div class="inst-note">Issued formal letters demanding FBI, DOE, DOD, and NASA provide staff-level briefings by April 27, 2026. Burlison called a classified SCIF briefing on March 25, described it as &ldquo;one of the most bipartisan topics in Washington.&rdquo; Burlison has called foreign intelligence operation the &ldquo;most likely explanation.&rdquo;</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(14,251,34,.08);border-color:rgba(14,251,34,.25);color:var(--green)">FBI</div>
+      <div>
+        <div class="inst-name">Federal Bureau of Investigation</div>
+        <div class="inst-loc">Washington, DC &middot; National security division</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person gov">Director Kash Patel &mdash; Burlison requested Sullivan murder investigation</div>
+      <div class="inst-person gov">Spokesperson &mdash; confirmed &ldquo;spearheading the effort to look for connections&rdquo;</div>
+    </div>
+    <div class="inst-note">On April 21, 2026 an FBI spokesperson confirmed to Fox News Digital that the FBI is &ldquo;spearheading the effort to look for connections&rdquo; between the cases. This is the first formal confirmation that the FBI is treating the cases as potentially linked rather than isolated. FBI joined the Bernalillo County search for McCasland.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(225,255,0,.08);border-color:rgba(225,255,0,.2);color:var(--yellow)">MIT</div>
+      <div>
+        <div class="inst-name">MIT Plasma Science &amp; Fusion Center</div>
+        <div class="inst-loc">Cambridge, MA &middot; Massachusetts Institute of Technology</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person closed">Nuno Loureiro &mdash; director, murdered Dec 2025</div>
+    </div>
+    <div class="inst-note">One of the most advanced plasma physics and fusion research programs in the world. Loureiro was its director and reportedly near a fusion energy breakthrough at the time of his murder. Case officially closed &mdash; personal grudge from a former classmate who also carried out the Brown University shooting. Fusion research has obvious national security and energy implications.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(255,139,51,.12);border-color:rgba(255,139,51,.3);color:var(--orange)">NNSA</div>
+      <div>
+        <div class="inst-name">National Nuclear Security Administration</div>
+        <div class="inst-loc">DOE semi-autonomous agency &middot; Manages all US nuclear weapons</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person miss">Anthony Chavez &mdash; LANL employee (NNSA facility)</div>
+      <div class="inst-person miss">Melissa Casias &mdash; LANL employee (NNSA facility)</div>
+      <div class="inst-person miss">Steven Garcia &mdash; KCNSC contractor (NNSA facility)</div>
+    </div>
+    <div class="inst-note">NNSA oversees LANL and KCNSC &mdash; two of the three institutions where people connected to this cluster worked or vanished. On April 18, 2026 NNSA confirmed it is &ldquo;aware of reports related to employees of our labs, plants and sites and is looking into the matter.&rdquo; Three personnel from NNSA-connected facilities are missing.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(0,245,212,.08);border-color:rgba(0,245,212,.25);color:var(--teal)">DOD</div>
+      <div>
+        <div class="inst-name">Department of Defense</div>
+        <div class="inst-loc">Pentagon &middot; All branches &middot; All classified programs</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person miss">Gen. McCasland &mdash; former Director of Special Programs</div>
+      <div class="inst-person dead">Matthew Sullivan &mdash; USAF intelligence, NASIC</div>
+    </div>
+    <div class="inst-note">DOD initially told House Oversight there were &ldquo;no active national security investigations&rdquo; of any missing persons &mdash; a response deemed insufficient and contradicted by the subsequent FBI confirmation. McCasland held the broadest possible authorized access across all DoD classified programs as SAP Oversight Committee secretary.</div>
+  </div>
+
+  <div class="inst-card">
+    <div class="inst-header">
+      <div class="inst-icon" style="background:rgba(0,187,249,.12);border-color:rgba(0,187,249,.3);color:var(--blue)">AJ / SpX</div>
+      <div>
+        <div class="inst-name">Aerojet Rocketdyne / SpaceX / Blue Origin</div>
+        <div class="inst-loc">Commercial aerospace &middot; Mondaloy supply chain</div>
+      </div>
+    </div>
+    <div class="inst-people">
+      <div class="inst-person miss">Monica Reza &mdash; Materials Director, Aerojet Rocketdyne; JPL</div>
+    </div>
+    <div class="inst-note">Fortune reported in April 2026 that Reza&rsquo;s Mondaloy superalloy research has connections to technologies now commercialized by SpaceX and Blue Origin. Blue Origin was added to the $151 billion SHIELD missile defense contract. The disappearance of the Mondaloy co-inventor now extends into the commercial space sector.</div>
+  </div>
+
+</div>
+<hr class="divider" style="margin:28px 0">
+
+<div class="sh">
+  <div class="stripe" style="background:var(--teal)"></div>
+  <div><h2>The Three Investigative Threads</h2><div class="sub">Frameworks for understanding what may connect the cases</div></div>
+</div>
+<div class="threads">
+  <div class="tcard">
+    <h4><span class="tnum t1">01</span> Foreign Intelligence Operation</h4>
+    <ul>
+      <li>Rep. Burlison: <strong>&ldquo;the most likely explanation&rdquo;</strong></li>
+      <li>China&rsquo;s MSS / Russia&rsquo;s SVR documented as targeting US defense scientists</li>
+      <li>People with <strong>irreplaceable knowledge</strong> in propulsion, nuclear, advanced aerospace</li>
+      <li>Walkaway pattern consistent with <strong>coerced extraction</strong></li>
+      <li>Former FBI AD Swecker: &ldquo;within the realm of possibility&rdquo; researchers were abducted</li>
+      <li>Casias phone-wipe before departing suggests <strong>premeditated counter-surveillance</strong></li>
+    </ul>
+  </div>
+  <div class="tcard">
+    <h4><span class="tnum t2">02</span> Internal Suppression / Disclosure Threat</h4>
+    <ul>
+      <li><strong>Sullivan</strong> dead 2 weeks before UAP testimony &mdash; IC IG flagged misconduct</li>
+      <li><strong>McCasland</strong> vanished 4 days after Trump UAP disclosure order</li>
+      <li><strong>Wilcock</strong> dead 2 days after warning about missing scientists</li>
+      <li>Legacy classified programs <strong>outside congressional oversight</strong> (Grusch testimony)</li>
+      <li>Eskridge said she felt <strong>&ldquo;escalating aggression&rdquo;</strong> before she died</li>
+    </ul>
+  </div>
+  <div class="tcard" style="grid-column:1/-1">
+    <h4><span class="tnum t3">03</span> What the Skeptics Say</h4>
+    <ul style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <li>Loureiro, Grillmair, Thomas all have <strong>mundane, unconnected explanations</strong></li>
+      <li>Former FBI agent Coffindaffer: &ldquo;This isn&rsquo;t some large-scale conspiracy&rdquo;</li>
+      <li>DOD confirmed <strong>no active national security investigations</strong> of missing persons</li>
+      <li>Many classified researchers exist &mdash; clustering expected <strong>at scale</strong></li>
+      <li>Confirmation bias: we notice deaths <strong>after</strong> the pattern is proposed</li>
+      <li>HOWEVER: Congress, FBI, NNSA, and the White House are now <strong>all treating it as real</strong></li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider" style="margin:28px 0">
+
+<div class="sh">
+  <div class="stripe" style="background:var(--ink3)"></div>
+  <div><h2>Timeline</h2><div class="sub">All events in sequence &middot; 2022&ndash;2026</div></div>
+</div>
+<div class="timeline">
+  <div class="tli"><div class="tldot d"></div><div class="tldate">Jun 2022</div><div class="tlbody"><strong>Amy Eskridge dies</strong> &mdash; antigravity researcher, Huntsville AL. Age 34. No official report. Said publicly she was &ldquo;scared.&rdquo;</div></div>
+  <div class="tli"><div class="tldot d"></div><div class="tldate">Jul 2023</div><div class="tlbody"><strong>Michael David Hicks dies</strong> &mdash; NASA JPL. Age 59. No cause, no autopsy, no NASA statement.</div></div>
+  <div class="tli"><div class="tldot d"></div><div class="tldate">May 2024</div><div class="tlbody"><strong>Matthew Sullivan dies</strong> &mdash; USAF NASIC. Age 39. Reported suicide &mdash; 2 weeks before UAP testimony. IC IG flags &ldquo;severe misconduct.&rdquo;</div></div>
+  <div class="tli"><div class="tldot d"></div><div class="tldate">Jul 2024</div><div class="tlbody"><strong>Frank Maiwald dies</strong> &mdash; NASA JPL Principal Researcher. Age 61. No cause, no autopsy, no NASA statement.</div></div>
+  <div class="tli"><div class="tldot m"></div><div class="tldate">May 2025</div><div class="tlbody"><strong>Anthony Chavez vanishes</strong> &mdash; Los Alamos National Lab. Age 78. On foot, car in driveway. Never found.</div></div>
+  <div class="tli"><div class="tldot m"></div><div class="tldate">Jun 22, 2025</div><div class="tlbody"><strong>Monica Reza vanishes</strong> &mdash; JPL director, Mondaloy co-inventor. 30ft from hiking companion. Never found.</div></div>
+  <div class="tli"><div class="tldot m"></div><div class="tldate">Jun 26, 2025</div><div class="tlbody"><strong>Melissa Casias vanishes</strong> &mdash; LANL top clearance. Factory-wipes both phones. Walks out on foot. Never found.</div></div>
+  <div class="tli"><div class="tldot m"></div><div class="tldate">Aug 2025</div><div class="tlbody"><strong>Steven Garcia vanishes</strong> &mdash; KCNSC nuclear contractor. Leaves with handgun, no phone. Never found.</div></div>
+  <div class="tli"><div class="tldot e"></div><div class="tldate">Oct 24, 2025</div><div class="tlbody"><strong>3 Wright-Patterson AFRL personnel die</strong> &mdash; Gustitus, Jacob Prichard, Jaymee Prichard. Murder-suicide. No investigative findings released.</div></div>
+  <div class="tli"><div class="tldot m"></div><div class="tldate">Dec 2025</div><div class="tlbody"><strong>Jason Thomas goes missing</strong> &mdash; Novartis researcher. Body found in lake Mar 2026. No foul play suspected.</div></div>
+  <div class="tli"><div class="tldot c"></div><div class="tldate">Dec 15, 2025</div><div class="tlbody"><strong>Nuno Loureiro murdered</strong> &mdash; MIT fusion center director. Shot by former classmate. &ldquo;Case closed.&rdquo;</div></div>
+  <div class="tli"><div class="tldot d"></div><div class="tldate">Feb 16, 2026</div><div class="tlbody"><strong>Carl Grillmair murdered</strong> &mdash; Caltech astrophysicist, NEOWISE. Shot on porch at 6 AM. &ldquo;Case closed.&rdquo;</div></div>
+  <div class="tli"><div class="tldot e"></div><div class="tldate">Feb 19, 2026</div><div class="tlbody"><strong>Trump signs UAP disclosure directive</strong> &mdash; orders all agencies to identify and release UAP files.</div></div>
+  <div class="tli"><div class="tldot m"></div><div class="tldate">Feb 27, 2026</div><div class="tlbody"><strong>Gen. McCasland vanishes</strong> &mdash; 4 days after Trump UAP order. No phone, no glasses. Carried revolver. Still missing.</div></div>
+  <div class="tli"><div class="tldot e"></div><div class="tldate">Apr 16&ndash;21</div><div class="tlbody"><strong>Story breaks nationally.</strong> White House acknowledges. FBI &ldquo;spearheading&rdquo; investigation. House Oversight issues April 27 briefing deadline.</div></div>
+  <div class="tli"><div class="tldot d"></div><div class="tldate">Apr 20, 2026</div><div class="tlbody"><strong>David Wilcock dies</strong> &mdash; UAP disclosure researcher, age 53. Apparent self-inflicted gunshot at Colorado home. Had warned 2 days earlier that missing scientists were &ldquo;scary.&rdquo; Had publicly stated he was not suicidal.</div></div>
+</div>
+
+</div><!-- /canvas -->
+
+<!-- NODE MAP -->
+<div class="nmwrap">
+  <div class="nm-sh">
+    <div class="stripe" style="background:var(--blue)"></div>
+    <div><h2 style="font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;color:var(--ink)">Connection Node Map</h2>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px">Drag to pan &middot; Scroll to zoom &middot; Click any node to highlight connections</div></div>
+  </div>
+  <div class="nmleg">
+    <div class="nmleg-i"><div class="nmleg-l" style="background:#00BBF9"></div>NASA / JPL</div>
+    <div class="nmleg-i"><div class="nmleg-l" style="background:#FF206E"></div>Nuclear / Weapons</div>
+    <div class="nmleg-i"><div class="nmleg-l" style="background:#FF8B33"></div>Military / AFRL</div>
+    <div class="nmleg-i"><div class="nmleg-l" style="background:#CE00E0"></div>UAP / Classified</div>
+    <div class="nmleg-i"><div class="nmleg-l" style="background:#0EFB22"></div>Congressional</div>
+  </div>
+  <div id="nmsvgwrap"><svg id="nmsvg" width="100%" height="100%"></svg><div id="nmtip"></div></div>
+  <div class="nmbtns">
+    <button class="nmbtn" onclick="nmReset()">RESET VIEW</button>
+    <button class="nmbtn" onclick="nmPeople()">PEOPLE ONLY</button>
+    <button class="nmbtn" onclick="nmAll()">SHOW ALL</button>
+  </div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div id="dp">
+  <button id="closebtn" onclick="closeDP()">&#10005; CLOSE</button>
+  <div id="dpcontent"></div>
+</div>
+
+<script>
+const D={
+hicks:{n:'Michael David Hicks',r:'Research Scientist, NASA JPL (1998&ndash;2022)',s:'DECEASED &middot; Jul 30, 2023 &middot; Age 59',sc:'dead',body:'24 years at JPL on planetary defense. Published 80+ papers on comets and asteroids. NASA issued zero statements. No autopsy on record. His daughter Julia told CNN: &ldquo;it&rsquo;s getting serious.&rdquo;',pts:['DART Mission: NASA asteroid deflection test','Deep Space 1: advanced autonomous spacecraft','No cause ever publicly disclosed','No autopsy conducted','NASA and JPL issued zero public statements'],note:'First case in the cluster. Largely unnoticed until the pattern emerged in 2026.',links:[{u:'https://www.cnn.com/2026/04/21/us/deaths-disappearances-scientists-investigation',l:'CNN: Federal investigation',s:'CNN'},{u:'https://dps.aas.org/news/michael-david-hicks-1964-2023/',l:'AAS obituary',s:'AAS'}]},
+maiwald:{n:'Frank Maiwald',r:'JPL Principal Researcher (highest individual honor)',s:'DECEASED &middot; Jul 4, 2024 &middot; Age 61',sc:'dead',body:'"JPL Principal" is reserved for outstanding individual contributors. Led a 2023 breakthrough on detecting biosignatures on other worlds. One obituary, no NASA comment.',pts:['Led 2023 biosignature detection study','Deep Space 1 mission contributor','Died in Los Angeles, no cause disclosed','No autopsy performed','NASA issued no public statement'],note:'Second JPL death in 12 months. NASA silence on both is anomalous for researchers of this stature.',links:[{u:'https://thelibertyline.com/2026/04/08/ufo-research-dead-missing-nine/',l:'Liberty Line: Count reaches nine',s:'Liberty Line'}]},
+reza:{n:'Monica Jacinto Reza',r:'Director, JPL Materials Processing / Aerojet Rocketdyne',s:'MISSING &middot; Vanished Jun 22, 2025 &middot; No body found',sc:'missing',body:'Co-invented Mondaloy superalloy freeing US satellite launches from Russian RD-180 dependency. Research directly funded by McCasland&rsquo;s AFRL from 1999. Vanished 30ft from hiking companion &mdash; smiling and waving &mdash; then gone.',pts:['Co-invented Mondaloy 200 with Dallis Hardwick','McCasland&rsquo;s AFRL funded Mondaloy from 1999','Mondaloy used in Air Force Hydrocarbon Boost program','Vanished 30ft from companion &mdash; smiling, waving &mdash; then gone','No body recovered despite extensive search','Mondaloy now linked to SpaceX &amp; Blue Origin programs'],note:'The McCasland-Reza connection is the strongest documented link. Two people from the same funding chain &mdash; both gone.',links:[{u:'https://fortune.com/2026/04/21/scientists-disappear-die-nasa-space-blue-origin-spacex/',l:'Fortune: SpaceX/Blue Origin connection',s:'Fortune'},{u:'https://en.wikipedia.org/wiki/Monica_Jacinto',l:'Wikipedia: Monica Jacinto Reza',s:'Wikipedia'}]},
+chavez:{n:'Anthony Chavez',r:'Former Los Alamos National Laboratory employee',s:'MISSING &middot; Vanished May 4, 2025 &middot; Age 78',sc:'missing',body:'Chavez retired from LANL after a career at one of the US&rsquo;s most sensitive nuclear research facilities. Family described his disappearance as completely out of character.',pts:['LANL career &mdash; Manhattan Project institution','Left home on foot, car locked in driveway','Exhaustive search produced nothing','No explanation, no body found'],note:'Part of the New Mexico walkaway pattern alongside Casias, Garcia, and McCasland.',links:[{u:'https://www.mensjournal.com/news/missing-scientists-dead-nuclear-full-list-how-many',l:"Men's Journal: Full case list",s:"Men's Journal"}]},
+casias:{n:'Melissa Casias',r:'Administrative Assistant, LANL (top security clearance)',s:'MISSING &middot; Vanished Jun 26, 2025',sc:'missing',body:'LANL staff with top security clearance. Apparently prepared before leaving: both phones factory-reset before she walked out.',pts:['Top security clearance at LANL','Left car, keys, wallet, both phones, all money','Both phones factory-reset before she left','Surveillance: walking east on NM-518','No resolution found'],note:'Phone wiping is the most unusual detail in any case here. Suggests deliberate counter-surveillance.',links:[{u:'https://www.foxnews.com/politics/lawmakers-demand-answers-scientists-tied-us-secrets-die-vanish',l:'Fox News: Lawmakers demand answers',s:'Fox News'}]},
+garcia:{n:'Steven Garcia',r:'Property Custodian, Kansas City National Security Campus',s:'MISSING &middot; Vanished Aug 28, 2025 &middot; Age 48',sc:'missing',body:'KCNSC manufactures over 80% of all non-nuclear components for every US nuclear weapon. Garcia&rsquo;s role gave him access across the entire facility.',pts:['KCNSC: 80%+ of US nuclear weapon non-nuclear components','Custodian of hundreds of millions in classified assets','Left home in camouflage on foot, left phone and wallet','Carried a handgun when he left','Never seen again'],note:'Like McCasland, Garcia left home on foot with a weapon but without his phone. Striking behavioral parallel.',links:[{u:'https://thelibertyline.com/2026/04/14/ufo-research-scientists-missing-10/',l:'Liberty Line: Count reaches ten',s:'Liberty Line'}]},
+sullivan:{n:'Matthew James Sullivan',r:'USAF Intelligence Officer &middot; NASIC Deputy Director, Wright-Patterson',s:'DECEASED &middot; May 12, 2024 &middot; Age 39',sc:'dead',body:'A Bronze Star officer at the most sensitive aerospace intelligence center in the US. Scheduled to testify as a UAP whistleblower before Congress. Dead within two weeks of being scheduled.',pts:['NASIC &mdash; National Air and Space Intelligence Center','Bronze Star, Operation Enduring Freedom','Scheduled as UAP Task Force witness before Congress','Dead within 2 weeks of being scheduled','Reported suicide &mdash; cause never publicly confirmed','IC IG: "severe allegations of misconduct and potentially unlawful activities"','Rep. Burlison requested FBI Director Patel open investigation'],note:'The sharpest needle. Decorated intelligence officer, UAP testimony scheduled, dead within two weeks.',links:[{u:'https://brobible.com/culture/article/congressman-death-air-force-whistleblower-ufo-secrets-suspicious/',l:'BroBible: Congressman calls death suspicious',s:'BroBible'}]},
+eskridge:{n:'Amy Eskridge',r:'Antigravity researcher &middot; Co-founder, Institute for Exotic Science',s:'DECEASED &middot; Jun 11, 2022 &middot; Age 34',sc:'dead',body:'Eskridge was working on antigravity technology with her NASA-engineer father. Said publicly she felt threatened. No official investigative report was ever released.',pts:['Co-founded Institute for Exotic Science with retired NASA engineer father','Working on antigravity / gravity modification technology','Needed NASA authorization before disclosing research publicly','Said: "I\'m scared, I\'m tired. It\'s escalating."','No official police or ME report publicly released','Institute for Exotic Science website went offline after her death'],note:'Earliest case (2022). Her public statements of fear &mdash; years before her death &mdash; are the most explicit pre-death warning on record.',links:[{u:'https://www.newsweek.com/who-is-amy-eskridge-scientist-death-queried-us-expert-mysteries-11843659',l:'Newsweek: Who is Amy Eskridge?',s:'Newsweek'}]},
+loureiro:{n:'Nuno F.G. Loureiro',r:'Director, MIT Plasma Science and Fusion Center',s:'MURDERED &middot; Dec 15, 2025 &middot; "Case closed"',sc:'closed',body:'World-class plasma physicist leading one of the most significant fusion research programs in the US. Officially attributed to a personal grudge from a former classmate.',pts:['Leading expert in plasma turbulence and magnetic reconnection','Reportedly near a breakthrough in fusion energy at time of death','Murdered by former Portuguese classmate Claudio Neves Valente','Valente also carried out Brown University shooting 2 days earlier','Case officially closed &mdash; personal motive'],note:'Officially closed. A world-leading fusion physicist near a breakthrough was killed weeks before McCasland vanished.',links:[{u:'https://www.nbcboston.com/news/local/brown-university-shooting-suspect-mit-professor-connection-former-classmates-portugal/3865458/',l:'NBC Boston: Brown/MIT connection',s:'NBC Boston'}]},
+grillmair:{n:'Carl Grillmair',r:'Astrophysicist, Caltech / JPL-affiliated',s:'MURDERED &middot; Feb 16, 2026 &middot; "Case closed"',sc:'closed',body:'Expert in galactic structure, exoplanet detection, and astrometric navigation. NEOWISE and NEO Surveyor work connected to asteroid threat detection and Air Force missile tracking.',pts:['NEOWISE: NASA near-Earth object telescope','NEO Surveyor: next-gen asteroid surveillance','Air Force missile tracking technology connection','Shot on porch of rural Llano CA home at 6 AM','Suspect charged &mdash; carjacking and burglary spree','No established national security motive'],note:'Officially closed. A Caltech astrophysicist connected to AF missile tracking, shot at dawn. No national security motive from the charged suspect.',links:[{u:'https://abc7.com/post/astrophysicist-carl-grillmair-shot-killed-front-porch-home-llano-california/15939184/',l:'ABC7: Grillmair shooting',s:'ABC7'}]},
+mccasland:{n:'Gen. William "Neil" McCasland',r:'Ret. USAF Major General &middot; Former AFRL Commander, Wright-Patterson',s:'MISSING &middot; Vanished Feb 27, 2026 &middot; Silver Alert active',sc:'missing',body:'As executive secretary of the Special Access Program Oversight Committee, McCasland held legal visibility over every compartmented program in the entire DoD. Vanished 4 days after Trump&rsquo;s UAP disclosure order.',pts:['Oversaw $4.4B AFRL science and technology portfolio','SAP Oversight Committee: legal visibility over ALL classified DoD programs','Named in 2016 WikiLeaks/Podesta emails as UAP insider by Tom DeLonge','Directly funded Monica Reza&rsquo;s Mondaloy superalloy from 1999','Vanished 4 DAYS after Trump signed UAP disclosure directive','Left without phone, glasses, or wearables &mdash; carried revolver','Classified congressional SCIF briefing held March 25, 2026'],note:'The single most important case. Timing relative to the UAP order, access to every classified DoD program, and direct connection to Reza make this the thread most worth pulling.',links:[{u:'https://en.wikipedia.org/wiki/Neil_McCasland',l:'Wikipedia: Neil McCasland',s:'Wikipedia'},{u:'https://lamag.com/news-and-politics/what-happened-inside-congress-classified-uap-briefing/',l:'LA Mag: Inside the classified UAP briefing',s:'LA Magazine'}]},
+thomas:{n:'Jason Thomas',r:'Cancer treatment researcher, Novartis',s:'DECEASED &middot; Missing Dec 2025 &middot; Found Mar 2026',sc:'closed',body:'Missing December 2025, body found in a Massachusetts lake March 2026. Investigators found no foul play. No substantive national security connection established.',pts:['Cancer treatment research at Novartis','Body found in lake March 17, 2026','No foul play suspected by investigators','No national security connection established'],note:'Weakest case from an investigative standpoint. Included for completeness.',links:[{u:'https://people.com/scientist-missing-novartis-jason-thomas-found-dead-massachusetts-lake-exclusive-8768492',l:'People Magazine: Jason Thomas',s:'People'}]},
+wilcock:{n:'David Wilcock',r:'Author, UAP disclosure researcher &middot; YouTube / Ancient Aliens',s:'DECEASED &middot; Apr 20, 2026 &middot; Age 53 &middot; Boulder County, CO',sc:'dead',body:'Prominent figure in the UAP disclosure movement. Died by apparent self-inflicted gunshot wound at his home near Nederland, Colorado. Two days before his death he posted a video warning that missing scientists were &ldquo;scary.&rdquo; Had previously stated publicly he was not suicidal.',pts:['Bestselling author on UAP, consciousness, and ancient history','April 18, 2026: posted video warning missing scientists were "scary"','Previously stated publicly: "I am not suicidal"','Died April 20 by apparent self-inflicted gunshot near Nederland, CO','Boulder County Sheriff: 911 call at 10:44 AM for mental health crisis','No other individuals present at the residence','Biographer Wynn Free died two days before Wilcock','Rep. Anna Paulina Luna (FL) confirmed death on X','Coroner investigation ongoing'],note:'Most recent death in the cluster. The timing &mdash; two days after warning publicly about missing scientists, same week as the congressional briefing deadline &mdash; has generated intense scrutiny.',links:[{u:'https://www.thegatewaypundit.com/2026/04/famous-ufo-researcher-david-wilcock-dead-apparent-suicide/',l:'Gateway Pundit: Wilcock death',s:'Gateway Pundit'},{u:'https://hollywoodlife.com/feature/david-wilcock-cause-of-death-5534585/',l:'Hollywood Life: Cause of death',s:'Hollywood Life'},{u:'https://en.wikipedia.org/wiki/David_Wilcock',l:'Wikipedia: David Wilcock',s:'Wikipedia'}]},
+};
+
+function showDetail(id){
+  var d=D[id];if(!d)return;
+  var pc=d.sc==='missing'?'pill-missing':d.sc==='closed'?'pill-closed':'pill-dead';
+  var lh=d.links&&d.links.length?'<div class="dpsect">Source Links</div><div class="dplinks">'+d.links.map(function(l){return '<a class="dplink" href="'+l.u+'" target="_blank" rel="noopener">'+l.l+'<small>'+l.s+'</small></a>';}).join('')+'</div>':'';
+  document.getElementById('dpcontent').innerHTML=
+    '<span class="pill '+pc+'" style="font-size:10px">'+d.s+'</span>'+
+    '<h3 style="margin-top:10px">'+d.n+'</h3>'+
+    '<div class="dprole">'+d.r+'</div>'+
+    '<div class="dpbody">'+d.body+'</div>'+
+    '<div class="dpsect">Key Facts</div>'+
+    '<ul>'+d.pts.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>'+
+    '<div class="dpsect">Investigative Note</div>'+
+    '<div class="dpbody" style="font-style:italic;color:var(--ink3)">'+d.note+'</div>'+lh;
+  document.getElementById('dp').classList.add('open');
+  document.querySelectorAll('.pcard').forEach(function(c){c.classList.toggle('active',!!c.getAttribute('onclick')&&c.getAttribute('onclick').indexOf(id)>=0);});
+}
+function closeDP(){
+  document.getElementById('dp').classList.remove('open');
+  document.querySelectorAll('.pcard').forEach(function(c){c.classList.remove('active');});
+}
+
+// NODE MAP
+(function(){
+var NW=2400,NH=2000;
+var nodes=[
+  {id:'hicks',l:'Michael Hicks',s:'JPL · Died 2023',t:'person',c:'dead',cat:'jpl',x:480,y:520,r:22,i:'NASA JPL 24yr. DART, Deep Space 1. Died age 59. No cause, no autopsy.'},
+  {id:'maiwald',l:'Frank Maiwald',s:'JPL · Died 2024',t:'person',c:'dead',cat:'jpl',x:300,y:380,r:22,i:'JPL Principal Researcher. Died age 61. No cause, no autopsy.'},
+  {id:'reza',l:'Monica Reza',s:'JPL · Missing 2025',t:'person',c:'miss',cat:'jpl',x:620,y:280,r:24,i:'JPL Director. Mondaloy co-inventor. Funded by McCasland. Vanished 30ft from companion.'},
+  {id:'chavez',l:'Anthony Chavez',s:'LANL · Missing 2025',t:'person',c:'miss',cat:'nuclear',x:1100,y:600,r:20,i:'LANL employee. Vanished May 2025. Left on foot. Never found.'},
+  {id:'casias',l:'Melissa Casias',s:'LANL · Missing 2025',t:'person',c:'miss',cat:'nuclear',x:1200,y:480,r:20,i:'LANL top clearance. Both phones factory-reset. Never found.'},
+  {id:'garcia',l:'Steven Garcia',s:'KCNSC · Missing 2025',t:'person',c:'miss',cat:'nuclear',x:1350,y:700,r:20,i:'KCNSC nuclear contractor. Left with handgun, no phone. Never found.'},
+  {id:'thomas',l:'Jason Thomas',s:'Novartis · Dead 2026',t:'person',c:'closed',cat:'other',x:420,y:1100,r:18,i:'"No foul play suspected." Body found in lake Mar 2026.'},
+  {id:'loureiro',l:'Nuno Loureiro',s:'MIT · Murdered 2025',t:'person',c:'closed',cat:'other',x:200,y:760,r:22,i:'MIT Plasma/Fusion. "Case closed" - former classmate (Brown University shooter).'},
+  {id:'grillmair',l:'Carl Grillmair',s:'Caltech · Murdered 2026',t:'person',c:'closed',cat:'jpl',x:480,y:730,r:20,i:'Caltech astrophysicist. NEOWISE, AF missile tracking. "Case closed."'},
+  {id:'mccasland',l:'Gen. McCasland',s:'AFRL · Missing 2026',t:'person',c:'miss',cat:'military',x:1050,y:300,r:28,i:'ALL DoD classified SAPs. Funded Reza Mondaloy. Vanished 4 days after Trump UAP order.'},
+  {id:'sullivan',l:'Matt Sullivan',s:'NASIC · Died 2024',t:'person',c:'dead',cat:'uap',x:1350,y:300,r:22,i:'AF intel NASIC. Died 2wks before UAP testimony. IC IG: severe misconduct.'},
+  {id:'eskridge',l:'Amy Eskridge',s:'Huntsville · Died 2022',t:'person',c:'dead',cat:'uap',x:760,y:1200,r:20,i:'Antigravity. Said \"I\'m scared, escalating.\" Died 2022. No official report.'},
+  {id:'wilcock',l:'David Wilcock',s:'Colorado · Died Apr 2026',t:'person',c:'dead',cat:'uap',x:900,y:1050,r:22,i:'UAP researcher. Died Apr 20 — 2 days after warning about missing scientists. Had stated publicly he was not suicidal.'},
+  {id:'jpl',l:'NASA JPL',s:'Pasadena, CA',t:'inst',c:'inst',cat:'jpl',x:420,y:180,r:30,i:'4 connected cases. Zero public statements on any death or disappearance.'},
+  {id:'lanl',l:'Los Alamos',s:'National Lab, NM',t:'inst',c:'inst',cat:'nuclear',x:1250,y:360,r:26,i:'2 employees missing. NNSA investigating.'},
+  {id:'kcnsc',l:'KCNSC',s:'KC Nuclear Campus',t:'inst',c:'inst',cat:'nuclear',x:1500,y:550,r:22,i:'80%+ of US nuclear weapon components. Garcia worked here.'},
+  {id:'wpafb',l:'Wright-Patterson',s:'AFRL · NASIC · OH',t:'inst',c:'inst',cat:'military',x:1300,y:160,r:28,i:'McCasland commanded it. Sullivan at NASIC. 3 AFRL staff died Oct 2025. No findings released.'},
+  {id:'mit',l:'MIT PSFC',s:'Plasma & Fusion',t:'inst',c:'inst',cat:'other',x:180,y:620,r:22,i:'MIT Plasma Science & Fusion. Loureiro was director.'},
+  {id:'mondaloy',l:'Mondaloy',s:'Rocket Superalloy',t:'proj',c:'proj',cat:'military',x:840,y:200,r:22,i:'Reza\'s patent. Freed US from Russian RD-180. Funded by McCasland. Now in SpaceX/Blue Origin.'},
+  {id:'sap',l:'SAP Oversight',s:'All DoD Classified',t:'proj',c:'proj',cat:'uap',x:1150,y:160,r:22,i:'McCasland was exec secretary. Legal visibility over EVERY classified DoD program.'},
+  {id:'dart',l:'DART Mission',s:'Asteroid Deflection',t:'proj',c:'proj',cat:'jpl',x:260,y:560,r:18,i:'NASA asteroid deflection. Hicks and Reza both connected.'},
+  {id:'uaptf',l:'UAP Task Force',s:'Congressional',t:'proj',c:'proj',cat:'uap',x:1600,y:380,r:20,i:'Sullivan scheduled to testify here. Grusch testified 2023. Burlison chairs subcommittee.'},
+  {id:'burlison',l:'Rep. Burlison',s:'R-MO · Oversight',t:'gov',c:'gov',cat:'congress',x:1750,y:480,r:22,i:'Hired Grusch as adviser. FBI briefing demand. Foreign intel "most likely explanation."'},
+  {id:'comer',l:'Rep. Comer',s:'Oversight Chair',t:'gov',c:'gov',cat:'congress',x:1900,y:380,r:20,i:'"Very unlikely this is a coincidence." Demanded briefings by Apr 27.'},
+  {id:'trump',l:'Trump',s:'UAP Disclosure Order',t:'gov',c:'gov',cat:'congress',x:1900,y:580,r:20,i:'Signed UAP disclosure directive Feb 19. McCasland vanished 4 days later.'},
+  {id:'fbi',l:'FBI',s:'Active Investigation',t:'gov',c:'gov',cat:'congress',x:1750,y:680,r:22,i:'"Spearheading the effort to look for connections." Joined McCasland search.'},
+  {id:'grusch',l:'David Grusch',s:'UAP Whistleblower',t:'gov',c:'gov',cat:'uap',x:1600,y:180,r:20,i:'Testified re: crash-retrieval programs. Now Burlison\'s senior adviser.'},
+];
+var edges=[
+  {s:'hicks',t:'jpl',cat:'jpl'},{s:'maiwald',t:'jpl',cat:'jpl'},{s:'reza',t:'jpl',cat:'jpl'},{s:'grillmair',t:'jpl',cat:'jpl'},
+  {s:'loureiro',t:'mit',cat:'other'},{s:'chavez',t:'lanl',cat:'nuclear'},{s:'casias',t:'lanl',cat:'nuclear'},
+  {s:'garcia',t:'kcnsc',cat:'nuclear'},{s:'mccasland',t:'wpafb',cat:'military'},{s:'sullivan',t:'wpafb',cat:'uap'},
+  {s:'reza',t:'mondaloy',cat:'military'},{s:'mccasland',t:'mondaloy',cat:'military'},{s:'mccasland',t:'sap',cat:'uap'},
+  {s:'hicks',t:'dart',cat:'jpl'},{s:'reza',t:'dart',cat:'jpl'},
+  {s:'sullivan',t:'uaptf',cat:'uap'},{s:'grusch',t:'uaptf',cat:'uap'},
+  {s:'wpafb',t:'sap',cat:'military'},{s:'lanl',t:'kcnsc',cat:'nuclear'},
+  {s:'reza',t:'mccasland',cat:'military'},{s:'hicks',t:'maiwald',cat:'jpl'},{s:'chavez',t:'casias',cat:'nuclear'},
+  {s:'mccasland',t:'sullivan',cat:'uap'},
+  {s:'burlison',t:'sullivan',cat:'congress'},{s:'burlison',t:'mccasland',cat:'congress'},
+  {s:'burlison',t:'fbi',cat:'congress'},{s:'burlison',t:'grusch',cat:'uap'},{s:'burlison',t:'uaptf',cat:'congress'},
+  {s:'comer',t:'burlison',cat:'congress'},{s:'comer',t:'fbi',cat:'congress'},
+  {s:'trump',t:'mccasland',cat:'uap'},{s:'trump',t:'sap',cat:'uap'},
+  {s:'fbi',t:'mccasland',cat:'congress'},{s:'fbi',t:'sullivan',cat:'congress'},
+  {s:'wilcock',t:'uaptf',cat:'uap'},{s:'wilcock',t:'eskridge',cat:'uap'},{s:'wilcock',t:'sullivan',cat:'uap'},
+];
+var scCol={dead:'#FF206E',miss:'#FF8B33',closed:'#00F5D4',inst:'#00BBF9',proj:'#E1FF00',gov:'#778899'};
+var svg=document.getElementById('nmsvg');
+var NS='http://www.w3.org/2000/svg';
+function mk(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+var nm={};nodes.forEach(function(n){nm[n.id]=n;});
+var vx=-200,vy=-100,vw=NW+400,vh=NH+200;
+function sv(){svg.setAttribute('viewBox',vx+' '+vy+' '+vw+' '+vh);}sv();
+var defs=mk('defs',{});
+var fl=mk('filter',{id:'nmg',x:'-50%',y:'-50%',width:'200%',height:'200%'});
+var fb=mk('feGaussianBlur',{stdDeviation:'3',result:'bl'});
+var fme=mk('feMerge',{});
+fme.appendChild(mk('feMergeNode',{in:'bl'}));fme.appendChild(mk('feMergeNode',{in:'SourceGraphic'}));
+fl.appendChild(fb);fl.appendChild(fme);defs.appendChild(fl);svg.appendChild(defs);
+var eg=mk('g',{});
+edges.forEach(function(e){
+  var a=nm[e.s],b=nm[e.t];if(!a||!b)return;
+  var mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dx=b.x-a.x,dy=b.y-a.y;
+  eg.appendChild(mk('path',{d:'M'+a.x+','+a.y+' Q'+(mx-dy*.12)+','+(my+dx*.12)+' '+b.x+','+b.y,class:'nmedge '+e.cat,'data-s':e.s,'data-t':e.t}));
+});svg.appendChild(eg);
+var ng=mk('g',{});
+nodes.forEach(function(n){
+  var g=mk('g',{class:'nmnode','data-id':n.id});
+  var col=scCol[n.c]||'#445577';
+  function rgba(h,a){var r=parseInt(h.slice(1,3),16),gv=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return 'rgba('+r+','+gv+','+b+','+a+')';}
+  if(n.t==='person'&&(n.c==='miss'||n.c==='dead'))g.appendChild(mk('circle',{cx:n.x,cy:n.y,r:n.r+7,fill:'none',stroke:col,'stroke-width':'1',opacity:'0.15'}));
+  g.appendChild(mk('circle',{cx:n.x,cy:n.y,r:n.r,fill:rgba(col,n.t==='person'?.18:.10),stroke:col,'stroke-width':n.t==='person'?'1.5':'1',filter:n.t==='person'?'url(#nmg)':''}));
+  if(n.t==='person')g.appendChild(mk('circle',{cx:n.x,cy:n.y,r:3,fill:col,opacity:'0.9'}));
+  var lbl=mk('text',{x:n.x,y:n.y-2,class:'nmlbl','font-size':n.r>24?'12':n.r>18?'11':'10'});lbl.textContent=n.l;g.appendChild(lbl);
+  var sub=mk('text',{x:n.x,y:n.y+12,class:'nmsub'});sub.textContent=n.s;g.appendChild(sub);
+  var tip=document.getElementById('nmtip');
+  g.addEventListener('mouseenter',function(ev){tip.innerHTML='<strong>'+n.l+'</strong><span>'+n.i+'</span>';tip.classList.add('v');mv(ev);});
+  g.addEventListener('mousemove',mv);
+  g.addEventListener('mouseleave',function(){tip.classList.remove('v');});
+  g.addEventListener('click',function(){hl(n.id);});
+  ng.appendChild(g);
+});svg.appendChild(ng);
+var wrap=document.getElementById('nmsvgwrap');
+function mv(ev){var r=wrap.getBoundingClientRect();tip.style.left=Math.min(ev.clientX-r.left+12,r.width-250)+'px';tip.style.top=Math.max(4,Math.min(ev.clientY-r.top-10,r.height-100))+'px';}
+var tip=document.getElementById('nmtip');
+var act=null;
+function hl(id){
+  if(act===id){cl();return;}act=id;
+  var conn={};conn[id]=true;
+  document.querySelectorAll('.nmedge').forEach(function(e){var s=e.getAttribute('data-s'),t=e.getAttribute('data-t');if(s===id||t===id){conn[s]=true;conn[t]=true;}});
+  document.querySelectorAll('.nmedge').forEach(function(e){var s=e.getAttribute('data-s'),t=e.getAttribute('data-t');e.classList.toggle('hi',s===id||t===id);e.classList.toggle('dim',s!==id&&t!==id);});
+  document.querySelectorAll('.nmnode').forEach(function(g){g.style.opacity=conn[g.getAttribute('data-id')]?'1':'0.1';});
+}
+function cl(){act=null;document.querySelectorAll('.nmedge').forEach(function(e){e.classList.remove('hi','dim');});document.querySelectorAll('.nmnode').forEach(function(g){g.style.opacity='1';});}
+var drag=false,lx,ly;
+wrap.addEventListener('mousedown',function(e){if(e.target.closest('.nmnode'))return;drag=true;lx=e.clientX;ly=e.clientY;wrap.classList.add('drag');});
+window.addEventListener('mousemove',function(e){if(!drag)return;var sc=vw/wrap.clientWidth;vx-=(e.clientX-lx)*sc;vy-=(e.clientY-ly)*sc;lx=e.clientX;ly=e.clientY;sv();});
+window.addEventListener('mouseup',function(){drag=false;wrap.classList.remove('drag');});
+wrap.addEventListener('wheel',function(e){e.preventDefault();var f=e.deltaY>0?1.1:.9;var r=wrap.getBoundingClientRect();var mx=(e.clientX-r.left)/r.width*vw+vx;var my=(e.clientY-r.top)/r.height*vh+vy;vw*=f;vh*=f;vx=mx-(e.clientX-r.left)/r.width*vw;vy=my-(e.clientY-r.top)/r.height*vh;sv();},{passive:false});
+svg.addEventListener('click',function(e){if(!e.target.closest('.nmnode'))cl();});
+window.nmReset=function(){vx=-200;vy=-100;vw=NW+400;vh=NH+200;sv();cl();};
+window.nmPeople=function(){cl();document.querySelectorAll('.nmnode').forEach(function(g){var id=g.getAttribute('data-id');g.style.opacity=nm[id]&&nm[id].t==='person'?'1':'0.06';});document.querySelectorAll('.nmedge').forEach(function(e){var s=nm[e.getAttribute('data-s')],t=nm[e.getAttribute('data-t')];e.style.opacity=(s&&s.t==='person'&&t&&t.t==='person')?'0.5':'0.02';});};
+window.nmAll=function(){cl();document.querySelectorAll('.nmedge').forEach(function(e){e.style.opacity='';});};
+})();
+</script>
+</body>
+</html>
