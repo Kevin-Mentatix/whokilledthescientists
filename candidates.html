@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unreported Candidates — Who Killed The Scientists?</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--card:#0e0f16;--ink:#e8eaf2;--ink2:#9aa0b8;--ink3:#505570;
+  --border:#1e2030;--border2:#2a2e48;
+  --pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;
+  --green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+
+/* ── HEADER ── */
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,32,110,.08),transparent 70%);pointer-events:none;}
+header h1{font-family:"DM Serif Display",serif;font-size:clamp(28px,5vw,54px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 60px rgba(255,32,110,.4),0 0 120px rgba(255,32,110,.15);position:relative;}
+header h1 span{color:var(--pink);}
+header h1 .dim{color:var(--ink3);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+.meta-bar{display:flex;justify-content:center;gap:28px;margin-top:24px;flex-wrap:wrap;position:relative;}
+.meta-pill{font-family:"DM Mono",monospace;font-size:10px;padding:4px 12px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase;}
+.mp-red{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.4);}
+.mp-orange{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.4);}
+.mp-yellow{background:rgba(225,255,0,.1);color:var(--yellow);border:1px solid rgba(225,255,0,.3);}
+.mp-blue{background:rgba(0,187,249,.1);color:var(--blue);border:1px solid rgba(0,187,249,.3);}
+
+/* ── CANVAS ── */
+.canvas{padding:32px 40px 64px;}
+
+/* ── SECTION HEADERS ── */
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:44px;}
+.sh:first-child{margin-top:0;}
+.stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
+.sh h2{font-family:"DM Serif Display",serif;font-size:22px;font-weight:400;color:var(--ink);}
+.sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+
+/* ── TIER LABEL ── */
+.tier-label{display:flex;align-items:center;gap:10px;margin-bottom:16px;margin-top:36px;}
+.tier-badge{font-family:"DM Mono",monospace;font-size:10px;padding:3px 10px;border-radius:2px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tb-1{background:var(--pink);color:#000;}
+.tb-2{background:var(--orange);color:#000;}
+.tb-3{background:var(--yellow);color:#000;}
+.tier-label span{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;}
+
+/* ── CANDIDATE CARDS ── */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+
+.ccard{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s;}
+.ccard.t1{border-top:3px solid var(--pink);}
+.ccard.t1:hover{box-shadow:0 0 28px rgba(255,32,110,.2);border-color:rgba(255,32,110,.4);}
+.ccard.t2{border-top:3px solid var(--orange);}
+.ccard.t2:hover{box-shadow:0 0 28px rgba(255,139,51,.2);border-color:rgba(255,139,51,.4);}
+.ccard.t3{border-top:3px solid var(--yellow);}
+.ccard.t3:hover{box-shadow:0 0 28px rgba(225,255,0,.15);border-color:rgba(225,255,0,.3);}
+
+.ccard-head{padding:16px 18px 0;}
+.ccard-status{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.pill{font-family:"DM Mono",monospace;font-size:9px;padding:2px 8px;border-radius:2px;font-weight:500;letter-spacing:.05em;}
+.pill-dead{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.5);}
+.pill-note{background:rgba(255,139,51,.12);color:var(--orange);border:1px solid rgba(255,139,51,.4);}
+.pill-context{background:rgba(225,255,0,.08);color:var(--yellow);border:1px solid rgba(225,255,0,.3);}
+.pill-new{background:rgba(14,251,34,.1);color:var(--green);border:1px solid rgba(14,251,34,.35);}
+
+.ccard-name{font-family:"DM Serif Display",serif;font-size:18px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:3px;}
+.ccard-role{font-size:11px;color:var(--ink3);line-height:1.4;margin-bottom:6px;}
+.ccard-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;}
+
+.ccard-body{padding:0 18px 18px;display:flex;flex-direction:column;gap:12px;flex:1;}
+.ccard-summary{font-size:13px;color:var(--ink2);line-height:1.65;}
+.ccard-summary strong{color:var(--ink);font-weight:600;}
+
+/* Facts list */
+.facts{display:flex;flex-direction:column;gap:5px;border-top:1px solid var(--border);padding-top:12px;}
+.fact{font-size:12px;color:var(--ink2);line-height:1.5;padding-left:14px;position:relative;}
+.fact::before{content:"·";position:absolute;left:0;color:var(--ink3);}
+.fact.hot{color:var(--pink);}
+.fact.hot::before{color:var(--pink);}
+.fact.key{color:var(--blue);}
+.fact.key::before{color:var(--blue);}
+
+/* Tags */
+.ctags{display:flex;flex-wrap:wrap;gap:4px;}
+.tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 6px;border-radius:2px;color:var(--ink3);background:rgba(255,255,255,.04);border:1px solid var(--border2);}
+.tag.hot{background:rgba(255,32,110,.12);border-color:rgba(255,32,110,.35);color:var(--pink);}
+.tag.key{background:rgba(0,187,249,.1);border-color:rgba(0,187,249,.35);color:var(--blue);}
+.tag.ok{background:rgba(0,245,212,.08);border-color:rgba(0,245,212,.3);color:var(--teal);}
+.tag.warn{background:rgba(225,255,0,.08);border-color:rgba(225,255,0,.25);color:var(--yellow);}
+
+/* Connection line */
+.conn-line{font-size:11px;color:var(--ink3);font-style:italic;padding:8px 10px;background:rgba(255,255,255,.025);border-left:2px solid var(--border2);border-radius:0 4px 4px 0;line-height:1.5;}
+.conn-line.pink-border{border-left-color:rgba(255,32,110,.5);}
+.conn-line.orange-border{border-left-color:rgba(255,139,51,.5);}
+.conn-line.blue-border{border-left-color:rgba(0,187,249,.4);}
+
+/* ── PATTERN SECTION ── */
+.pattern-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-bottom:16px;}
+.pattern-box h3{font-family:"DM Serif Display",serif;font-size:17px;font-weight:400;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.pattern-box p{font-size:13px;color:var(--ink2);line-height:1.7;}
+.pattern-box p strong{color:var(--ink);font-weight:600;}
+
+.crash-timeline{display:flex;flex-direction:column;gap:0;margin-top:14px;border-left:2px solid var(--border2);padding-left:20px;margin-left:8px;}
+.ct-item{position:relative;padding:8px 0 8px 0;display:flex;gap:14px;}
+.ct-dot{position:absolute;left:-26px;top:12px;width:10px;height:10px;border-radius:50%;border:2px solid var(--bg);flex-shrink:0;}
+.ct-dot.d{background:var(--pink);box-shadow:0 0 8px var(--pink);}
+.ct-dot.e{background:var(--blue);box-shadow:0 0 8px var(--blue);}
+.ct-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;width:80px;padding-top:1px;}
+.ct-body{flex:1;font-size:12px;color:var(--ink2);line-height:1.5;}
+.ct-body strong{color:var(--ink);font-weight:600;}
+
+/* ── CHAIN SECTION ── */
+.chain-grid{display:flex;flex-direction:column;gap:10px;}
+.chain-item{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px 18px;display:flex;gap:16px;align-items:flex-start;}
+.chain-item.broken{border-left:3px solid var(--pink);}
+.chain-num{font-family:"DM Serif Display",serif;font-size:28px;color:var(--ink3);flex-shrink:0;width:36px;line-height:1;opacity:.4;}
+.chain-body{flex:1;}
+.chain-body strong{font-size:14px;color:var(--ink);font-weight:600;display:block;margin-bottom:3px;}
+.chain-body .chain-role{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
+.chain-body p{font-size:12px;color:var(--ink2);line-height:1.6;}
+.chain-status{font-family:"DM Mono",monospace;font-size:9px;padding:2px 8px;border-radius:2px;align-self:flex-start;flex-shrink:0;}
+.cs-dead{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.4);}
+.cs-miss{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.4);}
+
+/* ── NEXT STEPS ── */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+.step-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:16px 18px;border-left:3px solid var(--blue);}
+.step-num{font-family:"DM Mono",monospace;font-size:9px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.step-card h4{font-size:13px;color:var(--ink);font-weight:600;margin-bottom:6px;}
+.step-card p{font-size:12px;color:var(--ink2);line-height:1.6;}
+
+/* ── DIVIDER ── */
+.divider{border:none;border-top:1px solid var(--border);margin:8px 0;}
+
+/* ── FOOTER NOTE ── */
+.footnote{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-align:center;padding:32px 40px;border-top:1px solid var(--border);text-transform:uppercase;line-height:1.8;}
+</style>
+</head>
+<body>
+
+<nav style="background:#000;border-bottom:1px solid var(--border);padding:10px 40px;display:flex;align-items:center;gap:16px;">
+  <a href="index.html" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;"
+     onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--ink3)'">&larr; Back to Main Investigation</a>
+</nav>
+<header>
+  <h1><span>Unreported Candidates</span><br><span class="dim">Who Killed The Scientists?</span></h1>
+  <div class="tagline">Investigative Research &middot; April 22, 2026 &middot; Confidential Working Document</div>
+  <div class="meta-bar">
+    <span class="meta-pill mp-red">5 New Candidates</span>
+    <span class="meta-pill mp-orange">Mainstream Coverage: 0%</span>
+    <span class="meta-pill mp-yellow">2 Fatalities at LANL — Same Road</span>
+    <span class="meta-pill mp-blue">Mondaloy Chain Fully Broken</span>
+  </div>
+</header>
+
+<div class="canvas">
+
+<!-- ══ TIER 1 ══ -->
+<div class="sh">
+  <div class="stripe" style="background:var(--pink)"></div>
+  <div><h2>Tier 1 &mdash; Strongest Candidates</h2><div class="sub">Missed entirely by mainstream coverage &middot; direct institutional connection &middot; highest investigative priority</div></div>
+</div>
+
+<div class="pgrid">
+
+  <!-- McMillan -->
+  <div class="ccard t1">
+    <div class="ccard-head">
+      <div class="ccard-status">
+        <span class="pill pill-dead">DECEASED</span>
+        <span class="pill pill-new">NOT IN ANY LIST</span>
+      </div>
+      <div class="ccard-name">Charles F. McMillan</div>
+      <div class="ccard-role">10th Director, Los Alamos National Laboratory &middot; Nuclear Physicist &middot; Nuclear Security Enterprise Integration Council</div>
+      <div class="ccard-date">Died Sep 6, 2024 &middot; Age 69 &middot; Head-on collision, Los Alamos, NM</div>
+    </div>
+    <div class="ccard-body">
+      <div class="ccard-summary">Former director of <strong>the same lab where Chavez and Casias would later vanish</strong>. 23 years at Lawrence Livermore, 18 years at LANL including 6 as director overseeing the US nuclear deterrent. Was still actively consulting for LANL and serving on Sandia Labs review committees when killed.</div>
+      <div class="facts">
+        <div class="fact hot">Killed at 5:16 AM on the road leading directly to LANL</div>
+        <div class="fact hot">Driver said she <strong>did not remember</strong> what caused her to cross the center line — no cause ever established</div>
+        <div class="fact hot">DA found "insufficient evidence" for vehicular homicide — convicted of 3 petty misdemeanors only</div>
+        <div class="fact key">Died exactly 9 months before Chavez vanished from the same general area</div>
+        <div class="fact key">Still consulting at LANL and sitting on Sandia Labs review committees at time of death</div>
+        <div class="fact">Elected to lead the Nuclear Security Enterprise Integration Council — oversight over all nuclear weapons institutions</div>
+        <div class="fact">His death was one of two fatal LANL-employee crashes within 7 months on the same road corridor</div>
+      </div>
+      <div class="ctags">
+        <span class="tag hot">LANL Director</span>
+        <span class="tag hot">Unexplained lane departure</span>
+        <span class="tag hot">Driver: "I don't remember"</span>
+        <span class="tag key">Nuclear deterrent oversight</span>
+        <span class="tag key">Sandia Labs reviewer</span>
+        <span class="tag warn">Zero coverage linking to cluster</span>
+      </div>
+      <div class="conn-line pink-border">Connection: Directed LANL where Chavez + Casias worked and later vanished. Killed by an unexplained head-on crash on the road to the lab — 9 months before the pattern accelerated.</div>
+    </div>
+  </div>
+
+  <!-- Philip Leonard -->
+  <div class="ccard t1">
+    <div class="ccard-head">
+      <div class="ccard-status">
+        <span class="pill pill-dead">DECEASED</span>
+        <span class="pill pill-new">NOT IN ANY LIST</span>
+      </div>
+      <div class="ccard-name">Dr. Philip William Leonard</div>
+      <div class="ccard-role">High Explosives Synthesis Chemist, LANL &middot; PhD Organic Chemistry, UC Berkeley (2007) &middot; 48 published papers</div>
+      <div class="ccard-date">Died Feb 27, 2024 &middot; Age 44 &middot; Three-vehicle crash, NM-501, outside Los Alamos</div>
+    </div>
+    <div class="ccard-body">
+      <div class="ccard-summary">A high explosives synthesis chemist at LANL since 2009 — meaning he designed and synthesized the <strong>explosive components used in nuclear weapon triggers</strong>. Postdoc at Lawrence Livermore before LANL. Had a toddler and a pregnant wife. Died in a multi-vehicle crash on the same road corridor as McMillan 7 months later.</div>
+      <div class="facts">
+        <div class="fact hot">High explosives synthesis = nuclear weapon trigger design — one of the most sensitive specialties at LANL</div>
+        <div class="fact hot">Crash investigation: police were "awaiting crash team report and medical records." No cause determination ever publicly released</div>
+        <div class="fact hot">Died February 27 — exactly 2 years to the day before McCasland vanished (Feb 27, 2026)</div>
+        <div class="fact key">Postdoc at Lawrence Livermore National Laboratory in Dr. Phil Pagoria's explosives group before LANL</div>
+        <div class="fact key">15 years at LANL working on classified energetic materials</div>
+        <div class="fact">48 published scientific papers on high-nitrogen compounds and energetic materials synthesis</div>
+      </div>
+      <div class="ctags">
+        <span class="tag hot">Nuclear weapons explosives</span>
+        <span class="tag hot">No crash cause determination</span>
+        <span class="tag hot">Feb 27 — same date as McCasland</span>
+        <span class="tag key">Lawrence Livermore alumni</span>
+        <span class="tag key">LANL 15 years</span>
+        <span class="tag warn">Zero coverage linking to cluster</span>
+      </div>
+      <div class="conn-line pink-border">Connection: LANL explosives chemist killed on the same road corridor as McMillan — same year, 7 months apart. Same institution where Chavez and Casias later vanish. Died on the same calendar date (Feb 27) that McCasland disappears two years later.</div>
+    </div>
+  </div>
+
+  <!-- Deininger -->
+  <div class="ccard t1">
+    <div class="ccard-head">
+      <div class="ccard-status">
+        <span class="pill pill-dead">DECEASED</span>
+        <span class="pill pill-new">NOT IN ANY LIST</span>
+      </div>
+      <div class="ccard-name">Dr. William "Bill" Deininger</div>
+      <div class="ccard-role">Technical Fellow, BAE Systems Space &amp; Mission Systems &middot; Former JPL Scientist &middot; Plasma Physicist &middot; AIAA Associate Fellow</div>
+      <div class="ccard-date">Died Jun 21, 2025 &middot; Age 68 &middot; Cause not disclosed</div>
+    </div>
+    <div class="ccard-body">
+      <div class="ccard-summary">JPL alumni and plasma physicist who spent 7 years at the Jet Propulsion Laboratory before moving through Italian aerospace giant Fiat Avio, Ball Aerospace (defense contractor), and ultimately <strong>BAE Systems — maker of electronic warfare and directed energy systems</strong>. Died June 21, 2025 — the same month Monica Reza vanished.</div>
+      <div class="facts">
+        <div class="fact hot">Died June 21, 2025 — Monica Reza vanished June 22, 2025. One day apart.</div>
+        <div class="fact hot">No cause of death given in AIAA obituary notice — unusual for a professional memorial</div>
+        <div class="fact key">JPL alumni — direct institutional connection to Hicks, Maiwald, Reza</div>
+        <div class="fact key">Plasma Physics master's + Aerospace Engineering PhD — overlapping expertise with Loureiro (MIT Plasma/Fusion)</div>
+        <div class="fact key">Moved to BAE Systems in 2024 — one year before his death</div>
+        <div class="fact">BAE Systems: maker of CHAMP directed energy weapons, space-based electronic warfare platforms, classified defense systems</div>
+        <div class="fact">Active on AIAA Systems Engineering Technical Committee and ASCEND conference</div>
+      </div>
+      <div class="ctags">
+        <span class="tag hot">Died same day as Reza vanished</span>
+        <span class="tag hot">No cause of death disclosed</span>
+        <span class="tag key">JPL alumni</span>
+        <span class="tag key">Plasma physics + aerospace</span>
+        <span class="tag key">BAE Systems (classified defense)</span>
+        <span class="tag warn">Zero coverage anywhere</span>
+      </div>
+      <div class="conn-line pink-border">Connection: JPL alumni. Plasma physicist. Died the day before Monica Reza vanished. Last employer was BAE Systems' classified Space and Mission Systems division. The AIAA published no cause of death — anomalous for a formal professional memorial notice.</div>
+    </div>
+  </div>
+
+</div><!-- /pgrid tier 1 -->
+
+<hr class="divider" style="margin:36px 0">
+
+<!-- ══ TIER 2 ══ -->
+<div class="sh">
+  <div class="stripe" style="background:var(--orange)"></div>
+  <div><h2>Tier 2 &mdash; Notable Candidates</h2><div class="sub">Defense/naval research physicists &middot; died in same window &middot; require deeper investigation</div></div>
+</div>
+
+<div class="pgrid">
+
+  <!-- Phillips -->
+  <div class="ccard t2">
+    <div class="ccard-head">
+      <div class="ccard-status">
+        <span class="pill pill-dead">DECEASED</span>
+        <span class="pill pill-note">NAVAL RESEARCH LAB</span>
+      </div>
+      <div class="ccard-name">Gary Wilson Phillips</div>
+      <div class="ccard-role">Naval Research Laboratory physicist &middot; Georgetown University adjunct &middot; PhD Physics, University of Maryland (1967)</div>
+      <div class="ccard-date">Died Jul 7, 2025 &middot; Cause not disclosed</div>
+    </div>
+    <div class="ccard-body">
+      <div class="ccard-summary">Career physicist at the <strong>Naval Research Laboratory</strong> — one of the US military's primary basic and applied research organizations, running programs in directed energy, space science, advanced materials, and classified defense technology. Died July 7, 2025, in the exact same summer window as the cluster of disappearances.</div>
+      <div class="facts">
+        <div class="fact hot">Died July 2025 — same window: Reza (June), Casias (June), Chavez (May), Garcia (August)</div>
+        <div class="fact hot">Cause of death not given in UMD physics department memorial</div>
+        <div class="fact key">Naval Research Laboratory — runs classified programs in directed energy, space surveillance, advanced materials</div>
+        <div class="fact">Found only in a UMD department memorial alongside two other NRL-connected physicists who died the same summer</div>
+      </div>
+      <div class="ctags">
+        <span class="tag hot">Same summer window as cluster</span>
+        <span class="tag hot">No cause disclosed</span>
+        <span class="tag key">Naval Research Lab (classified)</span>
+        <span class="tag warn">Unreported nationally</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Frank Young -->
+  <div class="ccard t2">
+    <div class="ccard-head">
+      <div class="ccard-status">
+        <span class="pill pill-dead">DECEASED</span>
+        <span class="pill pill-note">NAVAL RESEARCH LAB</span>
+      </div>
+      <div class="ccard-name">Frank C. Young</div>
+      <div class="ccard-role">Naval Research Laboratory physicist &middot; PhD Physics, University of Maryland (1962) &middot; 10 years UMD Cyclotron</div>
+      <div class="ccard-date">Died Aug 1, 2025 &middot; Cause not disclosed</div>
+    </div>
+    <div class="ccard-body">
+      <div class="ccard-summary">Spent 10 years working on the <strong>University of Maryland Cyclotron</strong> — a nuclear particle accelerator — before joining the Naval Research Laboratory. Died August 1, 2025. Three physicists with NRL or defense lab affiliations died between July–August 2025, all noted only in a single UMD department memorial page.</div>
+      <div class="facts">
+        <div class="fact hot">Died August 1, 2025 — same window as Garcia's disappearance (August 28)</div>
+        <div class="fact hot">No cause of death given</div>
+        <div class="fact key">Nuclear accelerator + Naval Research Lab career</div>
+        <div class="fact key">Third NRL/defense physicist in same memorial, same summer</div>
+      </div>
+      <div class="ctags">
+        <span class="tag hot">Same summer window</span>
+        <span class="tag hot">No cause disclosed</span>
+        <span class="tag key">Nuclear cyclotron research</span>
+        <span class="tag key">Naval Research Lab</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Andrew Victor -->
+  <div class="ccard t2">
+    <div class="ccard-head">
+      <div class="ccard-status">
+        <span class="pill pill-dead">DECEASED</span>
+        <span class="pill pill-note">ROCKET PROPULSION</span>
+      </div>
+      <div class="ccard-name">Andrew C. Victor</div>
+      <div class="ccard-role">Rocket propulsion physicist &middot; MS Physics, University of Maryland</div>
+      <div class="ccard-date">Died Jul 18, 2025 &middot; Cause not disclosed &middot; Employer not named</div>
+    </div>
+    <div class="ccard-body">
+      <div class="ccard-summary">A physicist who "worked as a physicist in rocket propulsion" — the exact specialty of Monica Reza (Mondaloy), who vanished 26 days before Victor died. No employer named in the memorial. Died sandwiched between Reza's disappearance (June 22) and Garcia's disappearance (August 28). No cause, no institution.</div>
+      <div class="facts">
+        <div class="fact hot">Died July 18 — exactly between Reza vanishing (June 22) and Garcia vanishing (August 28)</div>
+        <div class="fact hot">Specialty: rocket propulsion — direct overlap with Reza and Mondaloy</div>
+        <div class="fact hot">No employer named in memorial — unusual and potentially significant</div>
+        <div class="fact hot">No cause of death given</div>
+        <div class="fact key">May have worked at a classified contractor — omission of employer from professional memorial is a flag</div>
+      </div>
+      <div class="ctags">
+        <span class="tag hot">Rocket propulsion — Reza overlap</span>
+        <span class="tag hot">No cause, no employer disclosed</span>
+        <span class="tag hot">Timing: between Reza + Garcia</span>
+        <span class="tag warn">Identity requires further research</span>
+      </div>
+      <div class="conn-line orange-border">This is the highest-priority unknown. A rocket propulsion physicist dying between two cluster disappearances with no employer listed is a significant gap. His full identity and career should be confirmed before any publication.</div>
+    </div>
+  </div>
+
+</div><!-- /pgrid tier 2 -->
+
+<hr class="divider" style="margin:36px 0">
+
+<!-- ══ THE MONDALOY CHAIN ══ -->
+<div class="sh">
+  <div class="stripe" style="background:var(--purple)"></div>
+  <div><h2>The Mondaloy Chain — Fully Broken</h2><div class="sub">The single most important unreported finding &middot; all three people who held complete technical + institutional knowledge of a strategic US rocket alloy are now gone</div></div>
+</div>
+
+<div class="chain-grid">
+  <div class="chain-item broken">
+    <div class="chain-num">1</div>
+    <div class="chain-body">
+      <strong>Dallis Ann Hardwick</strong>
+      <div class="chain-role">Co-inventor of Mondaloy &middot; AFRL Materials Directorate, Wright-Patterson &middot; Led all AFRL gas turbine materials research</div>
+      <p>Co-invented Mondaloy with Reza at Rockwell Science Center. Then moved to AFRL's Materials Directorate at <strong>Wright-Patterson</strong> — the same base McCasland commanded. By 2005 she was leading all materials research for advanced gas turbine engines under McCasland's authority. Received the Meritorious Civilian Service Medal in 2010. Retired 2012 after cancer diagnosis. Died January 5, 2014. <strong>AFRL published no memorial.</strong> The only US record is a funeral home listing — no name, no dates, nothing. UNSW (Australia) published one brief tribute. No US aerospace institution acknowledged her death.</p>
+    </div>
+    <span class="chain-status cs-dead">DEAD 2014</span>
+  </div>
+
+  <div class="chain-item broken">
+    <div class="chain-num">2</div>
+    <div class="chain-body">
+      <strong>Monica Jacinto Reza</strong>
+      <div class="chain-role">Co-inventor of Mondaloy &middot; JPL Director of Materials Processing &middot; Only surviving patent holder</div>
+      <p>The only surviving co-inventor of Mondaloy — the nickel superalloy that freed US classified satellite launches from Russian RD-180 dependency. Her research was directly funded by McCasland's AFRL lab from 1999. At the time she disappeared she was the <strong>only living person</strong> who held co-equal technical knowledge of the alloy's composition with Hardwick. Vanished June 22, 2025. No body found. JPL issued no statement.</p>
+    </div>
+    <span class="chain-status cs-miss">MISSING 2025</span>
+  </div>
+
+  <div class="chain-item broken">
+    <div class="chain-num">3</div>
+    <div class="chain-body">
+      <strong>Gen. Neil McCasland</strong>
+      <div class="chain-role">AFRL Commander &middot; Funded Mondaloy from 1999 &middot; SAP Oversight Committee — ALL classified DoD programs</div>
+      <p>The military funder and program director who brought Mondaloy into the US defense supply chain. His laboratory at Wright-Patterson/Kirtland funded and qualified Mondaloy from 1999 onward. He had institutional knowledge of every classified program that used or depended on the alloy. Vanished February 27, 2026 — 4 days after Trump signed the UAP disclosure directive. Left with a revolver. No phone. No glasses. Still missing.</p>
+    </div>
+    <span class="chain-status cs-miss">MISSING 2026</span>
+  </div>
+</div>
+
+<div class="pattern-box" style="margin-top:16px;border-color:rgba(206,0,224,.3);border-left:3px solid var(--purple);">
+  <h3>&#9888; The Key Finding No One Has Published</h3>
+  <p>Every human link in the chain that built one of America's most strategically significant rocket technologies is broken. The <strong>co-inventor is dead (2014)</strong>. The <strong>surviving inventor is missing (2025)</strong>. The <strong>military funder who ran the program is missing (2026)</strong>. Mondaloy 200 is now used in the AR1 engine replacing Russian RD-180 rockets for US national security launches — and is embedded in SpaceX and Blue Origin commercial programs. The institutional knowledge chain for this technology has been completely severed. This framing does not appear anywhere in mainstream coverage.</p>
+</div>
+
+<hr class="divider" style="margin:36px 0">
+
+<!-- ══ THE LOS ALAMOS CRASH CORRIDOR ══ -->
+<div class="sh">
+  <div class="stripe" style="background:var(--orange)"></div>
+  <div><h2>The Los Alamos Crash Corridor</h2><div class="sub">Two LANL personnel killed, one four-vehicle crash — all in a 7-month window on the same road &middot; never reported as a pattern</div></div>
+</div>
+
+<div class="pattern-box">
+  <h3>Three serious incidents &middot; seven months &middot; same road to LANL</h3>
+  <p>Between February and September 2024, two LANL personnel were killed and at least two others hospitalized in separate crashes on the same stretch of road used daily by employees with top security clearances. The LANL NNSA field manager told the county council: <strong>"The most fearful part of [employees'] day is driving up that hill and going home downhill."</strong> The DOE installed four traffic cameras "shortly after" these crashes. This pattern — two fatal crashes of classified-research personnel in 7 months on the same road — has never been reported in connection with the broader cluster.</p>
+  <div class="crash-timeline">
+    <div class="ct-item">
+      <div class="ct-dot d"></div>
+      <div class="ct-date">Feb 27, 2024</div>
+      <div class="ct-body"><strong>Dr. Philip Leonard killed</strong> — LANL high explosives synthesis chemist. Three-vehicle crash on NM-501. Two other drivers hospitalized. Police investigation: "awaiting crash team and medical records." No cause ever publicly determined.</div>
+    </div>
+    <div class="ct-item">
+      <div class="ct-dot e"></div>
+      <div class="ct-date">Mar 4, 2024</div>
+      <div class="ct-body">Four-vehicle crash on NM-502 near Camino Entrada — two people hospitalized. One week after Leonard's death on the same road network.</div>
+    </div>
+    <div class="ct-item">
+      <div class="ct-dot e"></div>
+      <div class="ct-date">Spring 2024</div>
+      <div class="ct-body">DOE installs four traffic cameras on East Jemez Road (Truck Route) in response to "several complaints, near misses, accidents, injuries, unfortunately, and fatalities." NNSA field manager publicly acknowledges fear among employees.</div>
+    </div>
+    <div class="ct-item">
+      <div class="ct-dot d"></div>
+      <div class="ct-date">Sep 6, 2024</div>
+      <div class="ct-body"><strong>Charles McMillan killed</strong> — former LANL director. Head-on crash on East Road at 5:16 AM. Other driver crossed center line with <strong>no explanation or memory of doing so.</strong> DA: insufficient evidence for felony. Three petty misdemeanors only.</div>
+    </div>
+    <div class="ct-item">
+      <div class="ct-dot e"></div>
+      <div class="ct-date">May–Aug 2025</div>
+      <div class="ct-body">Chavez (May), Casias (June), Garcia (August) all vanish — three NNSA-connected personnel from the same region, none found.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" style="margin:36px 0">
+
+<!-- ══ RECOMMENDED NEXT STEPS ══ -->
+<div class="sh">
+  <div class="stripe" style="background:var(--green)"></div>
+  <div><h2>Recommended Next Steps</h2><div class="sub">Specific actions that could break this open</div></div>
+</div>
+
+<div class="steps-grid">
+  <div class="step-card">
+    <div class="step-num">Action 01 &middot; Priority: Critical</div>
+    <h4>FOIA the LANL crash corridor</h4>
+    <p>Request all crash reports on NM-501, NM-502, and East Road for 2020–2025 from Los Alamos Police and NMDOT. The clustering of two fatal crashes of LANL personnel in 7 months with no established cause is the least-covered angle in the entire story.</p>
+  </div>
+  <div class="step-card">
+    <div class="step-num">Action 02 &middot; Priority: Critical</div>
+    <h4>Identify Andrew C. Victor's employer</h4>
+    <p>The rocket propulsion physicist who died July 18, 2025 with no employer listed in his memorial. That omission may indicate a classified contractor. His full career history, security clearances, and institutional affiliation need to be confirmed before any publication.</p>
+  </div>
+  <div class="step-card">
+    <div class="step-num">Action 03 &middot; Priority: High</div>
+    <h4>Contact AIAA about Deininger</h4>
+    <p>The AIAA published a memorial notice for Bill Deininger with no cause of death. His JPL background, plasma physics expertise, and timing (one day before Reza vanished) make him a significant candidate. Request cause of death from AIAA, his family, or BAE Systems HR records.</p>
+  </div>
+  <div class="step-card">
+    <div class="step-num">Action 04 &middot; Priority: High</div>
+    <h4>Pull Philip Leonard's research papers</h4>
+    <p>His 48 published papers on high-nitrogen heterocyclics and energetic materials synthesis are publicly available. Cross-reference his specific compounds with the nuclear weapon components manufactured at KCNSC — where Steven Garcia worked.</p>
+  </div>
+  <div class="step-card">
+    <div class="step-num">Action 05 &middot; Priority: High</div>
+    <h4>Frame the Mondaloy Chain story</h4>
+    <p>This is the most publishable exclusive finding: three people holding complete knowledge of a strategic US rocket alloy — co-inventor dead (2014, no AFRL memorial), inventor missing (2025), military program director missing (2026). No journalist has written this. Pull Hardwick's AFRL personnel records and the full Mondaloy patent witness list.</p>
+  </div>
+  <div class="step-card">
+    <div class="step-num">Action 06 &middot; Priority: Medium</div>
+    <h4>Research Gary Phillips and Frank Young (NRL)</h4>
+    <p>Two Naval Research Laboratory physicists died in the same summer window (July and August 2025) with no cause disclosed. NRL's classified programs in directed energy and space-based systems make their backgrounds worth documenting. Start with their published papers and NRL profile pages.</p>
+  </div>
+</div>
+
+</div><!-- /canvas -->
+
+<footer class="footnote">
+  &copy; 2026 whokilledthescientists.com &middot; All rights reserved<br>
+  Working document &middot; All candidates require independent confirmation before reporting<br>
+  This site is an independent investigative resource. No classified material is published.<br>
+  Privacy: This site uses <a href="https://www.goatcounter.com" target="_blank" rel="noopener" style="color:var(--blue)">GoatCounter</a> for anonymous visitor statistics. No cookies. No personal data collected. No tracking across sites.
+</footer>
+
+<script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

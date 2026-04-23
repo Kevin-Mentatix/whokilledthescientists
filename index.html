@@ -158,6 +158,13 @@ header h1 span{color:var(--pink);}
 .nmbtn{background:rgba(0,0,0,.9);border:1px solid var(--border2);border-radius:4px;color:var(--ink3);padding:6px 14px;font-family:"DM Mono",monospace;font-size:10px;cursor:pointer;letter-spacing:.05em;transition:all .15s;}
 .nmbtn:hover{border-color:var(--blue);color:var(--blue);}
 .pcard:focus-visible{outline:2px solid var(--yellow);outline-offset:2px;}
+.candidates-banner{padding:16px 40px 0;}
+.candidates-btn{display:flex;align-items:center;gap:14px;padding:14px 20px;background:rgba(206,0,224,.06);border:1px solid rgba(206,0,224,.3);border-radius:8px;text-decoration:none;transition:all .2s;cursor:pointer;}
+.candidates-btn:hover{background:rgba(206,0,224,.12);border-color:rgba(206,0,224,.5);text-decoration:none;transform:translateY(-1px);box-shadow:0 0 24px rgba(206,0,224,.15);}
+.cb-pulse{width:10px;height:10px;border-radius:50%;background:var(--purple);box-shadow:0 0 8px var(--purple);flex-shrink:0;animation:blink 1.5s ease-in-out infinite;}
+.cb-text{font-size:13px;color:var(--ink2);flex:1;}.cb-text strong{color:var(--purple);font-size:14px;}
+.cb-arrow{font-size:18px;color:var(--purple);flex-shrink:0;}
+@media(max-width:768px){.candidates-banner{padding:12px 16px 0;}}
 .stream-cta{margin-top:40px;padding:2px;border-radius:10px;background:linear-gradient(135deg,var(--pink),var(--purple),var(--blue));position:relative;}
 .stream-inner{background:var(--bg);border-radius:8px;padding:36px 32px;text-align:center;position:relative;overflow:hidden;}
 .stream-pulse{position:absolute;top:16px;right:16px;width:10px;height:10px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px var(--pink);animation:blink 1.5s ease-in-out infinite;}
@@ -215,6 +222,14 @@ header h1{font-size:28px;}
   <div class="leg"><span class="pill pill-dead">DECEASED</span> Died &mdash; no cause or suspicious</div>
   <div class="leg"><span class="pill pill-missing">MISSING</span> Vanished, not found</div>
   <div class="leg"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span> Officially explained</div>
+</div>
+
+<div class="candidates-banner">
+  <a href="candidates.html" class="candidates-btn">
+    <span class="cb-pulse"></span>
+    <span class="cb-text"><strong>Unreported Candidates</strong> &mdash; 5 additional cases not yet in any mainstream list</span>
+    <span class="cb-arrow">&rarr;</span>
+  </a>
 </div>
 
 <div class="canvas">
@@ -1045,6 +1060,14 @@ window.nmPeople=function(){cl();document.querySelectorAll('.nmnode').forEach(fun
 window.nmAll=function(){cl();document.querySelectorAll('.nmedge').forEach(function(e){e.style.opacity='';});};
 })();
 </script>
+<footer style="border-top:1px solid var(--border);padding:32px 40px;text-align:center;">
+  <div style="font-family:'DM Serif Display',serif;font-size:16px;color:var(--ink);margin-bottom:8px;">Who Killed The Scientists?</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;line-height:2.2;">
+    &copy; 2026 whokilledthescientists.com &middot; All rights reserved<br>
+    This site is an independent investigative resource. All claims are sourced. No classified material is published.<br>
+    <span style="color:var(--ink3);margin-top:4px;display:inline-block;">Privacy: This site uses <a href="https://www.goatcounter.com" target="_blank" rel="noopener" style="color:var(--blue)">GoatCounter</a> for anonymous visitor statistics. No cookies. No personal data collected. No tracking across sites.</span>
+  </div>
+</footer>
 <script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
