@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1200px; height: 630px; overflow: hidden; background: #050508; display: flex; align-items: center; justify-content: center; }
+.card {
+  width: 1200px; height: 630px;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 45%, rgba(255,139,51,.12), transparent 70%);
+  pointer-events: none;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,139,51,.4), transparent);
+}
+h1 {
+  font-family: "DM Serif Display", serif;
+  font-size: 72px;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  line-height: 1;
+  text-shadow: 0 0 80px rgba(255,139,51,.5), 0 0 160px rgba(255,139,51,.2);
+  position: relative;
+  letter-spacing: -0.01em;
+}
+h1 span { color: #FF8B33; }
+.sub {
+  font-family: "DM Mono", monospace;
+  font-size: 16px;
+  color: #6a6f8a;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-top: 24px;
+  text-align: center;
+  line-height: 1.6;
+  position: relative;
+}
+.stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 36px;
+  position: relative;
+}
+.stat { text-align: center; }
+.stat .num {
+  font-family: "DM Serif Display", serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1;
+}
+.stat .lbl {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #505570;
+  margin-top: 4px;
+}
+.nd { color: #FF206E; }
+.nm { color: #FF8B33; }
+.nc { color: #00F5D4; }
+.url {
+  position: absolute;
+  bottom: 28px;
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  color: #3a3f55;
+  letter-spacing: .1em;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Who <span>Killed</span> The Scientists?</h1>
+  <div class="sub">Scientists connected to classified US programs<br>are dead or vanishing &middot; 2022&ndash;2026</div>
+  <div class="url">whokilledthescientists.com</div>
+</div>
+</body>
+</html>

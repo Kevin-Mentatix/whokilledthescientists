@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Timeline — Who Killed The Scientists?</title>
+<meta name="description" content="Complete chronological timeline of every death, disappearance, and key event in the missing scientists cluster. 2022–2026.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--card:#0e0f16;--ink:#e8eaf2;--ink2:#9aa0b8;--ink3:#505570;
+  --border:#1e2030;--border2:#2a2e48;
+  --pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;
+  --green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,32,110,.08),transparent 70%);pointer-events:none;}
+header h1{font-family:"DM Serif Display",serif;font-size:clamp(28px,5vw,54px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 60px rgba(255,32,110,.4),0 0 120px rgba(255,32,110,.15);position:relative;}
+header h1 span{color:var(--pink);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+
+.canvas{padding:32px 40px 64px;max-width:900px;margin:0 auto;}
+
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:32px;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:6px;}
+.leg-i{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink3);font-family:"DM Mono",monospace;}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+.timeline{position:relative;padding:8px 0 8px 24px;border-left:2px solid var(--border2);margin-left:8px;}
+.tli{position:relative;padding:14px 0 14px 20px;display:flex;align-items:flex-start;gap:12px;}
+.tldot{position:absolute;left:-29px;top:19px;width:12px;height:12px;border-radius:50%;border:2px solid var(--bg);flex-shrink:0;}
+.tldot.d{background:var(--pink);box-shadow:0 0 8px var(--pink);}
+.tldot.m{background:var(--orange);box-shadow:0 0 8px var(--orange);}
+.tldot.c{background:var(--teal);box-shadow:0 0 8px var(--teal);}
+.tldot.e{background:var(--blue);box-shadow:0 0 8px var(--blue);}
+.tldate{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.08em;flex-shrink:0;width:110px;padding-top:1px;}
+.tlcontent{flex:1;}
+.tlbody{font-size:13px;color:var(--ink2);line-height:1.6;}
+.tlbody strong{font-size:14px;color:var(--ink);font-weight:600;}
+.tllink{display:inline-block;margin-top:6px;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.05em;color:var(--blue);text-decoration:none;opacity:.7;transition:opacity .15s;}
+.tllink:hover{opacity:1;text-decoration:underline;}
+.tl-year{font-family:"DM Serif Display",serif;font-size:28px;color:var(--ink);margin:36px 0 8px;padding-left:24px;position:relative;}
+.tl-year:first-child{margin-top:0;}
+.tl-year::before{content:"";position:absolute;left:0;top:50%;width:16px;height:2px;background:var(--border2);}
+
+@media(max-width:600px){
+.canvas{padding:24px 16px 48px;}
+.tldate{width:80px;font-size:9px;}
+.tlbody{font-size:12px;}
+.tlbody strong{font-size:13px;}
+.tl-year{font-size:22px;padding-left:20px;}
+}
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;}
+.site-nav a:hover{color:var(--ink);text-decoration:none;}
+.site-nav a.active{color:var(--pink);}
+.site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--pink);border-radius:1px;}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="timeline.html" class="active">Timeline</a>
+  <a href="developments.html">Developments</a>
+  <a href="candidates.html">Candidates</a>
+</nav>
+
+<header>
+  <h1>Full <span>Timeline</span></h1>
+  <div class="tagline">Every death, disappearance, and key event &middot; 2022&ndash;2026</div>
+</header>
+
+<div class="canvas">
+
+<div class="legend">
+  <div class="leg-i"><div class="leg-dot" style="background:var(--pink)"></div>Death</div>
+  <div class="leg-i"><div class="leg-dot" style="background:var(--orange)"></div>Disappearance</div>
+  <div class="leg-i"><div class="leg-dot" style="background:var(--teal)"></div>&ldquo;Closed&rdquo; case</div>
+  <div class="leg-i"><div class="leg-dot" style="background:var(--blue)"></div>Key event</div>
+</div>
+
+<div class="tl-year">2022</div>
+<div class="timeline">
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Jun 11, 2022</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Amy Eskridge dies</strong> &mdash; antigravity researcher, co-founder of Institute for Exotic Science, Huntsville AL. Age 34. Said publicly she was &ldquo;scared&rdquo; and felt &ldquo;escalating aggression.&rdquo; No official police or ME report ever released.</div>
+      <a class="tllink" href="https://www.newsweek.com/who-is-amy-eskridge-scientist-death-queried-us-expert-mysteries-11843659" target="_blank">Newsweek: Who is Amy Eskridge? &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<div class="tl-year">2023</div>
+<div class="timeline">
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Jul 30, 2023</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Michael David Hicks dies</strong> &mdash; NASA JPL research scientist, 24 years. DART mission, Deep Space 1. Age 59. No cause of death disclosed, no autopsy, no NASA or JPL statement.</div>
+      <a class="tllink" href="https://www.cnn.com/2026/04/21/us/deaths-disappearances-scientists-investigation" target="_blank">CNN: Federal investigation &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<div class="tl-year">2024</div>
+<div class="timeline">
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Feb 27, 2024</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Dr. Philip Leonard killed</strong> &mdash; LANL high explosives synthesis chemist. Nuclear weapon trigger design. Three-vehicle crash on NM-501 outside Los Alamos. No crash cause determination ever publicly released. <em>(Candidate &mdash; not in mainstream list)</em></div>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">May 12, 2024</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Matthew Sullivan dies</strong> &mdash; USAF intelligence officer, NASIC Deputy Director at Wright-Patterson. Age 39. Bronze Star recipient. Reported suicide &mdash; 2 weeks before scheduled UAP whistleblower testimony before Congress. IC Inspector General had flagged &ldquo;severe allegations of misconduct and potentially unlawful activities.&rdquo;</div>
+      <a class="tllink" href="https://brobible.com/culture/article/congressman-death-air-force-whistleblower-ufo-secrets-suspicious/" target="_blank">BroBible: Congressman calls death suspicious &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Jul 4, 2024</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Frank Maiwald dies</strong> &mdash; NASA JPL Principal Researcher (highest individual honor). Led 2023 biosignature detection breakthrough. Age 61. No cause of death disclosed, no autopsy performed, no NASA statement.</div>
+      <a class="tllink" href="https://thelibertyline.com/2026/04/08/ufo-research-dead-missing-nine/" target="_blank">Liberty Line: Count reaches nine &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Sep 6, 2024</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Charles McMillan killed</strong> &mdash; 10th Director of Los Alamos National Laboratory. Head-on collision at 5:16 AM on road leading to LANL. Other driver crossed center line with no explanation or memory. DA: insufficient evidence for felony &mdash; three petty misdemeanors only. <em>(Candidate &mdash; not in mainstream list)</em></div>
+    </div>
+  </div>
+</div>
+
+<div class="tl-year">2025</div>
+<div class="timeline">
+  <div class="tli">
+    <div class="tldot m"></div>
+    <div class="tldate">May 4, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Anthony Chavez vanishes</strong> &mdash; former Los Alamos National Laboratory employee. Age 78. Left home on foot, car locked in driveway. Exhaustive search produced nothing. Never found.</div>
+      <a class="tllink" href="https://www.mensjournal.com/news/missing-scientists-dead-nuclear-full-list-how-many" target="_blank">Men's Journal: Full case list &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Jun 21, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Dr. William &ldquo;Bill&rdquo; Deininger dies</strong> &mdash; JPL alumni, plasma physicist, BAE Systems Technical Fellow. No cause of death disclosed. Died one day before Monica Reza vanished. <em>(Candidate &mdash; not in mainstream list)</em></div>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot m"></div>
+    <div class="tldate">Jun 22, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Monica Reza vanishes</strong> &mdash; JPL Director of Materials Processing, Mondaloy superalloy co-inventor. Funded by McCasland&rsquo;s AFRL from 1999. Vanished 30 feet from hiking companion &mdash; smiling and waving &mdash; then gone. No body recovered.</div>
+      <a class="tllink" href="https://fortune.com/2026/04/21/scientists-disappear-die-nasa-space-blue-origin-spacex/" target="_blank">Fortune: SpaceX/Blue Origin connection &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot m"></div>
+    <div class="tldate">Jun 26, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Melissa Casias vanishes</strong> &mdash; LANL administrative assistant with top security clearance. Factory-reset both phones before walking out on foot. Left car, keys, wallet, all money. Surveillance camera: walking east on NM-518. Never found.</div>
+      <a class="tllink" href="https://www.foxnews.com/politics/lawmakers-demand-answers-scientists-tied-us-secrets-die-vanish" target="_blank">Fox News: Lawmakers demand answers &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Jul 7, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Gary Wilson Phillips dies</strong> &mdash; Naval Research Laboratory physicist. No cause of death disclosed. Found only in a UMD department memorial alongside two other NRL-connected physicists who died the same summer. <em>(Candidate &mdash; not in mainstream list)</em></div>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Jul 18, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Andrew C. Victor dies</strong> &mdash; rocket propulsion physicist. No cause of death or employer disclosed. Died between Reza vanishing (Jun 22) and Garcia vanishing (Aug 28). Specialty directly overlaps with Reza and Mondaloy. <em>(Candidate &mdash; not in mainstream list)</em></div>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Jul 22, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Joshua LeBlanc dies</strong> &mdash; NASA nuclear propulsion engineer, DRACO mission team lead. Age 29. Reported missing at 4:32 AM. Tesla tracked to Huntsville airport (sat 4 hours), then crashed and burned on back roads at 2:45 PM. Body burned beyond recognition. Family says movements didn&rsquo;t match his plans.</div>
+      <a class="tllink" href="https://www.foxnews.com/us/nasa-nuclear-engineer-found-dead-burned-tesla-vanishing-alabama-home-last-year" target="_blank">Fox News: LeBlanc found dead &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Aug 1, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Frank C. Young dies</strong> &mdash; Naval Research Laboratory physicist, former UMD Cyclotron researcher (nuclear particle accelerator). No cause of death disclosed. Third NRL/defense physicist in same memorial, same summer. <em>(Candidate &mdash; not in mainstream list)</em></div>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot m"></div>
+    <div class="tldate">Aug 28, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Steven Garcia vanishes</strong> &mdash; property custodian, Kansas City National Security Campus (80%+ of US nuclear weapon non-nuclear components). Age 48. Left home in camouflage on foot with a handgun. No phone, no wallet. Never found.</div>
+      <a class="tllink" href="https://thelibertyline.com/2026/04/14/ufo-research-scientists-missing-10/" target="_blank">Liberty Line: Count reaches ten &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot e"></div>
+    <div class="tldate">Oct 24, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>3 Wright-Patterson AFRL personnel die</strong> &mdash; Jaime Gustitus (711th Human Performance Wing), Jacob Prichard (AFRL researcher), Jaymee Prichard (AFLCMC). Murder-suicide. No investigative findings ever publicly released.</div>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot m"></div>
+    <div class="tldate">Dec 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Jason Thomas goes missing</strong> &mdash; Novartis cancer treatment researcher. Body found in Massachusetts lake March 2026. No foul play suspected by investigators.</div>
+      <a class="tllink" href="https://people.com/scientist-missing-novartis-jason-thomas-found-dead-massachusetts-lake-exclusive-8768492" target="_blank">People: Jason Thomas found dead &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot c"></div>
+    <div class="tldate">Dec 15, 2025</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Nuno Loureiro murdered</strong> &mdash; Director, MIT Plasma Science and Fusion Center. Reportedly near a fusion energy breakthrough. Shot by former Portuguese classmate who also carried out Brown University shooting 2 days earlier. &ldquo;Case closed.&rdquo;</div>
+      <a class="tllink" href="https://www.nbcboston.com/news/local/brown-university-shooting-suspect-mit-professor-connection-former-classmates-portugal/3865458/" target="_blank">NBC Boston: Brown/MIT connection &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<div class="tl-year">2026</div>
+<div class="timeline">
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Feb 16, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Carl Grillmair murdered</strong> &mdash; Caltech astrophysicist, NEOWISE and NEO Surveyor. Connected to Air Force missile tracking technology. Shot on porch of rural Llano, CA home at 6 AM. Suspect charged in carjacking/burglary spree. &ldquo;Case closed.&rdquo;</div>
+      <a class="tllink" href="https://abc7.com/post/astrophysicist-carl-grillmair-shot-killed-front-porch-home-llano-california/15939184/" target="_blank">ABC7: Grillmair shooting &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot e"></div>
+    <div class="tldate">Feb 19, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Trump signs UAP disclosure directive</strong> &mdash; orders all agencies to identify and release UAP files. Four days later, the man with legal visibility over every classified DoD program walks out of his home and is never seen again.</div>
+      <a class="tllink" href="https://defensescoop.com/2026/02/20/trump-ufo-uap-government-files-disclosure/" target="_blank">DefenseScoop: Trump UAP directive &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot m"></div>
+    <div class="tldate">Feb 27, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Gen. Neil McCasland vanishes</strong> &mdash; Ret. USAF Major General, former AFRL Commander, SAP Oversight Committee executive secretary. 4 days after Trump UAP disclosure order. Left without phone, glasses, or wearables. Carried revolver. Wife told 911 he &ldquo;planned not to be found.&rdquo; Still missing.</div>
+      <a class="tllink" href="https://www.tmz.com/2026/04/03/wife-of-missing-air-force-general-911-call/" target="_blank">TMZ: Wife 911 call details &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot e"></div>
+    <div class="tldate">Mar 25, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Classified congressional SCIF briefing</strong> &mdash; held regarding McCasland disappearance and UAP programs. Rep. Burlison: &ldquo;one of the most bipartisan topics in Washington.&rdquo; Content not made public.</div>
+      <a class="tllink" href="https://lamag.com/news-and-politics/what-happened-inside-congress-classified-uap-briefing/" target="_blank">LA Mag: Inside the SCIF briefing &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot e"></div>
+    <div class="tldate">Apr 16&ndash;17, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Story breaks nationally</strong> &mdash; White House acknowledges the cluster. Trump: &ldquo;pretty serious stuff &hellip; I hope it&rsquo;s random.&rdquo; Press Secretary: &ldquo;no stone will be unturned.&rdquo; Physicist Michio Kaku calls pattern &ldquo;unheard of.&rdquo; NNSA confirms investigating.</div>
+      <a class="tllink" href="https://www.newsweek.com/white-house-investigating-wave-mystery-dead-scientists-11836410" target="_blank">Newsweek: White House statement &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Apr 18, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Moffatt family killed in plane crash</strong> &mdash; James &ldquo;Tony&rdquo; Moffatt (60), aerospace defense engineer, NASA JSC veteran of 14 Shuttle missions, Army test pilot, UAH researcher. Killed with son Andrew (30, UAH research engineer), wife Leasa (61), and son William (28). Mooney M20 crashed near Union County Airport, SC during refueling stop. NTSB/FAA investigating.</div>
+      <a class="tllink" href="https://www.wrganews.com/2026/04/21/aerospace-defense-engineer-military-veteran-killed-in-plane-crash-with-family/" target="_blank">WRG News: Moffatt family crash &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot d"></div>
+    <div class="tldate">Apr 20, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>David Wilcock dies</strong> &mdash; UAP disclosure researcher, author, Ancient Aliens. Age 53. Apparent self-inflicted gunshot at Colorado home. Two days prior posted video warning missing scientists were &ldquo;scary.&rdquo; Had publicly stated he was not suicidal. Biographer Wynn Free died two days before him.</div>
+      <a class="tllink" href="https://www.thegatewaypundit.com/2026/04/famous-ufo-researcher-david-wilcock-dead-apparent-suicide/" target="_blank">Gateway Pundit: Wilcock death &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot e"></div>
+    <div class="tldate">Apr 20, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>House Oversight formally demands answers</strong> &mdash; Comer and Burlison issue formal letters to FBI, DOE, DOD, and NASA demanding staff-level briefings by April 27. &ldquo;If the reports are accurate, these deaths may represent a grave threat to U.S. national security.&rdquo;</div>
+      <a class="tllink" href="https://oversight.house.gov/release/comer-burlison-seek-information-on-missing-nuclear-and-rocket-scientists/" target="_blank">House Oversight official release &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot e"></div>
+    <div class="tldate">Apr 21, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>FBI confirms investigation</strong> &mdash; FBI spokesperson to Fox News Digital: &ldquo;The FBI is spearheading the effort to look for connections into the missing and deceased scientists.&rdquo; First formal confirmation FBI is treating cases as potentially linked.</div>
+      <a class="tllink" href="https://www.foxnews.com/politics/lawmakers-demand-answers-scientists-tied-us-secrets-die-vanish" target="_blank">Fox News: FBI statement &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot e"></div>
+    <div class="tldate">Apr 22, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Coverage explodes</strong> &mdash; CBS News, Scientific American, Fortune, Newsweek, Axios all publish. FBI told Fortune it is working with DOE, DOD, and state/local law enforcement. Comer: &ldquo;Once you see the facts, it would suggest that something sinister could be happening.&rdquo;</div>
+      <a class="tllink" href="https://www.cbsnews.com/news/deaths-disappearances-scientists-staff-government-labs/" target="_blank">CBS News: FBI investigating &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot e"></div>
+    <div class="tldate">Apr 23, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>LeBlanc story breaks</strong> &mdash; Fox News reveals Joshua LeBlanc, 29-year-old NASA nuclear propulsion engineer, found dead in burned Tesla in July 2025. Case count rises. Families of Casias, Grillmair, Hicks, and Thomas push back on conspiracy framing. NASA rejects &ldquo;national security threat&rdquo; label.</div>
+      <a class="tllink" href="https://www.foxnews.com/us/nasa-nuclear-engineer-found-dead-burned-tesla-vanishing-alabama-home-last-year" target="_blank">Fox News: LeBlanc found dead &rarr;</a>
+    </div>
+  </div>
+  <div class="tli">
+    <div class="tldot e"></div>
+    <div class="tldate">Apr 23, 2026</div>
+    <div class="tlcontent">
+      <div class="tlbody"><strong>Boulder County Coroner confirms Wilcock suicide</strong> &mdash; self-inflicted gunshot wound at 11:02 AM on April 20. Deputies had arrived after 911 call describing a mental health crisis and found him outside holding a weapon.</div>
+      <a class="tllink" href="https://ca.news.yahoo.com/ufo-researcher-david-wilcock-found-094528095.html" target="_blank">Yahoo News: Coroner confirms &rarr;</a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer style="border-top:1px solid var(--border);padding:32px 40px;text-align:center;">
+  <div style="font-family:'DM Serif Display',serif;font-size:16px;color:var(--ink);margin-bottom:8px;">Who Killed The Scientists?</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;line-height:2.2;">
+    &copy; 2026 whokilledthescientists.com &middot; All rights reserved<br>
+    <a href="index.html" style="color:var(--blue)">Main Investigation</a> &middot;
+    <a href="candidates.html" style="color:var(--blue)">Candidates</a> &middot;
+    <a href="timeline.html" style="color:var(--blue)">Full Timeline</a>
+  </div>
+</footer>
+<script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

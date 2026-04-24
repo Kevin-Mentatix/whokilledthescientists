@@ -51,7 +51,28 @@ header h1 .dim{color:var(--ink3);}
 /* ── CANDIDATE CARDS ── */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,520px));gap:16px;justify-content:center;}
 
-.ccard{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s;}
+.ccard{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s;cursor:pointer;}
+.ccard.active{box-shadow:0 0 0 1px var(--yellow),0 0 24px rgba(225,255,0,.2)!important;border-color:var(--yellow)!important;}
+
+/* ── PHOTOS ── */
+.ccard-photo{width:100%;aspect-ratio:1/1;overflow:hidden;flex-shrink:0;background:#080910;line-height:0;}
+.ccard-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:grayscale(15%);transition:filter .3s;}
+.ccard:hover .ccard-photo img{filter:grayscale(0%);}
+.ccard-fallback{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-family:"DM Serif Display",serif;font-size:48px;color:rgba(255,255,255,.15);background:#080910;}
+
+/* ── DETAIL PANEL ── */
+#dp{position:fixed;right:0;top:0;bottom:0;width:420px;background:#03040a;border-left:1px solid var(--border2);padding:28px 24px;overflow-y:auto;transform:translateX(100%);transition:transform .25s ease;z-index:200;box-shadow:-8px 0 40px rgba(0,0,0,.8);}
+#dp.open{transform:translateX(0);}
+#dp h3{font-family:"DM Serif Display",serif;font-size:22px;font-weight:400;line-height:1.2;margin-bottom:4px;color:var(--ink);}
+.dprole{font-size:13px;color:var(--ink3);margin-bottom:12px;}
+.dpbody{font-size:13px;color:var(--ink2);line-height:1.7;}
+.dpsect{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:16px 0 8px;border-bottom:1px solid var(--border);padding-bottom:4px;}
+#dp ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+#dp li{font-size:12px;color:var(--ink2);line-height:1.6;padding-left:14px;position:relative;}
+#dp li::before{content:"\00B7";position:absolute;left:0;color:var(--ink3);}
+#closebtn{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--border2);border-radius:4px;cursor:pointer;font-size:13px;color:var(--ink3);padding:4px 10px;font-family:"DM Mono",monospace;transition:all .15s;letter-spacing:.05em;}
+#closebtn:hover{border-color:var(--pink);color:var(--pink);}
+@media(max-width:768px){#dp{width:100%;max-width:420px;}}
 .ccard.t1{border-top:3px solid var(--pink);}
 .ccard.t1:hover{box-shadow:0 0 28px rgba(255,32,110,.2);border-color:rgba(255,32,110,.4);}
 .ccard.t2{border-top:3px solid var(--orange);}
@@ -138,13 +159,22 @@ header h1 .dim{color:var(--ink3);}
 
 /* ── FOOTER NOTE ── */
 .footnote{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-align:center;padding:32px 40px;border-top:1px solid var(--border);text-transform:uppercase;line-height:1.8;}
+
+/* ── NAV ── */
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;}
+.site-nav a:hover{color:var(--ink);text-decoration:none;}
+.site-nav a.active{color:var(--pink);}
+.site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--pink);border-radius:1px;}
 </style>
 </head>
 <body>
 
-<nav style="background:#000;border-bottom:1px solid var(--border);padding:10px 40px;display:flex;align-items:center;gap:16px;">
-  <a href="index.html" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;"
-     onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--ink3)'">&larr; Back to Main Investigation</a>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="developments.html">Developments</a>
+  <a href="candidates.html" class="active">Candidates</a>
 </nav>
 <header>
   <h1><span>Who Else Fits Into This?</span><br><span class="dim">Who Killed The Scientists?</span></h1>
@@ -168,7 +198,8 @@ header h1 .dim{color:var(--ink3);}
 <div class="pgrid">
 
   <!-- McMillan -->
-  <div class="ccard t1">
+  <div class="ccard t1" onclick="showDetail('mcmillan')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')showDetail('mcmillan')">
+    <div class="ccard-photo"><img src="images/mcmillan.jpg" alt="Charles F. McMillan"></div>
     <div class="ccard-head">
       <div class="ccard-status">
         <span class="pill pill-dead">DECEASED</span>
@@ -202,7 +233,8 @@ header h1 .dim{color:var(--ink3);}
   </div>
 
   <!-- Philip Leonard -->
-  <div class="ccard t1">
+  <div class="ccard t1" onclick="showDetail('leonard')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')showDetail('leonard')">
+    <div class="ccard-photo"><img src="images/leonard.jpg" alt="Dr. Philip William Leonard"></div>
     <div class="ccard-head">
       <div class="ccard-status">
         <span class="pill pill-dead">DECEASED</span>
@@ -235,7 +267,8 @@ header h1 .dim{color:var(--ink3);}
   </div>
 
   <!-- Deininger -->
-  <div class="ccard t1">
+  <div class="ccard t1" onclick="showDetail('deininger')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')showDetail('deininger')">
+    <div class="ccard-photo"><div class="ccard-fallback">WD</div></div>
     <div class="ccard-head">
       <div class="ccard-status">
         <span class="pill pill-dead">DECEASED</span>
@@ -281,7 +314,8 @@ header h1 .dim{color:var(--ink3);}
 <div class="pgrid">
 
   <!-- Phillips -->
-  <div class="ccard t2">
+  <div class="ccard t2" onclick="showDetail('phillips')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')showDetail('phillips')">
+    <div class="ccard-photo"><div class="ccard-fallback">GP</div></div>
     <div class="ccard-head">
       <div class="ccard-status">
         <span class="pill pill-dead">DECEASED</span>
@@ -309,7 +343,8 @@ header h1 .dim{color:var(--ink3);}
   </div>
 
   <!-- Frank Young -->
-  <div class="ccard t2">
+  <div class="ccard t2" onclick="showDetail('young')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')showDetail('young')">
+    <div class="ccard-photo"><div class="ccard-fallback">FY</div></div>
     <div class="ccard-head">
       <div class="ccard-status">
         <span class="pill pill-dead">DECEASED</span>
@@ -337,7 +372,8 @@ header h1 .dim{color:var(--ink3);}
   </div>
 
   <!-- Andrew Victor -->
-  <div class="ccard t2">
+  <div class="ccard t2" onclick="showDetail('victor')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')showDetail('victor')">
+    <div class="ccard-photo"><div class="ccard-fallback">AV</div></div>
     <div class="ccard-head">
       <div class="ccard-status">
         <span class="pill pill-dead">DECEASED</span>
@@ -502,6 +538,40 @@ header h1 .dim{color:var(--ink3);}
   This site is an independent investigative resource. No classified material is published.<br>
   Privacy: This site uses <a href="https://www.goatcounter.com" target="_blank" rel="noopener" style="color:var(--blue)">GoatCounter</a> for anonymous visitor statistics. No cookies. No personal data collected. No tracking across sites.
 </footer>
+
+<div id="dp">
+  <button id="closebtn" onclick="closeDP()">&#10005; CLOSE</button>
+  <div id="dpcontent"></div>
+</div>
+
+<script>
+var D={
+mcmillan:{n:'Charles F. McMillan',r:'10th Director, Los Alamos National Laboratory &middot; Nuclear Physicist',s:'DECEASED &middot; Sep 6, 2024 &middot; Age 69 &middot; Head-on collision, Los Alamos NM',body:'Former director of LANL &mdash; the same lab where Chavez and Casias would later vanish. 23 years at Lawrence Livermore, 18 years at LANL including 6 as director overseeing the US nuclear deterrent. Was still actively consulting for LANL and serving on Sandia Labs review committees when killed in an unexplained head-on crash at 5:16 AM on the road leading to the lab.',pts:['Killed at 5:16 AM on the road leading directly to LANL','Driver said she did not remember what caused her to cross the center line','DA found "insufficient evidence" for vehicular homicide &mdash; 3 petty misdemeanors only','Died exactly 9 months before Chavez vanished from the same area','Still consulting at LANL and on Sandia Labs review committees at time of death','Elected to lead the Nuclear Security Enterprise Integration Council','His death was one of two fatal LANL-employee crashes within 7 months on the same road'],note:'A former director of America\'s premier nuclear weapons lab, killed in an unexplained crash on the road to that lab, 9 months before two employees of the same lab vanished. Zero mainstream coverage has connected this death to the cluster.'},
+leonard:{n:'Dr. Philip William Leonard',r:'High Explosives Synthesis Chemist, LANL &middot; PhD Organic Chemistry, UC Berkeley (2007)',s:'DECEASED &middot; Feb 27, 2024 &middot; Age 44 &middot; Three-vehicle crash, NM-501',body:'A high explosives synthesis chemist at LANL since 2009 &mdash; designing and synthesizing the explosive components used in nuclear weapon triggers. Postdoc at Lawrence Livermore before LANL. Had a toddler and a pregnant wife. Died in a multi-vehicle crash on the same road corridor as McMillan 7 months later.',pts:['High explosives synthesis = nuclear weapon trigger design &mdash; most sensitive specialty at LANL','Crash investigation: police "awaiting crash team report and medical records" &mdash; no cause ever released','Died February 27 &mdash; exactly 2 years to the day before McCasland vanished (Feb 27, 2026)','Postdoc at Lawrence Livermore in Dr. Phil Pagoria\'s explosives group','15 years at LANL working on classified energetic materials','48 published papers on high-nitrogen compounds and energetic materials synthesis'],note:'LANL explosives chemist killed on the same road corridor as McMillan &mdash; same year, 7 months apart. Died on the same calendar date (Feb 27) that McCasland disappears two years later.'},
+deininger:{n:'Dr. William "Bill" Deininger',r:'Technical Fellow, BAE Systems Space & Mission Systems &middot; Former JPL &middot; Plasma Physicist',s:'DECEASED &middot; Jun 21, 2025 &middot; Age 68 &middot; Cause not disclosed',body:'JPL alumni and plasma physicist who spent 7 years at the Jet Propulsion Laboratory before moving through Italian aerospace giant Fiat Avio, Ball Aerospace (defense contractor), and ultimately BAE Systems &mdash; maker of electronic warfare and directed energy systems. Died June 21, 2025 &mdash; one day before Monica Reza vanished.',pts:['Died June 21, 2025 &mdash; Monica Reza vanished June 22, 2025. One day apart.','No cause of death given in AIAA obituary notice &mdash; unusual for professional memorial','JPL alumni &mdash; direct institutional connection to Hicks, Maiwald, Reza','Plasma Physics master\'s + Aerospace Engineering PhD &mdash; overlapping expertise with Loureiro','Moved to BAE Systems in 2024 &mdash; one year before his death','BAE Systems: maker of CHAMP directed energy weapons, space-based electronic warfare','Active on AIAA Systems Engineering Technical Committee and ASCEND conference'],note:'JPL alumni. Plasma physicist. Died the day before Monica Reza vanished. Last employer was BAE Systems\' classified Space and Mission Systems division. The AIAA published no cause of death.'},
+phillips:{n:'Gary Wilson Phillips',r:'Naval Research Laboratory physicist &middot; Georgetown University adjunct &middot; PhD Physics, UMD (1967)',s:'DECEASED &middot; Jul 7, 2025 &middot; Cause not disclosed',body:'Career physicist at the Naval Research Laboratory &mdash; one of the US military\'s primary basic and applied research organizations, running programs in directed energy, space science, advanced materials, and classified defense technology. Died July 7, 2025, in the same summer window as the cluster of disappearances.',pts:['Died July 2025 &mdash; same window: Reza (June), Casias (June), Chavez (May), Garcia (August)','Cause of death not given in UMD physics department memorial','NRL &mdash; classified programs in directed energy, space surveillance, advanced materials','Found only in a UMD memorial alongside two other NRL-connected physicists who died same summer'],note:'Career NRL physicist who died in the exact summer window as the main cluster. No cause disclosed. NRL runs some of the most classified defense research programs in the US.'},
+young:{n:'Frank C. Young',r:'Naval Research Laboratory physicist &middot; PhD Physics, UMD (1962) &middot; 10 years UMD Cyclotron',s:'DECEASED &middot; Aug 1, 2025 &middot; Cause not disclosed',body:'Spent 10 years working on the University of Maryland Cyclotron &mdash; a nuclear particle accelerator &mdash; before joining the Naval Research Laboratory. Three physicists with NRL or defense lab affiliations died between July&ndash;August 2025, all noted only in a single UMD department memorial page.',pts:['Died August 1, 2025 &mdash; same window as Garcia\'s disappearance (August 28)','No cause of death given','Nuclear accelerator + Naval Research Lab career','Third NRL/defense physicist in same memorial, same summer'],note:'Second NRL physicist to die in the same summer window. Nuclear accelerator background. No cause of death disclosed.'},
+victor:{n:'Andrew C. Victor',r:'Rocket propulsion physicist &middot; MS Physics, University of Maryland',s:'DECEASED &middot; Jul 18, 2025 &middot; Cause not disclosed &middot; Employer not named',body:'A physicist who "worked as a physicist in rocket propulsion" &mdash; the exact specialty of Monica Reza (Mondaloy). No employer named in the memorial. Died sandwiched between Reza\'s disappearance (June 22) and Garcia\'s disappearance (August 28).',pts:['Died July 18 &mdash; exactly between Reza (June 22) and Garcia (August 28)','Specialty: rocket propulsion &mdash; direct overlap with Reza and Mondaloy','No employer named in memorial &mdash; unusual and potentially significant','No cause of death given','May have worked at a classified contractor &mdash; employer omission is a flag'],note:'Highest-priority unknown. A rocket propulsion physicist dying between two cluster disappearances with no employer listed. His full identity and career should be confirmed before publication.'}
+};
+function showDetail(id){
+  var d=D[id];if(!d)return;
+  document.getElementById('dpcontent').innerHTML=
+    '<span class="pill pill-dead" style="font-size:10px">'+d.s+'</span>'+
+    '<h3 style="margin-top:10px">'+d.n+'</h3>'+
+    '<div class="dprole">'+d.r+'</div>'+
+    '<div class="dpbody">'+d.body+'</div>'+
+    '<div class="dpsect">Key Facts</div>'+
+    '<ul>'+d.pts.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>'+
+    '<div class="dpsect">Investigative Note</div>'+
+    '<div class="dpbody" style="font-style:italic;color:var(--ink3)">'+d.note+'</div>';
+  document.getElementById('dp').classList.add('open');
+  document.querySelectorAll('.ccard').forEach(function(c){c.classList.toggle('active',!!c.getAttribute('onclick')&&c.getAttribute('onclick').indexOf(id)>=0);});
+}
+function closeDP(){
+  document.getElementById('dp').classList.remove('open');
+  document.querySelectorAll('.ccard').forEach(function(c){c.classList.remove('active');});
+}
+</script>
 
 <script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
