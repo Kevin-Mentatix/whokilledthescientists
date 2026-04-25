@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Cases — Who Killed The Scientists?</title>
+<meta name="description" content="At least 9 Chinese defense scientists have died under unusual circumstances between 2018 and 2026. Hypersonics, military AI, drones, space defense.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--card:#0e0f16;--ink:#ffffff;--ink2:#e0e2f0;--ink3:#c0c4d8;
+  --border:#1e2030;--border2:#2a2e48;
+  --pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;
+  --green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;
+  --red:#ff3b3b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;}
+.site-nav a:hover{color:var(--ink);text-decoration:none;}
+.site-nav a.active{color:var(--red);}
+.site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--red);border-radius:1px;}
+
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,59,59,.08),transparent 70%);pointer-events:none;}
+header h1{font-family:"DM Serif Display",serif;font-size:clamp(28px,5vw,54px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 60px rgba(255,59,59,.3),0 0 120px rgba(255,59,59,.1);position:relative;}
+header h1 span{color:var(--red);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+.meta-bar{display:flex;justify-content:center;gap:28px;margin-top:24px;flex-wrap:wrap;position:relative;}
+.meta-pill{font-family:"DM Mono",monospace;font-size:10px;padding:4px 12px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase;}
+.mp-red{background:rgba(255,59,59,.15);color:var(--red);border:1px solid rgba(255,59,59,.4);}
+.mp-orange{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.4);}
+
+.canvas{padding:32px 40px 64px;max-width:1100px;margin:0 auto;}
+
+/* intro */
+.intro{max-width:760px;margin:0 auto 40px;font-size:14px;color:var(--ink2);line-height:1.8;text-align:center;}
+.intro strong{color:var(--ink);}
+
+/* section headers */
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:44px;}
+.sh:first-child{margin-top:0;}
+.stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
+.sh h2{font-family:"DM Serif Display",serif;font-size:22px;font-weight:400;color:var(--ink);}
+.sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+
+/* case cards */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.pcard{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--red);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s,border-color .2s;}
+.pcard:hover{box-shadow:0 0 28px rgba(255,59,59,.15);border-color:rgba(255,59,59,.3);}
+.pcard-status{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
+.pill{font-family:"DM Mono",monospace;font-size:9px;padding:2px 8px;border-radius:2px;font-weight:500;letter-spacing:.05em;}
+.pill-dead{background:rgba(255,59,59,.15);color:var(--red);border:1px solid rgba(255,59,59,.5);}
+.pill-car{background:rgba(255,139,51,.12);color:var(--orange);border:1px solid rgba(255,139,51,.4);}
+.pill-illness{background:rgba(206,0,224,.12);color:var(--purple);border:1px solid rgba(206,0,224,.4);}
+.pill-unknown{background:rgba(255,255,255,.06);color:var(--ink3);border:1px solid var(--border2);}
+.pname{font-family:"DM Serif Display",serif;font-size:18px;font-weight:400;color:var(--ink);line-height:1.2;}
+.prole{font-size:11px;color:var(--ink3);line-height:1.4;}
+.pdate{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;}
+.psummary{font-size:13px;color:var(--ink2);line-height:1.65;margin-top:4px;}
+.psummary strong{color:var(--ink);font-weight:600;}
+.ptags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+.tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 7px;border-radius:2px;letter-spacing:.02em;}
+.tag.hot{background:rgba(255,59,59,.12);color:var(--red);border:1px solid rgba(255,59,59,.35);}
+.tag.key{background:rgba(0,187,249,.08);color:var(--blue);border:1px solid rgba(0,187,249,.25);}
+.tag.field{background:rgba(225,255,0,.06);color:var(--yellow);border:1px solid rgba(225,255,0,.2);}
+.psource{font-size:11px;color:var(--blue);margin-top:6px;display:inline-block;}
+
+/* comparison table */
+.ctable{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px;}
+.ctable th{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:8px 12px;border-bottom:1px solid var(--border2);}
+.ctable td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.5;vertical-align:top;}
+.ctable tr:hover td{background:rgba(255,255,255,.02);}
+
+@media(max-width:600px){
+.canvas{padding:24px 16px 48px;}
+.pgrid{grid-template-columns:1fr;}
+header{padding:32px 20px 28px;}
+.meta-bar{gap:12px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="developments.html">Developments</a>
+  <a href="candidates.html">Candidates</a>
+  <a href="china.html" class="active">China</a>
+</nav>
+
+<header>
+  <h1>The <span>China</span> Cases</h1>
+  <div class="tagline">At least 9 defense scientists dead under unusual circumstances &middot; 2018&ndash;2026</div>
+  <div class="meta-bar">
+    <span class="meta-pill mp-red">9 dead</span>
+    <span class="meta-pill mp-orange">Military AI &middot; Hypersonics &middot; Drones &middot; Space</span>
+  </div>
+</header>
+
+<div class="canvas">
+
+<div class="intro">
+  While the FBI investigates 11+ American cases, <strong>at least nine Chinese scientists</strong> working in sensitive defense fields have also died under unusual circumstances since 2018. The fields overlap: <strong>military AI, hypersonic weapons, space defense, drone warfare, and nuclear-adjacent research</strong>. China&rsquo;s Embassy says it is &ldquo;not aware&rdquo; of the situation. No official investigation has been announced.
+</div>
+
+<div class="sh">
+  <div class="stripe" style="background:var(--red)"></div>
+  <div><h2>The 9 Cases</h2><div class="sub">Sorted by date &middot; most recent first</div></div>
+</div>
+
+<div class="pgrid">
+
+<div class="pcard">
+  <div class="pcard-status"><span class="pill pill-illness">ILLNESS</span></div>
+  <div class="pname">Yan Hong</div>
+  <div class="prole">Hypersonic aviation scientist &middot; Professor &amp; doctoral supervisor, Northwestern Polytechnical University (US-sanctioned) &middot; Former Rutgers University &amp; Wright State University, Ohio</div>
+  <div class="pdate">Died Mar 24, 2026 &middot; Age 56 &middot; Jiangsu Provincial People&rsquo;s Hospital</div>
+  <div class="psummary">One of China&rsquo;s leading researchers in <strong>supersonic/hypersonic flow control, plasma-based flow control, and computational fluid dynamics</strong>. Died reportedly following an illness. Previously held research positions at <strong>Rutgers University and Wright State University in Ohio</strong> &mdash; the same state as Wright-Patterson AFB where US case Matthew Sullivan worked. Returned to China to join <strong>Northwestern Polytechnical University</strong>, which the US sanctioned for ties to military research including fighter jets and hypersonic vehicles. NPU developed the <strong>Feitian 1 and Feitian 2</strong> hypersonic aircraft.</div>
+  <div class="ptags"><span class="tag field">Hypersonics</span><span class="tag hot">US-sanctioned university</span><span class="tag key">Former US researcher</span><span class="tag hot">Ohio &harr; Wright-Patterson link</span></div>
+  <a class="psource" href="https://www.scmp.com/news/china/science/article/3348183/leading-chinese-hypersonic-aviation-scientist-yan-hong-dies-56" target="_blank">SCMP: Yan Hong dies at 56 &#8594;</a>
+</div>
+
+<div class="pcard">
+  <div class="pcard-status"><span class="pill pill-dead">MEDICAL EPISODE</span></div>
+  <div class="pname">Fang Daining</div>
+  <div class="prole">Chinese Academy of Sciences member &middot; Chief Scientist, Institute of Advanced Structure Technology &middot; Beijing Institute of Technology &middot; Materials science &amp; structural mechanics</div>
+  <div class="pdate">Died Feb 27, 2026 &middot; Age 68 &middot; South Africa (business trip)</div>
+  <div class="psummary">One of the most important scientists in China&rsquo;s hypersonic weapons program. Specialist in super-strong materials for spacecraft and hypersonic vehicles. Founded BIT&rsquo;s Institute of Advanced Structure Technology in 2015. Died suddenly while on a business trip to South Africa. <strong>CCP kept his death secret for weeks</strong> &mdash; no standard public announcement was issued despite his CAS membership. Social media posts about his death were rapidly deleted. <strong>Died the same day (Feb 27) that US Gen. McCasland disappeared from his home in Albuquerque.</strong></div>
+  <div class="ptags"><span class="tag hot">Same day as McCasland disappearance</span><span class="tag hot">Death censored by CCP</span><span class="tag field">Hypersonics</span><span class="tag key">Chinese Academy of Sciences</span></div>
+  <a class="psource" href="https://www.scmp.com/news/china/science/article/3346904/controversy-haunts-death-chinas-lead-hypersonic-weapons-expert-fang-daining" target="_blank">SCMP: Controversy haunts Fang&rsquo;s death &#8594;</a>
+</div>
+
+<div class="pcard">
+  <div class="pcard-status"><span class="pill pill-illness">SUDDEN ILLNESS</span></div>
+  <div class="pname">Li Minyong</div>
+  <div class="prole">Medicinal chemist &middot; Shandong University &middot; Fellow, Royal Society of Chemistry &middot; Editor-in-Chief, Medicinal Research Reviews</div>
+  <div class="pdate">Died Nov 16, 2025 &middot; Age 49 &middot; Guangzhou</div>
+  <div class="psummary">Internationally renowned medicinal chemist and fellow of multiple international research societies. Broke through critical core technologies for <strong>visualizing target proteins in major diseases</strong>. Died of a sudden illness in Guangzhou at the height of his research career. China&rsquo;s latest loss of a leading scientist at a productive age.</div>
+  <div class="ptags"><span class="tag field">Biomedical</span><span class="tag hot">Sudden illness, age 49</span><span class="tag key">Royal Society fellow</span></div>
+  <a class="psource" href="https://www.scmp.com/news/china/science/article/3334335/li-minyong-noted-chinese-chemist-and-royal-society-fellow-dies-age-49" target="_blank">SCMP: Li Minyong dies at 49 &#8594;</a>
+</div>
+
+<div class="pcard">
+  <div class="pcard-status"><span class="pill pill-unknown">FELL FROM BUILDING</span></div>
+  <div class="pname">Zhang Daibing</div>
+  <div class="prole">Top drone expert &middot; Deputy Director, NUDT Unmanned Systems Research Institute &middot; Founded Yunzhihang Technology &middot; Led 20+ national/military projects</div>
+  <div class="pdate">Died Jan 3, 2025 &middot; Age 47 &middot; Changsha, Hunan</div>
+  <div class="psummary">One of China&rsquo;s foremost experts on <strong>drone warfare and swarming technology</strong>. Led 20+ national, military, and government projects. In 2021 his team developed high-voltage direct-drive technology allowing drones to carry 1,100+ lb payloads. Founded Yunzhihang Technology in 2017, which later faced severe financial difficulties. <strong>Fell from a building in the early hours of Jan 3.</strong> Official obituary gave no cause of death. Some reports suggest suicide due to financial strain; others speculate foul play. <strong>Third NUDT scientist to die unexpectedly.</strong></div>
+  <div class="ptags"><span class="tag hot">Fell from building</span><span class="tag hot">3rd NUDT death</span><span class="tag field">Drone warfare / swarming</span><span class="tag key">Financial turmoil</span></div>
+  <a class="psource" href="https://www.scmp.com/news/china/science/article/3293939/sudden-death-top-chinese-military-drone-scientist-shocks-industry" target="_blank">SCMP: Drone scientist&rsquo;s death shocks industry &#8594;</a>
+</div>
+
+<div class="pcard">
+  <div class="pcard-status"><span class="pill pill-car">CAR CRASH &middot; BEIJING</span></div>
+  <div class="pname">Zhang Xiaoxin</div>
+  <div class="prole">Space physicist &middot; National Satellite Meteorological Centre &middot; Director, NSMC Space Weather Office &middot; Co-chair, WMO International Space Weather Group &middot; ICAO adviser</div>
+  <div class="pdate">Died Dec 15, 2024 &middot; Age 62 &middot; Beijing</div>
+  <div class="psummary">Leading space physicist who specialized in weather monitoring and early warning systems. Held international posts at the <strong>World Meteorological Organization</strong> and <strong>International Civil Aviation Organization</strong>. Won a top award from the Chinese military for science and tech progress. <strong>Second Chinese scientist with close military ties to die in a Beijing car crash</strong> &mdash; following Feng Yanghe 18 months earlier.</div>
+  <div class="ptags"><span class="tag hot">Car crash &mdash; 2nd in Beijing</span><span class="tag field">Space defense</span><span class="tag key">Military award winner</span><span class="tag key">WMO / ICAO posts</span></div>
+  <a class="psource" href="https://www.scmp.com/news/china/military/article/3291249/chinese-space-defence-expert-zhang-xiaoxin-dies-car-crash-beijing" target="_blank">SCMP: Zhang Xiaoxin dies in car crash &#8594;</a>
+</div>
+
+<div class="pcard">
+  <div class="pcard-status"><span class="pill pill-dead">UNSPECIFIED ACCIDENT</span></div>
+  <div class="pname">Liu Donghao</div>
+  <div class="prole">Data scientist &middot; Founder, Guizhou Big Data Protection Engineering Security Research</div>
+  <div class="pdate">Died 2024 &middot; Age 51</div>
+  <div class="psummary">Prominent data scientist and founder of a big data protection and security research organization in Guizhou province. Died in an unspecified accident. <strong>Least documented case in the cluster</strong> &mdash; minimal public details available.</div>
+  <div class="ptags"><span class="tag field">Data security</span><span class="tag hot">Unspecified accident</span><span class="tag hot">Minimal public details</span></div>
+</div>
+
+<div class="pcard">
+  <div class="pcard-status"><span class="pill pill-unknown">CAUSE UNSTATED</span></div>
+  <div class="pname">Zhou Guangyuan</div>
+  <div class="prole">Chinese Academy of Sciences member &middot; Dalian Institute of Chemical Physics &middot; Materials &amp; polymers specialist</div>
+  <div class="pdate">Died Dec 2023 &middot; Age 51</div>
+  <div class="psummary">Celebrated chemist specializing in advanced materials and polymers at one of China&rsquo;s most prestigious research institutions. CAS member. <strong>No cause of death publicly stated.</strong> His materials research has potential dual-use applications in military aerospace.</div>
+  <div class="ptags"><span class="tag hot">No cause disclosed</span><span class="tag field">Advanced materials</span><span class="tag key">Chinese Academy of Sciences</span></div>
+</div>
+
+<div class="pcard">
+  <div class="pcard-status"><span class="pill pill-car">CAR CRASH &middot; 2:35 AM</span></div>
+  <div class="pname">Feng Yanghe</div>
+  <div class="prole">Colonel, PLA Strategic Support Force &middot; Associate Professor, NUDT &middot; Creator of &ldquo;War Skull&rdquo; AI platform &middot; Harvard visiting scholar (2011&ndash;2013)</div>
+  <div class="pdate">Died Jul 1, 2023 &middot; Age 38 &middot; Beijing</div>
+  <div class="psummary">Born in Pingliang, Gansu. Entered NUDT in 2003, studied at <strong>Harvard&rsquo;s Department of Statistics and High Performance Computing Lab</strong> (2011&ndash;2013), earned PhD from NUDT in 2014. After a 2014 military exercise, became determined to build AI command systems. Designed <strong>&ldquo;War Skull&rdquo;</strong> &mdash; China&rsquo;s first AI system for military command and control. War Skull drafts operation plans, conducts risk assessments, and provides backup plans from incomplete tactical data. Used by <strong>10+ PLA theater commands and defense industry departments</strong> by 2021. Modeled Taiwan invasion scenarios. Killed in a Beijing car crash at 2:35 AM after leaving a &ldquo;major task.&rdquo; <strong>Buried at Babaoshan</strong> (reserved for CCP elite). Obituary: <strong>&ldquo;sacrificed while performing official duties&rdquo;</strong> &mdash; language normally reserved for soldiers killed in action.</div>
+  <div class="ptags"><span class="tag hot">&ldquo;Sacrificed&rdquo; &mdash; military KIA language</span><span class="tag hot">Babaoshan burial (CCP elite)</span><span class="tag hot">2:35 AM car crash</span><span class="tag field">Military AI / C2</span><span class="tag key">Harvard visiting scholar</span><span class="tag key">Taiwan scenarios</span></div>
+  <a class="psource" href="https://www.scmp.com/news/china/military/article/3227877/chinas-military-pays-tribute-ai-war-games-pioneer-feng-yanghe" target="_blank">SCMP: Military tribute to Feng &#8594;</a><br>
+  <a class="psource" href="https://sinotalk.substack.com/p/scientists-death-will-set-back-ai" target="_blank">SinoTalk: Death will set back AI in PLA &#8594;</a>
+</div>
+
+<div class="pcard">
+  <div class="pcard-status"><span class="pill pill-car">CAR ACCIDENT</span></div>
+  <div class="pname">Chen Shuming</div>
+  <div class="prole">Microelectronics expert &middot; National University of Defense Technology &middot; &ldquo;Leader of China&rsquo;s high-end weapon chip research&rdquo;</div>
+  <div class="pdate">Died 2018 &middot; Age 57</div>
+  <div class="psummary">Led China&rsquo;s high-end weapon chip research and development team at NUDT. Died in a car accident. <strong>Earliest case in the cluster &mdash; predates all US cases by 4 years.</strong> First of three NUDT scientists to die unexpectedly.</div>
+  <div class="ptags"><span class="tag hot">Car accident</span><span class="tag hot">1st NUDT death</span><span class="tag field">Weapon chip research</span><span class="tag key">Earliest case: 2018</span></div>
+</div>
+
+</div>
+
+<!-- Critical Connections -->
+<div class="sh" style="margin-top:48px;">
+  <div class="stripe" style="background:var(--pink)"></div>
+  <div><h2>Critical Connections</h2><div class="sub">The threads that link Chinese cases to each other &mdash; and to the American cluster</div></div>
+</div>
+
+<table class="ctable">
+<thead><tr><th>Weight</th><th>Who</th><th>Connection</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td><strong style="color:var(--pink)">STRONGEST</strong></td><td style="color:var(--ink);">Fang Daining &harr; McCasland</td><td>China&rsquo;s top hypersonics scientist died <strong>the same day</strong> (Feb 27, 2026) that America&rsquo;s most senior missing person &mdash; the man with legal visibility over all classified DoD programs &mdash; vanished from his home.</td><td>Two rival superpowers&rsquo; most strategically sensitive figures gone on the same date. CCP censored Fang&rsquo;s death for weeks.</td></tr>
+<tr><td><strong style="color:var(--pink)">STRONGEST</strong></td><td style="color:var(--ink);">NUDT &times; 3 deaths</td><td>Chen Shuming (2018, weapon chips), Feng Yanghe (2023, military AI), Zhang Daibing (2025, drones). Three scientists at the same military university, covering three pillars of China&rsquo;s future warfare strategy.</td><td>Mirrors LANL&rsquo;s 3+ cases in the US cluster. NUDT is China&rsquo;s most sensitive defense research university.</td></tr>
+<tr><td><strong style="color:var(--pink)">STRONGEST</strong></td><td style="color:var(--ink);">Two Beijing car crashes</td><td>Feng Yanghe (Jul 2023, 2:35 AM) and Zhang Xiaoxin (Dec 2024) &mdash; both military-connected scientists killed in Beijing car crashes 18 months apart.</td><td>Beijing car crashes involving defense scientists is a statistically unusual pattern. Both had active military ties.</td></tr>
+<tr><td><strong style="color:var(--orange)">NOTABLE</strong></td><td style="color:var(--ink);">Yan Hong &harr; Ohio / Wright-Patterson</td><td>Yan Hong worked at Wright State University in Ohio before returning to China. US case Matthew Sullivan was deputy director at NASIC, Wright-Patterson AFB &mdash; also in Ohio. Both involved in defense-adjacent work.</td><td>Ohio is the geographic crossover point between the US and China clusters.</td></tr>
+<tr><td><strong style="color:var(--orange)">NOTABLE</strong></td><td style="color:var(--ink);">Two hypersonics deaths in 25 days</td><td>Fang Daining died Feb 27. Yan Hong died Mar 24. Both were China&rsquo;s top hypersonics researchers. 25 days apart.</td><td>China lost its two leading hypersonics scientists within a single month. Both deaths had unusual circumstances (censorship, foreign illness).</td></tr>
+<tr><td><strong style="color:var(--orange)">NOTABLE</strong></td><td style="color:var(--ink);">Financial pressure pattern</td><td>Zhang Daibing faced severe financial difficulties before falling from a building. David Wilcock (US) also reportedly had &ldquo;overwhelming financial debt&rdquo; before his death.</td><td>Financial pressure appears in both clusters as a pre-death circumstance. Could be genuine or could be a manufactured narrative.</td></tr>
+<tr><td><strong style="color:var(--orange)">NOTABLE</strong></td><td style="color:var(--ink);">Harvard / US academic ties</td><td>Feng Yanghe studied at Harvard (2011&ndash;2013). Yan Hong held posts at Rutgers and Wright State. Both later worked on China&rsquo;s most sensitive military programs.</td><td>US-trained scientists returning to work on PLA programs is exactly the pattern that triggered the DOJ China Initiative.</td></tr>
+<tr><td><strong style="color:var(--ink3)">CONTEXT</strong></td><td style="color:var(--ink);">CCP information control</td><td>Fang Daining&rsquo;s death was censored for weeks. Zhang Daibing&rsquo;s obituary gave no cause. Zhou Guangyuan&rsquo;s cause was never stated. Social media posts deleted.</td><td>Unlike the US cluster (congressional hearings, FBI probe, open press), China&rsquo;s response is active suppression of information.</td></tr>
+</tbody>
+</table>
+
+<!-- US vs China comparison -->
+<div class="sh" style="margin-top:48px;">
+  <div class="stripe" style="background:var(--orange)"></div>
+  <div><h2>US vs. China &mdash; Pattern Comparison</h2><div class="sub">Parallel clusters across rival superpowers</div></div>
+</div>
+
+<table class="ctable">
+<thead><tr><th></th><th>United States</th><th>China</th></tr></thead>
+<tbody>
+<tr><td style="color:var(--ink);font-weight:600;">Cases</td><td>16 dead or missing</td><td>9 dead</td></tr>
+<tr><td style="color:var(--ink);font-weight:600;">Time span</td><td>2022&ndash;2026</td><td>2018&ndash;2026</td></tr>
+<tr><td style="color:var(--ink);font-weight:600;">Fields</td><td>Nuclear propulsion, planetary defense, plasma physics, aerospace, UAP programs</td><td>Military AI, hypersonics, drones, space defense, weapon chips</td></tr>
+<tr><td style="color:var(--ink);font-weight:600;">Car crashes</td><td>1 (LeBlanc &mdash; Tesla)</td><td>3 (Feng, Zhang Xiaoxin, Chen Shuming)</td></tr>
+<tr><td style="color:var(--ink);font-weight:600;">No cause disclosed</td><td>4+ cases</td><td>2+ cases</td></tr>
+<tr><td style="color:var(--ink);font-weight:600;">Government response</td><td>FBI investigation, congressional probe, White House acknowledgment</td><td>Embassy: &ldquo;not aware&rdquo; &mdash; no investigation announced</td></tr>
+<tr><td style="color:var(--ink);font-weight:600;">Key institution</td><td>Los Alamos (LANL), JPL, Wright-Patterson AFB</td><td>National University of Defense Technology (3 cases)</td></tr>
+<tr><td style="color:var(--ink);font-weight:600;">Common pattern</td><td>Left without phones, wallets, glasses</td><td>Late-night car crashes, &ldquo;sudden illness&rdquo;</td></tr>
+</tbody>
+</table>
+
+<!-- Sources -->
+<div class="sh" style="margin-top:48px;">
+  <div class="stripe" style="background:var(--blue)"></div>
+  <div><h2>Sources</h2><div class="sub">Primary reporting on the China cases</div></div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:1.7;">
+  <a href="https://www.newsweek.com/chinese-scientists-have-been-dying-mysterious-deaths-too-11861806" target="_blank">Newsweek: Chinese Scientists Have Been Dying Mysterious Deaths Too</a>
+  <a href="https://www.scmp.com/news/china/military/article/3227877/chinas-military-pays-tribute-ai-war-games-pioneer-feng-yanghe" target="_blank">SCMP: China&rsquo;s military pays tribute to AI war games &lsquo;pioneer&rsquo; Feng Yanghe</a>
+  <a href="https://www.scmp.com/news/china/science/article/3348183/leading-chinese-hypersonic-aviation-scientist-yan-hong-dies-56" target="_blank">SCMP: Leading Chinese hypersonic aviation scientist Yan Hong dies at 56</a>
+  <a href="https://www.scmp.com/news/china/science/article/3346904/controversy-haunts-death-chinas-lead-hypersonic-weapons-expert-fang-daining" target="_blank">SCMP: Controversy haunts death of China&rsquo;s hypersonic weapons expert Fang Daining</a>
+  <a href="https://www.visiontimes.com/2026/03/25/chinas-hypersonic-weapons-scientist-fang-daining-died-in-secret.html" target="_blank">Vision Times: China Kept the Death of Hypersonic Weapons Scientist Secret for Weeks</a>
+  <a href="https://www.scmp.com/news/china/science/article/3293939/sudden-death-top-chinese-military-drone-scientist-shocks-industry" target="_blank">SCMP: Sudden death of top Chinese military drone scientist shocks industry</a>
+  <a href="https://www.scmp.com/news/china/military/article/3291249/chinese-space-defence-expert-zhang-xiaoxin-dies-car-crash-beijing" target="_blank">SCMP: Chinese space defence expert Zhang Xiaoxin dies in car crash in Beijing</a>
+  <a href="https://www.scmp.com/news/china/science/article/3334335/li-minyong-noted-chinese-chemist-and-royal-society-fellow-dies-age-49" target="_blank">SCMP: Li Minyong, noted chemist and Royal Society fellow, dies at 49</a>
+  <a href="https://www.visiontimes.com/2026/03/27/sudden-death-of-aviation-expert-yan-hong-adds-to-wave-of-losses-in-chinas-defense-sector.html" target="_blank">Vision Times: Sudden Death of Aviation Expert Yan Hong</a>
+  <a href="https://www.ibtimes.co.uk/unexplained-deaths-elite-scientists-us-china-fbi-investigation-1793418" target="_blank">IBTimes: Missing Scientists Mystery Goes Global &mdash; 20 Researchers Dead or Missing</a>
+  <a href="https://www.wionews.com/trending/mysterious-deaths-of-defence-scientists-in-us-and-china-spark-global-concern-1777000515690/" target="_blank">WION: Mysterious deaths of defence scientists in US and China spark global concern</a>
+  <a href="https://sinotalk.substack.com/p/scientists-death-will-set-back-ai" target="_blank">SinoTalk: Scientist&rsquo;s Death Will Set Back AI Incorporation into the PLA</a>
+  <a href="https://www.chinadaily.com.cn/a/202307/16/WS64b3db5ca31035260b816abc.html" target="_blank">China Daily: Young AI pioneer dies in traffic accident (official state media)</a>
+  <a href="https://dronexl.co/2025/01/08/pioneer-firefighting-drone-tech-zhang-daibing-dies/" target="_blank">DroneXL: Pioneer in Firefighting Drone Technology Zhang Daibing Dies at 47</a>
+</div>
+
+</div>
+
+<footer style="border-top:1px solid var(--border);padding:32px 40px;text-align:center;">
+  <div style="font-family:'DM Serif Display',serif;font-size:16px;color:var(--ink);margin-bottom:8px;">Who Killed The Scientists?</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;line-height:2.2;">
+    &copy; 2026 whokilledthescientists.com &middot; All rights reserved<br>
+    <a href="index.html" style="color:var(--blue)">Main Investigation</a> &middot;
+    <a href="candidates.html" style="color:var(--blue)">Candidates</a> &middot;
+    <a href="timeline.html" style="color:var(--blue)">Full Timeline</a> &middot;
+    <a href="developments.html" style="color:var(--blue)">All Developments</a> &middot;
+    <a href="china.html" style="color:var(--blue)">China Cases</a>
+  </div>
+</footer>
+<script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
