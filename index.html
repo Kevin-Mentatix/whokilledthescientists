@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://whokilledthescientists.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="canonical" href="https://whokilledthescientists.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#050508;--card:#0e0f16;--ink:#ffffff;--ink2:#e0e2f0;--ink3:#c0c4d8;--border:#1e2030;--border2:#2a2e48;--pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;--green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -24,11 +24,11 @@ body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-
 a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
 header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
 header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,32,110,.08),transparent 70%);pointer-events:none;}
-header h1{font-family:"DM Serif Display",serif;font-size:clamp(32px,6vw,64px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1;text-shadow:0 0 60px rgba(255,32,110,.4),0 0 120px rgba(255,32,110,.15);position:relative;}
+header h1{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:clamp(32px,6vw,64px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1;text-shadow:0 0 60px rgba(255,32,110,.4),0 0 120px rgba(255,32,110,.15);position:relative;}
 header h1 span{color:var(--pink);}
 .tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
 .status-bar{display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap;position:relative;}
-.stat .num{font-family:"DM Serif Display",serif;font-size:36px;line-height:1;text-shadow:0 0 20px currentColor;}
+.stat .num{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:36px;line-height:1;text-shadow:0 0 20px currentColor;}
 .nd{color:var(--pink);}.nm{color:var(--orange);}.nc{color:var(--teal);}.np{color:var(--green);}
 .stat .lbl{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:4px;}
 .legend-bar{background:#000;border-bottom:1px solid var(--border);padding:10px 40px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
@@ -42,7 +42,7 @@ header h1 span{color:var(--pink);}
 .sh{display:flex;align-items:center;gap:14px;margin-bottom:16px;margin-top:36px;}
 .sh:first-child{margin-top:0;}
 .stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
-.sh h2{font-family:"DM Serif Display",serif;font-size:22px;font-weight:400;color:var(--ink);}
+.sh h2{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:22px;font-weight:400;color:var(--ink);}
 .sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
 .pcard{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .15s,border-color .2s;position:relative;display:flex;flex-direction:column;}
@@ -55,9 +55,9 @@ header h1 span{color:var(--pink);}
 .ppill{position:absolute;top:10px;right:10px;z-index:2;}
 .pphoto{width:100%;aspect-ratio:1/1;overflow:hidden;flex-shrink:0;background:#080910;line-height:0;}
 .pimg{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:grayscale(15%);transition:filter .3s;}
-.pfallback{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-family:"DM Serif Display",serif;font-size:48px;color:rgba(255,255,255,.15);}
+.pfallback{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:48px;color:rgba(255,255,255,.15);}
 .pbody{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1;}
-.pname{font-family:"DM Serif Display",serif;font-size:17px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:3px;padding-right:72px;}
+.pname{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:17px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:3px;padding-right:72px;}
 .prole{font-size:11px;color:var(--ink3);margin-bottom:6px;line-height:1.4;}
 .pdate{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;}
 .psummary{font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:10px;}
@@ -96,7 +96,7 @@ header h1 span{color:var(--pink);}
 .inst-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;}
 .inst-header{display:flex;align-items:center;gap:12px;}
 .inst-icon{width:44px;height:44px;border-radius:6px;border:1px solid;display:flex;align-items:center;justify-content:center;font-family:"DM Mono",monospace;font-size:9px;font-weight:500;letter-spacing:.05em;text-align:center;flex-shrink:0;padding:4px;}
-.inst-name{font-family:"DM Serif Display",serif;font-size:14px;font-weight:400;color:var(--ink);line-height:1.2;}
+.inst-name{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:14px;font-weight:400;color:var(--ink);line-height:1.2;}
 .inst-loc{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
 .inst-people{display:flex;flex-direction:column;gap:4px;}
 .inst-person{font-size:11px;line-height:1.4;padding:4px 8px;border-radius:3px;border-left:2px solid;}
@@ -107,7 +107,7 @@ header h1 span{color:var(--pink);}
 .inst-note{font-size:11px;color:var(--ink3);line-height:1.6;border-top:1px solid var(--border);padding-top:10px;}
 .threads{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .tcard{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:18px 20px;}
-.tcard h4{font-family:"DM Serif Display",serif;font-size:16px;font-weight:400;margin-bottom:10px;color:var(--ink);display:flex;align-items:center;gap:10px;}
+.tcard h4{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:16px;font-weight:400;margin-bottom:10px;color:var(--ink);display:flex;align-items:center;gap:10px;}
 .tnum{font-family:"DM Mono",monospace;font-size:11px;padding:2px 8px;border-radius:2px;font-weight:700;}
 .t1{background:var(--pink);color:#000;}.t2{background:var(--purple);color:#fff;}.t3{background:var(--blue);color:#000;}
 .tcard ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
@@ -123,7 +123,7 @@ header h1 span{color:var(--pink);}
 .tlbody strong{font-size:13px;color:var(--ink);font-weight:600;}
 #dp{position:fixed;right:0;top:0;bottom:0;width:380px;background:#03040a;border-left:1px solid var(--border2);padding:28px 24px;overflow-y:auto;transform:translateX(100%);transition:transform .25s ease;z-index:200;box-shadow:-8px 0 40px rgba(0,0,0,.8);}
 #dp.open{transform:translateX(0);}
-#dp h3{font-family:"DM Serif Display",serif;font-size:22px;font-weight:400;line-height:1.2;margin-bottom:4px;color:var(--ink);}
+#dp h3{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:22px;font-weight:400;line-height:1.2;margin-bottom:4px;color:var(--ink);}
 .dprole{font-size:13px;color:var(--ink3);margin-bottom:12px;}
 .dpbody{font-size:13px;color:var(--ink2);line-height:1.7;}
 .dpsect{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:16px 0 8px;border-bottom:1px solid var(--border);padding-bottom:4px;}
@@ -169,7 +169,7 @@ header h1 span{color:var(--pink);}
 .stream-cta{margin-top:40px;padding:2px;border-radius:10px;background:linear-gradient(135deg,var(--pink),var(--purple),var(--blue));position:relative;}
 .stream-inner{background:var(--bg);border-radius:8px;padding:36px 32px;text-align:center;position:relative;overflow:hidden;}
 .stream-pulse{position:absolute;top:16px;right:16px;width:10px;height:10px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px var(--pink);animation:blink 1.5s ease-in-out infinite;}
-.stream-title{font-family:"DM Serif Display",serif;font-size:24px;font-weight:400;color:var(--ink);margin-bottom:8px;}
+.stream-title{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:24px;font-weight:400;color:var(--ink);margin-bottom:8px;}
 .stream-sub{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto;}
 .stream-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
 .stream-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:6px;font-family:"DM Mono",monospace;font-size:12px;font-weight:500;letter-spacing:.06em;text-decoration:none;transition:all .2s;border:1px solid transparent;}
@@ -243,7 +243,7 @@ header h1{font-size:28px;}
 <div class="candidates-banner">
   <a href="candidates.html" class="candidates-btn" style="padding:20px 24px;background:rgba(255,32,110,.08);border:2px solid rgba(255,32,110,.4);box-shadow:0 0 30px rgba(255,32,110,.1);">
     <span class="cb-pulse" style="width:14px;height:14px;background:var(--pink);box-shadow:0 0 12px var(--pink);"></span>
-    <span class="cb-text" style="font-size:15px;"><strong style="color:var(--pink);font-size:18px;font-family:'DM Serif Display',serif;font-weight:400;">Who Else Fits Into This?</strong><br><span style="font-size:12px;">7 additional scientists &amp; researchers not yet in any mainstream list &mdash; LANL crash corridor, Mondaloy chain, NRL physicists</span></span>
+    <span class="cb-text" style="font-size:15px;"><strong style="color:var(--pink);font-size:18px;font-family:'New Amsterdam',sans-serif;font-weight:700;font-weight:400;">Who Else Fits Into This?</strong><br><span style="font-size:12px;">7 additional scientists &amp; researchers not yet in any mainstream list &mdash; LANL crash corridor, Mondaloy chain, NRL physicists</span></span>
     <span class="cb-arrow" style="font-size:24px;color:var(--pink);">&rarr;</span>
   </a>
 </div>
@@ -873,7 +873,7 @@ header h1{font-size:28px;}
 <div class="nmwrap">
   <div class="nm-sh">
     <div class="stripe" style="background:var(--blue)"></div>
-    <div><h2 style="font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;color:var(--ink)">Connection Node Map</h2>
+    <div><h2 style="font-family:'New Amsterdam',sans-serif;font-weight:700;font-size:20px;font-weight:400;color:var(--ink)">Connection Node Map</h2>
     <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px">Drag to pan &middot; Scroll to zoom &middot; Click any node to highlight connections</div></div>
   </div>
   <div class="nmleg">
@@ -1082,7 +1082,7 @@ window.nmToggleCand=function(){
 })();
 </script>
 <footer style="border-top:1px solid var(--border);padding:32px 40px;text-align:center;">
-  <div style="font-family:'DM Serif Display',serif;font-size:16px;color:var(--ink);margin-bottom:8px;">Who Killed The Scientists?</div>
+  <div style="font-family:'New Amsterdam',sans-serif;font-weight:700;font-size:16px;color:var(--ink);margin-bottom:8px;">Who Killed The Scientists?</div>
   <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;line-height:2.2;">
     &copy; 2026 whokilledthescientists.com &middot; All rights reserved<br>
     This site is an independent investigative resource. All claims are sourced. No classified material is published.<br>
