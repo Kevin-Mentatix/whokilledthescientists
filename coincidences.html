@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>"Coincidences" — Who Killed The Scientists?</title>
+<meta name="description" content="Events that can't be confirmed as connected to the scientist cases — but intersect in ways that are hard to ignore.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--card:#0e0f16;--ink:#ffffff;--ink2:#e0e2f0;--ink3:#c0c4d8;
+  --border:#1e2030;--border2:#2a2e48;
+  --pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;
+  --green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);flex-wrap:wrap;justify-content:center;}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;white-space:nowrap;}
+.site-nav a:hover{color:var(--ink);text-decoration:none;}
+.site-nav a.active{color:var(--yellow);}
+.site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--yellow);border-radius:1px;}
+
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(225,255,0,.06),transparent 70%);pointer-events:none;}
+header h1{font-family:"DM Serif Display",serif;font-size:clamp(28px,5vw,54px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 60px rgba(225,255,0,.25),0 0 120px rgba(225,255,0,.08);position:relative;}
+header h1 span{color:var(--yellow);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+
+.canvas{padding:32px 40px 64px;max-width:1100px;margin:0 auto;}
+
+.intro{max-width:760px;margin:0 auto 40px;font-size:14px;color:var(--ink2);line-height:1.8;text-align:center;}
+.intro strong{color:var(--ink);}
+
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:44px;}
+.sh:first-child{margin-top:0;}
+.stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
+.sh h2{font-family:"DM Serif Display",serif;font-size:22px;font-weight:400;color:var(--ink);}
+.sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+
+.cgrid{display:flex;flex-direction:column;gap:16px;}
+
+.ccard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 24px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,border-color .2s;position:relative;}
+.ccard:hover{box-shadow:0 0 24px rgba(225,255,0,.08);border-color:rgba(225,255,0,.2);}
+
+.ccard-tier{position:absolute;top:16px;right:16px;}
+.tier{font-family:"DM Mono",monospace;font-size:9px;padding:2px 8px;border-radius:2px;font-weight:500;letter-spacing:.05em;}
+.tier-1{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.5);}
+.tier-2{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.5);}
+.tier-3{background:rgba(255,255,255,.06);color:var(--ink3);border:1px solid var(--border2);}
+
+.ccard-head{display:flex;align-items:center;gap:12px;padding-right:80px;}
+.ccard-icon{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ccard-title{font-family:"DM Serif Display",serif;font-size:17px;font-weight:400;color:var(--ink);line-height:1.25;}
+.ccard-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;}
+
+.ccard-body{font-size:13px;color:var(--ink2);line-height:1.7;}
+.ccard-body strong{color:var(--ink);font-weight:600;}
+
+.ccard-intersection{background:rgba(225,255,0,.04);border:1px solid rgba(225,255,0,.15);border-radius:4px;padding:10px 14px;font-size:12px;color:var(--yellow);line-height:1.6;}
+.ccard-intersection::before{content:"INTERSECTION ";font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:4px;opacity:.7;}
+
+.ccard-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 7px;border-radius:2px;letter-spacing:.02em;}
+.tag.tech{background:rgba(225,255,0,.08);color:var(--yellow);border:1px solid rgba(225,255,0,.2);}
+.tag.china{background:rgba(255,59,59,.1);color:#ff3b3b;border:1px solid rgba(255,59,59,.3);}
+.tag.uap{background:rgba(206,0,224,.12);color:var(--purple);border:1px solid rgba(206,0,224,.35);}
+.tag.gov{background:rgba(14,251,34,.08);color:var(--green);border:1px solid rgba(14,251,34,.25);}
+.tag.death{background:rgba(255,32,110,.1);color:var(--pink);border:1px solid rgba(255,32,110,.3);}
+.tag.cyber{background:rgba(0,187,249,.08);color:var(--blue);border:1px solid rgba(0,187,249,.25);}
+.tag.weapon{background:rgba(255,139,51,.1);color:var(--orange);border:1px solid rgba(255,139,51,.3);}
+
+.ccard-source{font-size:11px;color:var(--blue);display:inline-block;margin-top:2px;}
+
+footer{background:#000;border-top:1px solid var(--border);padding:32px 40px;text-align:center;}
+footer p{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;line-height:1.8;}
+footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:underline;}
+
+@media(max-width:600px){
+  .canvas{padding:24px 16px 48px;}
+  header{padding:32px 16px 28px;}
+  .site-nav{padding:0 8px;}
+  .site-nav a{padding:10px 10px;font-size:9px;}
+  .ccard{padding:16px;}
+  .ccard-head{padding-right:60px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="developments.html">Developments</a>
+  <a href="candidates.html">Candidates</a>
+  <a href="china.html">China</a>
+  <a href="coincidences.html" class="active">"Coincidences"</a>
+</nav>
+
+<header>
+  <h1><span>"Coincidences"</span></h1>
+  <div class="tagline">events that intersect with the scientist cases &middot; unconfirmed but notable &middot; updated apr 25 2026</div>
+</header>
+
+<div class="canvas">
+  <p class="intro">
+    These are events that <strong>cannot be confirmed as connected</strong> to the deaths and disappearances of defense scientists &mdash; but they intersect in ways that are difficult to ignore. Suppressed stories, pre-testimony deaths, classified manifestos, confirmed weapons, and parallel patterns across two superpowers.
+  </p>
+
+  <!-- TIER 1 -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--pink);box-shadow:0 0 8px var(--pink);"></div>
+    <div><h2>Tier 1 &mdash; Strongest Intersections</h2>
+    <div class="sub">Direct thematic or temporal overlap with the scientist cases</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- 1. Livelsberger -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#9760;</div>
+        <div>
+          <div class="ccard-title">Matthew Livelsberger / Cybertruck Explosion</div>
+          <div class="ccard-date">January 1, 2025 &middot; Las Vegas, NV</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        <strong>Green Beret Master Sergeant</strong> (10th Special Forces Group) with TS/SCI clearance, five Bronze Stars, and combat valor awards. Detonated a Tesla Cybertruck outside Trump International Hotel. His manifesto claimed the <strong>US and China both have operational anti-gravity aircraft</strong>, that Area 51 houses the American program, and that the NJ drone sightings were Chinese &ldquo;gravitic propulsion systems.&rdquo; He called it &ldquo;the most dangerous threat to national security that has ever existed&rdquo; and warned of World War III. The <strong>DOD classified his manifesto on January 9</strong> and took command of the investigation. The story exited the news cycle within days. He also alleged a cover-up of civilian casualties from 2019 Afghanistan airstrikes in Nimruz Province &mdash; claims partially corroborated by UNAMA documenting 89 civilian deaths.
+      </div>
+      <div class="ccard-intersection">
+        The technologies Livelsberger described &mdash; anti-gravity propulsion, advanced aerospace craft, US-China dual programs &mdash; are precisely the fields the dead and missing scientists worked in. His manifesto was classified as a national security matter. Within the following year, scientists working on these exact technologies began dying and disappearing.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag tech">ANTI-GRAVITY</span>
+        <span class="tag china">CHINA</span>
+        <span class="tag gov">CLASSIFIED</span>
+        <span class="tag death">DEAD</span>
+        <span class="tag uap">UAP-ADJACENT</span>
+      </div>
+      <a class="ccard-source" href="https://www.newsweek.com/matthew-livelsberger-alleged-manifesto-read-full-email-sent-retired-soldier-2009573" target="_blank">Newsweek: Full Manifesto Email</a>
+      <a class="ccard-source" href="https://www.reviewjournal.com/investigations/what-are-they-hiding-metro-withholds-manifesto-of-cybertruck-bomber-3311168/" target="_blank">LVRJ: Manifesto Classified</a>
+    </div>
+
+    <!-- 2. Sullivan -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(206,0,224,.12);border:1px solid rgba(206,0,224,.4);">&#9888;</div>
+        <div>
+          <div class="ccard-title">Matthew Sullivan / Pre-Testimony Death</div>
+          <div class="ccard-date">May 12, 2024 &middot; Falls Church, VA</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Former <strong>NASIC deputy director at Wright-Patterson AFB</strong>, with additional roles at NSA and DARPA. A 39-year-old Air Force intelligence veteran who had agreed to testify before Congress about <strong>UAP crash retrieval programs</strong> in November 2024. Died of an &ldquo;accidental&rdquo; drug overdose &mdash; alcohol, alprazolam (Xanax), cyclobenzaprine, and imipramine &mdash; a known lethal cocktail that could be administered involuntarily. Sources say he had <strong>personally seen UFOs in government possession</strong>. Rep. Eric Burlison formally requested the FBI investigate, calling the circumstances &ldquo;suspicious.&rdquo; The FBI confirmed in April 2026 it is investigating.
+      </div>
+      <div class="ccard-intersection">
+        Sullivan served at Wright-Patterson &mdash; the same base where Gen. McCasland commanded AFRL before vanishing. He was linked to David Grusch&rsquo;s disclosure effort and died before he could testify. The pattern of pre-testimony death mirrors Boeing whistleblowers Barnett and Dean.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag uap">UAP CRASH RETRIEVAL</span>
+        <span class="tag death">PRE-TESTIMONY DEATH</span>
+        <span class="tag gov">WRIGHT-PATTERSON</span>
+      </div>
+      <a class="ccard-source" href="https://www.thegatewaypundit.com/2026/04/air-force-veteran-died-accidental-drug-overdose-just/" target="_blank">Gateway Pundit: Accidental Overdose</a>
+      <a class="ccard-source" href="https://www.liberationtimes.com/home/late-air-force-officer-linked-to-alleged-legacy-ufo-program" target="_blank">Liberation Times: Linked to Legacy UFO Program</a>
+    </div>
+
+    <!-- 3. Drone Swarms -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,187,249,.12);border:1px solid rgba(0,187,249,.4);">&#9883;</div>
+        <div>
+          <div class="ccard-title">NJ / East Coast Drone Swarms</div>
+          <div class="ccard-date">November &ndash; December 2024 &middot; NJ, NY, PA, OH</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Sightings began at <strong>Picatinny Arsenal</strong> (Army weapons research), spread to Naval Weapons Station Earle, then across multiple states. Over 5,000 sightings reported. <strong>Wright-Patterson AFB airspace was shut down for ~4 hours</strong> due to drone incursions. A year earlier, <strong>Langley AFB experienced 17 consecutive nights</strong> of drone swarms (12-24 per night, some &ldquo;as large as a car&rdquo;). A Chinese student (Fengyun Shi, University of Minnesota) was caught flying a UAV near Langley in January 2024. Pentagon deployed detection systems but origin was never determined.
+      </div>
+      <div class="ccard-intersection">
+        Wright-Patterson &mdash; where drone incursions forced an airspace shutdown &mdash; is where Sullivan served as NASIC Deputy Director (died May 2024) and where McCasland commanded AFRL (vanished February 2026). Livelsberger&rsquo;s classified manifesto claimed these were Chinese gravitic propulsion craft.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag tech">UNKNOWN ORIGIN</span>
+        <span class="tag china">CHINA SUSPECTED</span>
+        <span class="tag gov">WRIGHT-PATTERSON</span>
+        <span class="tag uap">UAP-ADJACENT</span>
+      </div>
+      <a class="ccard-source" href="https://www.twz.com/air/drone-incursions-closed-wright-patterson-air-force-bases-airspace-friday-night" target="_blank">The War Zone: Wright-Patterson Shutdown</a>
+      <a class="ccard-source" href="https://www.cnn.com/2024/12/12/us/new-jersey-drone-sightings/index.html" target="_blank">CNN: NJ Drone Sightings</a>
+    </div>
+
+    <!-- 4. Havana Syndrome -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#9889;</div>
+        <div>
+          <div class="ccard-title">Havana Syndrome Device Confirmed</div>
+          <div class="ccard-date">2024 &ndash; 2026 &middot; Ongoing</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Undercover DHS agents purchased an actual <strong>portable Russian microwave weapon</strong> from a criminal network in a $15 million Pentagon-funded operation. The device is <strong>backpack-sized, silent, programmable, remotely operated</strong>, with a range of several hundred feet that penetrates windows and drywall. US military tested it on rats and sheep for over a year &mdash; <strong>injuries match what human victims reported</strong>. Two intelligence agencies reversed their earlier assessments denying foreign involvement. A Norwegian government scientist built a pulsed microwave device and tested it on himself, suffering symptoms consistent with Havana Syndrome.
+      </div>
+      <div class="ccard-intersection">
+        If a portable, concealable directed energy weapon exists and has been operational since 2016, it provides a plausible mechanism for incapacitating or killing targets while leaving ambiguous evidence. Amy Eskridge (dead, 2022) claimed she was being targeted by a &ldquo;directed energy weapon&rdquo; before her death. Several scientist deaths involve unexplained circumstances.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag weapon">DIRECTED ENERGY</span>
+        <span class="tag gov">CONFIRMED DEVICE</span>
+        <span class="tag death">MECHANISM</span>
+      </div>
+      <a class="ccard-source" href="https://www.cbsnews.com/news/havana-syndrome-device-what-to-know/" target="_blank">CBS: What To Know About the Device</a>
+      <a class="ccard-source" href="https://www.cbsnews.com/news/us-military-tested-device-that-may-be-tied-to-havana-syndrome-60-minutes-transcript/" target="_blank">CBS/60 Minutes: Military Testing</a>
+    </div>
+
+    <!-- 5. Fang/McCasland Same Day -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,59,59,.12);border:1px solid rgba(255,59,59,.4);">&#8644;</div>
+        <div>
+          <div class="ccard-title">Fang Daining &amp; McCasland &mdash; Same Day</div>
+          <div class="ccard-date">February 27, 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        China&rsquo;s top hypersonics structural engineer <strong>Fang Daining died on February 27, 2026</strong> &mdash; the exact same day that retired <strong>Maj. Gen. William &ldquo;Neil&rdquo; McCasland walked out of his Albuquerque home</strong> and vanished. McCasland previously commanded the Air Force Research Laboratory at Wright-Patterson and is named in WikiLeaks Podesta emails regarding UFO discussions with Tom DeLonge. The CCP censored Fang&rsquo;s death for weeks, deleting social media posts. McCasland left behind his phone, glasses, and wearable devices. His disappearance came 4 days after Trump&rsquo;s UAP disclosure executive order.
+      </div>
+      <div class="ccard-intersection">
+        The top hypersonics scientist in China and the most senior missing American &mdash; a general who commanded the lab most associated with exotic aerospace research &mdash; both lost on the same calendar day. One country censored it, the other can&rsquo;t explain it.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag china">CHINA</span>
+        <span class="tag tech">HYPERSONICS</span>
+        <span class="tag uap">UAP-ADJACENT</span>
+        <span class="tag death">SAME DAY</span>
+      </div>
+      <a class="ccard-source" href="https://www.newsweek.com/chinese-scientists-have-been-dying-mysterious-deaths-too-11861806" target="_blank">Newsweek: Chinese Scientist Deaths</a>
+      <a class="ccard-source" href="https://abc7.com/post/william-neil-mccasland-missing-retired-air-force-major-general-led-wright-patterson-ohio-base-steeped-ufo-theories/18724549/" target="_blank">ABC7: McCasland Missing</a>
+    </div>
+
+  </div><!-- /tier 1 cgrid -->
+
+  <!-- TIER 2 -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--orange);box-shadow:0 0 8px var(--orange);"></div>
+    <div><h2>Tier 2 &mdash; Notable Patterns</h2>
+    <div class="sub">Parallel events suggesting systemic patterns</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- 6. Boeing Whistleblowers -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#9992;</div>
+        <div>
+          <div class="ccard-title">Boeing Whistleblower Deaths</div>
+          <div class="ccard-date">March &ndash; May 2024</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        <strong>John Barnett</strong> (62) &mdash; Boeing quality whistleblower, found dead from apparent self-inflicted gunshot on March 9, 2024, while mid-deposition in his case against Boeing. Family filed wrongful death suit; Boeing settled. <strong>Joshua Dean</strong> (45) &mdash; quality auditor at Boeing supplier Spirit AeroSystems, died May 1, 2024 from sudden MRSA infection after being in good health. Had flagged defects on 737 Max fuselages. Both were represented by the <strong>same attorney</strong> (Brian Knowles). Two aerospace whistleblowers dead in two months.
+      </div>
+      <div class="ccard-intersection">
+        The pattern of defense/aerospace whistleblowers dying before completing testimony mirrors Sullivan&rsquo;s pre-testimony death. Boeing is a major defense contractor with classified programs across the same technology domains.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag death">PRE-TESTIMONY</span>
+        <span class="tag gov">AEROSPACE</span>
+        <span class="tag weapon">SAME ATTORNEY</span>
+      </div>
+      <a class="ccard-source" href="https://www.npr.org/2025/03/21/g-s1-55175/whistleblower-john-barnett-lawsuit-boeing" target="_blank">NPR: Barnett Wrongful Death Suit</a>
+      <a class="ccard-source" href="https://fortune.com/2024/05/02/boeing-whistleblower-dead-joshua-dean-45-sudden-severe-infection/" target="_blank">Fortune: Dean Dies at 45</a>
+    </div>
+
+    <!-- 7. Danhao Wang -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,59,59,.12);border:1px solid rgba(255,59,59,.4);">&#8595;</div>
+        <div>
+          <div class="ccard-title">Danhao Wang / Building Fall After FBI Questioning</div>
+          <div class="ccard-date">March 20, 2026 &middot; University of Michigan</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Chinese semiconductor researcher at the University of Michigan who <strong>fell from inside the George G. Brown engineering building</strong> on the evening of March 19, shortly after being questioned by federal investigators. Died March 20. China&rsquo;s embassy called it &ldquo;hostile questioning&rdquo; and demanded a full investigation, creating an international diplomatic incident. His research was in <strong>wide bandgap III-nitride semiconductor materials</strong> &mdash; dual-use technology relevant to defense electronics.
+      </div>
+      <div class="ccard-intersection">
+        Mirrors Zhang Daibing&rsquo;s death in China (NUDT drone expert, fell from a building, January 2025). Both countries losing scientists who fall from buildings after apparent pressure. Both worked in military-relevant technology.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag china">CHINA</span>
+        <span class="tag death">BUILDING FALL</span>
+        <span class="tag tech">SEMICONDUCTORS</span>
+        <span class="tag gov">FBI QUESTIONING</span>
+      </div>
+      <a class="ccard-source" href="https://www.detroitnews.com/story/news/local/michigan/2026/04/07/danhao-wang-death-um-university-of-michigan-researcher-china-demand-investigation-what-we-know/89489261007/" target="_blank">Detroit News: Wang Death</a>
+      <a class="ccard-source" href="https://www.nbcnews.com/world/china/beijing-deeply-distressed-death-chinese-researcher-michigan-rcna273612" target="_blank">NBC: Beijing &ldquo;Deeply Distressed&rdquo;</a>
+    </div>
+
+    <!-- 8. Huntsville Anti-Gravity Cluster -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(206,0,224,.12);border:1px solid rgba(206,0,224,.4);">&#9679;</div>
+        <div>
+          <div class="ccard-title">Huntsville Anti-Gravity Cluster</div>
+          <div class="ccard-date">2014 &ndash; 2026 &middot; Huntsville, AL</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        <strong>Ning Li</strong> &mdash; Chinese-born UAH physicist who published groundbreaking anti-gravity research in the 1990s. Suffered permanent brain damage in a 2014 hit-and-run while crossing the street; died 2021. <strong>Amy Eskridge</strong> &mdash; co-founded the Institute for Exotic Science in Huntsville, continuing anti-gravity research. Died June 2022 at 34; ruled self-inflicted gunshot. Before her death, she claimed she was being <strong>targeted by a directed energy weapon</strong>. <strong>Joshua LeBlanc</strong> (nuclear thermal propulsion, NASA Huntsville) and the <strong>Moffatt family</strong> (NASA JSC / UAH) also had Huntsville ties. Four deaths in one aerospace corridor.
+      </div>
+      <div class="ccard-intersection">
+        Huntsville is the cradle of American rocket science. Multiple people connected to exotic propulsion and advanced aerospace research in this one city have died under unusual circumstances spanning a decade. Ning Li&rsquo;s work is precisely the type of physics underlying the &ldquo;gravitic propulsion&rdquo; Livelsberger described.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag tech">ANTI-GRAVITY</span>
+        <span class="tag weapon">DIRECTED ENERGY</span>
+        <span class="tag death">CLUSTER</span>
+        <span class="tag uap">EXOTIC PROPULSION</span>
+      </div>
+      <a class="ccard-source" href="https://www.newsweek.com/huntsville-mystery-are-two-dead-scientists-same-town-connected-11869617" target="_blank">Newsweek: The Huntsville Mystery</a>
+      <a class="ccard-source" href="https://www.newsweek.com/who-is-amy-eskridge-scientist-death-queried-us-expert-mysteries-11843659" target="_blank">Newsweek: Who Is Amy Eskridge?</a>
+    </div>
+
+    <!-- 9. Jane Wu -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,187,249,.12);border:1px solid rgba(0,187,249,.4);">&#9878;</div>
+        <div>
+          <div class="ccard-title">Jane Ying Wu / Northwestern</div>
+          <div class="ccard-date">July 10, 2024 &middot; Chicago, IL</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Chinese-American neuroscientist at Northwestern&rsquo;s Feinberg School of Medicine, investigated by the NIH starting in 2019 for undisclosed ties to China. <strong>Cleared by NIH in 2023</strong>, but Northwestern refused to restore her grants, cut her salary, and on May 23, 2024, had her <strong>forcibly removed from her office in handcuffs</strong> and involuntarily committed to a psychiatric facility. She died by suicide on July 10, 2024, at age 60. Never charged with any crime. Family filed lawsuit alleging discrimination.
+      </div>
+      <div class="ccard-intersection">
+        Shows the human cost of the espionage panic surrounding US-China scientific exchange. Cleared of wrongdoing, yet destroyed by the investigation process itself. Over 250 scientists, mostly Asian, lost their jobs through China Initiative-adjacent probes.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag china">CHINA INITIATIVE</span>
+        <span class="tag death">SUICIDE</span>
+        <span class="tag gov">CLEARED BY NIH</span>
+      </div>
+      <a class="ccard-source" href="https://www.nbcnews.com/news/asian-america/northwestern-jane-wu-lab-suicide-lawsuit-rcna217636" target="_blank">NBC: Wu Suicide &amp; Lawsuit</a>
+    </div>
+
+    <!-- 10. Wilcock / Free -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#10006;</div>
+        <div>
+          <div class="ccard-title">David Wilcock &amp; Wynn Free</div>
+          <div class="ccard-date">April 18 &ndash; 20, 2026 &middot; Boulder County, CO</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        <strong>Wynn Free</strong> (Wilcock&rsquo;s biographer) died approximately April 18, 2026. Two days later, <strong>David Wilcock</strong> died in Boulder County, CO &mdash; apparent self-inflicted gunshot wound. Two days before his death, Wilcock had posted a video saying it was &ldquo;scary&rdquo; that scientists were going missing. Two deaths in 48 hours, both connected to the same body of work on classified programs and exotic technology.
+      </div>
+      <div class="ccard-intersection">
+        Wilcock was publicly drawing attention to the missing scientists pattern immediately before his death. His biographer died two days before him. The timing remains unexplained.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag death">48-HOUR CLUSTER</span>
+        <span class="tag uap">DISCLOSURE ADJACENT</span>
+      </div>
+    </div>
+
+  </div><!-- /tier 2 cgrid -->
+
+  <!-- TIER 3 -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--ink3);"></div>
+    <div><h2>Tier 3 &mdash; Background Connections</h2>
+    <div class="sub">Historical precedents and structural enablers</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- 11. Schneider -->
+    <div class="ccard" style="border-top:3px solid var(--border2);">
+      <span class="ccard-tier"><span class="tier tier-3">TIER 3</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,255,255,.04);border:1px solid var(--border2);">&#128274;</div>
+        <div>
+          <div class="ccard-title">Phil Schneider</div>
+          <div class="ccard-date">January 17, 1996 &middot; Wilsonville, OR</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Claimed knowledge of Deep Underground Military Bases (DUMBs) and exotic technology programs. Began giving public lectures in 1994. Repeatedly told audiences: <strong>&ldquo;If I am found dead, it will not be suicide.&rdquo;</strong> Found dead with a rubber catheter tube wrapped three times around his neck. Ruled suicide. His fingerprints were not found on the catheter. He had a prior arm injury with limited dexterity that made self-strangulation with a rubber tube extremely difficult.
+      </div>
+      <div class="ccard-intersection">
+        Historical precedent for defense insiders who spoke publicly about classified technology programs and died under circumstances ruled suicide despite physical evidence suggesting otherwise.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag death">RULED SUICIDE</span>
+        <span class="tag gov">DUMBs</span>
+        <span class="tag uap">EXOTIC TECH</span>
+      </div>
+    </div>
+
+    <!-- 12. Typhoon Campaigns -->
+    <div class="ccard" style="border-top:3px solid var(--border2);">
+      <span class="ccard-tier"><span class="tier tier-3">TIER 3</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,187,249,.08);border:1px solid rgba(0,187,249,.3);">&#128421;</div>
+        <div>
+          <div class="ccard-title">Salt / Volt / Silk Typhoon Campaigns</div>
+          <div class="ccard-date">2024 &ndash; 2026 &middot; Ongoing</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Chinese cyber operations compromised the <strong>Department of Energy</strong>, Treasury/OFAC, 9+ telecom companies (later 200+ globally), and multiple defense contractors. <strong>Salt Typhoon</strong> stole 1,462 network configuration files from ~70 government entities across 12 sectors including Energy. Breached the National Guard for 9 months. <strong>Volt Typhoon</strong> pre-positioned for destructive attacks on DOE operational technology. <strong>Silk Typhoon</strong> breached Treasury&rsquo;s OFAC (sanctions) and CFIUS (foreign investment review) &mdash; the offices managing sanctions on Chinese defense entities.
+      </div>
+      <div class="ccard-intersection">
+        Network access to DOE, defense contractors, and telecom infrastructure could enable identification and targeting of specific scientists. If you can read their emails, track their phones, and map their clearance levels, you can find them.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag cyber">CYBER ESPIONAGE</span>
+        <span class="tag china">CHINA</span>
+        <span class="tag gov">DOE COMPROMISED</span>
+      </div>
+      <a class="ccard-source" href="https://en.wikipedia.org/wiki/Salt_Typhoon" target="_blank">Wikipedia: Salt Typhoon</a>
+      <a class="ccard-source" href="https://en.wikipedia.org/wiki/Volt_Typhoon" target="_blank">Wikipedia: Volt Typhoon</a>
+    </div>
+
+    <!-- 13. Grusch -->
+    <div class="ccard" style="border-top:3px solid var(--border2);">
+      <span class="ccard-tier"><span class="tier tier-3">TIER 3</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(206,0,224,.08);border:1px solid rgba(206,0,224,.3);">&#128483;</div>
+        <div>
+          <div class="ccard-title">David Grusch Testimony</div>
+          <div class="ccard-date">July 2023 &middot; Washington, DC</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Told Congress under oath he had <strong>&ldquo;personal knowledge&rdquo; of people being killed to conceal UFO technology</strong>. Said he feared for his life &mdash; &ldquo;definitely.&rdquo; Faced &ldquo;very brutal&rdquo; retaliation. His confidential mental health records from a 2018 episode were <strong>leaked to a journalist by &ldquo;DoD and intelligence&rdquo; representatives</strong> &mdash; a documented smear campaign. The Intelligence Community Inspector General deemed his complaint &ldquo;urgent and credible.&rdquo; In March 2025, Rep. Burlison appointed him as a special advisor on transparency.
+      </div>
+      <div class="ccard-intersection">
+        A senior intelligence official testified, under oath, that people have been killed over this technology. The documented retaliation &mdash; leaked medical records, coordinated smear &mdash; demonstrates the institutional apparatus for silencing witnesses. Sullivan was part of Grusch&rsquo;s network and died before testifying.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag uap">UAP DISCLOSURE</span>
+        <span class="tag gov">CONGRESSIONAL TESTIMONY</span>
+        <span class="tag death">CLAIMED KILLINGS</span>
+      </div>
+      <a class="ccard-source" href="https://en.wikipedia.org/wiki/David_Grusch_UFO_whistleblower_claims" target="_blank">Wikipedia: Grusch Claims</a>
+    </div>
+
+    <!-- 14. DRACO Cancellation -->
+    <div class="ccard" style="border-top:3px solid var(--border2);">
+      <span class="ccard-tier"><span class="tier tier-3">TIER 3</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(14,251,34,.08);border:1px solid rgba(14,251,34,.3);">&#9762;</div>
+        <div>
+          <div class="ccard-title">DARPA DRACO Cancellation</div>
+          <div class="ccard-date">May 30, 2025</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        DARPA&rsquo;s <strong>DRACO</strong> (Demonstration Rocket for Agile Cislunar Operations) nuclear thermal propulsion program was cancelled with zero FY2026 funding. DARPA cited declining ROI due to SpaceX reducing launch costs. <strong>Joshua LeBlanc</strong>, who worked on nuclear thermal propulsion at NASA Huntsville, died approximately two months later on July 22, 2025.
+      </div>
+      <div class="ccard-intersection">
+        A nuclear propulsion researcher dies shortly after the major program in his exact field is cancelled. Was his knowledge suddenly a liability rather than an asset?
+      </div>
+      <div class="ccard-tags">
+        <span class="tag tech">NUCLEAR PROPULSION</span>
+        <span class="tag gov">DARPA</span>
+        <span class="tag death">2 MONTHS LATER</span>
+      </div>
+      <a class="ccard-source" href="https://breakingdefense.com/2025/06/darpas-draco-nuclear-propulsion-project-roars-no-more/" target="_blank">Breaking Defense: DRACO Cancelled</a>
+    </div>
+
+    <!-- 15. Lieber / Harvard Pipeline -->
+    <div class="ccard" style="border-top:3px solid var(--border2);">
+      <span class="ccard-tier"><span class="tier tier-3">TIER 3</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.3);">&#127891;</div>
+        <div>
+          <div class="ccard-title">Charles Lieber / Harvard-China Pipeline</div>
+          <div class="ccard-date">2011 &ndash; Present</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Harvard chemistry chair <strong>convicted</strong> for concealing his participation in China&rsquo;s Thousand Talents Program and a contract with Wuhan University of Technology ($50K/month salary, $1.5M lab setup). Now teaching at <strong>Tsinghua University</strong> in China. <strong>Feng Yanghe</strong> &mdash; the Chinese military AI scientist who died in a 2:35 AM car crash and was buried with military honors at Babaoshan &mdash; was a <strong>Harvard visiting scholar during Lieber&rsquo;s tenure as department chair</strong> (2011-2013). Same university, overlapping years, both connected to Chinese military technology.
+      </div>
+      <div class="ccard-intersection">
+        The Harvard-to-China pipeline is documented and convicted. Feng went through it and ended up building the PLA&rsquo;s military AI. He&rsquo;s now dead under suspicious circumstances. The pipeline is the mechanism; the deaths are the outcome.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag china">THOUSAND TALENTS</span>
+        <span class="tag gov">CONVICTED</span>
+        <span class="tag tech">MILITARY AI</span>
+      </div>
+      <a class="ccard-source" href="https://www.nature.com/articles/d41586-025-01410-7" target="_blank">Nature: Lieber Joins Chinese University</a>
+    </div>
+
+  </div><!-- /tier 3 cgrid -->
+
+</div><!-- /canvas -->
+
+<footer>
+  <p><a href="index.html">Home</a> &middot; <a href="timeline.html">Timeline</a> &middot; <a href="developments.html">Developments</a> &middot; <a href="candidates.html">Candidates</a> &middot; <a href="china.html">China</a> &middot; <a href="coincidences.html">"Coincidences"</a></p>
+  <p style="margin-top:8px;">&copy; 2026 whokilledthescientists.com &middot; open-source investigation</p>
+</footer>
+<script data-goatcounter="https://wkts.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

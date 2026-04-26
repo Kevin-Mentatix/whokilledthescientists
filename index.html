@@ -183,6 +183,8 @@ header h1 span{color:var(--pink);}
 .stream-ig{background:rgba(228,64,95,.12);color:#E4405F;border-color:rgba(228,64,95,.3);}
 .stream-ig:hover{background:rgba(228,64,95,.22);box-shadow:0 0 20px rgba(228,64,95,.2);}
 @media(max-width:768px){
+.site-nav{padding:0 8px;}
+.site-nav a{padding:10px 10px;font-size:9px;}
 header{padding:32px 20px 28px;}
 .canvas{padding:20px 16px 32px;}
 .legend-bar{padding:10px 16px;gap:12px;}
@@ -203,8 +205,8 @@ header h1{font-size:28px;}
 .tagline{font-size:9px;letter-spacing:.12em;}
 .pphoto,.pfallback{aspect-ratio:1/1;}
 }
-.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);}
-.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;}
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);flex-wrap:wrap;justify-content:center;}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;white-space:nowrap;}
 .site-nav a:hover{color:var(--ink);text-decoration:none;}
 .site-nav a.active{color:var(--orange);}
 .site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--orange);border-radius:1px;}
@@ -217,6 +219,7 @@ header h1{font-size:28px;}
   <a href="developments.html">Developments</a>
   <a href="candidates.html">Candidates</a>
   <a href="china.html">China</a>
+  <a href="coincidences.html">"Coincidences"</a>
 </nav>
 
 <header>
