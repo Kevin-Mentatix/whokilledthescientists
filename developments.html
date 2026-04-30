@@ -35,7 +35,7 @@ header h1 span{color:var(--green);}
 .devs{display:flex;flex-direction:column;gap:10px;}
 .dev{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:6px;padding:14px 18px;display:flex;gap:16px;align-items:flex-start;}
 .dev.urgent{border-left-color:var(--pink);}.dev.notable{border-left-color:var(--orange);}.dev.uap{border-left-color:var(--purple);}.dev.gov{border-left-color:var(--green);}
-.dev-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;width:80px;padding-top:2px;line-height:1.5;}
+.dev-date{font-family:"DM Mono",monospace;font-size:13px;color:var(--ink2);letter-spacing:.06em;text-transform:uppercase;flex-shrink:0;width:80px;padding-top:2px;line-height:1.4;font-weight:500;}
 .dev-body{flex:1;}.dev-body strong{font-family:"New Amsterdam",sans-serif;font-size:20px;color:var(--ink);font-weight:700;display:block;margin-bottom:4px;}.dev-body p{font-size:12px;color:var(--ink2);line-height:1.6;}.dev-body a{font-size:11px;color:var(--blue);margin-top:4px;display:inline-block;}
 .dev-tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 7px;border-radius:2px;display:inline-block;margin-bottom:4px;}
 .dev-tag.urgent{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.4);}
@@ -43,8 +43,7 @@ header h1 span{color:var(--green);}
 .dev-tag.uap{background:rgba(206,0,224,.15);color:var(--purple);border:1px solid rgba(206,0,224,.4);}
 .dev-tag.gov{background:rgba(14,251,34,.1);color:var(--green);border:1px solid rgba(14,251,34,.3);}
 
-.date-break{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:23px;color:var(--ink);margin:32px 0 12px;padding-left:4px;}
-.date-break:first-child{margin-top:0;}
+.devs{gap:12px;}
 
 @media(max-width:600px){
 .site-nav{padding:0 8px;}
@@ -72,7 +71,6 @@ header h1 span{color:var(--green);}
 
 <div class="canvas">
 
-<div class="date-break">April 30, 2026</div>
 <div class="devs">
 <div class="dev urgent">
   <div class="dev-date">Apr 30<br>2026</div>
@@ -93,19 +91,6 @@ header h1 span{color:var(--green);}
   </div>
 </div>
 <div class="dev notable">
-  <div class="dev-date">Apr 28<br>2026</div>
-  <div class="dev-body">
-    <span class="dev-tag notable">NSF PURGE</span>
-    <strong>Trump administration fires all 22 members of the National Science Board</strong>
-    <p>The entire board of the NSF&rsquo;s policy arm was dismissed via brief termination emails. The NSB oversaw $8 billion+ in annual research funding and set science policy since 1950. This follows DOGE scrapping 1,600+ NSF grants worth nearly $1 billion. Board members called the move &ldquo;unprecedented.&rdquo;</p>
-    <a href="https://www.aljazeera.com/economy/2026/4/28/trump-administration-fires-all-members-of-us-national-science-board" target="_blank">Al Jazeera: NSB fired &#8594;</a>
-  </div>
-</div>
-</div>
-
-<div class="date-break">April 29, 2026</div>
-<div class="devs">
-<div class="dev notable">
   <div class="dev-date">Apr 29<br>2026</div>
   <div class="dev-body">
     <span class="dev-tag notable">THOMAS UPDATE</span>
@@ -114,10 +99,15 @@ header h1 span{color:var(--green);}
     <a href="https://www.snopes.com/news/2026/04/28/scientists-dead-missing/" target="_blank">Snopes: What we know &#8594;</a>
   </div>
 </div>
+<div class="dev notable">
+  <div class="dev-date">Apr 28<br>2026</div>
+  <div class="dev-body">
+    <span class="dev-tag notable">NSF PURGE</span>
+    <strong>Trump administration fires all 22 members of the National Science Board</strong>
+    <p>The entire board of the NSF&rsquo;s policy arm was dismissed via brief termination emails. The NSB oversaw $8 billion+ in annual research funding and set science policy since 1950. This follows DOGE scrapping 1,600+ NSF grants worth nearly $1 billion. Board members called the move &ldquo;unprecedented.&rdquo;</p>
+    <a href="https://www.aljazeera.com/economy/2026/4/28/trump-administration-fires-all-members-of-us-national-science-board" target="_blank">Al Jazeera: NSB fired &#8594;</a>
+  </div>
 </div>
-
-<div class="date-break">April 28, 2026</div>
-<div class="devs">
 <div class="dev gov">
   <div class="dev-date">Apr 28<br>2026</div>
   <div class="dev-body">
@@ -136,10 +126,6 @@ header h1 span{color:var(--green);}
     <a href="https://oversight.house.gov/wp-content/uploads/2026/04/FBI-Missing-Scientists-Letter_4.20.26.pdf" target="_blank">House Oversight: Original FBI letter (PDF) &#8594;</a>
   </div>
 </div>
-</div>
-
-<div class="date-break">April 25, 2026</div>
-<div class="devs">
 <div class="dev notable">
   <div class="dev-date">Apr 25<br>2026</div>
   <div class="dev-body">
@@ -194,10 +180,6 @@ header h1 span{color:var(--green);}
     <a href="https://upstract.com/x/c924b55b9ee97363" target="_blank">Families break silence &#8594;</a>
   </div>
 </div>
-</div>
-
-<div class="date-break">April 24, 2026</div>
-<div class="devs">
 <div class="dev urgent">
   <div class="dev-date">Apr 24<br>2026</div>
   <div class="dev-body">
@@ -207,10 +189,6 @@ header h1 span{color:var(--green);}
     <a href="https://www.wrganews.com/2026/04/21/aerospace-defense-engineer-military-veteran-killed-in-plane-crash-with-family/" target="_blank">WRG News: Moffatt family crash &#8594;</a>
   </div>
 </div>
-</div>
-
-<div class="date-break">April 23, 2026</div>
-<div class="devs">
 <div class="dev urgent">
   <div class="dev-date">Apr 23<br>2026</div>
   <div class="dev-body">
@@ -256,10 +234,6 @@ header h1 span{color:var(--green);}
     <a href="https://ca.news.yahoo.com/ufo-researcher-david-wilcock-found-094528095.html" target="_blank">Yahoo News: Coroner confirms &#8594;</a>
   </div>
 </div>
-</div>
-
-<div class="date-break">April 22, 2026</div>
-<div class="devs">
 <div class="dev notable">
   <div class="dev-date">Apr 22<br>2026</div>
   <div class="dev-body">
@@ -305,10 +279,6 @@ header h1 span{color:var(--green);}
     <a href="https://www.cbsnews.com/news/deaths-disappearances-scientists-staff-government-labs/" target="_blank">CBS News &#8594;</a>
   </div>
 </div>
-</div>
-
-<div class="date-break">April 20&ndash;21, 2026</div>
-<div class="devs">
 <div class="dev urgent">
   <div class="dev-date">Apr 21<br>2026</div>
   <div class="dev-body">
@@ -354,10 +324,6 @@ header h1 span{color:var(--green);}
     <a href="https://oversight.house.gov/release/comer-burlison-seek-information-on-missing-nuclear-and-rocket-scientists/" target="_blank">House Oversight official release &#8594;</a>
   </div>
 </div>
-</div>
-
-<div class="date-break">April 16&ndash;18, 2026</div>
-<div class="devs">
 <div class="dev notable">
   <div class="dev-date">Apr 18<br>2026</div>
   <div class="dev-body">
@@ -385,10 +351,6 @@ header h1 span{color:var(--green);}
     <a href="https://brobible.com/culture/article/congressman-death-air-force-whistleblower-ufo-secrets-suspicious/" target="_blank">BroBible: Sullivan report &#8594;</a>
   </div>
 </div>
-</div>
-
-<div class="date-break">Earlier in 2026</div>
-<div class="devs">
 <div class="dev uap">
   <div class="dev-date">Mar 25<br>2026</div>
   <div class="dev-body">
@@ -407,8 +369,6 @@ header h1 span{color:var(--green);}
     <a href="https://defensescoop.com/2026/02/20/trump-ufo-uap-government-files-disclosure/" target="_blank">DefenseScoop: Trump UAP directive &#8594;</a>
   </div>
 </div>
-</div>
-
 </div>
 
 <footer style="border-top:1px solid var(--border);padding:32px 40px;text-align:center;">
