@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disclosure Connections — Who Killed The Scientists?</title>
+<meta name="description" content="The dead and missing scientists' work maps directly onto UAP disclosure programs, classified aerospace research, and the PURSUE initiative. The overlap is structural.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--card:#0e0f16;--ink:#ffffff;--ink2:#e0e2f0;--ink3:#c0c4d8;
+  --border:#1e2030;--border2:#2a2e48;
+  --pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;
+  --green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);flex-wrap:wrap;justify-content:center;}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;white-space:nowrap;}
+.site-nav a:hover{color:var(--ink);text-decoration:none;}
+.site-nav a.active{color:var(--purple);}
+.site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--purple);border-radius:1px;}
+
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(206,0,224,.06),transparent 70%);pointer-events:none;}
+header h1{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:clamp(32px,5.75vw,62px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 60px rgba(206,0,224,.25),0 0 120px rgba(206,0,224,.08);position:relative;}
+header h1 span{color:var(--purple);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+.coincidence-link{display:inline-block;margin-top:16px;font-family:"DM Mono",monospace;font-size:10px;color:var(--yellow);letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border:1px solid rgba(225,255,0,.3);border-radius:3px;background:rgba(225,255,0,.06);text-decoration:none;transition:all .15s;}
+.coincidence-link:hover{background:rgba(225,255,0,.12);border-color:rgba(225,255,0,.5);text-decoration:none;}
+
+.canvas{padding:32px 40px 64px;max-width:1100px;margin:0 auto;}
+
+.intro{max-width:760px;margin:0 auto 40px;font-size:14px;color:var(--ink2);line-height:1.8;text-align:center;}
+.intro strong{color:var(--ink);}
+
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:44px;}
+.sh:first-child{margin-top:0;}
+.stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
+.sh h2{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:25px;font-weight:400;color:var(--ink);}
+.sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+
+.cgrid{display:flex;flex-direction:column;gap:16px;}
+
+.ccard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 24px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,border-color .2s;position:relative;}
+.ccard:hover{box-shadow:0 0 24px rgba(206,0,224,.08);border-color:rgba(206,0,224,.2);}
+
+.ccard-tier{position:absolute;top:16px;right:16px;}
+.tier{font-family:"DM Mono",monospace;font-size:9px;padding:2px 8px;border-radius:2px;font-weight:500;letter-spacing:.05em;}
+.tier-1{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.5);}
+.tier-2{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.5);}
+.tier-3{background:rgba(255,255,255,.06);color:var(--ink3);border:1px solid var(--border2);}
+
+.ccard-head{display:flex;align-items:center;gap:12px;padding-right:80px;}
+.ccard-icon{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ccard-title{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:23px;font-weight:400;color:var(--ink);line-height:1.25;}
+.ccard-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;}
+
+.ccard-body{font-size:13px;color:var(--ink2);line-height:1.7;}
+.ccard-body strong{color:var(--ink);font-weight:600;}
+
+.ccard-intersection{background:rgba(206,0,224,.04);border:1px solid rgba(206,0,224,.15);border-radius:4px;padding:10px 14px;font-size:12px;color:var(--purple);line-height:1.6;}
+.ccard-intersection::before{content:"INTERSECTION ";font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:4px;opacity:.7;}
+
+.ccard-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 7px;border-radius:2px;letter-spacing:.02em;}
+.tag.uap{background:rgba(206,0,224,.12);color:var(--purple);border:1px solid rgba(206,0,224,.35);}
+.tag.death{background:rgba(255,32,110,.1);color:var(--pink);border:1px solid rgba(255,32,110,.3);}
+.tag.gov{background:rgba(14,251,34,.08);color:var(--green);border:1px solid rgba(14,251,34,.25);}
+.tag.tech{background:rgba(225,255,0,.08);color:var(--yellow);border:1px solid rgba(225,255,0,.2);}
+.tag.base{background:rgba(0,187,249,.08);color:var(--blue);border:1px solid rgba(0,187,249,.25);}
+.tag.cluster{background:rgba(255,139,51,.1);color:var(--orange);border:1px solid rgba(255,139,51,.3);}
+.tag.timeline{background:rgba(0,245,212,.08);color:var(--teal);border:1px solid rgba(0,245,212,.25);}
+
+.ccard-source{font-size:11px;color:var(--blue);display:inline-block;margin-top:2px;}
+
+/* timeline vis */
+.tl-strip{display:flex;flex-direction:column;gap:0;margin-top:8px;position:relative;}
+.tl-strip::before{content:"";position:absolute;left:17px;top:0;bottom:0;width:2px;background:rgba(206,0,224,.2);}
+.tl-node{display:flex;gap:14px;align-items:flex-start;padding:10px 0;position:relative;}
+.tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;margin-left:13px;position:relative;z-index:1;}
+.tl-dot.death{background:var(--pink);box-shadow:0 0 8px var(--pink);}
+.tl-dot.event{background:var(--purple);box-shadow:0 0 8px var(--purple);}
+.tl-dot.gov{background:var(--green);box-shadow:0 0 6px var(--green);}
+.tl-content{flex:1;}
+.tl-year{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.06em;font-weight:600;}
+.tl-text{font-size:12px;color:var(--ink2);line-height:1.5;margin-top:2px;}
+.tl-text strong{color:var(--ink);}
+
+/* bottom line */
+.bottom-line{background:rgba(206,0,224,.04);border:1px solid rgba(206,0,224,.15);border-radius:8px;padding:24px;margin-top:40px;text-align:center;}
+.bottom-line h3{font-family:"New Amsterdam",sans-serif;font-size:22px;color:var(--purple);margin-bottom:10px;}
+.bottom-line p{font-size:13px;color:var(--ink2);line-height:1.7;max-width:700px;margin:0 auto;}
+.bottom-line strong{color:var(--ink);}
+
+footer{background:#000;border-top:1px solid var(--border);padding:32px 40px;text-align:center;}
+footer p{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;line-height:1.8;}
+footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:underline;}
+
+@media(max-width:600px){
+  .canvas{padding:24px 16px 48px;}
+  header{padding:32px 16px 28px;}
+  .site-nav{padding:0 8px;}
+  .site-nav a{padding:10px 10px;font-size:9px;}
+  .ccard{padding:16px;}
+  .ccard-head{padding-right:60px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="developments.html">Developments</a>
+  <a href="candidates.html">Candidates</a>
+  <a href="china.html">China</a>
+  <a href="coincidences.html">"Coincidences"</a>
+  <a href="epstein.html">Epstein</a>
+  <a href="disclosure.html" class="active">Disclosure</a>
+</nav>
+
+<header>
+  <h1>The <span>Disclosure</span> Connection</h1>
+  <div class="tagline">UAP programs &middot; PURSUE &middot; Wright-Patterson &middot; the scientists worked on exactly what&rsquo;s being disclosed</div>
+  <a href="coincidences.html" class="coincidence-link">&larr; Part of the "Coincidences" series</a>
+</header>
+
+<div class="canvas">
+  <p class="intro">
+    The scientists on this site didn&rsquo;t just work in &ldquo;defense.&rdquo; They worked on <strong>the exact technologies now at the center of UAP disclosure</strong>: exotic propulsion, metamaterials, directed energy, advanced aerospace. As Congress pushes harder for transparency, the people who understood these programs are dying and disappearing. The overlap between their expertise and the classified programs being disclosed is <strong>not a side note &mdash; it may be the story</strong>.
+  </p>
+
+  <!-- TIER 1 -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--pink);box-shadow:0 0 8px var(--pink);"></div>
+    <div><h2>Tier 1 &mdash; Direct Program Overlap</h2>
+    <div class="sub">Scientists whose work maps directly onto disclosed UAP programs</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- McCasland Nexus -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#9733;</div>
+        <div>
+          <div class="ccard-title">McCasland &mdash; The Nexus Figure</div>
+          <div class="ccard-date">February 27, 2026 &middot; Missing from Albuquerque, NM</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Retired <strong>Maj. Gen. William &ldquo;Neil&rdquo; McCasland</strong> commanded the <strong>Air Force Research Laboratory at Wright-Patterson AFB</strong> &mdash; the base most associated with exotic aerospace research since Roswell. He appears in <strong>WikiLeaks Podesta emails</strong> regarding UFO discussions with Tom DeLonge, who identified him as someone with direct knowledge of UAP programs. Garry Nolan has publicly described a senior AFRL figure matching McCasland&rsquo;s profile as a &ldquo;UAP gatekeeper.&rdquo; McCasland vanished <strong>4 days after Trump signed a UAP disclosure executive order</strong>, leaving behind his phone, glasses, and wearable devices. He is the highest-ranking figure on this site.
+      </div>
+      <div class="ccard-intersection">
+        McCasland connects to nearly everything: Wright-Patterson (where Sullivan served and drone incursions shut down airspace), AFRL (which runs PURSUE and exotic propulsion research), the Podesta/DeLonge disclosure effort, and the New Mexico corridor (where he lived and vanished). He is the nexus between the scientists, the programs, and the disclosure push.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag uap">UAP GATEKEEPER</span>
+        <span class="tag base">WRIGHT-PATTERSON</span>
+        <span class="tag gov">AFRL COMMANDER</span>
+        <span class="tag death">MISSING</span>
+        <span class="tag uap">WIKILEAKS / PODESTA</span>
+      </div>
+      <a class="ccard-source" href="https://abc7.com/post/william-neil-mccasland-missing-retired-air-force-major-general-led-wright-patterson-ohio-base-steeped-ufo-theories/18724549/" target="_blank">ABC7: McCasland Missing</a>
+      <a class="ccard-source" href="https://wikileaks.org/podesta-emails/?q=mccasland" target="_blank">WikiLeaks: Podesta-McCasland Emails</a>
+    </div>
+
+    <!-- PURSUE Program -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(206,0,224,.12);border:1px solid rgba(206,0,224,.4);">&#9670;</div>
+        <div>
+          <div class="ccard-title">PURSUE &mdash; The Classified Propulsion Program</div>
+          <div class="ccard-date">Classification unknown &middot; AFRL</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        <strong>PURSUE</strong> is a classified Air Force Research Laboratory initiative studying <strong>exotic propulsion concepts</strong> &mdash; the physics of how objects might move without conventional thrust. The program&rsquo;s existence was confirmed through FOIA documents and congressional briefings, but its scope, findings, and current status remain classified. PURSUE sits within the same AFRL infrastructure that McCasland commanded. The program&rsquo;s research portfolio reportedly encompasses <strong>anti-gravity, inertial mass reduction, metamaterial propulsion, and field-effect drives</strong> &mdash; precisely the fields where the dead and missing scientists had expertise.
+      </div>
+      <div class="ccard-intersection">
+        Ning Li (anti-gravity, UAH), Amy Eskridge (exotic propulsion, Institute for Exotic Science), and Joshua LeBlanc (nuclear thermal propulsion, NASA) all worked on technologies that fall within PURSUE&rsquo;s reported scope. If PURSUE cataloged or contracted with researchers in these fields, the dead scientists may have been part of its orbit.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag uap">PURSUE</span>
+        <span class="tag tech">EXOTIC PROPULSION</span>
+        <span class="tag gov">AFRL / CLASSIFIED</span>
+        <span class="tag death">LI / ESKRIDGE / LEBLANC</span>
+      </div>
+    </div>
+
+    <!-- Wright-Patterson Hub -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,187,249,.12);border:1px solid rgba(0,187,249,.4);">&#9992;</div>
+        <div>
+          <div class="ccard-title">Wright-Patterson AFB &mdash; The Hub</div>
+          <div class="ccard-date">1947 &ndash; Present &middot; Dayton, OH</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Wright-Patterson has been the center of US aerospace intelligence since the Air Force was founded. It houses <strong>NASIC</strong> (National Air and Space Intelligence Center), <strong>AFRL</strong> (Air Force Research Laboratory), and has been associated with UAP material analysis since the Roswell era. Three figures on this site connect directly to Wright-Patterson: <strong>McCasland</strong> (commanded AFRL there), <strong>Matthew Sullivan</strong> (served as NASIC deputy director, died May 2024 before UAP testimony), and the base experienced <strong>drone incursion airspace shutdowns</strong> in December 2024. Sullivan had agreed to testify about <strong>UAP crash retrieval programs</strong> before Congress.
+      </div>
+      <div class="ccard-intersection">
+        The base most associated with exotic aerospace technology has lost its former AFRL commander (missing) and its former NASIC deputy director (dead before testimony), and experienced unexplained drone incursions &mdash; all within 18 months.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag base">WRIGHT-PATTERSON</span>
+        <span class="tag death">MCCASLAND / SULLIVAN</span>
+        <span class="tag uap">NASIC / AFRL</span>
+        <span class="tag gov">DRONE SHUTDOWNS</span>
+      </div>
+      <a class="ccard-source" href="https://www.twz.com/air/drone-incursions-closed-wright-patterson-air-force-bases-airspace-friday-night" target="_blank">War Zone: Wright-Patterson Shutdown</a>
+    </div>
+
+  </div><!-- /tier 1 cgrid -->
+
+  <!-- TIER 2 -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--orange);box-shadow:0 0 8px var(--orange);"></div>
+    <div><h2>Tier 2 &mdash; Geographic Clusters</h2>
+    <div class="sub">Deaths and disappearances concentrate around UAP-relevant corridors</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- Huntsville Cluster -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#128205;</div>
+        <div>
+          <div class="ccard-title">Huntsville Cluster &mdash; Anti-Gravity Corridor</div>
+          <div class="ccard-date">2014 &ndash; 2025 &middot; Huntsville, AL</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Huntsville, Alabama &mdash; home of NASA Marshall Space Flight Center, Redstone Arsenal, and the University of Alabama in Huntsville &mdash; has lost at least <strong>four people</strong> connected to exotic propulsion research. <strong>Ning Li</strong> (UAH physicist, groundbreaking anti-gravity research in the 1990s, DoD-funded, permanent brain damage from 2014 hit-and-run, died 2021). <strong>Amy Eskridge</strong> (co-founded Institute for Exotic Science, anti-gravity research, claimed she was targeted by a directed energy weapon, dead June 2022 at 34). <strong>Joshua LeBlanc</strong> (nuclear thermal propulsion, NASA Huntsville, dead July 2025). <strong>The Moffatt family</strong> (NASA JSC/UAH connections, multi-fatality crash, August 2025). Four deaths in one aerospace corridor over a decade.
+      </div>
+      <div class="ccard-intersection">
+        Huntsville is where American rocket science was born (von Braun, Marshall). It&rsquo;s also where anti-gravity research was most active &mdash; Ning Li&rsquo;s work at UAH in the 1990s drew DoD funding and was considered among the most promising. The people who continued that research tradition are now dead.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag cluster">4 DEATHS</span>
+        <span class="tag tech">ANTI-GRAVITY</span>
+        <span class="tag uap">EXOTIC PROPULSION</span>
+        <span class="tag base">NASA MARSHALL</span>
+      </div>
+      <a class="ccard-source" href="https://www.newsweek.com/huntsville-mystery-are-two-dead-scientists-same-town-connected-11869617" target="_blank">Newsweek: The Huntsville Mystery</a>
+    </div>
+
+    <!-- New Mexico Corridor -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#127966;</div>
+        <div>
+          <div class="ccard-title">New Mexico Corridor &mdash; The Nuclear Belt</div>
+          <div class="ccard-date">2022 &ndash; 2026 &middot; NM</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        New Mexico hosts the densest concentration of classified research facilities in the country: <strong>Los Alamos National Laboratory</strong>, <strong>Sandia National Laboratories</strong>, <strong>Kirtland AFB</strong> (which houses the Air Force Nuclear Weapons Center and AFRL Directed Energy Directorate), and <strong>White Sands Missile Range</strong>. McCasland vanished from Albuquerque. <strong>Spencer Goetz</strong> and <strong>Benjamin Borges</strong> had connections to the LANL/Sandia ecosystem. The state is also home to the <strong>Santa Fe Institute</strong> (Epstein-funded, LANL-adjacent) and Epstein&rsquo;s Zorro Ranch. Roswell, the ur-text of American UAP history, is in southeastern NM.
+      </div>
+      <div class="ccard-intersection">
+        The state where UAP history began (Roswell, 1947) is the same state where the nation&rsquo;s nuclear weapons and directed energy research is concentrated, where McCasland vanished, and where Epstein maintained a physical presence. The New Mexico corridor connects the disclosure timeline, the dead scientists, and the Epstein funding network in a single geography.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag cluster">NM CORRIDOR</span>
+        <span class="tag base">LANL / SANDIA / KIRTLAND</span>
+        <span class="tag death">MCCASLAND / GOETZ / BORGES</span>
+        <span class="tag uap">ROSWELL LINEAGE</span>
+      </div>
+    </div>
+
+  </div><!-- /tier 2 cgrid -->
+
+  <!-- TIMELINE -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--purple);box-shadow:0 0 8px var(--purple);"></div>
+    <div><h2>Disclosure Timeline vs. Scientist Deaths</h2>
+    <div class="sub">Deaths cluster around disclosure milestones</div></div>
+  </div>
+
+  <div class="ccard" style="border-top:3px solid var(--purple);">
+    <div class="ccard-body">
+      The deaths and disappearances are not randomly distributed in time. They cluster around two periods: <strong>2013&ndash;2015</strong> (when AATIP was active and studying exotic technologies) and <strong>2022&ndash;2026</strong> (when Congressional disclosure efforts accelerated dramatically). Below is the overlap mapped chronologically.
+    </div>
+    <div class="tl-strip">
+      <div class="tl-node">
+        <div class="tl-dot event"></div>
+        <div class="tl-content">
+          <div class="tl-year">2007&ndash;2012</div>
+          <div class="tl-text"><strong>AATIP created</strong> &mdash; Pentagon&rsquo;s Advanced Aerospace Threat Identification Program begins under DIA, funded at $22M via Sen. Harry Reid. Studies exotic propulsion, metamaterials, warp drive physics.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot death"></div>
+        <div class="tl-content">
+          <div class="tl-year">2014</div>
+          <div class="tl-text"><strong>Ning Li</strong> &mdash; hit-and-run in Huntsville. Permanent brain damage. Her anti-gravity research was DoD-funded and fell within AATIP&rsquo;s study areas.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot event"></div>
+        <div class="tl-content">
+          <div class="tl-year">2017</div>
+          <div class="tl-text"><strong>AATIP disclosed</strong> by NYT. Pentagon confirms program existed. Three Navy UAP videos released. Tom DeLonge launches TTSA with former intelligence officials.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot death"></div>
+        <div class="tl-content">
+          <div class="tl-year">Jun 2022</div>
+          <div class="tl-text"><strong>Amy Eskridge</strong> dead at 34 in Huntsville. Had continued anti-gravity research, claimed directed energy targeting. Death ruled self-inflicted.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot gov"></div>
+        <div class="tl-content">
+          <div class="tl-year">Jul 2023</div>
+          <div class="tl-text"><strong>David Grusch testifies</strong> before Congress under oath. Claims &ldquo;personal knowledge&rdquo; of people killed to conceal UAP technology. ICIG deems complaint &ldquo;urgent and credible.&rdquo;</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot death"></div>
+        <div class="tl-content">
+          <div class="tl-year">Oct 2023</div>
+          <div class="tl-text"><strong>Michael David Hicks</strong> dead &mdash; 25-year JPL veteran found in apparent suicide. Worked on Mars missions and deep space systems.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot death"></div>
+        <div class="tl-content">
+          <div class="tl-year">May 2024</div>
+          <div class="tl-text"><strong>Matthew Sullivan</strong> dead &mdash; NASIC deputy director, Wright-Patterson. Had agreed to testify about UAP crash retrieval. Four-drug &ldquo;accidental&rdquo; overdose.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot gov"></div>
+        <div class="tl-content">
+          <div class="tl-year">Jan 2025</div>
+          <div class="tl-text"><strong>Livelsberger manifesto</strong> &mdash; Green Beret claims US and China both have anti-gravity aircraft. DOD classifies the manifesto.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot gov"></div>
+        <div class="tl-content">
+          <div class="tl-year">Feb 23, 2025</div>
+          <div class="tl-text"><strong>Trump signs UAP disclosure executive order</strong> &mdash; directs agencies to declassify UAP-related materials.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot death"></div>
+        <div class="tl-content">
+          <div class="tl-year">Feb 27, 2025</div>
+          <div class="tl-text"><strong>McCasland vanishes</strong> &mdash; 4 days after the executive order. Same day <strong>Fang Daining</strong> (China&rsquo;s top hypersonics engineer) dies.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot death"></div>
+        <div class="tl-content">
+          <div class="tl-year">Mar&ndash;Aug 2025</div>
+          <div class="tl-text"><strong>Cluster</strong> &mdash; Monica Reza (JPL, missing), Carl Grillmair (Caltech, dead), Joshua LeBlanc (NASA, dead), Moffatt family (NASA/UAH, dead). Four more casualties in six months.</div>
+        </div>
+      </div>
+      <div class="tl-node">
+        <div class="tl-dot gov"></div>
+        <div class="tl-content">
+          <div class="tl-year">May 8, 2026</div>
+          <div class="tl-text"><strong>Pentagon releases 162 declassified UAP files</strong> &mdash; largest disclosure in US history. Videos, Cold War reports, multi-agency documents. The technologies described overlap with the dead scientists&rsquo; work.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--ink3);"></div>
+    <div><h2>Tier 3 &mdash; The Expertise Map</h2>
+    <div class="sub">What the dead scientists knew vs. what's being disclosed</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- Expertise Overlap -->
+    <div class="ccard" style="border-top:3px solid var(--border2);">
+      <span class="ccard-tier"><span class="tier tier-3">TIER 3</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,255,255,.04);border:1px solid var(--border2);">&#128300;</div>
+        <div>
+          <div class="ccard-title">Field-by-Field Overlap</div>
+          <div class="ccard-date">Cross-reference: scientist expertise vs. disclosed programs</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        The disclosed and partially-disclosed UAP programs study specific physics domains. The dead scientists worked in precisely those domains:
+        <br><br>
+        <strong>Anti-gravity / inertial mass reduction:</strong> Ning Li (UAH), Amy Eskridge (Institute for Exotic Science). PURSUE reportedly studies this. Livelsberger claimed operational anti-gravity craft exist.
+        <br><br>
+        <strong>Advanced propulsion:</strong> Joshua LeBlanc (nuclear thermal, NASA). DARPA DRACO was cancelled; LeBlanc died two months later.
+        <br><br>
+        <strong>Metamaterials / materials science:</strong> Monica Reza (JPL Materials Processing Group). AATIP studied metamaterials with anomalous properties.
+        <br><br>
+        <strong>Directed energy:</strong> Amy Eskridge claimed DEW targeting. Havana Syndrome device confirmed. Kirtland AFB&rsquo;s Directed Energy Directorate is in the NM corridor.
+        <br><br>
+        <strong>Deep space / aerospace intelligence:</strong> Michael David Hicks (JPL), Carl Grillmair (Caltech IPAC), Matthew Sullivan (NASIC). The UAP files describe objects performing maneuvers that defy known aerospace engineering.
+      </div>
+      <div class="ccard-intersection">
+        This is not a random sample of dead scientists. Their expertise maps almost perfectly onto the technology domains at the center of UAP disclosure. They knew the physics that would explain what&rsquo;s being disclosed &mdash; or debunk it.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag tech">ANTI-GRAVITY</span>
+        <span class="tag tech">METAMATERIALS</span>
+        <span class="tag tech">PROPULSION</span>
+        <span class="tag tech">DIRECTED ENERGY</span>
+        <span class="tag uap">AATIP / PURSUE</span>
+      </div>
+    </div>
+
+    <!-- Congressional Push -->
+    <div class="ccard" style="border-top:3px solid var(--border2);">
+      <span class="ccard-tier"><span class="tier tier-3">TIER 3</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,255,255,.04);border:1px solid var(--border2);">&#127963;</div>
+        <div>
+          <div class="ccard-title">Congressional Disclosure Acceleration</div>
+          <div class="ccard-date">2023 &ndash; 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Since Grusch&rsquo;s July 2023 testimony, Congress has pushed disclosure with increasing urgency. The <strong>Schumer-Rounds UAP Disclosure Act</strong> (passed Senate, stripped in House conference). <strong>Rep. Burlison</strong> appointed Grusch as transparency advisor and formally requested FBI investigation of Sullivan&rsquo;s death. <strong>Trump&rsquo;s February 2025 executive order</strong> directing declassification. The <strong>May 2026 release of 162 files</strong>. Each escalation correlates with new casualties on this site.
+      </div>
+      <div class="ccard-intersection">
+        The pattern: Congress pushes for transparency. Someone connected to the programs dies or disappears. More pressure builds. More casualties follow. Whether this is causation or correlation, the temporal alignment between disclosure milestones and scientist deaths is documented above.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag gov">SCHUMER-ROUNDS</span>
+        <span class="tag gov">EXEC ORDER</span>
+        <span class="tag uap">162 FILES</span>
+        <span class="tag timeline">TEMPORAL CORRELATION</span>
+      </div>
+    </div>
+
+  </div><!-- /tier 3 cgrid -->
+
+  <!-- BOTTOM LINE -->
+  <div class="bottom-line">
+    <h3>The Bottom Line</h3>
+    <p>The dead and missing scientists didn&rsquo;t work on random topics. They worked on <strong>anti-gravity, exotic propulsion, metamaterials, directed energy, and advanced aerospace</strong> &mdash; the exact fields at the center of UAP disclosure. They were connected to <strong>Wright-Patterson, AFRL, NASA, JPL, and the New Mexico national labs</strong> &mdash; the exact institutions being forced to disclose. They died and disappeared as <strong>Congress, the executive branch, and the Pentagon itself</strong> accelerated transparency. Correlation is not causation. But at some point, the correlation becomes the evidence.</p>
+  </div>
+
+</div><!-- /canvas -->
+
+<footer>
+  <p><a href="index.html">Home</a> &middot; <a href="timeline.html">Timeline</a> &middot; <a href="developments.html">Developments</a> &middot; <a href="candidates.html">Candidates</a> &middot; <a href="china.html">China</a> &middot; <a href="coincidences.html">"Coincidences"</a> &middot; <a href="epstein.html">Epstein</a> &middot; <a href="disclosure.html">Disclosure</a></p>
+  <p style="margin-top:8px;">&copy; 2026 whokilledthescientists.com &middot; open-source investigation</p>
+  <p style="margin-top:4px;"><a href="legal.html" style="color:var(--ink3);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;">Legal Disclaimer</a></p>
+</footer>
+<script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

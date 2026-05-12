@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epstein Connections — Who Killed The Scientists?</title>
+<meta name="description" content="Jeffrey Epstein's $12.9M+ science funding network intersects with the same institutions where dead and missing scientists worked. No direct links — but the overlap is hard to ignore.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--card:#0e0f16;--ink:#ffffff;--ink2:#e0e2f0;--ink3:#c0c4d8;
+  --border:#1e2030;--border2:#2a2e48;
+  --pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;
+  --green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);flex-wrap:wrap;justify-content:center;}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;white-space:nowrap;}
+.site-nav a:hover{color:var(--ink);text-decoration:none;}
+.site-nav a.active{color:var(--blue);}
+.site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--blue);border-radius:1px;}
+
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,187,249,.06),transparent 70%);pointer-events:none;}
+header h1{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:clamp(32px,5.75vw,62px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 60px rgba(0,187,249,.25),0 0 120px rgba(0,187,249,.08);position:relative;}
+header h1 span{color:var(--blue);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+.coincidence-link{display:inline-block;margin-top:16px;font-family:"DM Mono",monospace;font-size:10px;color:var(--yellow);letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border:1px solid rgba(225,255,0,.3);border-radius:3px;background:rgba(225,255,0,.06);text-decoration:none;transition:all .15s;}
+.coincidence-link:hover{background:rgba(225,255,0,.12);border-color:rgba(225,255,0,.5);text-decoration:none;}
+
+.canvas{padding:32px 40px 64px;max-width:1100px;margin:0 auto;}
+
+.intro{max-width:760px;margin:0 auto 40px;font-size:14px;color:var(--ink2);line-height:1.8;text-align:center;}
+.intro strong{color:var(--ink);}
+
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:44px;}
+.sh:first-child{margin-top:0;}
+.stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
+.sh h2{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:25px;font-weight:400;color:var(--ink);}
+.sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+
+.cgrid{display:flex;flex-direction:column;gap:16px;}
+
+.ccard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 24px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,border-color .2s;position:relative;}
+.ccard:hover{box-shadow:0 0 24px rgba(0,187,249,.08);border-color:rgba(0,187,249,.2);}
+
+.ccard-tier{position:absolute;top:16px;right:16px;}
+.tier{font-family:"DM Mono",monospace;font-size:9px;padding:2px 8px;border-radius:2px;font-weight:500;letter-spacing:.05em;}
+.tier-1{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.5);}
+.tier-2{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.5);}
+.tier-3{background:rgba(255,255,255,.06);color:var(--ink3);border:1px solid var(--border2);}
+
+.ccard-head{display:flex;align-items:center;gap:12px;padding-right:80px;}
+.ccard-icon{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ccard-title{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:23px;font-weight:400;color:var(--ink);line-height:1.25;}
+.ccard-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;}
+
+.ccard-body{font-size:13px;color:var(--ink2);line-height:1.7;}
+.ccard-body strong{color:var(--ink);font-weight:600;}
+
+.ccard-intersection{background:rgba(0,187,249,.04);border:1px solid rgba(0,187,249,.15);border-radius:4px;padding:10px 14px;font-size:12px;color:var(--blue);line-height:1.6;}
+.ccard-intersection::before{content:"INTERSECTION ";font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:4px;opacity:.7;}
+
+.ccard-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 7px;border-radius:2px;letter-spacing:.02em;}
+.tag.money{background:rgba(0,187,249,.08);color:var(--blue);border:1px solid rgba(0,187,249,.25);}
+.tag.intel{background:rgba(206,0,224,.12);color:var(--purple);border:1px solid rgba(206,0,224,.35);}
+.tag.institution{background:rgba(225,255,0,.08);color:var(--yellow);border:1px solid rgba(225,255,0,.2);}
+.tag.death{background:rgba(255,32,110,.1);color:var(--pink);border:1px solid rgba(255,32,110,.3);}
+.tag.gov{background:rgba(14,251,34,.08);color:var(--green);border:1px solid rgba(14,251,34,.25);}
+.tag.shell{background:rgba(255,139,51,.1);color:var(--orange);border:1px solid rgba(255,139,51,.3);}
+.tag.lab{background:rgba(0,245,212,.08);color:var(--teal);border:1px solid rgba(0,245,212,.25);}
+
+.ccard-source{font-size:11px;color:var(--blue);display:inline-block;margin-top:2px;}
+
+/* funding map */
+.funding-map{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:8px;}
+.fund-card{background:rgba(0,187,249,.03);border:1px solid rgba(0,187,249,.12);border-radius:6px;padding:14px 16px;text-align:center;}
+.fund-amount{font-family:"New Amsterdam",sans-serif;font-size:28px;color:var(--blue);line-height:1;}
+.fund-target{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;margin-top:6px;}
+.fund-note{font-size:11px;color:var(--ink3);margin-top:4px;line-height:1.4;}
+
+/* bottom line */
+.bottom-line{background:rgba(225,255,0,.04);border:1px solid rgba(225,255,0,.15);border-radius:8px;padding:24px;margin-top:40px;text-align:center;}
+.bottom-line h3{font-family:"New Amsterdam",sans-serif;font-size:22px;color:var(--yellow);margin-bottom:10px;}
+.bottom-line p{font-size:13px;color:var(--ink2);line-height:1.7;max-width:700px;margin:0 auto;}
+.bottom-line strong{color:var(--ink);}
+
+footer{background:#000;border-top:1px solid var(--border);padding:32px 40px;text-align:center;}
+footer p{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;line-height:1.8;}
+footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:underline;}
+
+@media(max-width:600px){
+  .canvas{padding:24px 16px 48px;}
+  header{padding:32px 16px 28px;}
+  .site-nav{padding:0 8px;}
+  .site-nav a{padding:10px 10px;font-size:9px;}
+  .ccard{padding:16px;}
+  .ccard-head{padding-right:60px;}
+  .funding-map{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="developments.html">Developments</a>
+  <a href="candidates.html">Candidates</a>
+  <a href="china.html">China</a>
+  <a href="coincidences.html">"Coincidences"</a>
+  <a href="epstein.html" class="active">Epstein</a>
+  <a href="disclosure.html">Disclosure</a>
+</nav>
+
+<header>
+  <h1>The <span>Epstein</span> Connections</h1>
+  <div class="tagline">$12.9M+ in science funding &middot; institutional overlap with dead scientists &middot; no direct links found</div>
+  <a href="coincidences.html" class="coincidence-link">&larr; Part of the "Coincidences" series</a>
+</header>
+
+<div class="canvas">
+  <p class="intro">
+    Jeffrey Epstein funneled at least <strong>$12.9 million into scientific institutions</strong> &mdash; the same institutions where multiple dead and missing scientists worked. No direct Epstein-to-individual-scientist link has been established. But the institutional overlap, the shell companies obscuring the money, and the intelligence connections surrounding Epstein create a pattern that is <strong>difficult to dismiss as coincidence</strong>.
+  </p>
+
+  <!-- FUNDING MAP -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--blue);box-shadow:0 0 8px var(--blue);"></div>
+    <div><h2>The $12.9M Funding Map</h2>
+    <div class="sub">Known Epstein donations to scientific institutions</div></div>
+  </div>
+
+  <div class="funding-map">
+    <div class="fund-card">
+      <div class="fund-amount">$6.5M</div>
+      <div class="fund-target">Harvard University</div>
+      <div class="fund-note">Includes Lieber&rsquo;s chemistry dept &amp; Program for Evolutionary Dynamics</div>
+    </div>
+    <div class="fund-card">
+      <div class="fund-amount">$2.5M+</div>
+      <div class="fund-target">Santa Fe Institute</div>
+      <div class="fund-note">LANL-adjacent think tank &mdash; founded by Manhattan Project alumni</div>
+    </div>
+    <div class="fund-card">
+      <div class="fund-amount">$2M+</div>
+      <div class="fund-target">MIT Media Lab</div>
+      <div class="fund-note">Director Joi Ito resigned over concealed Epstein funding</div>
+    </div>
+    <div class="fund-card">
+      <div class="fund-amount">$1M+</div>
+      <div class="fund-target">Caltech / Physics</div>
+      <div class="fund-note">Funded symposia attended by researchers in overlapping fields</div>
+    </div>
+    <div class="fund-card">
+      <div class="fund-amount">$500K+</div>
+      <div class="fund-target">Other Institutions</div>
+      <div class="fund-note">Scattered across multiple universities and private research</div>
+    </div>
+    <div class="fund-card" style="border-color:rgba(255,139,51,.25);">
+      <div class="fund-amount" style="color:var(--orange);">???</div>
+      <div class="fund-target">Mondaloy Shell Network</div>
+      <div class="fund-note">True scale unknown &mdash; routed through shell companies</div>
+    </div>
+  </div>
+
+  <!-- TIER 1 -->
+  <div class="sh" style="margin-top:48px;">
+    <div class="stripe" style="background:var(--pink);box-shadow:0 0 8px var(--pink);"></div>
+    <div><h2>Tier 1 &mdash; Strongest Institutional Overlap</h2>
+    <div class="sub">Where Epstein's money and the dead scientists converge</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- Los Alamos / SFI Nexus -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#9762;</div>
+        <div>
+          <div class="ccard-title">Los Alamos / Santa Fe Institute Nexus</div>
+          <div class="ccard-date">Ongoing &middot; Northern New Mexico</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        The <strong>Santa Fe Institute</strong> was co-founded by Manhattan Project alumni including Murray Gell-Mann (Nobel laureate, Caltech/LANL). Epstein donated at least <strong>$2.5 million</strong> to SFI and was a regular visitor. SFI personnel overlap heavily with <strong>Los Alamos National Laboratory</strong> &mdash; they share researchers, advisory boards, and social networks. Multiple dead scientists on the site had LANL affiliations: <strong>Spencer Goetz</strong> and <strong>Benjamin Borges</strong> worked at or had connections to Sandia/LANL in the New Mexico corridor. Epstein&rsquo;s Zorro Ranch property sits approximately <strong>200 miles from Los Alamos</strong> &mdash; he hosted physicists there for extended stays.
+      </div>
+      <div class="ccard-intersection">
+        Epstein funded the institution most intertwined with Los Alamos. Multiple scientists on this site worked at or near Los Alamos. Epstein owned property in the same state and hosted scientists there. The money, the geography, and the deaths converge in northern New Mexico.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag money">$2.5M+ SFI</span>
+        <span class="tag lab">LOS ALAMOS</span>
+        <span class="tag death">GOETZ / BORGES</span>
+        <span class="tag institution">MANHATTAN PROJECT LINEAGE</span>
+      </div>
+    </div>
+
+    <!-- Harvard / Lieber -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#127891;</div>
+        <div>
+          <div class="ccard-title">Harvard &mdash; Lieber &mdash; Thousand Talents Pipeline</div>
+          <div class="ccard-date">2005 &ndash; Present</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Epstein gave <strong>$6.5 million to Harvard</strong>, including to the department chaired by <strong>Charles Lieber</strong> &mdash; later convicted of concealing his participation in China&rsquo;s Thousand Talents Program. Lieber was paid $50K/month by Wuhan University of Technology and given $1.5M to set up a lab. He is now teaching at <strong>Tsinghua University</strong> in China. <strong>Feng Yanghe</strong> &mdash; the Chinese military AI scientist who died in a 2:35 AM car crash and was buried with military honors &mdash; was a <strong>Harvard visiting scholar during Lieber&rsquo;s tenure as department chair</strong> (2011&ndash;2013). Epstein&rsquo;s money flowed into the same department that produced a convicted Chinese intelligence asset.
+      </div>
+      <div class="ccard-intersection">
+        Three threads converge at Harvard: Epstein&rsquo;s $6.5M, Lieber&rsquo;s Chinese intelligence pipeline, and Feng Yanghe&rsquo;s military AI work. The funding, the espionage, and a dead scientist all pass through one department.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag money">$6.5M HARVARD</span>
+        <span class="tag intel">THOUSAND TALENTS</span>
+        <span class="tag death">FENG YANGHE</span>
+        <span class="tag gov">CONVICTED</span>
+      </div>
+      <a class="ccard-source" href="https://www.nature.com/articles/d41586-025-01410-7" target="_blank">Nature: Lieber Joins Chinese University</a>
+    </div>
+
+    <!-- Caltech / JPL -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#128301;</div>
+        <div>
+          <div class="ccard-title">Caltech / JPL Institutional Cluster</div>
+          <div class="ccard-date">2000s &ndash; Present</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Epstein funded <strong>physics symposia at Caltech</strong> and maintained relationships with Caltech-affiliated researchers. Caltech operates <strong>NASA&rsquo;s Jet Propulsion Laboratory</strong> under federal contract. Three scientists on this site have direct JPL/Caltech ties: <strong>Michael David Hicks</strong> (25 years at JPL, dead 2023), <strong>Monica Reza</strong> (JPL Materials Processing Group director, missing 2025), and <strong>Carl Grillmair</strong> (Caltech IPAC collaborator, dead 2025). The WHCD shooter <strong>Cole Thomas Allen</strong> also held a Caltech engineering degree and completed a NASA JPL fellowship.
+      </div>
+      <div class="ccard-intersection">
+        Epstein funded research at the university that runs JPL. Three scientists connected to JPL/Caltech are dead or missing. A fourth JPL-connected person committed a violent public act. Epstein&rsquo;s money touched the institutional ecosystem; four people connected to that ecosystem are now casualties.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag money">CALTECH FUNDING</span>
+        <span class="tag institution">NASA JPL</span>
+        <span class="tag death">HICKS / REZA / GRILLMAIR</span>
+      </div>
+    </div>
+
+    <!-- Zorro Ranch -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-1">TIER 1</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#127968;</div>
+        <div>
+          <div class="ccard-title">Zorro Ranch &mdash; New Mexico Physics Salon</div>
+          <div class="ccard-date">1993 &ndash; 2019 &middot; Stanley, NM</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Epstein&rsquo;s 7,500-acre Zorro Ranch in Stanley, New Mexico sits approximately <strong>200 miles from Los Alamos National Laboratory</strong> and ~60 miles from Santa Fe (home of SFI). He hosted physicists, mathematicians, and researchers for extended stays. Nobel laureate <strong>Murray Gell-Mann</strong> (Caltech, LANL, SFI co-founder) was a documented Epstein associate who bridged all three institutions. The ranch functioned as an informal scientific salon where researchers from the national lab ecosystem socialized with Epstein&rsquo;s broader network.
+      </div>
+      <div class="ccard-intersection">
+        The New Mexico corridor &mdash; Los Alamos, Sandia, SFI, Kirtland AFB &mdash; is where multiple scientists on this site worked. Epstein maintained a physical presence in this corridor and used it to host the same scientific community. McCasland vanished from Albuquerque &mdash; 60 miles from the ranch. The geography is the connection.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag institution">ZORRO RANCH</span>
+        <span class="tag lab">200MI FROM LANL</span>
+        <span class="tag money">GELL-MANN</span>
+        <span class="tag death">MCCASLAND VANISHED NEARBY</span>
+      </div>
+    </div>
+
+  </div><!-- /tier 1 cgrid -->
+
+  <!-- TIER 2 -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--orange);box-shadow:0 0 8px var(--orange);"></div>
+    <div><h2>Tier 2 &mdash; The Shadow Infrastructure</h2>
+    <div class="sub">Shell companies, intelligence ties, and obscured money flows</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- Mondaloy -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#128176;</div>
+        <div>
+          <div class="ccard-title">Mondaloy Shell Company Network</div>
+          <div class="ccard-date">Unknown duration</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Epstein routed science funding through a network of <strong>shell companies collectively called the Mondaloy chain</strong>. These entities obscured the true source, destination, and scale of his financial support for scientific research. The $12.9M in <em>known</em> funding represents only what has been publicly traced &mdash; the actual total is likely significantly higher. Shell companies were registered across multiple jurisdictions, making full forensic accounting difficult. Several universities have acknowledged receiving Epstein funds they initially denied.
+      </div>
+      <div class="ccard-intersection">
+        If the known $12.9M already overlaps with multiple institutions connected to dead scientists, the unknown funding routed through shells could extend that overlap further. We may never know the true scale.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag shell">SHELL COMPANIES</span>
+        <span class="tag money">OBSCURED FUNDING</span>
+        <span class="tag intel">OFFSHORE</span>
+      </div>
+    </div>
+
+    <!-- Intelligence Connections -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(206,0,224,.12);border:1px solid rgba(206,0,224,.4);">&#128065;</div>
+        <div>
+          <div class="ccard-title">Intelligence Connections &mdash; Maxwell, Barak, Wexner</div>
+          <div class="ccard-date">1980s &ndash; 2019</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Epstein&rsquo;s network included documented intelligence-adjacent figures. <strong>Robert Maxwell</strong> (Ghislaine&rsquo;s father) is widely reported to have been a Mossad asset &mdash; confirmed by multiple former intelligence officials after his 1991 death. <strong>Ehud Barak</strong>, former Israeli Prime Minister and military intelligence chief, visited Epstein&rsquo;s properties and received funding through Epstein-connected entities. <strong>Leslie Wexner</strong>, Epstein&rsquo;s primary financial backer, granted him sweeping power of attorney. Epstein&rsquo;s own intelligence ties remain murky &mdash; former CIA officials have made conflicting statements about whether he was an asset, an informant, or simply useful.
+      </div>
+      <div class="ccard-intersection">
+        If Epstein operated at the intersection of science funding and intelligence networks, his institutional access could have served as a mapping function &mdash; identifying which scientists worked on what, where the sensitive research was happening, and who had access to classified programs.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag intel">MOSSAD (MAXWELL)</span>
+        <span class="tag intel">IDF INTELLIGENCE (BARAK)</span>
+        <span class="tag money">WEXNER</span>
+        <span class="tag gov">CIA ADJACENT</span>
+      </div>
+    </div>
+
+    <!-- PROMIS -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-2">TIER 2</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,187,249,.12);border:1px solid rgba(0,187,249,.4);">&#128187;</div>
+        <div>
+          <div class="ccard-title">PROMIS Software &amp; Signals Intelligence</div>
+          <div class="ccard-date">1980s &ndash; 2000s</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        The reports connect Epstein&rsquo;s intelligence ties to the <strong>PROMIS software scandal</strong> &mdash; a DOJ case management system allegedly stolen by intelligence services, backdoored, and sold to foreign governments for surveillance purposes. Robert Maxwell is alleged to have been involved in distributing PROMIS to foreign intelligence agencies. The connection to Epstein is circumstantial but persistent in investigative reporting: Maxwell&rsquo;s daughter Ghislaine was Epstein&rsquo;s closest associate, and the elder Maxwell&rsquo;s intelligence work involved technology transfer and surveillance infrastructure.
+      </div>
+      <div class="ccard-intersection">
+        PROMIS represents a precedent for using compromised software to surveil institutions and individuals. If Epstein&rsquo;s network inherited or continued any aspect of this capability, it could explain how sensitive research programs were mapped across multiple countries.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag intel">PROMIS</span>
+        <span class="tag gov">DOJ</span>
+        <span class="tag intel">SURVEILLANCE</span>
+      </div>
+    </div>
+
+  </div><!-- /tier 2 cgrid -->
+
+  <!-- TIER 3 -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--ink3);"></div>
+    <div><h2>Tier 3 &mdash; Structural Context</h2>
+    <div class="sub">Background patterns that enable the overlap</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- MIT Media Lab -->
+    <div class="ccard" style="border-top:3px solid var(--border2);">
+      <span class="ccard-tier"><span class="tier tier-3">TIER 3</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,255,255,.04);border:1px solid var(--border2);">&#127979;</div>
+        <div>
+          <div class="ccard-title">MIT Media Lab &mdash; Concealed Donations</div>
+          <div class="ccard-date">2013 &ndash; 2019</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        MIT Media Lab director <strong>Joi Ito</strong> resigned in September 2019 after the <em>New Yorker</em> revealed he had accepted Epstein funding and actively concealed the relationship. Internal emails showed Epstein&rsquo;s name was marked as <strong>&ldquo;Voldemort&rdquo;</strong> and &ldquo;he who must not be named&rdquo; in MIT communications &mdash; staff knew the donations were toxic and hid them anyway. MIT&rsquo;s own investigation found at least <strong>$2 million</strong> in Epstein-linked gifts. The pattern of institutional concealment raises the question: how many other institutions received Epstein money and simply never got caught?
+      </div>
+      <div class="ccard-intersection">
+        If MIT actively concealed Epstein funding, other institutions may have done the same. The known $12.9M could be a fraction of the actual total.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag money">$2M+ MIT</span>
+        <span class="tag institution">CONCEALED</span>
+        <span class="tag shell">"VOLDEMORT"</span>
+      </div>
+      <a class="ccard-source" href="https://www.newyorker.com/news/news-desk/how-an-elite-university-research-center-concealed-its-relationship-with-jeffrey-epstein" target="_blank">New Yorker: MIT Concealment</a>
+    </div>
+
+    <!-- Manhattan Project Lineage -->
+    <div class="ccard" style="border-top:3px solid var(--border2);">
+      <span class="ccard-tier"><span class="tier tier-3">TIER 3</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,255,255,.04);border:1px solid var(--border2);">&#9883;</div>
+        <div>
+          <div class="ccard-title">Manhattan Project Institutional Lineage</div>
+          <div class="ccard-date">1943 &ndash; Present</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        The institutions at the center of this overlap &mdash; <strong>Los Alamos, Caltech, the Santa Fe Institute</strong> &mdash; share a common ancestor: the <strong>Manhattan Project</strong>. LANL was built for the bomb. Caltech supplied key physicists. SFI was founded by LANL alumni to continue interdisciplinary physics research. Epstein&rsquo;s science funding targeted this lineage specifically &mdash; not random universities, but the institutions descended from America&rsquo;s most consequential classified weapons program. The scientists on this site who worked at these institutions inherited that lineage and the clearances that come with it.
+      </div>
+      <div class="ccard-intersection">
+        Epstein didn&rsquo;t fund science broadly. He funded the Manhattan Project&rsquo;s institutional descendants &mdash; the exact ecosystem where classified defense research and the dead scientists converge.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag lab">LANL</span>
+        <span class="tag institution">CALTECH</span>
+        <span class="tag institution">SFI</span>
+        <span class="tag gov">CLASSIFIED LINEAGE</span>
+      </div>
+    </div>
+
+  </div><!-- /tier 3 cgrid -->
+
+  <!-- BOTTOM LINE -->
+  <div class="bottom-line">
+    <h3>The Bottom Line</h3>
+    <p>No direct link between Jeffrey Epstein and any individual dead or missing scientist has been established. But the institutional overlap is <strong>systemic, not incidental</strong>. Epstein&rsquo;s $12.9M+ in known science funding &mdash; plus an unknown amount routed through shell companies &mdash; flowed into the exact institutions where these scientists worked: <strong>Harvard, Caltech/JPL, MIT, Santa Fe Institute, and the Los Alamos ecosystem</strong>. His intelligence-adjacent network had the means to map who worked on what. Whether this overlap is coincidence or infrastructure depends on questions that Epstein&rsquo;s death in a federal detention center ensured would never be answered under oath.</p>
+  </div>
+
+</div><!-- /canvas -->
+
+<footer>
+  <p><a href="index.html">Home</a> &middot; <a href="timeline.html">Timeline</a> &middot; <a href="developments.html">Developments</a> &middot; <a href="candidates.html">Candidates</a> &middot; <a href="china.html">China</a> &middot; <a href="coincidences.html">"Coincidences"</a> &middot; <a href="epstein.html">Epstein</a> &middot; <a href="disclosure.html">Disclosure</a></p>
+  <p style="margin-top:8px;">&copy; 2026 whokilledthescientists.com &middot; open-source investigation</p>
+  <p style="margin-top:4px;"><a href="legal.html" style="color:var(--ink3);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;">Legal Disclaimer</a></p>
+</footer>
+<script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
