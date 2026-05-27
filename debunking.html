@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The "Debunking" — Who Killed The Scientists?</title>
+<meta name="description" content="Every official dismissal, fact-check, counternarrative — and what they leave out.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--card:#0e0f16;--ink:#ffffff;--ink2:#e0e2f0;--ink3:#c0c4d8;
+  --border:#1e2030;--border2:#2a2e48;
+  --pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;
+  --green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);flex-wrap:wrap;justify-content:center;}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;white-space:nowrap;}
+.site-nav a:hover{color:var(--ink);text-decoration:none;}
+.site-nav a.active{color:var(--teal);}
+.site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--teal);border-radius:1px;}
+
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,245,212,.06),transparent 70%);pointer-events:none;}
+header h1{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:clamp(32px,5.75vw,62px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 60px rgba(0,245,212,.25),0 0 120px rgba(0,245,212,.08);position:relative;}
+header h1 span{color:var(--teal);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+
+.canvas{padding:32px 40px 64px;max-width:1100px;margin:0 auto;}
+
+.intro{max-width:760px;margin:0 auto 40px;font-size:14px;color:var(--ink2);line-height:1.8;text-align:center;}
+.intro strong{color:var(--ink);}
+
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:44px;}
+.sh:first-child{margin-top:0;}
+.stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
+.sh h2{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:25px;font-weight:400;color:var(--ink);}
+.sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+
+.cgrid{display:flex;flex-direction:column;gap:16px;}
+
+.ccard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 24px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,border-color .2s;position:relative;}
+.ccard:hover{box-shadow:0 0 24px rgba(0,245,212,.08);border-color:rgba(0,245,212,.2);}
+
+.ccard-head{display:flex;align-items:center;gap:12px;}
+.ccard-icon{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ccard-title{font-family:"New Amsterdam",sans-serif;font-weight:700;font-size:23px;font-weight:400;color:var(--ink);line-height:1.25;}
+.ccard-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;}
+
+.ccard-source-label{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-top:2px;}
+
+.ccard-body{font-size:13px;color:var(--ink2);line-height:1.7;}
+.ccard-body strong{color:var(--ink);font-weight:600;}
+
+.ccard-gap{background:rgba(0,245,212,.04);border:1px solid rgba(0,245,212,.15);border-radius:4px;padding:10px 14px;font-size:12px;color:var(--teal);line-height:1.6;}
+.ccard-gap::before{content:"WHAT THIS DOESN\2019T ADDRESS ";font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:4px;opacity:.7;}
+
+.ccard-source{font-size:11px;color:var(--blue);display:inline-block;margin-top:2px;}
+
+.editorial-note{background:rgba(0,245,212,.03);border:1px solid rgba(0,245,212,.12);border-radius:8px;padding:20px 24px;margin-top:48px;font-size:13px;color:var(--ink2);line-height:1.8;}
+.editorial-note strong{color:var(--teal);}
+.editorial-note::before{content:"EDITORIAL NOTE";font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.12em;font-weight:600;color:var(--teal);display:block;margin-bottom:8px;}
+
+footer{background:#000;border-top:1px solid var(--border);padding:32px 40px;text-align:center;}
+footer p{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;line-height:1.8;}
+footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:underline;}
+
+@media(max-width:600px){
+  .canvas{padding:24px 16px 48px;}
+  header{padding:32px 16px 28px;}
+  .site-nav{padding:0 8px;}
+  .site-nav a{padding:10px 10px;font-size:9px;}
+  .ccard{padding:16px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="developments.html">Developments</a>
+  <a href="candidates.html">Candidates</a>
+  <a href="china.html">China</a>
+  <a href="coincidences.html">"Coincidences"</a>
+  <a href="epstein.html">Epstein</a>
+  <a href="disclosure.html">Disclosure</a>
+  <a href="antigravity.html">Antigravity</a>
+  <a href="debunking.html" class="active">Debunking</a>
+</nav>
+
+<header>
+  <h1>The <span>"Debunking"</span></h1>
+  <div class="tagline">every official dismissal &middot; fact-check &middot; counternarrative &middot; and what they leave out</div>
+</header>
+
+<div class="canvas">
+  <p class="intro">
+    Officials say the cases are unrelated. Media says it&rsquo;s apophenia. Experts say it&rsquo;s noise. Below is <strong>every major claim made to dismiss or explain</strong> the deaths and disappearances of defense scientists &mdash; presented in full, with attribution, alongside what each claim fails to address.
+  </p>
+
+  <!-- SECTION 1: Official Agency Responses -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--teal);box-shadow:0 0 8px var(--teal);"></div>
+    <div><h2>Official Agency Responses</h2>
+    <div class="sub">What the government says &mdash; and what it leaves out</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- 1. NASA -->
+    <div class="ccard" style="border-top:3px solid var(--teal);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,245,212,.12);border:1px solid rgba(0,245,212,.4);">&#127760;</div>
+        <div>
+          <div class="ccard-title">NASA: "Nothing indicates a national security threat"</div>
+          <div class="ccard-date">April 25, 2026 &middot; Spokesperson Bethany Stevens</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        NASA spokesperson Bethany Stevens stated that <strong>"nothing indicates a national security threat"</strong> in relation to the deaths and disappearances of scientists connected to the agency. The statement was issued without elaboration or reference to specific cases.
+      </div>
+      <div class="ccard-gap">
+        Four NASA-connected scientists are dead. Zero public statements have been issued about any of them individually. No autopsies have been disclosed for Hicks or Maiwald. The agency has not explained what review, if any, it conducted before issuing this blanket assurance.
+      </div>
+    </div>
+
+    <!-- 2. DOD -->
+    <div class="ccard" style="border-top:3px solid var(--teal);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,245,212,.12);border:1px solid rgba(0,245,212,.4);">&#9733;</div>
+        <div>
+          <div class="ccard-title">DOD: "No active national security investigations"</div>
+          <div class="ccard-date">April 27, 2026 &middot; Response to House Oversight</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        The Department of Defense told the House Oversight Committee that there are <strong>"no active national security investigations"</strong> related to the scientist cases. The response was reportedly brief and did not address individual cases.
+      </div>
+      <div class="ccard-gap">
+        Retired Maj. Gen. William McCasland &mdash; former DOD, former commander of the Air Force Research Laboratory &mdash; remains missing. Matthew Sullivan, who served at NASIC (a DOD intelligence center), died before scheduled UAP testimony. The DOD response does not address either case.
+      </div>
+    </div>
+
+    <!-- 3. FBI / Loureiro -->
+    <div class="ccard" style="border-top:3px solid var(--teal);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,245,212,.12);border:1px solid rgba(0,245,212,.4);">&#128270;</div>
+        <div>
+          <div class="ccard-title">FBI: Loureiro killing "personal, no terrorism nexus"</div>
+          <div class="ccard-date">April 29, 2026 &middot; Re: Valente</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        According to the FBI, the killing of <strong>Dr. Daniel Loureiro</strong> by his former student was "personal" in nature with <strong>"no terrorism nexus."</strong> The Bureau characterized the motive as interpersonal rather than connected to Loureiro&rsquo;s work.
+      </div>
+      <div class="ccard-gap">
+        The Bureau acknowledged that only the shooter, Valente, knew the full motive &mdash; and Valente is dead. Loureiro was the director of MIT&rsquo;s Plasma Science and Fusion Center, one of the most sensitive fusion research positions in the United States. The FBI has not explained how it ruled out a work-related motive with certainty when the only person who knew the motive is no longer alive.
+      </div>
+    </div>
+
+    <!-- 4. Bernalillo County Sheriff -->
+    <div class="ccard" style="border-top:3px solid var(--teal);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,245,212,.12);border:1px solid rgba(0,245,212,.4);">&#9872;</div>
+        <div>
+          <div class="ccard-title">Bernalillo County Sheriff: "No evidence" linking McCasland to classified work</div>
+          <div class="ccard-date">April 25, 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        The Bernalillo County Sheriff&rsquo;s office stated there is <strong>"no evidence"</strong> connecting Gen. McCasland&rsquo;s disappearance to his classified work history. The department treated the case as a standard missing person investigation.
+      </div>
+      <div class="ccard-gap">
+        McCasland was the executive secretary of SAPOC (Special Access Program Oversight Committee), with visibility over every classified DOD program. His wife said he "planned not to be found." He left behind his wallet and revolver. A county sheriff&rsquo;s office does not have the clearance or resources to evaluate whether a disappearance is connected to classified work &mdash; that determination lies with the FBI and intelligence community.
+      </div>
+    </div>
+
+    <!-- 5. FBI Director Patel -->
+    <div class="ccard" style="border-top:3px solid var(--teal);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,245,212,.12);border:1px solid rgba(0,245,212,.4);">&#9201;</div>
+        <div>
+          <div class="ccard-title">FBI Director Patel: "Final report" coming "in short order"</div>
+          <div class="ccard-date">April 30, 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        FBI Director Kash Patel stated publicly that a <strong>"final report"</strong> on the scientist cases would be released <strong>"in short order."</strong> No timeline was specified. No interim findings were shared.
+      </div>
+      <div class="ccard-gap">
+        It is now May 27, 2026 &mdash; nearly four weeks later. No report has been released. No updated timeline has been given. No explanation for the delay has been offered. The phrase "in short order" has become, itself, a data point.
+      </div>
+    </div>
+
+  </div><!-- /official cgrid -->
+
+  <!-- SECTION 2: Media Debunking -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--orange);box-shadow:0 0 8px var(--orange);"></div>
+    <div><h2>Media Debunking</h2>
+    <div class="sub">What major outlets say &mdash; and what they omit</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- 6. Scientific American -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#128200;</div>
+        <div>
+          <div class="ccard-title">Scientific American: Statistics explain the clustering</div>
+          <div class="ccard-date">May 7, 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Scientific American published an article citing mathematician David Hand&rsquo;s <strong>"improbability principle"</strong> to argue that seemingly unlikely clusters of events are statistically expected in large populations. The article suggests the scientist deaths and disappearances are a product of coincidence amplified by pattern-seeking minds.
+      </div>
+      <div class="ccard-gap">
+        The clustering is not just statistical &mdash; it is geographic (Huntsville x4, New Mexico x4, JPL x3), temporal (February&ndash;April 2026), and occupational (classified defense, nuclear, UAP-adjacent). A proper statistical analysis would need to control for these variables simultaneously. The article does not attempt this. Saying "unlikely things happen" is not the same as showing that this specific combination of geography, timing, and field of work falls within expected variance.
+      </div>
+    </div>
+
+    <!-- 7. PolitiFact -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#9989;</div>
+        <div>
+          <div class="ccard-title">PolitiFact: "No evidence linking cases"</div>
+          <div class="ccard-date">April 28, 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        PolitiFact rated claims of a connection between the scientist cases as lacking evidence, stating there is <strong>"no evidence linking"</strong> the individual deaths and disappearances.
+      </div>
+      <div class="ccard-gap">
+        Absence of evidence is not evidence of absence &mdash; particularly when autopsies were not performed in several cases, causes of death have not been disclosed, multiple people remain missing, and the FBI&rsquo;s own investigation is still active. PolitiFact is rating the claim before the investigation has concluded.
+      </div>
+    </div>
+
+    <!-- 8. Snopes -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#128269;</div>
+        <div>
+          <div class="ccard-title">Snopes: "Purely conjecture"</div>
+          <div class="ccard-date">April 28, 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        According to Snopes, claims connecting the scientist cases are <strong>"purely conjecture"</strong> with no verified evidence of a coordinated pattern. The article characterizes the narrative as internet-driven speculation.
+      </div>
+      <div class="ccard-gap">
+        The FBI itself confirmed it is "spearheading the effort to look for connections" between the cases. If the pattern is "purely conjecture," why is the nation&rsquo;s top law enforcement agency investigating it? Snopes does not reconcile its assessment with the FBI&rsquo;s active probe.
+      </div>
+    </div>
+
+    <!-- 9. The Atlantic -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#128240;</div>
+        <div>
+          <div class="ccard-title">The Atlantic: "Unbelievably dumb"</div>
+          <div class="ccard-date">Daniel Engber</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        The Atlantic&rsquo;s Daniel Engber dismissed the scientist cases as <strong>"unbelievably dumb,"</strong> characterizing the narrative as a product of conspiratorial thinking disconnected from reality.
+      </div>
+      <div class="ccard-gap">
+        The same story Engber calls "unbelievably dumb" prompted the White House, FBI, and House Oversight Committee to launch investigations. Congress called it a "national security threat." An editorial opinion about the intelligence of a question is not a rebuttal of its substance.
+      </div>
+    </div>
+
+    <!-- 10. CNN -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#128250;</div>
+        <div>
+          <div class="ccard-title">CNN: "From the fringe to the White House"</div>
+          <div class="ccard-date">April 30, 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        CNN traced the missing scientists narrative from its origins with independent researcher Dark Journalist to its adoption by the White House, framing the story as a journey <strong>"from the fringe to the White House."</strong> The piece focused heavily on the provenance of the claims rather than their content.
+      </div>
+      <div class="ccard-gap">
+        Whether a story originates on the "fringe" does not determine its validity. The Pentagon Papers were also dismissed before they weren&rsquo;t. The Watergate break-in was "third-rate" before it toppled a presidency. CNN&rsquo;s focus on origin rather than substance is a genetic fallacy.
+      </div>
+    </div>
+
+    <!-- 11. Rolling Stone -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#127928;</div>
+        <div>
+          <div class="ccard-title">Rolling Stone: "Conspiracy theories" framing</div>
+          <div class="ccard-date">2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Rolling Stone covered the scientist cases using <strong>"conspiracy theories"</strong> framing, positioning the narrative as part of a broader culture of conspiratorial thinking rather than evaluating the individual cases on their merits.
+      </div>
+      <div class="ccard-gap">
+        The story was adopted by Congress, the FBI, and the White House &mdash; all of which launched investigations. Labeling something a "conspiracy theory" is not analysis. When three branches of institutional power are investigating the same pattern, the label becomes the deflection, not the description.
+      </div>
+    </div>
+
+  </div><!-- /media cgrid -->
+
+  <!-- SECTION 3: Expert Dismissals -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--purple);box-shadow:0 0 8px var(--purple);"></div>
+    <div><h2>Expert Dismissals</h2>
+    <div class="sub">What the experts say &mdash; and their limitations</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- 12. Coffindaffer -->
+    <div class="ccard" style="border-top:3px solid var(--purple);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(206,0,224,.12);border:1px solid rgba(206,0,224,.4);">&#128373;</div>
+        <div>
+          <div class="ccard-title">Retired FBI agent Jennifer Coffindaffer: Claims "fall apart under basic investigative principles"</div>
+          <div class="ccard-date">Newsweek</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        According to retired FBI agent Jennifer Coffindaffer, the connections between the scientist cases <strong>"fall apart under basic investigative principles."</strong> She characterized the cases as <strong>"standalone incidents"</strong> that do not form a meaningful pattern.
+      </div>
+      <div class="ccard-gap">
+        Coffindaffer is a retired agent with no access to the current investigation, its evidence, or its classified components. The active FBI team &mdash; which does have access &mdash; has not released findings. Her assessment is based on publicly available information, which is, by definition, incomplete.
+      </div>
+    </div>
+
+    <!-- 13. Shermer -->
+    <div class="ccard" style="border-top:3px solid var(--purple);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(206,0,224,.12);border:1px solid rgba(206,0,224,.4);">&#128300;</div>
+        <div>
+          <div class="ccard-title">Michael Shermer (Skeptic Magazine): "Patterns in random noise"</div>
+          <div class="ccard-date">2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Michael Shermer, publisher of Skeptic Magazine, dismissed the scientist cases as <strong>"patterns in random noise"</strong> &mdash; the human tendency to see meaningful connections in unrelated data.
+      </div>
+      <div class="ccard-gap">
+        The "noise" includes: four people walking away from New Mexico homes without phones, four deaths in Huntsville&rsquo;s aerospace corridor, a two-star general who vanished four days after a UAP executive order, and an MIT fusion center director shot on his doorstep. Calling data "noise" is an assertion, not a demonstration. Shermer does not engage with the specifics of any individual case.
+      </div>
+    </div>
+
+    <!-- 14. Bartholomew -->
+    <div class="ccard" style="border-top:3px solid var(--purple);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(206,0,224,.12);border:1px solid rgba(206,0,224,.4);">&#129504;</div>
+        <div>
+          <div class="ccard-title">Robert Bartholomew: "Apophenia"</div>
+          <div class="ccard-date">Wikipedia source</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Sociologist Robert Bartholomew characterized the pattern-finding in the scientist cases as <strong>"apophenia"</strong> &mdash; the tendency to perceive meaningful connections between unrelated things. His analysis was cited as a primary source in Wikipedia&rsquo;s article on the topic.
+      </div>
+      <div class="ccard-gap">
+        Professional investigators &mdash; the FBI and Congress &mdash; found enough merit to launch formal probes. Apophenia is a psychological label, not a rebuttal. It describes a cognitive tendency; it does not demonstrate that the tendency is operative in this specific case. Labeling pattern recognition as a disorder does not invalidate the pattern.
+      </div>
+    </div>
+
+  </div><!-- /expert cgrid -->
+
+  <!-- SECTION 4: Wikipedia -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--blue);box-shadow:0 0 8px var(--blue);"></div>
+    <div><h2>Wikipedia</h2>
+    <div class="sub">The encyclopedia&rsquo;s editorial framing</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- 15. Wikipedia -->
+    <div class="ccard" style="border-top:3px solid var(--blue);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(0,187,249,.12);border:1px solid rgba(0,187,249,.4);">&#127760;</div>
+        <div>
+          <div class="ccard-title">Wikipedia: "Missing scientists conspiracy theory"</div>
+          <div class="ccard-date">Ongoing</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Wikipedia&rsquo;s article on the topic is titled <strong>"Missing scientists conspiracy theory."</strong> It uses "apophenia" and "random noise" framing drawn primarily from Shermer and Bartholomew. The article treats the conspiracy framing as the default lens through which all facts are presented.
+      </div>
+      <div class="ccard-gap">
+        Wikipedia&rsquo;s own article acknowledges the FBI is actively investigating. The title "conspiracy theory" is an editorial choice made before the investigation has concluded. Wikipedia policy requires neutral point of view &mdash; labeling an active federal investigation a "conspiracy theory" in the title is an editorial determination, not an encyclopedic one.
+      </div>
+    </div>
+
+  </div><!-- /wikipedia cgrid -->
+
+  <!-- SECTION 5: Family Statements -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--pink);box-shadow:0 0 8px var(--pink);"></div>
+    <div><h2>Family Statements</h2>
+    <div class="sub">What families say &mdash; and the limits of individual perspective</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- 16. TMZ Families -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#128106;</div>
+        <div>
+          <div class="ccard-title">TMZ: Families call connections "a bunch of silliness"</div>
+          <div class="ccard-date">April 23, 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        TMZ reported that families of <strong>Casias, Grillmair, Hicks, and Thomas</strong> said the cases are not connected, with one family member calling the speculation <strong>"a bunch of silliness."</strong> The families expressed frustration with public attention and conspiracy narratives.
+      </div>
+      <div class="ccard-gap">
+        These families may not have full information about other cases, classified work histories, or the FBI investigation. Individual family statements about individual circumstances do not &mdash; and cannot &mdash; address the pattern across all cases. Grief and frustration are understandable; they are not investigative conclusions.
+      </div>
+    </div>
+
+    <!-- 17. Thomas wife -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#128148;</div>
+        <div>
+          <div class="ccard-title">Jason Thomas's wife: "Probably not connected"</div>
+          <div class="ccard-date">2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        The wife of <strong>Jason Thomas</strong> (Sandia National Laboratories) stated the cases are <strong>"probably not connected"</strong> and that her husband had been distraught following the deaths of both his parents.
+      </div>
+      <div class="ccard-gap">
+        Her account of his emotional state may explain a contributing factor, but it does not address the specific circumstances of his disappearance: why he left without a coat or gloves in winter, why he placed his Apple Watch in the mailbox (a deliberate, purposeful act), and why his body was found in a lake. Emotional distress and external coercion are not mutually exclusive.
+      </div>
+    </div>
+
+  </div><!-- /family cgrid -->
+
+  <!-- SECTION 6: Trump Administration -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--yellow);box-shadow:0 0 8px var(--yellow);"></div>
+    <div><h2>Trump Administration</h2>
+    <div class="sub">What the president says &mdash; and its internal contradictions</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- 18. Trump -->
+    <div class="ccard" style="border-top:3px solid var(--yellow);">
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(225,255,0,.12);border:1px solid rgba(225,255,0,.4);">&#127463;</div>
+        <div>
+          <div class="ccard-title">Trump: "Not much of a connection"</div>
+          <div class="ccard-date">May 1, 2026</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        President Trump stated publicly that there is <strong>"not much of a connection"</strong> between the scientist cases. The remark was made without citation of evidence or reference to the FBI&rsquo;s investigation.
+      </div>
+      <div class="ccard-gap">
+        This contradicts his own administration&rsquo;s FBI probe, launched days earlier under Director Patel. No evidence was cited for the claim. The statement was made before the FBI investigation concluded. If the president has information that rules out connections, it has not been shared with the public or, reportedly, with Congress.
+      </div>
+    </div>
+
+  </div><!-- /trump cgrid -->
+
+  <!-- Editorial Note -->
+  <div class="editorial-note">
+    <strong>This page documents what officials, media, and experts have said to dismiss or explain the cases.</strong> We present these claims in full and note what each one fails to address. We do not accept official narratives as fact &mdash; particularly while investigations remain active, autopsies remain undisclosed, and people remain missing.
+  </div>
+
+</div><!-- /canvas -->
+
+<footer>
+  <p><a href="index.html">Home</a> &middot; <a href="timeline.html">Timeline</a> &middot; <a href="developments.html">Developments</a> &middot; <a href="candidates.html">Candidates</a> &middot; <a href="china.html">China</a> &middot; <a href="coincidences.html">"Coincidences"</a> &middot; <a href="epstein.html">Epstein</a> &middot; <a href="disclosure.html">Disclosure</a> &middot; <a href="antigravity.html">Antigravity</a> &middot; <a href="debunking.html">Debunking</a></p>
+  <p style="margin-top:8px;">&copy; 2026 whokilledthescientists.com &middot; open-source investigation</p>
+  <p style="margin-top:4px;"><a href="legal.html" style="color:var(--ink3);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;">Legal Disclaimer</a></p>
+</footer>
+<script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

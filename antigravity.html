@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antigravity — Who Killed The Scientists?</title>
+<meta name="description" content="A century of antigravity research, the Huntsville nexus, and the scientists who went silent. From T.T. Brown's 1920s experiments to the 2026 missing scientists crisis.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--card:#0e0f16;--ink:#ffffff;--ink2:#e0e2f0;--ink3:#c0c4d8;
+  --border:#1e2030;--border2:#2a2e48;
+  --pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;
+  --green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);flex-wrap:wrap;justify-content:center;}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;white-space:nowrap;}
+.site-nav a:hover{color:var(--ink);text-decoration:none;}
+.site-nav a.active{color:var(--purple);}
+.site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--purple);border-radius:1px;}
+
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(206,0,224,.08),transparent 70%);pointer-events:none;}
+header h1{font-family:"New Amsterdam",sans-serif;font-size:clamp(32px,5.75vw,62px);font-weight:400;color:#fff;letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 60px rgba(206,0,224,.3),0 0 120px rgba(206,0,224,.1);position:relative;}
+header h1 span{color:var(--purple);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+
+.canvas{padding:32px 40px 64px;max-width:1200px;margin:0 auto;}
+
+.intro{max-width:820px;margin:0 auto 40px;font-size:14px;color:var(--ink2);line-height:1.8;text-align:center;}
+.intro strong{color:var(--ink);}
+
+/* Section headers */
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:52px;}
+.sh:first-child{margin-top:0;}
+.stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
+.sh h2{font-family:"New Amsterdam",sans-serif;font-size:25px;font-weight:400;color:var(--ink);}
+.sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+
+/* Stat bar */
+.stat-bar{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:8px;position:relative;}
+.stat{text-align:center;}
+.stat .num{font-family:"New Amsterdam",sans-serif;font-size:52px;line-height:1;text-shadow:0 0 20px currentColor;}
+.stat .lbl{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:4px;}
+
+/* Key figures grid */
+.kf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.kf-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s,border-color .2s;position:relative;}
+.kf-card:hover{box-shadow:0 0 24px rgba(206,0,224,.1);border-color:rgba(206,0,224,.25);}
+.kf-card.dead{border-top:3px solid var(--pink);}
+.kf-card.missing{border-top:3px solid var(--orange);}
+.kf-card.alive{border-top:3px solid var(--green);}
+.kf-card.classified{border-top:3px solid var(--purple);}
+.kf-status{position:absolute;top:14px;right:14px;}
+.kf-pill{font-family:"DM Mono",monospace;font-size:9px;padding:2px 8px;border-radius:2px;font-weight:500;letter-spacing:.05em;}
+.kf-pill.dead{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.5);}
+.kf-pill.missing{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.5);}
+.kf-pill.alive{background:rgba(14,251,34,.08);color:var(--green);border:1px solid rgba(14,251,34,.3);}
+.kf-pill.classified{background:rgba(206,0,224,.12);color:var(--purple);border:1px solid rgba(206,0,224,.35);}
+.kf-name{font-family:"New Amsterdam",sans-serif;font-size:22px;font-weight:400;color:var(--ink);line-height:1.2;padding-right:80px;}
+.kf-years{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.06em;}
+.kf-role{font-size:12px;color:var(--ink2);line-height:1.5;}
+.kf-detail{font-size:11px;color:var(--ink3);line-height:1.6;border-top:1px solid var(--border);padding-top:8px;margin-top:4px;}
+.kf-detail strong{color:var(--ink2);font-weight:500;}
+.kf-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+.tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 7px;border-radius:2px;letter-spacing:.02em;}
+.tag.huntsville{background:rgba(206,0,224,.12);color:var(--purple);border:1px solid rgba(206,0,224,.35);}
+.tag.uap{background:rgba(206,0,224,.12);color:var(--purple);border:1px solid rgba(206,0,224,.35);}
+.tag.dod{background:rgba(14,251,34,.08);color:var(--green);border:1px solid rgba(14,251,34,.25);}
+.tag.navy{background:rgba(0,187,249,.08);color:var(--blue);border:1px solid rgba(0,187,249,.25);}
+.tag.nasa{background:rgba(0,187,249,.08);color:var(--blue);border:1px solid rgba(0,187,249,.25);}
+.tag.death{background:rgba(255,32,110,.1);color:var(--pink);border:1px solid rgba(255,32,110,.3);}
+.tag.classified{background:rgba(255,139,51,.1);color:var(--orange);border:1px solid rgba(255,139,51,.3);}
+
+/* Timeline */
+.tl{position:relative;padding-left:32px;}
+.tl::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:2px;background:var(--border2);}
+.tl-item{position:relative;padding:0 0 28px 0;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{position:absolute;left:-27px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid var(--purple);background:var(--bg);}
+.tl-item.highlight .tl-dot{background:var(--purple);box-shadow:0 0 12px rgba(206,0,224,.5);}
+.tl-item.red .tl-dot{border-color:var(--pink);}.tl-item.red.highlight .tl-dot{background:var(--pink);box-shadow:0 0 12px rgba(255,32,110,.5);}
+.tl-item.orange .tl-dot{border-color:var(--orange);}.tl-item.orange.highlight .tl-dot{background:var(--orange);box-shadow:0 0 12px rgba(255,139,51,.5);}
+.tl-item.green .tl-dot{border-color:var(--green);}.tl-item.green.highlight .tl-dot{background:var(--green);box-shadow:0 0 12px rgba(14,251,34,.5);}
+.tl-year{font-family:"DM Mono",monospace;font-size:12px;color:var(--purple);letter-spacing:.06em;font-weight:500;}
+.tl-item.red .tl-year{color:var(--pink);}.tl-item.orange .tl-year{color:var(--orange);}.tl-item.green .tl-year{color:var(--green);}
+.tl-text{font-size:13px;color:var(--ink2);line-height:1.6;margin-top:2px;}
+
+/* Companies chart */
+.chart-bar{display:flex;flex-direction:column;gap:8px;}
+.bar-row{display:flex;align-items:center;gap:12px;}
+.bar-label{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);width:180px;text-align:right;flex-shrink:0;letter-spacing:.02em;}
+.bar-track{flex:1;height:24px;background:rgba(206,0,224,.06);border-radius:3px;position:relative;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--purple),rgba(206,0,224,.6));display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-family:"DM Mono",monospace;font-size:9px;color:#fff;letter-spacing:.04em;min-width:40px;}
+
+/* Suppression pattern */
+.cycle{display:flex;flex-direction:column;gap:0;max-width:700px;}
+.cycle-step{display:flex;align-items:stretch;gap:0;}
+.cycle-num{width:48px;display:flex;align-items:center;justify-content:center;font-family:"New Amsterdam",sans-serif;font-size:28px;color:var(--purple);flex-shrink:0;position:relative;}
+.cycle-num::after{content:"";position:absolute;bottom:0;left:50%;width:2px;height:100%;background:var(--border2);z-index:0;}
+.cycle-step:last-child .cycle-num::after{display:none;}
+.cycle-num span{position:relative;z-index:1;background:var(--bg);padding:4px 0;}
+.cycle-body{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px 18px;flex:1;margin:4px 0;}
+.cycle-body strong{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink);display:block;margin-bottom:2px;}
+.cycle-body p{font-size:12px;color:var(--ink3);line-height:1.5;}
+
+/* Assessment */
+.assess-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.assess-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 22px;}
+.assess-box.high{border-top:3px solid var(--green);}
+.assess-box.low{border-top:3px solid var(--orange);}
+.assess-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+.assess-box.high .assess-label{color:var(--green);}
+.assess-box.low .assess-label{color:var(--orange);}
+.assess-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.assess-list li{font-size:12px;color:var(--ink2);line-height:1.6;padding-left:16px;position:relative;}
+.assess-list li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;}
+.assess-box.high .assess-list li::before{background:var(--green);}
+.assess-box.low .assess-list li::before{background:var(--orange);}
+
+/* Core tension */
+.tension{background:var(--card);border:1px solid rgba(206,0,224,.25);border-radius:8px;padding:28px 32px;margin-top:24px;position:relative;overflow:hidden;}
+.tension::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(206,0,224,.06),transparent 70%);pointer-events:none;}
+.tension p{font-size:14px;color:var(--ink2);line-height:1.8;position:relative;}
+.tension p+p{margin-top:12px;}
+.tension strong{color:var(--ink);}
+
+/* Map */
+#huntsville-map{width:100%;height:400px;border-radius:8px;border:1px solid var(--border);margin-bottom:8px;}
+.map-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;}
+.map-leg{display:flex;align-items:center;gap:6px;font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);}
+.map-leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+/* Conspiracy theory cards */
+.ct-grid{display:flex;flex-direction:column;gap:16px;}
+.ct-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 24px;transition:box-shadow .2s,border-color .2s;}
+.ct-card:hover{box-shadow:0 0 24px rgba(206,0,224,.08);border-color:rgba(206,0,224,.2);}
+.ct-title{font-family:"New Amsterdam",sans-serif;font-size:21px;font-weight:400;color:var(--ink);margin-bottom:8px;}
+.ct-body{font-size:12px;color:var(--ink2);line-height:1.7;}
+.ct-body strong{color:var(--ink);font-weight:500;}
+.ct-evidence{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.ct-for,.ct-against{font-size:11px;line-height:1.6;padding:10px 14px;border-radius:4px;}
+.ct-for{background:rgba(14,251,34,.04);border:1px solid rgba(14,251,34,.15);color:var(--ink2);}
+.ct-for::before{content:"SUPPORTING";font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.1em;color:var(--green);display:block;margin-bottom:4px;font-weight:600;}
+.ct-against{background:rgba(255,32,110,.04);border:1px solid rgba(255,32,110,.15);color:var(--ink2);}
+.ct-against::before{content:"COUNTER-EVIDENCE";font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.1em;color:var(--pink);display:block;margin-bottom:4px;font-weight:600;}
+
+/* 2026 crisis table */
+.crisis-table{width:100%;border-collapse:collapse;font-size:12px;}
+.crisis-table th{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:10px 14px;border-bottom:2px solid var(--border2);font-weight:500;}
+.crisis-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+.crisis-table tr:hover td{background:rgba(206,0,224,.03);}
+.crisis-table .name{color:var(--ink);font-weight:500;}
+
+footer{background:#000;border-top:1px solid var(--border);padding:32px 40px;text-align:center;}
+footer p{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;line-height:1.8;}
+footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:underline;}
+
+@media(max-width:768px){
+  .site-nav{padding:0 8px;}.site-nav a{padding:10px 10px;font-size:9px;}
+  .canvas{padding:24px 16px 48px;}
+  .kf-grid{grid-template-columns:1fr;}
+  .assess-grid{grid-template-columns:1fr;}
+  .ct-evidence{grid-template-columns:1fr;}
+  .bar-label{width:100px;font-size:9px;}
+  .stat-bar{gap:20px;}
+  .stat .num{font-size:38px;}
+  #huntsville-map{height:280px;}
+  .tension{padding:20px 18px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="developments.html">Developments</a>
+  <a href="candidates.html">Candidates</a>
+  <a href="china.html">China</a>
+  <a href="coincidences.html">"Coincidences"</a>
+  <a href="epstein.html">Epstein</a>
+  <a href="disclosure.html">Disclosure</a>
+  <a href="antigravity.html" class="active">Antigravity</a>
+  <a href="debunking.html">Debunking</a>
+</nav>
+
+<header>
+  <h1>The <span>Antigravity</span> File</h1>
+  <div class="tagline">100 years of research &middot; the Huntsville nexus &middot; the scientists who went silent</div>
+</header>
+
+<div class="canvas">
+
+<!-- Stats -->
+<div style="margin-bottom:32px;">
+<div class="stat-bar">
+  <div class="stat"><div class="num" style="color:var(--purple);">100+</div><div class="lbl">Years of research</div></div>
+  <div class="stat"><div class="num" style="color:var(--blue);">14</div><div class="lbl">Aerospace companies (1950s)</div></div>
+  <div class="stat"><div class="num" style="color:var(--green);">$22M</div><div class="lbl">DIA/AAWSAP budget</div></div>
+  <div class="stat"><div class="num" style="color:var(--pink);">5</div><div class="lbl">Dead antigravity researchers</div></div>
+  <div class="stat"><div class="num" style="color:var(--orange);">1</div><div class="lbl">Missing general</div></div>
+</div>
+</div>
+
+<p class="intro">
+  Antigravity &mdash; the idea that gravity can be shielded, modified, or reversed through technological means &mdash; has occupied a strange twilight zone between mainstream physics and classified military research for over a century. <strong>Dozens of major aerospace corporations openly researched gravity control in the 1950s, then went completely silent overnight.</strong> Pentagon grants went to university physicists who then vanished behind security clearances. Navy engineers filed patents for &ldquo;craft using inertial mass reduction devices.&rdquo; And a growing list of researchers in the field have died or disappeared under circumstances that have drawn FBI investigation and congressional scrutiny.
+</p>
+
+<!-- ==================== 1950s COMPANIES CHART ==================== -->
+<div class="sh"><div class="stripe" style="background:var(--blue);"></div><div><h2>The 1950s Antigravity Boom</h2><div class="sub">14 major companies &middot; all went silent by 1960</div></div></div>
+
+<p style="font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:20px;">According to the 1956 classified report <strong style="color:var(--ink);">&ldquo;Electrogravitics Systems&rdquo;</strong> (GRG-013/56), produced by Aviation Studies International and later declassified in 1990, the following companies were actively researching antigravity:</p>
+
+<div class="chart-bar">
+  <div class="bar-row"><div class="bar-label">Glenn L. Martin Co.</div><div class="bar-track"><div class="bar-fill" style="width:100%;">RIAS Institute</div></div></div>
+  <div class="bar-row"><div class="bar-label">Convair</div><div class="bar-track"><div class="bar-fill" style="width:90%;">Multiple rigs</div></div></div>
+  <div class="bar-row"><div class="bar-label">Bell Aircraft</div><div class="bar-track"><div class="bar-fill" style="width:75%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Lear Inc.</div><div class="bar-track"><div class="bar-fill" style="width:70%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Sperry-Rand</div><div class="bar-track"><div class="bar-fill" style="width:70%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Douglas Aircraft</div><div class="bar-track"><div class="bar-fill" style="width:65%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Lockheed</div><div class="bar-track"><div class="bar-fill" style="width:65%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">General Electric</div><div class="bar-track"><div class="bar-fill" style="width:60%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Boeing</div><div class="bar-track"><div class="bar-fill" style="width:60%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Sikorsky</div><div class="bar-track"><div class="bar-fill" style="width:55%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Clark Electronics</div><div class="bar-track"><div class="bar-fill" style="width:50%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Hiller</div><div class="bar-track"><div class="bar-fill" style="width:45%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Northrop</div><div class="bar-track"><div class="bar-fill" style="width:45%;"></div></div></div>
+  <div class="bar-row"><div class="bar-label">Curtiss-Wright</div><div class="bar-track"><div class="bar-fill" style="width:40%;"></div></div></div>
+</div>
+
+<p style="font-size:12px;color:var(--ink3);line-height:1.7;margin-top:16px;font-style:italic;">George S. Trimble, VP for Aviation and Advanced Propulsion at Glenn L. Martin, publicly stated in 1955: &ldquo;Unlimited power, freedom from gravitational attraction, and infinitely short travel time are now becoming feasible.&rdquo; In 1954, Aviation Report predicted &ldquo;the first discs should be complete before 1960.&rdquo; <strong style="color:var(--ink2);">Between 1958 and 1960, all public conversation vanished &mdash; no explanation offered, no breakthrough announced.</strong></p>
+
+
+<!-- ==================== KEY FIGURES ==================== -->
+<div class="sh"><div class="stripe" style="background:var(--purple);"></div><div><h2>Key Figures</h2><div class="sub">Researchers, whistleblowers, and the classified ecosystem</div></div></div>
+
+<div class="kf-grid">
+
+<!-- Ning Li -->
+<div class="kf-card dead">
+  <div class="kf-status"><span class="kf-pill dead">Dead</span></div>
+  <div class="kf-name">Dr. Ning Li</div>
+  <div class="kf-years">1943 &ndash; 2021</div>
+  <div class="kf-role">Chinese-American physicist at UAH's Center for Space Plasma and Aeronomic Research. World's leading researcher in superconductivity-based gravity modification.</div>
+  <div class="kf-detail">
+    <strong>Theory:</strong> Rotating ions in a high-temperature superconducting disc (HTSD) could generate a gravitomagnetic field strong enough to neutralize gravity. Told Popular Mechanics: &ldquo;A bowling ball placed anywhere above this disc would stay exactly where you left it.&rdquo;<br><br>
+    <strong>The DOD Grant:</strong> AC Gravity LLC received $448,970 from DOD in 2001. No results were ever published. Her son says she continued antigravity research for DOD after obtaining a top secret clearance &mdash; she simply could not discuss her work.<br><br>
+    <strong>End:</strong> Struck by a vehicle on the UAH campus in 2014, causing permanent brain damage. Diagnosed with Alzheimer's. Died July 27, 2021. Her work is directly cited in DIA Defense Intelligence Reference Document #14.
+  </div>
+  <div class="kf-tags">
+    <span class="tag huntsville">Huntsville</span>
+    <span class="tag dod">DOD Grant</span>
+    <span class="tag classified">Top Secret</span>
+    <span class="tag death">Hit by car</span>
+  </div>
+</div>
+
+<!-- Amy Eskridge -->
+<div class="kf-card dead">
+  <div class="kf-status"><span class="kf-pill dead">Dead</span></div>
+  <div class="kf-name">Amy Eskridge</div>
+  <div class="kf-years">1987 &ndash; 2022</div>
+  <div class="kf-role">Chemist, entrepreneur, and antigravity researcher. Graduated UAH, enrolled in Material Science PhD. Father was a retired NASA Marshall plasma physics engineer.</div>
+  <div class="kf-detail">
+    <strong>Claims:</strong> &ldquo;We discovered antigravity, and our lives went to [expletive] and people started sabotaging us.&rdquo; Co-founded the Institute for Exotic Science to publicly disclose antigravity technology.<br><br>
+    <strong>Before death:</strong> Texted a former British intelligence officer: &ldquo;If you see any report that I killed myself, I most definitely did not.&rdquo; Reported being struck by a directed energy weapon, stalked by a man in a Lexus with changing plates, and receiving daily death threats.<br><br>
+    <strong>Death:</strong> Officially ruled suicide by self-inflicted gunshot wound on June 11, 2022, age 34. No police reports, autopsy findings, or coroner's statements have been publicly released.
+  </div>
+  <div class="kf-tags">
+    <span class="tag huntsville">Huntsville</span>
+    <span class="tag nasa">NASA Marshall</span>
+    <span class="tag death">Ruled suicide</span>
+  </div>
+</div>
+
+<!-- McCasland -->
+<div class="kf-card missing">
+  <div class="kf-status"><span class="kf-pill missing">Missing</span></div>
+  <div class="kf-name">Maj. Gen. William Neil McCasland</div>
+  <div class="kf-years">b. ~1958</div>
+  <div class="kf-role">33 years in the U.S. Air Force. Commander of AFRL at Wright-Patterson AFB. Director of Special Programs at OSD AT&amp;L &mdash; one of the most sensitive positions in the DoD acquisition hierarchy.</div>
+  <div class="kf-detail">
+    <strong>DeLonge connection:</strong> In a 2016 WikiLeaks email to John Podesta, Tom DeLonge wrote: &ldquo;When Roswell crashed, they shipped it to the laboratory at Wright Patterson Air Force Base. General McCasland was in charge of that exact laboratory up to a couple years ago.&rdquo;<br><br>
+    <strong>Disappearance:</strong> Left his Albuquerque home on Feb 27, 2026 &mdash; 7 days after Trump's UAP disclosure order. Left behind his phone and prescription glasses. Took his wallet, hiking boots, and a .38-caliber revolver. FBI joined the search. No evidence of foul play found.
+  </div>
+  <div class="kf-tags">
+    <span class="tag classified">SAP Access</span>
+    <span class="tag uap">UAP Gatekeeper</span>
+    <span class="tag dod">Wright-Patterson</span>
+  </div>
+</div>
+
+<!-- Mark McCandlish -->
+<div class="kf-card dead">
+  <div class="kf-status"><span class="kf-pill dead">Dead</span></div>
+  <div class="kf-name">Mark McCandlish</div>
+  <div class="kf-years">1952 &ndash; 2021</div>
+  <div class="kf-role">Aerospace illustrator. Created detailed technical drawings of the alleged &ldquo;Alien Reproduction Vehicle&rdquo; (ARV) or &ldquo;Fluxliner&rdquo; based on claimed eyewitness accounts from Norton AFB in 1988.</div>
+  <div class="kf-detail">
+    <strong>Testimony:</strong> Testified at the 2001 Disclosure Project at the National Press Club and presented at the Alternative Propulsion Engineering Conference in 2020.<br><br>
+    <strong>Death:</strong> Found dead April 13, 2021, in Redding, California. Ruled suicide by self-inflicted shotgun wound. Friends claimed he was about to provide testimony for a Senate UFO/UAP meeting.
+  </div>
+  <div class="kf-tags">
+    <span class="tag uap">ARV / Fluxliner</span>
+    <span class="tag death">Ruled suicide</span>
+  </div>
+</div>
+
+<!-- T.T. Brown -->
+<div class="kf-card classified">
+  <div class="kf-status"><span class="kf-pill classified">Classified</span></div>
+  <div class="kf-name">Thomas Townsend Brown</div>
+  <div class="kf-years">1905 &ndash; 1985</div>
+  <div class="kf-role">Founding figure of antigravity research. Discovered anomalous forces on charged X-ray tubes in the 1920s. Filed first antigravity patent in 1927.</div>
+  <div class="kf-detail">
+    <strong>Demonstrations:</strong> ~1953, conducted classified demonstration for military officials &mdash; 3-foot-diameter discs tethered to a central pole, energized with 150,000 volts, reaching speeds of several hundred miles per hour. Subject reportedly classified afterward.<br><br>
+    <strong>Legacy:</strong> Mainstream science attributes effects to ionic wind (electrohydrodynamics). Brown claimed his effects persisted in vacuum. Spent later years in obscurity. Proponents note his most promising work was classified.
+  </div>
+  <div class="kf-tags">
+    <span class="tag navy">Naval Research Lab</span>
+    <span class="tag classified">Classified 1953</span>
+  </div>
+</div>
+
+<!-- Podkletnov -->
+<div class="kf-card alive">
+  <div class="kf-status"><span class="kf-pill alive">Alive</span></div>
+  <div class="kf-name">Eugene Podkletnov</div>
+  <div class="kf-years">b. ~1955</div>
+  <div class="kf-role">Russian ceramics engineer at Tampere University, Finland. Claimed 0.05&ndash;0.3% weight reduction above a rotating YBCO superconducting disc in 1992.</div>
+  <div class="kf-detail">
+    <strong>Controversy:</strong> Co-author disavowed the paper, lab director distanced the institution, and Podkletnov was expelled from his lab. All subsequent replication attempts &mdash; by NASA Marshall, U of Toronto, and BAE Systems &mdash; failed.<br><br>
+    <strong>Impact:</strong> Despite failed replications, his claims attracted Boeing (GRASP program), BAE Systems (Project Greenglow), and the British Ministry of Defence.
+  </div>
+  <div class="kf-tags">
+    <span class="tag nasa">NASA Marshall tested</span>
+    <span class="tag death">Fired / discredited</span>
+  </div>
+</div>
+
+<!-- Salvatore Pais -->
+<div class="kf-card alive">
+  <div class="kf-status"><span class="kf-pill alive">Alive</span></div>
+  <div class="kf-name">Salvatore Cezar Pais</div>
+  <div class="kf-years">Active 2015&ndash;2023</div>
+  <div class="kf-role">Navy aerospace engineer who filed the &ldquo;UFO patents&rdquo; &mdash; including a &ldquo;Craft using an inertial mass reduction device&rdquo; that could purportedly &ldquo;engineer the fabric of our reality.&rdquo;</div>
+  <div class="kf-detail">
+    <strong>CTO intervention:</strong> Patent was initially rejected but granted after James Sheehy, the Navy's chief technology officer, warned the USPTO that &ldquo;the Chinese military were developing similar technology.&rdquo;<br><br>
+    <strong>Testing:</strong> The Navy spent $500K+ testing the &ldquo;Pais Effect&rdquo; from 2016&ndash;2019. NAWCAD concluded &ldquo;the effect could not be proven.&rdquo; Patent expired in 2023 due to non-payment.
+  </div>
+  <div class="kf-tags">
+    <span class="tag navy">U.S. Navy</span>
+    <span class="tag uap">UFO Patents</span>
+  </div>
+</div>
+
+<!-- David Grusch -->
+<div class="kf-card alive">
+  <div class="kf-status"><span class="kf-pill alive">Alive</span></div>
+  <div class="kf-name">David Grusch</div>
+  <div class="kf-years">Active 2023&ndash;present</div>
+  <div class="kf-role">Former intelligence officer. Testified before Congress in July 2023 that he &ldquo;was informed in the course of my official duties of a multi-decade UAP crash retrieval and reverse-engineering program.&rdquo;</div>
+  <div class="kf-detail">
+    <strong>Implications:</strong> While not using the term &ldquo;antigravity,&rdquo; his testimony implied exotic propulsion &mdash; stating recovered craft &ldquo;may not be traveling through space as we understand it&rdquo; and referencing &ldquo;additional spatial dimensions.&rdquo;<br><br>
+    <strong>Official response:</strong> AARO's March 2024 report found &ldquo;no verifiable evidence&rdquo; supporting his claims.
+  </div>
+  <div class="kf-tags">
+    <span class="tag uap">Congressional testimony</span>
+    <span class="tag dod">Intelligence community</span>
+  </div>
+</div>
+
+<!-- Ben Rich -->
+<div class="kf-card dead">
+  <div class="kf-status"><span class="kf-pill dead">Dead</span></div>
+  <div class="kf-name">Ben Rich</div>
+  <div class="kf-years">1925 &ndash; 1995</div>
+  <div class="kf-role">Second director of Lockheed's Skunk Works. Multiple statements attributed to him suggest knowledge of exotic propulsion technology.</div>
+  <div class="kf-detail">
+    <strong>Attributed quote:</strong> &ldquo;Jim, we have things out in the desert that are fifty years beyond what you can comprehend.&rdquo; A letter from model kit designer John Andrews claims Rich responded that he believed &ldquo;there are two types of UFOs, the ones we build, and the ones they build.&rdquo;<br><br>
+    <strong>Caveat:</strong> Rich's &ldquo;E.T. back home&rdquo; line was explicitly a running joke in his presentations, and researcher Norio Hayakawa has argued Rich has been &ldquo;erroneously misquoted by the UFO community.&rdquo;
+  </div>
+  <div class="kf-tags">
+    <span class="tag classified">Skunk Works</span>
+    <span class="tag uap">Disputed quotes</span>
+  </div>
+</div>
+
+</div><!-- /kf-grid -->
+
+
+<!-- ==================== HUNTSVILLE MAP ==================== -->
+<div class="sh"><div class="stripe" style="background:var(--pink);"></div><div><h2>The Huntsville Nexus</h2><div class="sub">Two antigravity researchers &middot; same city &middot; same institutions &middot; both dead within a year</div></div></div>
+
+<div id="huntsville-map"></div>
+<div class="map-legend">
+  <div class="map-leg"><div class="map-leg-dot" style="background:var(--pink);"></div>Death / incident location</div>
+  <div class="map-leg"><div class="map-leg-dot" style="background:var(--purple);"></div>Research institution</div>
+  <div class="map-leg"><div class="map-leg-dot" style="background:var(--blue);"></div>Military / government</div>
+</div>
+
+<div class="tension" style="margin-top:20px;">
+  <p>Both <strong>Ning Li</strong> and <strong>Amy Eskridge</strong> operated in the same ecosystem &mdash; both based in Huntsville, both connected to UAH and NASA Marshall, both researching antigravity, both dying under circumstances that attracted public scrutiny, roughly a year apart.</p>
+  <p>Huntsville, Alabama is the epicenter of American antigravity research. NASA Marshall Space Flight Center, the University of Alabama in Huntsville, and the U.S. Army's Redstone Arsenal all converge there, creating a unique ecosystem where mainstream aerospace engineering intersects with exotic propulsion research.</p>
+</div>
+
+
+<!-- ==================== GOV PROGRAMS ==================== -->
+<div class="sh"><div class="stripe" style="background:var(--green);"></div><div><h2>Government Programs</h2><div class="sub">Official research efforts from 1948 to present</div></div></div>
+
+<div class="ct-grid">
+
+<div class="ct-card">
+  <div class="ct-title">Gravity Research Foundation (1948&ndash;Present)</div>
+  <div class="ct-body">Founded by Roger W. Babson after his sister drowned &mdash; he blamed gravity. Initially an essay contest for &ldquo;anti-gravity devices,&rdquo; it evolved into a legitimate scientific competition. <strong>At least six future Nobel laureates have won the prize</strong>, including Stephen Hawking (1971), Roger Penrose (1975), and Frank Wilczek. The essay prize is still awarded as of 2025.</div>
+</div>
+
+<div class="ct-card">
+  <div class="ct-title">NASA Breakthrough Propulsion Physics (1996&ndash;2002)</div>
+  <div class="ct-body">Led by Marc G. Millis at NASA Glenn Research Center. Investigated warp drives, wormholes, quantum vacuum fluctuations, and gravity-electromagnetism interactions. <strong>Total investment: $1.554 million over seven years.</strong> The program selected five external projects, two in-house tasks, and one minor grant. Cancelled in 2002 when the Advanced Space Transportation Program was reorganized. No breakthroughs achieved.</div>
+</div>
+
+<div class="ct-card">
+  <div class="ct-title">BAE Systems Project Greenglow (1990s&ndash;2000s)</div>
+  <div class="ct-body">British Aerospace investigated whether antigravity could be used to levitate objects and aircraft. The British Ministry of Defence specifically asked the team to investigate Podkletnov's claims. <strong>Podkletnov's work was not replicated.</strong> Greenglow concluded in the mid-2000s with no practical gravity-control device produced.</div>
+</div>
+
+<div class="ct-card">
+  <div class="ct-title">Boeing GRASP Program (Early 2000s)</div>
+  <div class="ct-body">Boeing's Phantom Works ran <strong>GRASP &mdash; Gravity Research for Advanced Space Propulsion</strong> &mdash; to evaluate Podkletnov's gravity shielding claims. The company attempted to recruit Podkletnov directly but ran into Russian technology transfer restrictions. Boeing acknowledged the project's existence but denied funding it with company money, noting they could not comment on &ldquo;black projects.&rdquo;</div>
+</div>
+
+<div class="ct-card">
+  <div class="ct-title">DIA/AAWSAP Advanced Propulsion Studies (2007&ndash;2012)</div>
+  <div class="ct-body">The Advanced Aerospace Weapon Systems Applications Program, initiated by Senator Harry Reid with a <strong>$22 million DIA budget</strong>, produced 38 Defense Intelligence Reference Documents through Bigelow Aerospace Advanced Space Studies. Released via FOIA in 2022, these included papers on:
+    <br><br>&bull; Warp Drive, Dark Energy, and the Manipulation of Extra Dimensions
+    <br>&bull; <strong>Antigravity for Aerospace Applications</strong>
+    <br>&bull; <strong>The Role of Superconductors in Gravity Research</strong> (citing Ning Li's work)
+    <br>&bull; Advanced Space Propulsion Based on Vacuum Engineering
+    <br>&bull; High-Frequency Gravitational Wave Generation and Detection
+  </div>
+</div>
+
+<div class="ct-card">
+  <div class="ct-title">Navy &ldquo;UFO Patents&rdquo; &mdash; Salvatore Pais (2015&ndash;2023)</div>
+  <div class="ct-body">Pais filed patents including a &ldquo;Craft using an inertial mass reduction device&rdquo; (US10144532B2). Initially rejected by the USPTO, the patent was granted only after <strong>the Navy's chief technology officer intervened</strong>, warning that &ldquo;the Chinese military were developing similar technology.&rdquo; The Navy spent over $500,000 testing the &ldquo;Pais Effect&rdquo; from 2016&ndash;2019. <strong>NAWCAD concluded &ldquo;the effect could not be proven.&rdquo;</strong> Patent expired in 2023.</div>
+</div>
+
+<div class="ct-card">
+  <div class="ct-title">DARPA Casimir Effect &amp; the Warp Bubble (2020s)</div>
+  <div class="ct-body">DARPA launched a <strong>$10 million program</strong> to manipulate the Casimir effect &mdash; a quantum electrodynamic force. In 2021, Dr. Harold &ldquo;Sonny&rdquo; White (formerly of NASA Eagleworks) reported accidentally identifying a nano-scale structure predicted to generate negative vacuum energy density &mdash; a &ldquo;real nanoscale warp bubble.&rdquo; Published in the European Physical Journal. As of May 2026, a startup called Casimir launched with a <strong>$12 million seed round</strong> to develop a &ldquo;quantum energy chip&rdquo; based on Casimir cavity structures.</div>
+</div>
+
+</div>
+
+
+<!-- ==================== SUPPRESSION PATTERN ==================== -->
+<div class="sh"><div class="stripe" style="background:var(--orange);"></div><div><h2>The Suppression Pattern</h2><div class="sub">A recurring cycle identified by proponents</div></div></div>
+
+<div class="cycle">
+  <div class="cycle-step">
+    <div class="cycle-num"><span>1</span></div>
+    <div class="cycle-body">
+      <strong>Breakthrough</strong>
+      <p>A researcher makes a breakthrough in unconventional propulsion</p>
+    </div>
+  </div>
+  <div class="cycle-step">
+    <div class="cycle-num"><span>2</span></div>
+    <div class="cycle-body">
+      <strong>Military Interest</strong>
+      <p>The work attracts military or intelligence community interest</p>
+    </div>
+  </div>
+  <div class="cycle-step">
+    <div class="cycle-num"><span>3</span></div>
+    <div class="cycle-body">
+      <strong>Classification</strong>
+      <p>The research is classified &mdash; the scientist stops publishing</p>
+    </div>
+  </div>
+  <div class="cycle-step">
+    <div class="cycle-num"><span>4</span></div>
+    <div class="cycle-body">
+      <strong>Silenced</strong>
+      <p>The scientist is discredited, marginalized, disappears, or dies under suspicious circumstances</p>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:16px;font-size:12px;color:var(--ink3);line-height:1.7;">
+  <strong style="color:var(--ink2);">Cases cited:</strong> Brown (classified, marginalized) &bull; Podkletnov (fired, discredited) &bull; Ning Li (classified, hit by car) &bull; Eskridge (dead, ruled suicide) &bull; McCandlish (dead, ruled suicide before Senate testimony)
+</div>
+
+
+<!-- ==================== CONSPIRACY THEORIES ==================== -->
+<div class="sh"><div class="stripe" style="background:var(--yellow);"></div><div><h2>The Leading Theories</h2><div class="sub">What proponents claim &middot; What the evidence shows</div></div></div>
+
+<div class="ct-grid">
+
+<div class="ct-card">
+  <div class="ct-title">Antigravity Was Solved in the 1950s and Classified</div>
+  <div class="ct-evidence">
+    <div class="ct-for">The 1956 &ldquo;Electrogravitics Systems&rdquo; report confirms industry-wide research. George Trimble's public statements suggest confidence in near-term success. Brown's classified 1953 demonstration indicates military interest. Paul LaViolette claims the B-2 bomber incorporates electrogravitic principles.</div>
+    <div class="ct-against">The military classifies many avenues of research that ultimately prove unproductive. The Biefeld-Brown effect has been attributed to ionic wind by every independent test. No physical evidence of a working antigravity device has surfaced in 70 years.</div>
+  </div>
+</div>
+
+<div class="ct-card">
+  <div class="ct-title">The TR-3B &ldquo;Black Triangle&rdquo;</div>
+  <div class="ct-evidence">
+    <div class="ct-for">Edgar Fouche, a former USAF electronics specialist, described a 600-foot triangular craft using a &ldquo;Magnetic Field Disrupter&rdquo; &mdash; mercury pressurized to 250,000 atmospheres and spun at 50,000 RPM. The 1989&ndash;1990 Belgian triangle wave, with 2,600+ reports and Belgian Air Force radar contacts, is frequently cited.</div>
+    <div class="ct-against">Fouche has been labeled a hoaxer by multiple researchers. No verifiable photograph, radar return, or physical evidence of a TR-3B has ever been produced.</div>
+  </div>
+</div>
+
+<div class="ct-card">
+  <div class="ct-title">Die Glocke (The Nazi Bell)</div>
+  <div class="ct-evidence">
+    <div class="ct-for">Described in Igor Witkowski's 2000 book as a bell-shaped device ~9 feet wide, filled with &ldquo;Xerum-525,&rdquo; with counter-rotating cylinders. Nick Cook's 2002 book &ldquo;The Hunt for Zero Point&rdquo; traced antigravity research from Nazi Germany to the U.S. through Operation Paperclip.</div>
+    <div class="ct-against">No independent researcher has ever verified the source documents. The evidence is extraordinarily thin &mdash; no artifacts, no authentic blueprints, no reliable eyewitness accounts. Cook himself later walked back his claims, stating he is now &ldquo;confident that Die Glocke was just a part of Germany's burgeoning nuclear weapons program.&rdquo;</div>
+  </div>
+</div>
+
+<div class="ct-card">
+  <div class="ct-title">Reverse-Engineered UFO Technology</div>
+  <div class="ct-evidence">
+    <div class="ct-for">Grusch testified about &ldquo;multi-decade crash retrieval and reverse-engineering programs.&rdquo; Luis Elizondo has alleged recovered non-human craft. Bob Lazar claimed in 1989 to have worked at Area 51's S-4 facility on alien craft using gravity propulsion.</div>
+    <div class="ct-against">AARO's March 2024 report found &ldquo;no verifiable evidence&rdquo; of these programs, concluding that claims are &ldquo;in large part, the result of circular reporting from a group of individuals who believe this to be the case.&rdquo; The Pentagon briefly contemplated &ldquo;Project Kona Blue&rdquo; to reverse-engineer alien technology, but DHS leadership rejected it for &ldquo;lacking merit.&rdquo;</div>
+  </div>
+</div>
+
+</div>
+
+
+<!-- ==================== 2026 CRISIS TABLE ==================== -->
+<div class="sh"><div class="stripe" style="background:var(--pink);"></div><div><h2>The 2026 &ldquo;Missing Scientists&rdquo; Crisis</h2><div class="sub">11+ cases &middot; FBI investigation &middot; Congressional probe</div></div></div>
+
+<p style="font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:16px;">Beginning with McCasland's disappearance on February 27, 2026 &mdash; seven days after Trump's UAP disclosure order &mdash; a broader pattern was identified connecting 11+ deaths and disappearances of researchers with ties to classified work.</p>
+
+<div style="overflow-x:auto;">
+<table class="crisis-table">
+  <thead>
+    <tr><th>Name</th><th>Affiliation</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="name">William Neil McCasland</td><td>USAF Major General, AFRL Commander</td><td><span class="kf-pill missing">Missing since Feb 27, 2026</span></td></tr>
+    <tr><td class="name">Amy Eskridge</td><td>Institute for Exotic Science</td><td><span class="kf-pill dead">Dead, June 11, 2022 (ruled suicide)</span></td></tr>
+    <tr><td class="name">Ning Li</td><td>AC Gravity LLC / DOD</td><td><span class="kf-pill dead">Dead, July 27, 2021 (after 2014 car accident)</span></td></tr>
+    <tr><td class="name">Mark McCandlish</td><td>Aerospace illustrator / ARV testimony</td><td><span class="kf-pill dead">Dead, April 13, 2021 (ruled suicide)</span></td></tr>
+    <tr><td class="name">Monica Jacinto Reza</td><td>NASA/JPL scientist</td><td><span class="kf-pill dead">Dead</span></td></tr>
+    <tr><td class="name">Steven Garcia</td><td>Government contractor</td><td><span class="kf-pill dead">Dead</span></td></tr>
+    <tr><td class="name">Carl Grillmair</td><td>Caltech astrophysicist</td><td><span class="kf-pill dead">Dead</span></td></tr>
+    <tr><td class="name">Nuno Loureiro</td><td>MIT fusion/plasma physicist</td><td><span class="kf-pill dead">Murdered (FBI says personal crime)</span></td></tr>
+    <tr><td class="name">Frank Maiwald</td><td>NASA/JPL engineer</td><td><span class="kf-pill dead">Dead</span></td></tr>
+    <tr><td class="name">Melissa Casias &amp; Anthony Chavez</td><td>Los Alamos National Laboratory</td><td><span class="kf-pill dead">Dead</span></td></tr>
+    <tr><td class="name">Michael David Hicks</td><td>NASA researcher</td><td><span class="kf-pill dead">Dead</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+
+<!-- ==================== TIMELINE ==================== -->
+<div class="sh"><div class="stripe" style="background:var(--purple);"></div><div><h2>Master Timeline</h2><div class="sub">1921 &ndash; 2026 &middot; a century of antigravity research</div></div></div>
+
+<div class="tl">
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">~1921</div><div class="tl-text">T.T. Brown observes anomalous forces on charged X-ray tubes as an Ohio high school student</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1927</div><div class="tl-text">Brown files first antigravity patent: &ldquo;Method of Producing Force or Motion&rdquo;</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1948</div><div class="tl-text">Roger Babson establishes the Gravity Research Foundation</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1952</div><div class="tl-text">Brown drafts Project Winterhaven; Cady investigation attributes effect to ionic wind</div></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><div class="tl-year">1953</div><div class="tl-text">Brown conducts classified demonstration for military officials &mdash; 3-foot discs at several hundred mph</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1954</div><div class="tl-text">Aviation Report predicts antigravity discs &ldquo;before 1960&rdquo;</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1955</div><div class="tl-text">George Trimble publicly predicts imminent gravity control</div></div>
+  <div class="tl-item green highlight"><div class="tl-dot"></div><div class="tl-year">1956</div><div class="tl-text">&ldquo;Electrogravitics Systems&rdquo; classified report produced; &ldquo;G-Engines Are Coming!&rdquo; published in Young Men magazine</div></div>
+  <div class="tl-item red highlight"><div class="tl-dot"></div><div class="tl-year">1958&ndash;60</div><div class="tl-text">All public discussion of gravity control abruptly ceases &mdash; no explanation, no breakthrough announced</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1983</div><div class="tl-text">Ning Li emigrates to the United States from China</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1990</div><div class="tl-text">&ldquo;Electrogravitics Systems&rdquo; report declassified</div></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><div class="tl-year">1991&ndash;93</div><div class="tl-text">Ning Li publishes groundbreaking papers on superconductor-gravity coupling at UAH</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1992</div><div class="tl-text">Podkletnov publishes first gravity shielding claim (0.3% weight reduction)</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1994</div><div class="tl-text">Alcubierre publishes warp drive metric</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Mid-1990s</div><div class="tl-text">BAE Systems begins Project Greenglow</div></div>
+  <div class="tl-item red"><div class="tl-dot"></div><div class="tl-year">1996</div><div class="tl-text">Podkletnov's 2% claim leaks; he is fired. NASA BPP program begins</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1997</div><div class="tl-text">Li co-authors Physica C paper with NASA Marshall employees (null result)</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1999</div><div class="tl-text">Li leaves UAH, founds AC Gravity LLC</div></div>
+  <div class="tl-item green highlight"><div class="tl-dot"></div><div class="tl-year">2001</div><div class="tl-text">AC Gravity receives $448,970 DOD grant; McCandlish testifies at Disclosure Project</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2002</div><div class="tl-text">Grant period ends &mdash; no results published. Nick Cook publishes The Hunt for Zero Point. NASA BPP cancelled</div></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><div class="tl-year">2003</div><div class="tl-text">Li presents at MITRE with Redstone Arsenal co-author; claims &ldquo;11 kW output effect&rdquo; &mdash; then goes completely silent</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Early 2000s</div><div class="tl-text">Boeing GRASP program; Li obtains top secret clearance</div></div>
+  <div class="tl-item green"><div class="tl-dot"></div><div class="tl-year">2007</div><div class="tl-text">AAWSAP program begins at DIA ($22M budget)</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2008&ndash;10</div><div class="tl-text">38 DIRDs produced on exotic propulsion, antigravity, warp drives</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2012</div><div class="tl-text">Harold White reduces Alcubierre drive energy requirement</div></div>
+  <div class="tl-item red highlight"><div class="tl-dot"></div><div class="tl-year">2014</div><div class="tl-text">Ning Li struck by vehicle on UAH campus &mdash; permanent brain damage</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2015</div><div class="tl-text">Li's husband dies; Pais begins filing &ldquo;UFO patents&rdquo;</div></div>
+  <div class="tl-item orange highlight"><div class="tl-dot"></div><div class="tl-year">2016</div><div class="tl-text">DeLonge emails Podesta about McCasland (WikiLeaks): &ldquo;He was in charge of that exact laboratory&rdquo;</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2016&ndash;19</div><div class="tl-text">Navy spends $500K+ testing Pais Effect; concludes it cannot be proven</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2018</div><div class="tl-text">Eskridge presents antigravity history at Huntsville Alabama L5 Society; Pais patent granted after CTO intervention</div></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><div class="tl-year">2020</div><div class="tl-text">Eskridge: &ldquo;We discovered antigravity, and our lives went to shit&rdquo;</div></div>
+  <div class="tl-item red highlight"><div class="tl-dot"></div><div class="tl-year">Apr 2021</div><div class="tl-text">Mark McCandlish found dead &mdash; ruled suicide by shotgun. Friends say he was about to testify before the Senate</div></div>
+  <div class="tl-item red highlight"><div class="tl-dot"></div><div class="tl-year">Jul 2021</div><div class="tl-text">Ning Li dies at age 78 after years of Alzheimer's following the 2014 accident</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2021</div><div class="tl-text">Harold White discovers nano-scale warp bubble (published in European Physical Journal)</div></div>
+  <div class="tl-item red highlight"><div class="tl-dot"></div><div class="tl-year">Jun 2022</div><div class="tl-text">Amy Eskridge found dead at age 34 &mdash; ruled suicide. DIA releases 37 DIRDs via FOIA</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2023</div><div class="tl-text">Pais patent expires; Grusch testifies before Congress about crash retrieval programs</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Mar 2024</div><div class="tl-text">AARO finds &ldquo;no verifiable evidence&rdquo; of reverse-engineering programs</div></div>
+  <div class="tl-item green highlight"><div class="tl-dot"></div><div class="tl-year">Feb 20, 2026</div><div class="tl-text">Trump issues UAP disclosure executive order</div></div>
+  <div class="tl-item orange highlight"><div class="tl-dot"></div><div class="tl-year">Feb 27, 2026</div><div class="tl-text">McCasland disappears from Albuquerque &mdash; 7 days after the disclosure order</div></div>
+  <div class="tl-item green"><div class="tl-dot"></div><div class="tl-year">Apr 2026</div><div class="tl-text">FBI announces investigation into missing/dead scientists; Congress demands briefings</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">May 2026</div><div class="tl-text">Casimir startup launches with $12M for quantum energy chip; Pentagon releases 162 declassified UFO files</div></div>
+</div>
+
+
+<!-- ==================== ASSESSMENT ==================== -->
+<div class="sh"><div class="stripe" style="background:var(--teal);"></div><div><h2>Assessment</h2><div class="sub">What is documented vs. what remains unverified</div></div></div>
+
+<div class="assess-grid">
+  <div class="assess-box high">
+    <div class="assess-label">Documented [HIGH confidence]</div>
+    <ul class="assess-list">
+      <li>The U.S. military and 12+ major aerospace companies genuinely pursued antigravity research in the 1950s, as confirmed by the declassified &ldquo;Electrogravitics Systems&rdquo; report</li>
+      <li>All public discussion vanished between 1958&ndash;1960 with no explanation</li>
+      <li>Ning Li received $448,970 from the DOD, obtained a top secret clearance, and stopped publishing</li>
+      <li>The DIA produced reference documents on antigravity and superconductor-gravity research as part of AAWSAP</li>
+      <li>Boeing, BAE Systems, and Lockheed Martin pursued Podkletnov's gravity shielding claims</li>
+      <li>The Navy filed and then abandoned exotic &ldquo;UFO patents&rdquo; after $500K+ in failed testing</li>
+      <li>The FBI is investigating the 2026 &ldquo;missing scientists&rdquo; cases</li>
+    </ul>
+  </div>
+  <div class="assess-box low">
+    <div class="assess-label">Unverified [LOW&ndash;UNKNOWN confidence]</div>
+    <ul class="assess-list">
+      <li>That antigravity was &ldquo;solved&rdquo; and classified in the 1950s</li>
+      <li>That any functional antigravity technology exists</li>
+      <li>That the TR-3B, ARV/Fluxliner, or similar craft are real</li>
+      <li>That researcher deaths are connected to antigravity work</li>
+      <li>That a systematic suppression program exists</li>
+      <li>That reverse-engineered alien technology is being exploited</li>
+      <li>What Ning Li's DOD-funded research actually produced</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tension">
+  <p><strong>The Core Tension:</strong> The antigravity conspiracy theory rests on a genuine historical anomaly &mdash; a well-documented, industry-wide research effort in the 1950s that vanished overnight with no public explanation. Whether that disappearance reflects successful classification of a breakthrough or the quiet abandonment of a dead end remains the central unresolved question of this entire field.</p>
+  <p>The Huntsville nexus &mdash; where Ning Li, Amy Eskridge, Richard Eskridge, NASA Marshall, Redstone Arsenal, and the University of Alabama all converge &mdash; adds geographic concentration to this anomaly. <strong>Two antigravity researchers in the same small city, both connected to the same university and space center, both dying within a year of each other under circumstances that have drawn congressional scrutiny</strong>, represents either a meaningful pattern or a tragic coincidence.</p>
+  <p>McCasland's disappearance, seven days after a presidential disclosure order, from a man whose entire career was spent inside the most classified programs in the Air Force, adds another layer that no assessment can easily dismiss.</p>
+</div>
+
+</div><!-- /canvas -->
+
+<footer>
+  <p><a href="index.html">Who Killed The Scientists?</a> &mdash; A public research project</p>
+  <p>This page is a neutral repository of documented facts and attributed claims. It does not endorse any theory.</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// Huntsville Map
+const map = L.map('huntsville-map',{
+  center:[34.73,-86.585],
+  zoom:12,
+  zoomControl:true,
+  scrollWheelZoom:false
+});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains:'abcd',maxZoom:19
+}).addTo(map);
+
+function dot(color,size){
+  return L.divIcon({
+    className:'',
+    html:'<div style="width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:50%;border:2px solid #fff;box-shadow:0 0 12px '+color+';"></div>',
+    iconSize:[size,size],
+    iconAnchor:[size/2,size/2]
+  });
+}
+
+const locations = [
+  {lat:34.7254,lng:-86.6394,name:'University of Alabama in Huntsville (UAH)',sub:'Ning Li\'s lab &bull; Eskridge\'s PhD program &bull; CSPAR',color:'var(--purple)',type:'institution'},
+  {lat:34.6464,lng:-86.6652,name:'NASA Marshall Space Flight Center',sub:'Richard Eskridge (plasma physics) &bull; Podkletnov replication attempts',color:'var(--purple)',type:'institution'},
+  {lat:34.6834,lng:-86.6508,name:'Redstone Arsenal',sub:'U.S. Army AMCOM &bull; Li\'s 2003 MITRE presentation co-author',color:'var(--blue)',type:'military'},
+  {lat:34.7304,lng:-86.5861,name:'Ning Li &mdash; Hit by vehicle (2014)',sub:'UAH campus &mdash; permanent brain damage, led to Alzheimer\'s diagnosis',color:'var(--pink)',type:'death'},
+  {lat:34.7448,lng:-86.5887,name:'Amy Eskridge &mdash; Found dead (2022)',sub:'Ruled suicide by self-inflicted gunshot wound, age 34',color:'var(--pink)',type:'death'},
+  {lat:34.7200,lng:-86.6100,name:'AC Gravity LLC',sub:'Ning Li\'s company &bull; $448,970 DOD grant (2001)',color:'var(--purple)',type:'institution'},
+];
+
+locations.forEach(function(loc){
+  var c = loc.type==='death' ? '#FF206E' : loc.type==='military' ? '#00BBF9' : '#CE00E0';
+  var s = loc.type==='death' ? 16 : 14;
+  L.marker([loc.lat,loc.lng],{icon:dot(c,s)})
+    .addTo(map)
+    .bindPopup('<div style="font-family:DM Sans,sans-serif;"><strong style="font-size:13px;">'+loc.name+'</strong><br><span style="font-size:11px;color:#999;">'+loc.sub+'</span></div>',{className:'dark-popup'});
+});
+</script>
+<script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
