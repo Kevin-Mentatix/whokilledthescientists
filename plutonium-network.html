@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Plutonium Network — Who Killed The Scientists?</title>
+<meta name="description" content="5 companies. 11 scientists. 1 federal decision. Mapping the network between the DOE surplus plutonium program, PCAST advisors, and the dead or missing scientists.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--card:#0e0f16;--ink:#ffffff;--ink2:#e0e2f0;--ink3:#c0c4d8;
+  --border:#1e2030;--border2:#2a2e48;
+  --pink:#FF206E;--orange:#FF8B33;--yellow:#E1FF00;
+  --green:#0EFB22;--blue:#00BBF9;--teal:#00F5D4;--purple:#CE00E0;
+  --red:#ff3b3b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:"DM Sans",sans-serif;color:var(--ink);min-height:100vh;}
+a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
+
+.site-nav{background:#000;border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(0,0,0,.85);flex-wrap:wrap;justify-content:center;}
+.site-nav a{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 16px;transition:color .15s;position:relative;white-space:nowrap;}
+.site-nav a:hover{color:var(--ink);text-decoration:none;}
+.site-nav a.active{color:var(--yellow);}
+.site-nav a.active::after{content:"";position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--yellow);border-radius:1px;}
+
+header{background:#000;border-bottom:1px solid var(--border2);padding:48px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,32,110,.08),transparent 70%);pointer-events:none;}
+header h1{font-family:"New Amsterdam",sans-serif;font-weight:400;font-size:clamp(32px,5.75vw,62px);color:#fff;letter-spacing:-.01em;line-height:1.1;text-shadow:0 0 60px rgba(255,32,110,.25),0 0 120px rgba(255,32,110,.08);position:relative;}
+header h1 span{color:var(--pink);}
+.tagline{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink3);letter-spacing:.18em;text-transform:uppercase;margin-top:12px;position:relative;}
+
+.canvas{padding:32px 40px 64px;max-width:1100px;margin:0 auto;}
+
+.intro{max-width:760px;margin:0 auto 40px;font-size:14px;color:var(--ink2);line-height:1.8;text-align:center;}
+.intro strong{color:var(--ink);}
+
+/* Credit banner */
+.credit-banner{max-width:760px;margin:0 auto 40px;background:rgba(0,187,249,.06);border:1px solid rgba(0,187,249,.2);border-radius:8px;padding:14px 20px;text-align:center;font-size:13px;color:var(--ink2);line-height:1.6;}
+.credit-banner strong{color:var(--blue);}
+.credit-banner a{color:var(--blue);font-weight:600;}
+
+/* Expandable image */
+.img-expand-wrap{max-width:760px;margin:0 auto 40px;cursor:pointer;position:relative;}
+.img-expand-wrap img{width:100%;border-radius:8px;border:1px solid var(--border2);display:block;transition:opacity .15s;}
+.img-expand-label{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.85);border:1px solid var(--border2);border-radius:4px;padding:5px 12px;font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;pointer-events:none;transition:all .15s;}
+.img-expand-wrap:hover .img-expand-label{color:var(--yellow);border-color:rgba(225,255,0,.3);}
+.img-lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);cursor:zoom-out;overflow:auto;-webkit-overflow-scrolling:touch;}
+.img-lightbox.active{display:flex;align-items:center;justify-content:center;}
+.img-lightbox img{max-width:95vw;max-height:95vh;border-radius:8px;box-shadow:0 0 80px rgba(0,0,0,.8);}
+.img-lightbox-close{position:fixed;top:20px;right:24px;background:rgba(0,0,0,.8);border:1px solid var(--border2);border-radius:4px;color:var(--ink3);font-family:"DM Mono",monospace;font-size:11px;padding:6px 14px;cursor:pointer;z-index:10000;letter-spacing:.05em;}
+.img-lightbox-close:hover{color:var(--ink);border-color:var(--ink3);}
+
+/* Section headers */
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:44px;}
+.sh:first-child{margin-top:0;}
+.stripe{width:3px;border-radius:2px;flex-shrink:0;height:36px;}
+.sh h2{font-family:"New Amsterdam",sans-serif;font-weight:400;font-size:25px;color:var(--ink);}
+.sh .sub{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+
+/* Decision box */
+.decision-box{background:rgba(255,32,110,.06);border:2px solid rgba(255,32,110,.4);border-radius:10px;padding:28px 32px;text-align:center;margin-bottom:40px;position:relative;}
+.decision-box::before{content:"";position:absolute;inset:0;border-radius:10px;background:radial-gradient(ellipse at center,rgba(255,32,110,.08),transparent 70%);pointer-events:none;}
+.decision-label{font-family:"DM Mono",monospace;font-size:10px;color:var(--pink);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;font-weight:500;}
+.decision-title{font-family:"New Amsterdam",sans-serif;font-size:28px;font-weight:400;color:var(--ink);margin-bottom:6px;}
+.decision-stat{font-family:"DM Mono",monospace;font-size:13px;color:var(--ink2);letter-spacing:.03em;}
+.decision-stat strong{color:var(--pink);}
+
+/* Connection box */
+.connection-box{background:rgba(255,32,110,.04);border:2px solid rgba(255,32,110,.35);border-radius:10px;padding:28px 32px;margin-top:44px;position:relative;}
+.connection-box::before{content:"MAY 27, 2026 — THE DIRECT CONNECTION";font-family:"DM Mono",monospace;font-size:10px;color:var(--pink);letter-spacing:.15em;font-weight:600;display:block;margin-bottom:14px;}
+.connection-box p{font-size:14px;color:var(--ink2);line-height:1.8;}
+.connection-box strong{color:var(--ink);}
+
+/* Cards */
+.cgrid{display:flex;flex-direction:column;gap:16px;}
+
+.ccard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 24px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,border-color .2s;position:relative;}
+.ccard:hover{box-shadow:0 0 24px rgba(255,32,110,.08);border-color:rgba(255,32,110,.2);}
+
+.ccard-tier{position:absolute;top:16px;right:16px;}
+.tier{font-family:"DM Mono",monospace;font-size:9px;padding:2px 8px;border-radius:2px;font-weight:500;letter-spacing:.05em;}
+.tier-company{background:rgba(255,139,51,.15);color:var(--orange);border:1px solid rgba(255,139,51,.5);}
+.tier-figure{background:rgba(206,0,224,.12);color:var(--purple);border:1px solid rgba(206,0,224,.35);}
+.tier-deceased{background:rgba(255,32,110,.15);color:var(--pink);border:1px solid rgba(255,32,110,.5);}
+.tier-missing{background:rgba(225,255,0,.1);color:var(--yellow);border:1px solid rgba(225,255,0,.4);}
+.tier-fed{background:rgba(14,251,34,.08);color:var(--green);border:1px solid rgba(14,251,34,.25);}
+.tier-direct{background:var(--pink);color:#fff;border:1px solid var(--pink);}
+
+.ccard-head{display:flex;align-items:center;gap:12px;padding-right:80px;}
+.ccard-icon{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ccard-title{font-family:"New Amsterdam",sans-serif;font-weight:400;font-size:23px;color:var(--ink);line-height:1.25;}
+.ccard-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;}
+
+.ccard-body{font-size:13px;color:var(--ink2);line-height:1.7;}
+.ccard-body strong{color:var(--ink);font-weight:600;}
+.ccard-body ul{margin:6px 0 2px 18px;}
+.ccard-body li{margin-bottom:3px;}
+
+.ccard-intersection{background:rgba(225,255,0,.04);border:1px solid rgba(225,255,0,.15);border-radius:4px;padding:10px 14px;font-size:12px;color:var(--yellow);line-height:1.6;}
+.ccard-intersection::before{content:"INTERSECTION ";font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:4px;opacity:.7;}
+
+.ccard-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-family:"DM Mono",monospace;font-size:9px;padding:2px 7px;border-radius:2px;letter-spacing:.02em;}
+.tag.nuclear{background:rgba(255,139,51,.1);color:var(--orange);border:1px solid rgba(255,139,51,.3);}
+.tag.gov{background:rgba(14,251,34,.08);color:var(--green);border:1px solid rgba(14,251,34,.25);}
+.tag.death{background:rgba(255,32,110,.1);color:var(--pink);border:1px solid rgba(255,32,110,.3);}
+.tag.money{background:rgba(225,255,0,.08);color:var(--yellow);border:1px solid rgba(225,255,0,.2);}
+.tag.missing{background:rgba(206,0,224,.12);color:var(--purple);border:1px solid rgba(206,0,224,.35);}
+.tag.pcast{background:rgba(0,187,249,.08);color:var(--blue);border:1px solid rgba(0,187,249,.25);}
+
+/* Federal bodies */
+.fed-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.fed-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 22px;}
+.fed-card h3{font-family:"New Amsterdam",sans-serif;font-weight:400;font-size:21px;color:var(--ink);margin-bottom:4px;}
+.fed-label{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+.fed-card ul{font-size:12px;color:var(--ink2);line-height:1.7;list-style:none;padding:0;}
+.fed-card li::before{content:"\2022 ";color:var(--green);font-weight:bold;}
+
+/* Figures row */
+.figures-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.figure-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px 16px;text-align:center;}
+.figure-card:hover{border-color:rgba(206,0,224,.3);box-shadow:0 0 20px rgba(206,0,224,.08);}
+.figure-role{font-family:"DM Mono",monospace;font-size:9px;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.figure-name{font-family:"New Amsterdam",sans-serif;font-weight:400;font-size:21px;color:var(--ink);margin-bottom:6px;}
+.figure-detail{font-size:11px;color:var(--ink3);line-height:1.5;}
+
+/* Scientists grid */
+.sci-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.sci-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px 20px;position:relative;}
+.sci-card.deceased{border-top:3px solid var(--pink);}
+.sci-card.missing{border-top:3px solid var(--yellow);}
+.sci-status{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
+.sci-status.deceased{color:var(--pink);}
+.sci-status.missing{color:var(--yellow);}
+.sci-name{font-family:"New Amsterdam",sans-serif;font-weight:400;font-size:21px;color:var(--ink);margin-bottom:4px;}
+.sci-detail{font-size:12px;color:var(--ink3);line-height:1.6;}
+.sci-detail strong{color:var(--ink2);}
+.sci-badge{position:absolute;top:14px;right:14px;}
+
+/* Network map */
+.nmwrap{background:#000;padding:48px 40px 32px;}
+.nm-sh{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+#pnsvgwrap{width:100%;height:700px;position:relative;overflow:hidden;cursor:grab;background:#000;border:1px solid var(--border2);border-radius:6px;}
+#pnsvgwrap.drag{cursor:grabbing;}
+#pnsvg{position:absolute;top:0;left:0;width:100%;height:100%;}
+.pnedge{stroke-width:1.2px;fill:none;opacity:.3;transition:opacity .2s;}
+.pnedge.company{stroke:var(--orange);}.pnedge.pcast{stroke:var(--green);}.pnedge.figure{stroke:var(--purple);}.pnedge.scientist{stroke:var(--pink);}.pnedge.fusion{stroke:var(--blue);}.pnedge.french{stroke:#888;stroke-dasharray:4 3;}
+.pnedge.hi{opacity:1!important;stroke-width:2.5px;}.pnedge.dim{opacity:.03!important;}
+.pnnode{cursor:pointer;}
+.pnlbl{font-family:"DM Sans",sans-serif;font-weight:600;font-size:11px;fill:#e8eaf2;pointer-events:none;text-anchor:middle;}
+.pnsub{font-family:"DM Mono",monospace;font-size:8px;fill:#c0c4d8;pointer-events:none;text-anchor:middle;}
+#pntip{position:absolute;background:rgba(3,4,10,.97);border:1px solid #2a2e48;border-radius:6px;padding:10px 14px;max-width:260px;pointer-events:none;opacity:0;transition:opacity .12s;z-index:10;font-size:12px;line-height:1.5;box-shadow:0 4px 24px rgba(0,0,0,.9);}
+#pntip.v{opacity:1;}
+#pntip strong{display:block;color:#fff;margin-bottom:3px;font-size:13px;}
+#pntip span{color:#d0d4e8;font-size:11px;}
+.pnleg{display:flex;gap:20px;flex-wrap:wrap;padding:0 0 14px;}
+.pnleg-i{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink3);font-family:"DM Mono",monospace;}
+.pnleg-l{width:20px;height:2px;flex-shrink:0;border-radius:1px;}
+.pnbtns{display:flex;gap:10px;padding-top:14px;flex-wrap:wrap;}
+.pnbtn{background:rgba(0,0,0,.9);border:1px solid var(--border2);border-radius:4px;color:var(--ink3);padding:6px 14px;font-family:"DM Mono",monospace;font-size:10px;cursor:pointer;letter-spacing:.05em;transition:all .15s;}
+.pnbtn:hover{border-color:var(--blue);color:var(--blue);}
+
+/* Fullscreen */
+.expand-btn{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.8);border:1px solid var(--border2);border-radius:4px;color:var(--ink3);padding:4px 10px;font-family:"DM Mono",monospace;font-size:10px;cursor:pointer;display:flex;align-items:center;gap:4px;z-index:5;letter-spacing:.05em;}
+.expand-btn svg{width:14px;height:14px;fill:currentColor;}
+.expand-btn:hover{border-color:var(--blue);color:var(--blue);}
+.fs-close-btn{display:none;position:absolute;top:10px;right:10px;background:rgba(0,0,0,.9);border:1px solid var(--border2);border-radius:4px;color:var(--ink3);padding:6px 14px;font-family:"DM Mono",monospace;font-size:11px;cursor:pointer;z-index:10;letter-spacing:.05em;}
+.fs-close-btn:hover{color:var(--pink);border-color:var(--pink);}
+.is-fullscreen{position:fixed!important;top:24px!important;left:24px!important;right:24px!important;bottom:24px!important;z-index:9999!important;margin:0!important;width:auto!important;height:auto!important;border:1px solid var(--border2)!important;border-radius:12px!important;background:#000!important;box-shadow:0 0 80px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06)!important;}
+.is-fullscreen .expand-btn{display:none;}
+.is-fullscreen .fs-close-btn{display:block;}
+#fs-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9998;}
+#fs-backdrop.active{display:block;}
+
+footer{background:#000;border-top:1px solid var(--border);padding:32px 40px;text-align:center;}
+footer p{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;line-height:1.8;}
+footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:underline;}
+
+@media(max-width:900px){
+  .figures-grid{grid-template-columns:1fr 1fr;}
+  .fed-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .canvas{padding:24px 16px 48px;}
+  header{padding:32px 16px 28px;}
+  .site-nav{padding:0 8px;}
+  .site-nav a{padding:10px 10px;font-size:9px;}
+  .figures-grid{grid-template-columns:1fr;}
+  .sci-grid{grid-template-columns:1fr;}
+  .decision-box{padding:20px 16px;}
+  .connection-box{padding:20px 16px;}
+  .nmwrap{padding:32px 16px 24px;}
+  #pnsvgwrap{height:400px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="developments.html">Developments</a>
+  <a href="candidates.html">Candidates</a>
+  <a href="china.html">China</a>
+  <a href="coincidences.html">"Coincidences"</a>
+  <a href="epstein.html">Epstein</a>
+  <a href="disclosure.html">Disclosure</a>
+  <a href="antigravity.html">Antigravity</a>
+  <a href="debunking.html">Debunking</a>
+  <a href="plutonium-network.html" class="active">Plutonium Network</a>
+</nav>
+
+<header>
+  <h1>The <span>Plutonium</span> Network</h1>
+  <div class="tagline">5 companies &middot; 11 scientists &middot; 1 federal decision &middot; filed may 27, 2026</div>
+</header>
+
+<div class="canvas">
+
+  <!-- Credit -->
+  <div class="credit-banner">
+    Research and network mapping by <a href="https://x.com/leahfiles" target="_blank">The Leah Files (@leahfiles on X)</a>. Deep dive available on <a href="https://theleahfiles.substack.com" target="_blank">theleahfiles.substack.com</a>.
+  </div>
+
+  <!-- Expandable Image -->
+  <div class="img-expand-wrap" onclick="document.getElementById('img-lightbox').classList.add('active');document.body.style.overflow='hidden';">
+    <img src="images/leahfiles-plutonium-network.jpg" alt="The Plutonium Network — full network map by The Leah Files" loading="lazy">
+    <div class="img-expand-label">Click to expand</div>
+  </div>
+  <div id="img-lightbox" class="img-lightbox" onclick="this.classList.remove('active');document.body.style.overflow='';">
+    <button class="img-lightbox-close" onclick="event.stopPropagation();document.getElementById('img-lightbox').classList.remove('active');document.body.style.overflow='';">CLOSE &times;</button>
+    <img src="images/leahfiles-plutonium-network.jpg" alt="The Plutonium Network — full network map by The Leah Files">
+  </div>
+
+  <p class="intro">
+    On May 26, 2026, the Department of Energy quietly announced it would transfer <strong>20 metric tons of weapons-grade plutonium</strong> &mdash; enough for roughly 2,000 nuclear warheads &mdash; to five private companies. The next day, <strong>Pam Bondi was added to PCAST</strong>, the presidential science advisory board whose members overlap directly with the companies receiving the material.
+  </p>
+  <p class="intro">
+    <a href="https://x.com/leahfiles" target="_blank">The Leah Files</a> followed the money through all five companies and found a web of <strong>conflicts of interest, revolving doors, and foreign entanglements</strong> connecting them to PCAST, the DOE, and each other. Oklo's CEO sits on PCAST while its stock surged 59%. The DOE Secretary sat on Oklo's board until months before taking office. Andreessen invests in Standard Nuclear through a16z &mdash; while also sitting on PCAST. One recipient, Exodys Energy, has raised only $2.47M and has no working reactor. Another, Standard Nuclear, is a joint venture with a French state company that has an active partnership with Russia's Rosatom.
+  </p>
+  <p class="intro">
+    Then there are the scientists. <strong>11 researchers connected to nuclear, fusion, and defense programs</strong> have turned up dead or missing &mdash; and their work traces directly back to the companies and leadership in this network. The most direct link: <strong>Nuno Loureiro</strong>, who directed the MIT lab that spun out Commonwealth Fusion Systems, was shot dead at home in December 2025. Three months later, Commonwealth Fusion's CEO Bob Mumgaard was named to PCAST. Two months after that, the plutonium deal was announced.
+  </p>
+
+  <!-- THE FEDERAL DECISION -->
+  <div class="decision-box">
+    <div class="decision-label">May 26, 2026 &mdash; The Federal Decision</div>
+    <div class="decision-title">DOE Surplus Plutonium Program</div>
+    <div class="decision-stat">20 metric tons of weapons-grade plutonium = <strong>~2,000 bombs worth</strong></div>
+  </div>
+
+  <!-- FEDERAL BODIES -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--green);box-shadow:0 0 8px var(--green);"></div>
+    <div><h2>The Federal Bodies</h2>
+    <div class="sub">Advisory board + agency behind the decision</div></div>
+  </div>
+
+  <div class="fed-grid">
+    <div class="fed-card" style="border-top:3px solid var(--green);">
+      <div class="fed-label">Federal Advisory Board</div>
+      <h3>PCAST</h3>
+      <ul>
+        <li>DeWitte (Oklo) &mdash; Mumgaard &mdash; Andreessen</li>
+        <li>Ellison &mdash; Catz &mdash; Huang &mdash; Bondi (May 27)</li>
+      </ul>
+    </div>
+    <div class="fed-card" style="border-top:3px solid var(--green);">
+      <div class="fed-label">Federal Agency</div>
+      <h3>Department of Energy</h3>
+      <ul>
+        <li>Sec. Chris Wright (former Oklo board)</li>
+        <li>3 of 11 Oklo directors are DOE alumni</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- THE 5 COMPANIES -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--orange);box-shadow:0 0 8px var(--orange);"></div>
+    <div><h2>The 5 Companies</h2>
+    <div class="sub">Recipients of weapons-grade plutonium</div></div>
+  </div>
+
+  <div class="cgrid">
+
+    <!-- Oklo -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-company">NYSE: OKLO</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#9762;</div>
+        <div>
+          <div class="ccard-title">Oklo Inc.</div>
+          <div class="ccard-date">Company 1 &mdash; Public</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        <strong>$2.5B cash. +59% in 30 days.</strong> CEO Jacob DeWitte sits on PCAST.<br>
+        CEO + COO sold <strong>$60M+ in stock</strong> on 10b5-1 plan from 3/31/25.<br>
+        Board includes: 3 ex-DOE officials, Koch, MITRE.
+      </div>
+      <div class="ccard-intersection">DOE Secretary Chris Wright sat on Oklo's board until Feb 2025. He now runs the agency signing the plutonium contract. 3 of 11 Oklo directors are DOE alumni.</div>
+      <div class="ccard-tags">
+        <span class="tag nuclear">NUCLEAR</span>
+        <span class="tag pcast">PCAST</span>
+        <span class="tag money">$60M INSIDER SALES</span>
+        <span class="tag gov">DOE REVOLVING DOOR</span>
+      </div>
+    </div>
+
+    <!-- Standard Nuclear -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-company">PRIVATE</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#9762;</div>
+        <div>
+          <div class="ccard-title">Standard Nuclear</div>
+          <div class="ccard-date">Company 2 &mdash; Built on a Bankruptcy</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Founded 2024 from <strong>USNC bankruptcy</strong> ($28M purchase).<br>
+        Joint venture with <strong>Framatome (French state)</strong> with active Rosatom partnership.<br>
+        a16z investor &mdash; <strong>Andreessen</strong> (also PCAST member).
+      </div>
+      <div class="ccard-intersection">Andreessen sits on PCAST and invests in the company receiving the plutonium. Framatome's parent company has an active partnership with Russia's Rosatom.</div>
+      <div class="ccard-tags">
+        <span class="tag nuclear">NUCLEAR</span>
+        <span class="tag pcast">A16Z / PCAST</span>
+        <span class="tag gov">FRENCH STATE / ROSATOM</span>
+      </div>
+    </div>
+
+    <!-- SHINE Technologies -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-company">PRIVATE</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#9762;</div>
+        <div>
+          <div class="ccard-title">SHINE Technologies</div>
+          <div class="ccard-date">Company 3 &mdash; FDA Warning Letter</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        $240M Series E. <strong>NantWorks / Patrick Soon-Shiong</strong> on board.<br>
+        FDA warning letter 3/24/26: <strong>$2B market cap loss</strong> + securities suit.<br>
+        Pu-238 &rarr; NASA fuel pipeline.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag nuclear">NUCLEAR</span>
+        <span class="tag nuclear">PU-238 / NASA</span>
+        <span class="tag money">FDA WARNING</span>
+      </div>
+    </div>
+
+    <!-- Flibe Energy -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-company">PRIVATE</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#9762;</div>
+        <div>
+          <div class="ccard-title">Flibe Energy</div>
+          <div class="ccard-date">Company 4 &mdash; Research Grant Only</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Huntsville, AL. CEO <strong>Kirk Sorensen</strong> (ex-NASA Marshall, Teledyne Brown defense).<br>
+        DOE-funded research. No commercial reactor.
+      </div>
+      <div class="ccard-tags">
+        <span class="tag nuclear">NUCLEAR</span>
+        <span class="tag gov">DOE-FUNDED</span>
+        <span class="tag gov">NASA / DEFENSE</span>
+      </div>
+    </div>
+
+    <!-- Exodys Energy -->
+    <div class="ccard" style="border-top:3px solid var(--orange);">
+      <span class="ccard-tier"><span class="tier tier-company">PRIVATE</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,139,51,.12);border:1px solid rgba(255,139,51,.4);">&#9762;</div>
+        <div>
+          <div class="ccard-title">Exodys Energy</div>
+          <div class="ccard-date">Company 5 &mdash; French State Lineage</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        Founded Oct 2022. Only <strong>$2.47M total</strong> funding. CEO Carl Perez (Elysium &mdash; failed, no commercial reactor).<br>
+        Co-founded with <strong>La Hague, France</strong>.<br>
+        Board: V/Adm Hilarides (NAVSEA, $100B procurement).
+      </div>
+      <div class="ccard-intersection">A company with $2.47M and no working reactor is receiving weapons-grade plutonium. Co-founded with France's La Hague reprocessing facility.</div>
+      <div class="ccard-tags">
+        <span class="tag nuclear">NUCLEAR</span>
+        <span class="tag gov">FRENCH STATE</span>
+        <span class="tag gov">NAVSEA</span>
+        <span class="tag money">$2.47M TOTAL</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KEY FIGURES -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--purple);box-shadow:0 0 8px var(--purple);"></div>
+    <div><h2>The Key Figures</h2>
+    <div class="sub">Architects, advisors, and fixers</div></div>
+  </div>
+
+  <div class="figures-grid">
+    <div class="figure-card" style="border-top:3px solid var(--purple);">
+      <div class="figure-role">Architect</div>
+      <div class="figure-name">Sam Altman</div>
+      <div class="figure-detail">OpenAI CEO. Chaired Oklo 2015&ndash;Apr 2025. Built AltC SPAC.</div>
+    </div>
+    <div class="figure-card" style="border-top:3px solid var(--purple);">
+      <div class="figure-role">PCAST + Fusion</div>
+      <div class="figure-name">Bob Mumgaard</div>
+      <div class="figure-detail">CEO Commonwealth Fusion. Spun out of MIT PSFC (Loureiro's lab).</div>
+    </div>
+    <div class="figure-card" style="border-top:3px solid var(--purple);">
+      <div class="figure-role">DOE Secretary</div>
+      <div class="figure-name">Chris Wright</div>
+      <div class="figure-detail">Was on Oklo board until Feb 2025. Now runs DOE &mdash; signing the contract.</div>
+    </div>
+    <div class="figure-card" style="border-top:3px solid var(--purple);">
+      <div class="figure-role">The Fixer</div>
+      <div class="figure-name">Pam Bondi</div>
+      <div class="figure-detail">Qatar lobbyist ($115K/mo). Added to PCAST May 27, 2026.</div>
+    </div>
+  </div>
+
+  <!-- 11 SCIENTISTS -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--pink);box-shadow:0 0 8px var(--pink);"></div>
+    <div><h2>11 Scientists Dead or Missing</h2>
+    <div class="sub">FBI investigation &mdash; direct links to the network above</div></div>
+  </div>
+
+  <h3 style="font-family:'DM Mono',monospace;font-size:10px;color:var(--pink);letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px;margin-top:4px;">Deceased</h3>
+
+  <div class="sci-grid">
+
+    <div class="sci-card deceased">
+      <span class="sci-badge"><span class="tier tier-direct">DIRECT LINK</span></span>
+      <div class="sci-status deceased">Deceased 12/15/25</div>
+      <div class="sci-name">Nuno Loureiro, 47</div>
+      <div class="sci-detail">
+        Director, <strong>MIT Plasma Science &amp; Fusion Center</strong>. Shot at home.<br>
+        The lab that spun out Commonwealth Fusion (Mumgaard's company).
+      </div>
+    </div>
+
+    <div class="sci-card deceased">
+      <div class="sci-status deceased">Deceased 2/16/26</div>
+      <div class="sci-name">Carl Grillmair, 67</div>
+      <div class="sci-detail">Caltech astrophysicist. NASA NEOWISE / Surveyor.</div>
+    </div>
+
+    <div class="sci-card deceased">
+      <div class="sci-status deceased">Deceased</div>
+      <div class="sci-name">Joshua LeBlanc</div>
+      <div class="sci-detail">NASA-affiliated engineer. Body found in burned vehicle.</div>
+    </div>
+
+    <div class="sci-card deceased">
+      <div class="sci-status deceased">Deceased 3/2026</div>
+      <div class="sci-name">Jason Thomas</div>
+      <div class="sci-detail">Pharmaceutical researcher.</div>
+    </div>
+
+    <div class="sci-card deceased">
+      <div class="sci-status deceased">Deceased 2024</div>
+      <div class="sci-name">Frank Maiwald, 61</div>
+      <div class="sci-detail">NASA JPL specialist. Died in Los Angeles.</div>
+    </div>
+
+    <div class="sci-card deceased">
+      <div class="sci-status deceased">Deceased 2022</div>
+      <div class="sci-name">Jude Height</div>
+      <div class="sci-detail">Army biochemist (FBI review).</div>
+    </div>
+
+  </div>
+
+  <h3 style="font-family:'DM Mono',monospace;font-size:10px;color:var(--yellow);letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px;margin-top:28px;">Missing</h3>
+
+  <div class="sci-grid">
+
+    <div class="sci-card missing">
+      <span class="sci-badge"><span class="tier tier-missing">CLASSIFIED</span></span>
+      <div class="sci-status missing">Missing 2/27/26</div>
+      <div class="sci-name">Maj Gen McCasland</div>
+      <div class="sci-detail">Retired Air Force. Oversaw classified research programs.</div>
+    </div>
+
+    <div class="sci-card missing">
+      <div class="sci-status missing">Missing 6/2025</div>
+      <div class="sci-name">Monica Reza, 60</div>
+      <div class="sci-detail">NASA JPL aerospace engineer.</div>
+    </div>
+
+    <div class="sci-card missing">
+      <span class="sci-badge"><span class="tier tier-missing">LOS ALAMOS</span></span>
+      <div class="sci-status missing">Missing 6/2025</div>
+      <div class="sci-name">Melissa Casias, 53</div>
+      <div class="sci-detail">Los Alamos National Lab employee.</div>
+    </div>
+
+    <div class="sci-card missing">
+      <span class="sci-badge"><span class="tier tier-missing">LOS ALAMOS</span></span>
+      <div class="sci-status missing">Missing 5/2025</div>
+      <div class="sci-name">Anthony Chavez, 78</div>
+      <div class="sci-detail">Los Alamos retiree. Former construction supervisor.</div>
+    </div>
+
+    <div class="sci-card missing">
+      <div class="sci-status missing">Missing 8/2025</div>
+      <div class="sci-name">Steven Garcia</div>
+      <div class="sci-detail">Per FBI investigation review.</div>
+    </div>
+
+  </div>
+
+  <!-- THE DIRECT CONNECTION -->
+  <div class="connection-box">
+    <p>
+      <strong>Nuno Loureiro</strong> directed MIT's Plasma Science and Fusion Center, the lab that spun out <strong>Commonwealth Fusion Systems</strong>.
+      He was shot at home <strong>Dec 15&ndash;16, 2025</strong>.
+      Three months later, Commonwealth Fusion's CEO <strong>Bob Mumgaard</strong> was named to <strong>PCAST</strong>.
+      Two months after that, PCAST member companies received <strong>20 metric tons of weapons-grade plutonium</strong>.
+    </p>
+  </div>
+
+</div>
+
+<!-- INTERACTIVE NETWORK MAP -->
+<div id="fs-backdrop" onclick="collapsePanel('pnsvgwrap')"></div>
+<div class="nmwrap">
+  <div class="nm-sh">
+    <div class="stripe" style="background:var(--blue)"></div>
+    <div><h2 style="font-family:'New Amsterdam',sans-serif;font-weight:400;font-size:20px;color:var(--ink)">Interactive Plutonium Network Map</h2>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px">Drag to pan &middot; Scroll to zoom &middot; Click any node to highlight connections</div></div>
+  </div>
+  <div class="pnleg">
+    <div class="pnleg-i"><div class="pnleg-l" style="background:var(--pink)"></div>Federal Decision</div>
+    <div class="pnleg-i"><div class="pnleg-l" style="background:var(--green)"></div>Federal Bodies</div>
+    <div class="pnleg-i"><div class="pnleg-l" style="background:var(--orange)"></div>Companies</div>
+    <div class="pnleg-i"><div class="pnleg-l" style="background:var(--purple)"></div>Key Figures</div>
+    <div class="pnleg-i"><div class="pnleg-l" style="background:var(--blue)"></div>Fusion / MIT</div>
+    <div class="pnleg-i"><div class="pnleg-l" style="background:#FF206E"></div>Deceased</div>
+    <div class="pnleg-i"><div class="pnleg-l" style="background:var(--yellow)"></div>Missing</div>
+  </div>
+  <div id="pnsvgwrap" style="position:relative;">
+    <button class="expand-btn" onclick="expandPanel('pnsvgwrap')"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>Expand</button>
+    <button class="fs-close-btn" onclick="collapsePanel('pnsvgwrap')">CLOSE &#x2715;</button>
+    <svg id="pnsvg" width="100%" height="100%"></svg>
+    <div id="pntip"></div>
+  </div>
+  <div class="pnbtns">
+    <button class="pnbtn" onclick="pnReset()">RESET VIEW</button>
+    <button class="pnbtn" onclick="pnPeople()">SCIENTISTS ONLY</button>
+    <button class="pnbtn" onclick="pnCompanies()">COMPANIES ONLY</button>
+    <button class="pnbtn" onclick="pnAll()">SHOW ALL</button>
+  </div>
+</div>
+
+<footer>
+  <p>
+    Research by <a href="https://x.com/leahfiles" target="_blank">@leahfiles</a> &middot; <a href="https://theleahfiles.substack.com" target="_blank">theleahfiles.substack.com</a><br>
+    This page is part of <a href="index.html">Who Killed The Scientists?</a> &middot; an open-source investigation
+  </p>
+</footer>
+
+<script>
+// Fullscreen
+var fsActive=null;
+var backdrop=document.getElementById('fs-backdrop');
+function expandPanel(id){
+  var el=document.getElementById(id);if(!el)return;
+  backdrop.classList.add('active');el.classList.add('is-fullscreen');
+  document.body.style.overflow='hidden';fsActive=id;
+  document.addEventListener('keydown',fsEsc);
+}
+function collapsePanel(id){
+  var el=document.getElementById(id||fsActive);if(!el)return;
+  el.classList.remove('is-fullscreen');backdrop.classList.remove('active');
+  document.body.style.overflow='';fsActive=null;
+  document.removeEventListener('keydown',fsEsc);
+}
+function fsEsc(e){if(e.key==='Escape'&&fsActive)collapsePanel(fsActive);}
+</script>
+
+<script>
+(function(){
+var NW=2800,NH=1800;
+var nodes=[
+  // TIER 0: The Decision
+  {id:'doe_pu',l:'DOE Plutonium Program',s:'20 metric tons / ~2,000 bombs',t:'decision',c:'decision',x:1400,y:100,r:36,i:'May 26, 2026. DOE surplus plutonium program. 20 metric tons of weapons-grade plutonium allocated to 5 private companies.'},
+
+  // TIER 1: Federal Bodies
+  {id:'pcast',l:'PCAST',s:'Federal Advisory Board',t:'fed',c:'fed',x:900,y:300,r:30,i:'Presidential Council of Advisors on Science & Technology. Members include DeWitte (Oklo), Mumgaard, Andreessen, Ellison, Catz, Huang, Bondi.'},
+  {id:'doe',l:'Dept. of Energy',s:'Sec. Chris Wright',t:'fed',c:'fed',x:1900,y:300,r:30,i:'Chris Wright: former Oklo board member. Now runs DOE signing the plutonium contract. 3 of 11 Oklo directors are DOE alumni.'},
+
+  // TIER 2: Companies
+  {id:'oklo',l:'Oklo Inc.',s:'NYSE: OKLO / $2.5B cash',t:'company',c:'company',x:500,y:600,r:28,i:'Public. CEO DeWitte on PCAST. CEO+COO sold $60M+ stock. Board: 3 ex-DOE, Koch, MITRE. +59% in 30 days.'},
+  {id:'standard',l:'Standard Nuclear',s:'Built on USNC bankruptcy',t:'company',c:'company',x:1000,y:600,r:24,i:'Founded 2024 from USNC bankruptcy ($28M). JV: Framatome (French state) w/ active Rosatom partnership. a16z investor (Andreessen).'},
+  {id:'shine',l:'SHINE Technologies',s:'FDA Warning / Pu-238',t:'company',c:'company',x:1400,y:600,r:24,i:'$240M Series E. Patrick Soon-Shiong on board. FDA warning letter 3/24/26: $2B market cap loss. Pu-238 to NASA fuel pipeline.'},
+  {id:'flibe',l:'Flibe Energy',s:'Research Grant Only',t:'company',c:'company',x:1800,y:600,r:22,i:'Huntsville, AL. CEO Kirk Sorensen (ex-NASA Marshall). DOE-funded research. No commercial reactor.'},
+  {id:'exodys',l:'Exodys Energy',s:'$2.47M / French State',t:'company',c:'company',x:2200,y:600,r:22,i:'Founded Oct 2022. Only $2.47M. CEO Carl Perez (Elysium — failed). Co-founded w/ La Hague France. V/Adm Hilarides (NAVSEA $100B).'},
+
+  // TIER 3: Key Figures
+  {id:'altman',l:'Sam Altman',s:'Architect / OpenAI CEO',t:'figure',c:'figure',x:300,y:400,r:22,i:'OpenAI CEO. Chaired Oklo 2015–Apr 2025. Built AltC SPAC that took Oklo public.'},
+  {id:'mumgaard',l:'Bob Mumgaard',s:'PCAST / Commonwealth Fusion',t:'figure',c:'figure',x:700,y:400,r:24,i:'CEO Commonwealth Fusion Systems. Spun out of MIT PSFC (Loureiro\'s lab). Named to PCAST 3 months after Loureiro\'s death.'},
+  {id:'wright',l:'Chris Wright',s:'DOE Secretary',t:'figure',c:'figure',x:1600,y:400,r:24,i:'Was on Oklo board until Feb 2025. Now runs DOE — signing the plutonium contract.'},
+  {id:'bondi',l:'Pam Bondi',s:'The Fixer',t:'figure',c:'figure',x:1100,y:400,r:20,i:'Qatar lobbyist ($115K/mo). Added to PCAST May 27, 2026 — one day after plutonium announcement.'},
+  {id:'andreessen',l:'Andreessen',s:'a16z / PCAST',t:'figure',c:'figure',x:900,y:500,r:18,i:'Marc Andreessen. Sits on PCAST and invests in Standard Nuclear via a16z.'},
+
+  // Fusion link
+  {id:'cfs',l:'Commonwealth Fusion',s:'Spun out of MIT PSFC',t:'fusion',c:'fusion',x:600,y:900,r:24,i:'Commonwealth Fusion Systems. Spun out of MIT Plasma Science & Fusion Center. CEO: Bob Mumgaard.'},
+  {id:'mit_psfc',l:'MIT PSFC',s:'Plasma Science & Fusion',t:'fusion',c:'fusion',x:400,y:1050,r:22,i:'MIT Plasma Science and Fusion Center. Directed by Nuno Loureiro until his murder Dec 15, 2025.'},
+
+  // Deceased Scientists
+  {id:'loureiro',l:'Nuno Loureiro',s:'Deceased 12/15/25 · Age 47',t:'person',c:'dead',x:300,y:1200,r:24,i:'DIRECT LINK. Director, MIT PSFC. Shot at home. The lab that spun out Commonwealth Fusion (Mumgaard\'s company).'},
+  {id:'grillmair',l:'Carl Grillmair',s:'Deceased 2/16/26 · Age 67',t:'person',c:'dead',x:700,y:1200,r:20,i:'Caltech astrophysicist. NASA NEOWISE / Surveyor.'},
+  {id:'leblanc',l:'Joshua LeBlanc',s:'Deceased · NASA Engineer',t:'person',c:'dead',x:1000,y:1200,r:20,i:'NASA-affiliated engineer. Body found in burned vehicle.'},
+  {id:'thomas',l:'Jason Thomas',s:'Deceased 3/2026',t:'person',c:'dead',x:1300,y:1200,r:18,i:'Pharmaceutical researcher.'},
+  {id:'maiwald',l:'Frank Maiwald',s:'Deceased 2024 · Age 61',t:'person',c:'dead',x:1600,y:1200,r:20,i:'NASA JPL specialist. Died in Los Angeles.'},
+  {id:'height',l:'Jude Height',s:'Deceased 2022',t:'person',c:'dead',x:1900,y:1200,r:18,i:'Army biochemist. Under FBI review.'},
+
+  // Missing Scientists
+  {id:'mccasland',l:'Maj Gen McCasland',s:'Missing 2/27/26',t:'person',c:'miss',x:500,y:1450,r:24,i:'Retired Air Force. Oversaw classified research programs. CLASSIFIED.'},
+  {id:'reza',l:'Monica Reza',s:'Missing 6/2025 · Age 60',t:'person',c:'miss',x:900,y:1450,r:20,i:'NASA JPL aerospace engineer.'},
+  {id:'casias',l:'Melissa Casias',s:'Missing 6/2025 · Age 53',t:'person',c:'miss',x:1300,y:1450,r:20,i:'Los Alamos National Lab employee.'},
+  {id:'chavez',l:'Anthony Chavez',s:'Missing 5/2025 · Age 78',t:'person',c:'miss',x:1700,y:1450,r:20,i:'Los Alamos retiree. Former construction supervisor.'},
+  {id:'garcia',l:'Steven Garcia',s:'Missing 8/2025',t:'person',c:'miss',x:2100,y:1450,r:20,i:'Per FBI investigation review.'},
+
+  // Institutions
+  {id:'lanl',l:'Los Alamos',s:'National Lab',t:'inst',c:'inst',x:1500,y:1600,r:22,i:'Manhattan Project institution. Casias and Chavez both connected.'},
+  {id:'framatome',l:'Framatome',s:'French State / Rosatom',t:'inst',c:'inst',x:1100,y:750,r:18,i:'French state-owned nuclear company. Active Rosatom partnership. JV with Standard Nuclear.'},
+  {id:'lahague',l:'La Hague',s:'French Reprocessing',t:'inst',c:'inst',x:2400,y:750,r:16,i:'French nuclear fuel reprocessing facility. Co-founded Exodys Energy.'},
+];
+var edges=[
+  // Decision to federal bodies
+  {s:'doe_pu',t:'pcast',cat:'pcast'},{s:'doe_pu',t:'doe',cat:'pcast'},
+  // Federal bodies to companies
+  {s:'pcast',t:'oklo',cat:'pcast'},{s:'pcast',t:'standard',cat:'pcast'},{s:'pcast',t:'shine',cat:'pcast'},{s:'pcast',t:'flibe',cat:'pcast'},{s:'pcast',t:'exodys',cat:'pcast'},
+  {s:'doe',t:'oklo',cat:'pcast'},{s:'doe',t:'flibe',cat:'pcast'},
+  // Figures to PCAST/DOE
+  {s:'mumgaard',t:'pcast',cat:'figure'},{s:'bondi',t:'pcast',cat:'figure'},{s:'andreessen',t:'pcast',cat:'figure'},
+  {s:'wright',t:'doe',cat:'figure'},{s:'wright',t:'oklo',cat:'figure'},
+  {s:'altman',t:'oklo',cat:'figure'},
+  {s:'andreessen',t:'standard',cat:'figure'},
+  // Fusion chain: Loureiro -> MIT -> CFS -> Mumgaard -> PCAST -> Plutonium
+  {s:'loureiro',t:'mit_psfc',cat:'fusion'},{s:'mit_psfc',t:'cfs',cat:'fusion'},{s:'cfs',t:'mumgaard',cat:'fusion'},{s:'mumgaard',t:'cfs',cat:'fusion'},
+  // French connections
+  {s:'framatome',t:'standard',cat:'french'},{s:'lahague',t:'exodys',cat:'french'},
+  // Scientists to institutions/companies
+  {s:'loureiro',t:'cfs',cat:'scientist'},
+  {s:'leblanc',t:'flibe',cat:'scientist'},
+  {s:'maiwald',t:'shine',cat:'scientist'},
+  {s:'reza',t:'doe',cat:'scientist'},
+  {s:'casias',t:'lanl',cat:'scientist'},{s:'chavez',t:'lanl',cat:'scientist'},
+  {s:'mccasland',t:'doe',cat:'scientist'},
+  // Cross-links
+  {s:'doe_pu',t:'oklo',cat:'company'},{s:'doe_pu',t:'standard',cat:'company'},{s:'doe_pu',t:'shine',cat:'company'},{s:'doe_pu',t:'flibe',cat:'company'},{s:'doe_pu',t:'exodys',cat:'company'},
+];
+var scCol={decision:'#FF206E',fed:'#0EFB22',company:'#FF8B33',figure:'#CE00E0',fusion:'#00BBF9',dead:'#FF206E',miss:'#E1FF00',inst:'#00BBF9'};
+var svg=document.getElementById('pnsvg');
+var NS='http://www.w3.org/2000/svg';
+function mk(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+var nm={};nodes.forEach(function(n){nm[n.id]=n;});
+var vx=-200,vy=-100,vw=NW+400,vh=NH+200;
+function sv(){svg.setAttribute('viewBox',vx+' '+vy+' '+vw+' '+vh);}sv();
+var defs=mk('defs',{});
+var fl=mk('filter',{id:'png',x:'-50%',y:'-50%',width:'200%',height:'200%'});
+var fb=mk('feGaussianBlur',{stdDeviation:'3',result:'bl'});
+var fme=mk('feMerge',{});
+fme.appendChild(mk('feMergeNode',{in:'bl'}));fme.appendChild(mk('feMergeNode',{in:'SourceGraphic'}));
+fl.appendChild(fb);fl.appendChild(fme);defs.appendChild(fl);svg.appendChild(defs);
+
+// Draw edges
+edges.forEach(function(e){
+  var a=nm[e.s],b=nm[e.t];if(!a||!b)return;
+  var mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+  var dx=b.x-a.x,dy=b.y-a.y;
+  var attrs={d:'M'+a.x+','+a.y+' Q'+(mx-dy*.08)+','+(my+dx*.08)+' '+b.x+','+b.y,class:'pnedge '+e.cat,'data-s':e.s,'data-t':e.t};
+  svg.appendChild(mk('path',attrs));
+});
+
+// Draw nodes
+var wrap=document.getElementById('pnsvgwrap');
+var tip=document.getElementById('pntip');
+nodes.forEach(function(n){
+  var col=scCol[n.c]||'#888';
+  var g=mk('g',{class:'pnnode','data-id':n.id});
+  g.appendChild(mk('circle',{cx:n.x,cy:n.y,r:n.r,fill:col+'20',stroke:col,class:'pnring','stroke-width':'2',filter:'url(#png)'}));
+  g.appendChild(mk('circle',{cx:n.x,cy:n.y,r:n.r*.55,fill:col}));
+  var lbl=mk('text',{x:n.x,y:n.y+n.r+14,class:'pnlbl'});lbl.textContent=n.l;g.appendChild(lbl);
+  var sub=mk('text',{x:n.x,y:n.y+n.r+25,class:'pnsub'});sub.textContent=n.s;g.appendChild(sub);
+  g.addEventListener('mouseenter',function(ev){
+    tip.innerHTML='<strong>'+n.l+'</strong><span>'+n.i+'</span>';
+    tip.classList.add('v');mv(ev);
+  });
+  g.addEventListener('mousemove',mv);
+  g.addEventListener('mouseleave',function(){tip.classList.remove('v');});
+  g.addEventListener('click',function(ev){ev.stopPropagation();hl(n.id);});
+  svg.appendChild(g);
+});
+
+function mv(ev){var r=wrap.getBoundingClientRect();tip.style.left=Math.min(ev.clientX-r.left+12,r.width-270)+'px';tip.style.top=Math.max(4,Math.min(ev.clientY-r.top-10,r.height-100))+'px';}
+var act=null;
+function hl(id){
+  if(act===id){cl();return;}act=id;
+  var conn={};conn[id]=true;
+  document.querySelectorAll('.pnedge').forEach(function(e){var s=e.getAttribute('data-s'),t=e.getAttribute('data-t');if(s===id||t===id){conn[s]=true;conn[t]=true;}});
+  document.querySelectorAll('.pnedge').forEach(function(e){var s=e.getAttribute('data-s'),t=e.getAttribute('data-t');e.classList.toggle('hi',s===id||t===id);e.classList.toggle('dim',s!==id&&t!==id);});
+  document.querySelectorAll('.pnnode').forEach(function(g){g.style.opacity=conn[g.getAttribute('data-id')]?'1':'0.1';});
+}
+function cl(){act=null;document.querySelectorAll('.pnedge').forEach(function(e){e.classList.remove('hi','dim');});document.querySelectorAll('.pnnode').forEach(function(g){g.style.opacity='1';});}
+
+var drag=false,lx,ly;
+wrap.addEventListener('mousedown',function(e){if(e.target.closest('.pnnode'))return;drag=true;lx=e.clientX;ly=e.clientY;wrap.classList.add('drag');});
+window.addEventListener('mousemove',function(e){if(!drag)return;var sc=vw/wrap.clientWidth;vx-=(e.clientX-lx)*sc;vy-=(e.clientY-ly)*sc;lx=e.clientX;ly=e.clientY;sv();});
+window.addEventListener('mouseup',function(){drag=false;wrap.classList.remove('drag');});
+wrap.addEventListener('wheel',function(e){e.preventDefault();var f=e.deltaY>0?1.1:.9;var r=wrap.getBoundingClientRect();var mx=(e.clientX-r.left)/r.width*vw+vx;var my=(e.clientY-r.top)/r.height*vh+vy;vw*=f;vh*=f;vx=mx-(e.clientX-r.left)/r.width*vw;vy=my-(e.clientY-r.top)/r.height*vh;sv();},{passive:false});
+svg.addEventListener('click',function(e){if(!e.target.closest('.pnnode'))cl();});
+
+window.pnReset=function(){vx=-200;vy=-100;vw=NW+400;vh=NH+200;sv();cl();};
+window.pnPeople=function(){cl();document.querySelectorAll('.pnnode').forEach(function(g){var id=g.getAttribute('data-id');var n=nm[id];g.style.opacity=(n&&(n.c==='dead'||n.c==='miss'))?'1':'0.06';});document.querySelectorAll('.pnedge').forEach(function(e){e.style.opacity='0.04';});};
+window.pnCompanies=function(){cl();document.querySelectorAll('.pnnode').forEach(function(g){var id=g.getAttribute('data-id');var n=nm[id];g.style.opacity=(n&&(n.t==='company'||n.t==='decision'||n.t==='fed'))?'1':'0.06';});document.querySelectorAll('.pnedge').forEach(function(e){var s=nm[e.getAttribute('data-s')],t=nm[e.getAttribute('data-t')];var v=(s&&(s.t==='company'||s.t==='decision'||s.t==='fed'))&&(t&&(t.t==='company'||t.t==='decision'||t.t==='fed'));e.style.opacity=v?'0.5':'0.02';});};
+window.pnAll=function(){cl();document.querySelectorAll('.pnedge').forEach(function(e){e.style.opacity='';});document.querySelectorAll('.pnnode').forEach(function(g){g.style.opacity='';});};
+})();
+</script>
+</body>
+</html>
