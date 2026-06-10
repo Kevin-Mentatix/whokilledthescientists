@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Who Killed The Scientists?</title>
-<meta name="description" content="16+ scientists connected to classified US defense, aerospace, and nuclear programs have died or vanished since 2022. An interactive investigation.">
+<meta name="description" content="21+ scientists connected to classified US defense, aerospace, and nuclear programs have died or vanished since 2022. An interactive investigation.">
 <meta property="og:title" content="Who Killed The Scientists?">
-<meta property="og:description" content="16+ scientists connected to classified US defense, aerospace, and nuclear programs have died or vanished since 2022. An interactive investigation.">
+<meta property="og:description" content="21+ scientists connected to classified US defense, aerospace, and nuclear programs have died or vanished since 2022. An interactive investigation.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whokilledthescientists.com">
 <meta property="og:image" content="https://whokilledthescientists.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Who Killed The Scientists?">
-<meta name="twitter:description" content="16+ scientists connected to classified US programs have died or vanished since 2022.">
+<meta name="twitter:description" content="21+ scientists connected to classified US programs have died or vanished since 2022.">
 <meta name="twitter:image" content="https://whokilledthescientists.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -287,7 +287,13 @@ header h1{font-size:28px;}
 .is-fullscreen .fs-close-btn{display:block;}
 .is-fullscreen .expand-btn{display:none;}
 .is-fullscreen #imap-clusters{top:16px;right:140px;}
+
+/* ── FIELD GROUP HEADERS ── */
+.field-h{display:flex;align-items:center;gap:12px;margin:30px 0 12px;}
+.field-pill{font-family:"DM Mono",monospace;font-size:10px;padding:4px 12px;border-radius:6px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border:1px solid;}
+.field-count{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;}
 </style>
+<link rel="stylesheet" href="glass.css?v=3">
 </head>
 <body>
 <div id="fs-backdrop" class="fs-backdrop" onclick="if(fsActive)collapsePanel(fsActive);"></div>
@@ -295,7 +301,6 @@ header h1{font-size:28px;}
   <a href="index.html" class="active">Home</a>
   <a href="timeline.html">Timeline</a>
   <a href="developments.html">Developments</a>
-  <a href="candidates.html">Candidates</a>
   <a href="china.html">China</a>
   <a href="coincidences.html">"Coincidences"</a>
   <a href="epstein.html">Epstein</a>
@@ -307,9 +312,9 @@ header h1{font-size:28px;}
 
 <header>
   <h1>Who <span>Killed</span> The Scientists<span>?</span></h1>
-  <div class="tagline">16+ cases &middot; classified programs &middot; 2022&ndash;2026 &middot; click any card for full profile + sources</div>
+  <div class="tagline">21+ cases &middot; classified programs &middot; 2022&ndash;2026 &middot; click any card for full profile + sources</div>
   <div class="status-bar">
-    <div class="stat"><div class="num nd">9</div><div class="lbl">Dead</div></div>
+    <div class="stat"><div class="num nd">14</div><div class="lbl">Dead</div></div>
     <div class="stat"><div class="num nm">4</div><div class="lbl">Missing</div></div>
     <div class="stat"><div class="num nc">3</div><div class="lbl">&ldquo;Solved&rdquo;</div></div>
     <div class="stat"><div class="num np">0</div><div class="lbl">Sense<br>Made</div></div>
@@ -323,19 +328,17 @@ header h1{font-size:28px;}
   <div class="leg"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span> Officially explained</div>
 </div>
 
-<div class="candidates-banner">
-  <a href="candidates.html" class="candidates-btn" style="padding:20px 24px;background:rgba(255,32,110,.08);border:2px solid rgba(255,32,110,.4);box-shadow:0 0 30px rgba(255,32,110,.1);">
-    <span class="cb-pulse" style="width:14px;height:14px;background:var(--pink);box-shadow:0 0 12px var(--pink);"></span>
-    <span class="cb-text" style="font-size:15px;"><strong style="color:var(--pink);font-size:18px;font-family:'New Amsterdam',sans-serif;font-weight:700;font-weight:400;">Who Else Fits Into This?</strong><br><span style="font-size:12px;">8 additional scientists &amp; researchers not yet in any mainstream list &mdash; LANL crash corridor, Mondaloy chain, UAH antigravity, NRL physicists</span></span>
-    <span class="cb-arrow" style="font-size:24px;color:var(--pink);">&rarr;</span>
-  </a>
-</div>
+
 
 <div class="canvas">
 
 <div class="sh">
   <div class="stripe" style="background:var(--pink)"></div>
-  <div><h2>The Scientists</h2><div class="sub">16 cases &middot; Click any card for full profile, investigative notes, and source links</div></div>
+  <div><h2>The Scientists</h2><div class="sub">21 cases &middot; Grouped by field of study &middot; Click any card for full profile, investigative notes, and source links</div></div>
+</div>
+<div class="field-h">
+  <span class="field-pill" style="background:rgba(0,187,249,.12);border-color:rgba(0,187,249,.4);color:var(--blue);">Space & Planetary Science</span>
+  <span class="field-count">3 cases</span>
 </div>
 <div class="pgrid">
 <div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('hicks')" onkeydown="if(event.key==='Enter')showDetail('hicks')">
@@ -362,90 +365,6 @@ header h1{font-size:28px;}
     <button class="pcta">View Full Profile + Sources &#8594;</button>
   </div>
 </div>
-<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('reza')" onkeydown="if(event.key==='Enter')showDetail('reza')">
-  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
-  <div class="pphoto"><img src="images/reza.jpg" alt="Monica Reza" class="pimg"></div>
-  <div class="pbody">
-    <div class="pname">Monica Reza</div>
-    <div class="prole">Director, JPL Materials Processing / Aerojet Rocketdyne</div>
-    <div class="pdate">Vanished Jun 22, 2025 &middot; Age 60 &middot; No body found</div>
-    <div class="psummary">Co-invented Mondaloy superalloy freeing US rocket launches from Russian RD-180 dependency. Directly funded by McCasland. Vanished 30ft from hiking companion &mdash; smiling and waving &mdash; then gone.</div>
-    <div class="ptags"><span class="tag hot">Key link: McCasland</span><span class="tag key">Mondaloy patent</span><span class="tag key">Air Force-funded</span></div>
-    <button class="pcta">View Full Profile + Sources &#8594;</button>
-  </div>
-</div>
-<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('chavez')" onkeydown="if(event.key==='Enter')showDetail('chavez')">
-  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
-  <div class="pphoto"><img src="images/chavez.jpg" alt="Anthony Chavez" class="pimg"></div>
-  <div class="pbody">
-    <div class="pname">Anthony Chavez</div>
-    <div class="prole">Former employee, Los Alamos National Laboratory</div>
-    <div class="pdate">Vanished May 4, 2025 &middot; Age 78 &middot; On foot</div>
-    <div class="psummary">LANL veteran who walked out of his home on foot. Car locked in driveway. Exhaustive searches produced nothing. Family: completely out of character.</div>
-    <div class="ptags"><span class="tag hot">Left on foot, car in driveway</span><span class="tag ">LANL</span></div>
-    <button class="pcta">View Full Profile + Sources &#8594;</button>
-  </div>
-</div>
-<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('casias')" onkeydown="if(event.key==='Enter')showDetail('casias')">
-  <div class="ppill"><span class="pill pill-dead">REMAINS FOUND</span></div>
-  <div class="pphoto"><img src="images/casias.jpg" alt="Melissa Casias" class="pimg"></div>
-  <div class="pbody">
-    <div class="pname">Melissa Casias</div>
-    <div class="prole">LANL Administrative Staff &middot; Top security clearance</div>
-    <div class="pdate">Vanished Jun 26, 2025 &middot; Remains found May 30, 2026</div>
-    <div class="psummary">Remains found by hiker in Carson National Forest with handgun. Both phones were factory-wiped when she vanished. Cause of death pending.</div>
-    <div class="ptags"><span class="tag hot">Remains found with handgun</span><span class="tag hot">Both phones factory-wiped</span><span class="tag key">Previously searched area</span></div>
-    <button class="pcta">View Full Profile + Sources &#8594;</button>
-  </div>
-</div>
-<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('garcia')" onkeydown="if(event.key==='Enter')showDetail('garcia')">
-  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
-  <div class="pphoto"><img src="images/garcia.jpg" alt="Steven Garcia" class="pimg"></div>
-  <div class="pbody">
-    <div class="pname">Steven Garcia</div>
-    <div class="prole">Contractor, Kansas City National Security Campus</div>
-    <div class="pdate">Vanished Aug 28, 2025 &middot; Age 48 &middot; Armed</div>
-    <div class="psummary">Oversaw classified nuclear weapon assets at KCNSC &mdash; makes 80%+ of US nuclear weapon components. Left in camouflage with handgun, no phone. Never seen again.</div>
-    <div class="ptags"><span class="tag hot">Carried handgun, left phone</span><span class="tag key">Nuclear weapons campus</span></div>
-    <button class="pcta">View Full Profile + Sources &#8594;</button>
-  </div>
-</div>
-<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('sullivan')" onkeydown="if(event.key==='Enter')showDetail('sullivan')">
-  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
-  <div class="pphoto"><img src="images/sullivan.jpg" alt="Matthew Sullivan" class="pimg"></div>
-  <div class="pbody">
-    <div class="pname">Matthew Sullivan</div>
-    <div class="prole">USAF Intelligence Officer &middot; NASIC Deputy Director, Wright-Patterson</div>
-    <div class="pdate">Died May 12, 2024 &middot; Age 39</div>
-    <div class="psummary">Bronze Star recipient. Died by reported suicide &mdash; exactly 2 weeks before his scheduled UAP whistleblower testimony to Congress. IC Inspector General flagged &ldquo;severe allegations of misconduct.&rdquo;</div>
-    <div class="ptags"><span class="tag hot">Died 2wks before UAP testimony</span><span class="tag hot">IC IG: severe misconduct</span></div>
-    <button class="pcta">View Full Profile + Sources &#8594;</button>
-  </div>
-</div>
-<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('eskridge')" onkeydown="if(event.key==='Enter')showDetail('eskridge')">
-  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
-  <div class="pphoto"><img src="images/eskridge.jpg" alt="Amy Eskridge" class="pimg"></div>
-  <div class="pbody">
-    <div class="pname">Amy Eskridge</div>
-    <div class="prole">Antigravity researcher &middot; Institute for Exotic Science, Huntsville AL</div>
-    <div class="pdate">Died Jun 11, 2022 &middot; Age 34</div>
-    <div class="psummary">Said publicly &ldquo;I&rsquo;m scared, it&rsquo;s escalating&rdquo; before her death. Co-founded antigravity institute with her NASA-engineer father. No official report ever released. Website went dark.</div>
-    <div class="ptags"><span class="tag hot">Said "I'm scared" publicly</span><span class="tag hot">No official investigation report</span></div>
-    <button class="pcta">View Full Profile + Sources &#8594;</button>
-  </div>
-</div>
-<div class="pcard sc-closed" tabindex="0" role="button" onclick="showDetail('loureiro')" onkeydown="if(event.key==='Enter')showDetail('loureiro')">
-  <div class="ppill"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span></div>
-  <div class="pphoto"><img src="images/loureiro.jpg" alt="Nuno Loureiro" class="pimg"></div>
-  <div class="pbody">
-    <div class="pname">Nuno Loureiro</div>
-    <div class="prole">Director, MIT Plasma Science &amp; Fusion Center</div>
-    <div class="pdate">Murdered Dec 15, 2025 &middot; Age 47</div>
-    <div class="psummary">World-leading plasma physicist near a fusion breakthrough. Murdered by former Portuguese classmate who also carried out the Brown University shooting. Case closed &mdash; personal grudge.</div>
-    <div class="ptags"><span class="tag ">Near fusion breakthrough</span><span class="tag ok">Personal grudge &middot; &ldquo;case closed&rdquo;</span></div>
-    <button class="pcta">View Full Profile + Sources &#8594;</button>
-  </div>
-</div>
 <div class="pcard sc-closed" tabindex="0" role="button" onclick="showDetail('grillmair')" onkeydown="if(event.key==='Enter')showDetail('grillmair')">
   <div class="ppill"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span></div>
   <div class="pphoto"><img src="images/grillmair.jpg" alt="Carl Grillmair" class="pimg"></div>
@@ -458,39 +377,33 @@ header h1{font-size:28px;}
     <button class="pcta">View Full Profile + Sources &#8594;</button>
   </div>
 </div>
-<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('mccasland')" onkeydown="if(event.key==='Enter')showDetail('mccasland')">
+</div>
+<div class="field-h">
+  <span class="field-pill" style="background:rgba(255,139,51,.12);border-color:rgba(255,139,51,.4);color:var(--orange);">Aerospace, Propulsion & Materials</span>
+  <span class="field-count">5 cases</span>
+</div>
+<div class="pgrid">
+<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('reza')" onkeydown="if(event.key==='Enter')showDetail('reza')">
   <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
-  <div class="pphoto"><img src="images/mccasland .jpeg" alt="Gen. Neil McCasland" class="pimg"></div>
+  <div class="pphoto"><img src="images/reza.jpg" alt="Monica Reza" class="pimg"></div>
   <div class="pbody">
-    <div class="pname">Gen. Neil McCasland</div>
-    <div class="prole">Ret. USAF Maj. General &middot; AFRL Commander, Wright-Patterson</div>
-    <div class="pdate">Vanished Feb 27, 2026 &middot; 8 days after Trump UAP order</div>
-    <div class="psummary">Had legal visibility over every classified DoD program. Funded Reza&rsquo;s Mondaloy. Vanished 8 days after Trump UAP disclosure order. Left without phone or glasses. Carried revolver.</div>
-    <div class="ptags"><span class="tag hot">8 days after Trump UAP order</span><span class="tag hot">No phone/glasses; carried revolver</span><span class="tag key">ALL classified DoD programs</span></div>
+    <div class="pname">Monica Reza</div>
+    <div class="prole">Director, JPL Materials Processing / Aerojet Rocketdyne</div>
+    <div class="pdate">Vanished Jun 22, 2025 &middot; Age 60 &middot; No body found</div>
+    <div class="psummary">Co-invented Mondaloy superalloy freeing US rocket launches from Russian RD-180 dependency. Directly funded by McCasland. Vanished 30ft from hiking companion &mdash; smiling and waving &mdash; then gone.</div>
+    <div class="ptags"><span class="tag hot">Key link: McCasland</span><span class="tag key">Mondaloy patent</span><span class="tag key">Air Force-funded</span></div>
     <button class="pcta">View Full Profile + Sources &#8594;</button>
   </div>
 </div>
-<div class="pcard sc-closed" tabindex="0" role="button" onclick="showDetail('thomas')" onkeydown="if(event.key==='Enter')showDetail('thomas')">
-  <div class="ppill"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span></div>
-  <div class="pphoto"><img src="images/jason thomas .jpeg" alt="Jason Thomas" class="pimg"></div>
-  <div class="pbody">
-    <div class="pname">Jason Thomas</div>
-    <div class="prole">Cancer researcher, Novartis</div>
-    <div class="pdate">Missing Dec 2025 &middot; Found dead Mar 2026</div>
-    <div class="psummary">Novartis cancer researcher. Body found in Massachusetts lake March 2026. No foul play suspected. Included for completeness &mdash; no clear national security connection.</div>
-    <div class="ptags"><span class="tag ok">&ldquo;No foul play suspected&rdquo;</span><span class="tag ">Pharmaceutical research</span></div>
-    <button class="pcta">View Full Profile + Sources &#8594;</button>
-  </div>
-</div>
-<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('wilcock')" onkeydown="if(event.key==='Enter')showDetail('wilcock')">
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('hardwick')" onkeydown="if(event.key==='Enter')showDetail('hardwick')">
   <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
-  <div class="pphoto"><img src="images/wilcock.jpg" alt="David Wilcock" class="pimg"></div>
+  <div class="pphoto"><img src="images/hardwick.jpg" alt="Dallis Ann Hardwick" class="pimg"></div>
   <div class="pbody">
-    <div class="pname">David Wilcock</div>
-    <div class="prole">UAP disclosure researcher, author &middot; Ancient Aliens / YouTube</div>
-    <div class="pdate">Died Apr 20, 2026 &middot; Age 53 &middot; Boulder County, CO</div>
-    <div class="psummary">Prominent UAP disclosure researcher and author. Died by apparent self-inflicted gunshot. Two days prior posted video saying it was &ldquo;scary&rdquo; that scientists are going missing. Had publicly stated he was not suicidal. Biographer Wynn Free died two days before him.</div>
-    <div class="ptags"><span class="tag hot">Died 2 days after warning about missing scientists</span><span class="tag hot">Previously stated: not suicidal</span><span class="tag uap">UAP disclosure advocate</span></div>
+    <div class="pname">Dallis Ann Hardwick</div>
+    <div class="prole">Co-inventor of Mondaloy &middot; AFRL Materials Directorate, Wright-Patterson</div>
+    <div class="pdate">Died Jan 5, 2014 &middot; Cancer</div>
+    <div class="psummary">Co-invented Mondaloy with Monica Reza &mdash; the nickel superalloy that freed US satellite launches from Russian RD-180 dependency &mdash; then led all AFRL gas turbine materials research at the base McCasland commanded. AFRL published no memorial; her only US death records are funeral home listings.</div>
+    <div class="ptags"><span class="tag hot">Mondaloy co-inventor</span><span class="tag hot">No AFRL memorial</span><span class="tag key">Wright-Patterson / McCasland</span><span class="tag key">Meritorious Civilian Service Medal</span></div>
     <button class="pcta">View Full Profile + Sources &#8594;</button>
   </div>
 </div>
@@ -531,7 +444,186 @@ header h1{font-size:28px;}
   </div>
 </div>
 </div>
-
+<div class="field-h">
+  <span class="field-pill" style="background:rgba(255,32,110,.12);border-color:rgba(255,32,110,.4);color:var(--pink);">Nuclear Weapons Complex</span>
+  <span class="field-count">5 cases</span>
+</div>
+<div class="pgrid">
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('leonard')" onkeydown="if(event.key==='Enter')showDetail('leonard')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/leonard.jpg" alt="Dr. Philip William Leonard" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Dr. Philip William Leonard</div>
+    <div class="prole">High Explosives Synthesis Chemist, LANL &middot; 48 published papers</div>
+    <div class="pdate">Died Feb 27, 2024 &middot; Age 44</div>
+    <div class="psummary">Designed and synthesized explosive components used in nuclear weapon triggers. Killed head-on by a driver who crossed the double yellow line on the LANL truck route &mdash; she had sent two texts shortly before the crash and received traffic citations only. Died Feb 27 &mdash; two years to the day before McCasland vanished.</div>
+    <div class="ptags"><span class="tag hot">Nuclear weapons explosives</span><span class="tag hot">Citations only &mdash; no felony</span><span class="tag hot">Feb 27 &mdash; McCasland date</span><span class="tag key">Lawrence Livermore alumni</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('mcmillan')" onkeydown="if(event.key==='Enter')showDetail('mcmillan')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/mcmillan.jpg" alt="Charles F. McMillan" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Charles F. McMillan</div>
+    <div class="prole">10th Director, Los Alamos National Laboratory &middot; Nuclear Physicist</div>
+    <div class="pdate">Died Sep 6, 2024 &middot; Age 69</div>
+    <div class="psummary">Former LANL director killed in an unexplained head-on crash at 5:16 AM on the road to the lab &mdash; the same lab where Chavez and Casias would later vanish. The driver said she didn&rsquo;t remember what happened; in 2026 she received a fully suspended sentence.</div>
+    <div class="ptags"><span class="tag hot">Unexplained crash</span><span class="tag hot">LANL Director</span><span class="tag key">Nuclear deterrent oversight</span><span class="tag key">Sandia Labs reviewer</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('chavez')" onkeydown="if(event.key==='Enter')showDetail('chavez')">
+  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
+  <div class="pphoto"><img src="images/chavez.jpg" alt="Anthony Chavez" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Anthony Chavez</div>
+    <div class="prole">Former employee, Los Alamos National Laboratory</div>
+    <div class="pdate">Vanished May 4, 2025 &middot; Age 78 &middot; On foot</div>
+    <div class="psummary">LANL veteran who walked out of his home on foot. Car locked in driveway. Exhaustive searches produced nothing. Family: completely out of character.</div>
+    <div class="ptags"><span class="tag hot">Left on foot, car in driveway</span><span class="tag ">LANL</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('casias')" onkeydown="if(event.key==='Enter')showDetail('casias')">
+  <div class="ppill"><span class="pill pill-dead">REMAINS FOUND</span></div>
+  <div class="pphoto"><img src="images/casias.jpg" alt="Melissa Casias" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Melissa Casias</div>
+    <div class="prole">LANL Administrative Staff &middot; Top security clearance</div>
+    <div class="pdate">Vanished Jun 26, 2025 &middot; Remains found May 30, 2026</div>
+    <div class="psummary">Remains found by hiker in Carson National Forest with handgun. Both phones were factory-wiped when she vanished. Cause of death pending.</div>
+    <div class="ptags"><span class="tag hot">Remains found with handgun</span><span class="tag hot">Both phones factory-wiped</span><span class="tag key">Previously searched area</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('garcia')" onkeydown="if(event.key==='Enter')showDetail('garcia')">
+  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
+  <div class="pphoto"><img src="images/garcia.jpg" alt="Steven Garcia" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Steven Garcia</div>
+    <div class="prole">Contractor, Kansas City National Security Campus</div>
+    <div class="pdate">Vanished Aug 28, 2025 &middot; Age 48 &middot; Armed</div>
+    <div class="psummary">Oversaw classified nuclear weapon assets at KCNSC &mdash; makes 80%+ of US nuclear weapon components. Left in camouflage with handgun, no phone. Never seen again.</div>
+    <div class="ptags"><span class="tag hot">Carried handgun, left phone</span><span class="tag key">Nuclear weapons campus</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+</div>
+<div class="field-h">
+  <span class="field-pill" style="background:rgba(14,251,34,.12);border-color:rgba(14,251,34,.4);color:var(--green);">Defense Intelligence & UAP</span>
+  <span class="field-count">3 cases</span>
+</div>
+<div class="pgrid">
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('sullivan')" onkeydown="if(event.key==='Enter')showDetail('sullivan')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/sullivan.jpg" alt="Matthew Sullivan" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Matthew Sullivan</div>
+    <div class="prole">USAF Intelligence Officer &middot; NASIC Deputy Director, Wright-Patterson</div>
+    <div class="pdate">Died May 12, 2024 &middot; Age 39</div>
+    <div class="psummary">Bronze Star recipient. Died by reported suicide &mdash; exactly 2 weeks before his scheduled UAP whistleblower testimony to Congress. IC Inspector General flagged &ldquo;severe allegations of misconduct.&rdquo;</div>
+    <div class="ptags"><span class="tag hot">Died 2wks before UAP testimony</span><span class="tag hot">IC IG: severe misconduct</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-missing" tabindex="0" role="button" onclick="showDetail('mccasland')" onkeydown="if(event.key==='Enter')showDetail('mccasland')">
+  <div class="ppill"><span class="pill pill-missing">MISSING</span></div>
+  <div class="pphoto"><img src="images/mccasland .jpeg" alt="Gen. Neil McCasland" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Gen. Neil McCasland</div>
+    <div class="prole">Ret. USAF Maj. General &middot; AFRL Commander, Wright-Patterson</div>
+    <div class="pdate">Vanished Feb 27, 2026 &middot; 8 days after Trump UAP order</div>
+    <div class="psummary">Had legal visibility over every classified DoD program. Funded Reza&rsquo;s Mondaloy. Vanished 8 days after Trump UAP disclosure order. Left without phone or glasses. Carried revolver.</div>
+    <div class="ptags"><span class="tag hot">8 days after Trump UAP order</span><span class="tag hot">No phone/glasses; carried revolver</span><span class="tag key">ALL classified DoD programs</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('wilcock')" onkeydown="if(event.key==='Enter')showDetail('wilcock')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/wilcock.jpg" alt="David Wilcock" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">David Wilcock</div>
+    <div class="prole">UAP disclosure researcher, author &middot; Ancient Aliens / YouTube</div>
+    <div class="pdate">Died Apr 20, 2026 &middot; Age 53 &middot; Boulder County, CO</div>
+    <div class="psummary">Prominent UAP disclosure researcher and author. Died by apparent self-inflicted gunshot. Two days prior posted video saying it was &ldquo;scary&rdquo; that scientists are going missing. Had publicly stated he was not suicidal. Biographer Wynn Free died two days before him.</div>
+    <div class="ptags"><span class="tag hot">Died 2 days after warning about missing scientists</span><span class="tag hot">Previously stated: not suicidal</span><span class="tag uap">UAP disclosure advocate</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+</div>
+<div class="field-h">
+  <span class="field-pill" style="background:rgba(206,0,224,.12);border-color:rgba(206,0,224,.4);color:var(--purple);">Advanced & Theoretical Physics</span>
+  <span class="field-count">4 cases</span>
+</div>
+<div class="pgrid">
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('ningli')" onkeydown="if(event.key==='Enter')showDetail('ningli')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/ning_li.jpg" alt="Dr. Ning Li" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Dr. Ning Li</div>
+    <div class="prole">Antigravity Physicist &middot; UAH (CSPAR) &middot; Founder, AC Gravity LLC</div>
+    <div class="pdate">Died Jul 27, 2021 &middot; Age 78</div>
+    <div class="psummary">Published peer-reviewed papers proposing practical antigravity devices, received a $448,970 DoD grant, claimed experimental success in 2003 &mdash; then went dark under a top secret clearance. A 2014 vehicle strike on the UAH campus ended her research capacity; she died in 2021.</div>
+    <div class="ptags"><span class="tag hot">Antigravity researcher</span><span class="tag hot">Hit by car on UAH campus</span><span class="tag key">DoD classified work</span><span class="tag key">UAH &mdash; Eskridge &amp; Moffatts</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('eskridge')" onkeydown="if(event.key==='Enter')showDetail('eskridge')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/eskridge.jpg" alt="Amy Eskridge" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Amy Eskridge</div>
+    <div class="prole">Antigravity researcher &middot; Institute for Exotic Science, Huntsville AL</div>
+    <div class="pdate">Died Jun 11, 2022 &middot; Age 34</div>
+    <div class="psummary">Said publicly &ldquo;I&rsquo;m scared, it&rsquo;s escalating&rdquo; before her death. Co-founded antigravity institute with her NASA-engineer father. No official report ever released. Website went dark.</div>
+    <div class="ptags"><span class="tag hot">Said "I'm scared" publicly</span><span class="tag hot">No official investigation report</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-closed" tabindex="0" role="button" onclick="showDetail('loureiro')" onkeydown="if(event.key==='Enter')showDetail('loureiro')">
+  <div class="ppill"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span></div>
+  <div class="pphoto"><img src="images/loureiro.jpg" alt="Nuno Loureiro" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Nuno Loureiro</div>
+    <div class="prole">Director, MIT Plasma Science &amp; Fusion Center</div>
+    <div class="pdate">Murdered Dec 15, 2025 &middot; Age 47</div>
+    <div class="psummary">World-leading plasma physicist near a fusion breakthrough. Murdered by former Portuguese classmate who also carried out the Brown University shooting. Case closed &mdash; personal grudge.</div>
+    <div class="ptags"><span class="tag ">Near fusion breakthrough</span><span class="tag ok">Personal grudge &middot; &ldquo;case closed&rdquo;</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+<div class="pcard sc-dead" tabindex="0" role="button" onclick="showDetail('deininger')" onkeydown="if(event.key==='Enter')showDetail('deininger')">
+  <div class="ppill"><span class="pill pill-dead">DECEASED</span></div>
+  <div class="pphoto"><img src="images/deininger.jpg" alt="Dr. William &ldquo;Bill&rdquo; Deininger" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Dr. William &ldquo;Bill&rdquo; Deininger</div>
+    <div class="prole">Plasma Physicist &middot; Technical Fellow, BAE Systems &middot; Former JPL Scientist</div>
+    <div class="pdate">Died Jun 21, 2025 &middot; Age 68</div>
+    <div class="psummary">JPL alumni and plasma physicist who ended his career at BAE Systems&rsquo; classified Space &amp; Mission Systems division. Died one day before Monica Reza vanished. The AIAA memorial notice listed no cause of death.</div>
+    <div class="ptags"><span class="tag hot">Died day before Reza vanished</span><span class="tag hot">No cause disclosed</span><span class="tag key">JPL alumni</span><span class="tag key">BAE Systems (classified)</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+</div>
+<div class="field-h">
+  <span class="field-pill" style="background:rgba(0,245,212,.12);border-color:rgba(0,245,212,.4);color:var(--teal);">Biomedical Research</span>
+  <span class="field-count">1 case</span>
+</div>
+<div class="pgrid">
+<div class="pcard sc-closed" tabindex="0" role="button" onclick="showDetail('thomas')" onkeydown="if(event.key==='Enter')showDetail('thomas')">
+  <div class="ppill"><span class="pill pill-closed">&ldquo;CLOSED&rdquo;</span></div>
+  <div class="pphoto"><img src="images/jason thomas .jpeg" alt="Jason Thomas" class="pimg"></div>
+  <div class="pbody">
+    <div class="pname">Jason Thomas</div>
+    <div class="prole">Cancer researcher, Novartis</div>
+    <div class="pdate">Missing Dec 2025 &middot; Found dead Mar 2026</div>
+    <div class="psummary">Novartis cancer researcher. Body found in Massachusetts lake March 2026. No foul play suspected. Included for completeness &mdash; no clear national security connection.</div>
+    <div class="ptags"><span class="tag ok">&ldquo;No foul play suspected&rdquo;</span><span class="tag ">Pharmaceutical research</span></div>
+    <button class="pcta">View Full Profile + Sources &#8594;</button>
+  </div>
+</div>
+</div>
 <!-- LIVESTREAM CTA (top) -->
 <div class="stream-cta">
   <div class="stream-inner">
@@ -1176,6 +1268,11 @@ header h1{font-size:28px;}
 
 <script>
 const D={
+mcmillan:{n:'Charles F. McMillan',r:'10th Director, Los Alamos National Laboratory (2011&ndash;2017) &middot; Nuclear Physicist &middot; PhD Physics, MIT',s:'DECEASED &middot; Sep 6, 2024 &middot; Age 69 &middot; Los Alamos, NM',sc:'dead',photo:'images/mcmillan.jpg',body:'Born October 25, 1954, in Fayetteville, Arkansas. BS in math and physics from Columbia Union College (1977), PhD in physics from MIT. Experimental physicist at Lawrence Livermore 1983&ndash;2006 &mdash; B Division leader, W80 warhead project leader, Stockpile Stewardship Program. Joined LANL in 2006 as Principal Associate Director for Weapons Programs, then served as the lab&rsquo;s 10th director from June 2011 to December 2017, overseeing the US nuclear deterrent. Killed September 6, 2024, when a driver crossed the center line on East Road &mdash; the road leading to the lab &mdash; shortly after 5:15 AM. His wife Janet was a passenger and survived.',pts:['Killed at ~5:15 AM on East Road (NM 502), the road leading directly to LANL &mdash; wife Janet was in the car','Crash report: driver Nadia Lopez, 22, crossed the center line into a curve; she told police she did not remember what led up to the crash','Police found no driver error by McMillan; ExchangeMonitor: &ldquo;unexplained lane departure&rdquo; was the cause','DA found &ldquo;insufficient evidence&rdquo; for felony vehicular homicide &mdash; three petty misdemeanors filed instead','April 2026: Lopez pleaded guilty &mdash; 90 days jail fully suspended, $1,500 in fines. No felony, no jail time.','Died exactly 9 months before Chavez vanished from the same area','Testified before the Senate Armed Services Strategic Forces Subcommittee (2013) on the nuclear weapons enterprise','His death was one of two fatal crashes of LANL-connected personnel within 7 months on the same road network'],timeline:[{date:'Oct 25, 1954',type:'info',text:'Born in Fayetteville, Arkansas'},{date:'1977',type:'info',text:'BS math &amp; physics, Columbia Union College; PhD physics, MIT'},{date:'1983&ndash;2006',type:'info',text:'Lawrence Livermore National Laboratory &mdash; B Division leader, W80 project leader'},{date:'2006',type:'info',text:'Joins LANL as Principal Associate Director for Weapons Programs'},{date:'2011&ndash;2017',type:'info',text:'10th Director of Los Alamos National Laboratory'},{date:'Sep 6, 2024',type:'dead',text:'Killed in a head-on collision shortly after 5:15 AM on East Road. Age 69.'},{date:'Jul 2025',type:'info',text:'DA declines felony charge &mdash; three petty misdemeanors filed against the driver'},{date:'May&ndash;Aug 2025',type:'miss',text:'Chavez, Casias, and Garcia &mdash; all NNSA-connected &mdash; vanish from the same region'},{date:'Apr 2026',type:'info',text:'Driver pleads guilty; sentence fully suspended &mdash; $1,500 in fines, no jail time'}],works:[{u:'https://www.armed-services.senate.gov/imo/media/doc/McMillan_05-07-13.pdf',l:'Testimony before Senate Armed Services Strategic Forces Subcommittee (May 7, 2013)',s:'US Senate'},{u:'https://scholar.google.com/citations?user=hfu5uL8AAAAJ&hl=en',l:'Google Scholar: 1,306 citations &mdash; laser surgery patents, Fabry&ndash;Perot velocimetry',s:'Google Scholar'},{u:'https://www.congress.gov/115/meeting/house/105669/witnesses/HHRG-115-AS06-Bio-McMillanC-20170316.pdf',l:'Official director bio &mdash; House Armed Services witness record (2017)',s:'Congress.gov'}],investigation:'<strong>The other driver, Nadia Lopez, 22, crossed the center line</strong> heading into a curve and told police she <strong>did not remember what led up to the crash</strong>. Police found no driver error by McMillan; trade press summarized the cause as an <strong>&ldquo;unexplained lane departure.&rdquo;</strong><br><br><strong>The DA found &ldquo;insufficient evidence&rdquo;</strong> for felony vehicular homicide by reckless driving. Three petty misdemeanors were filed instead: speeding, careless driving, and failure to maintain lane.<br><br><strong>April 2026 resolution:</strong> Lopez pleaded guilty in Los Alamos Municipal Court &mdash; 90 days jail fully suspended, 90 days unsupervised probation, $1,500 in fines. The former director of America&rsquo;s premier nuclear weapons lab was killed, and no one served a day in jail.',note:'A former director of America&rsquo;s premier nuclear weapons lab, killed in an unexplained crash on the road to that lab, 9 months before two people connected to the same lab vanished. The criminal case ended in April 2026 with a fully suspended sentence. Zero mainstream coverage has connected this death to the cluster.',links:[{u:'https://losalamosreporter.com/2024/09/06/los-alamos-national-laboratory-announces-death-of-former-lanl-director-dr-charles-charlie-mcmillan/',l:'LANL announces death of former director',s:'Los Alamos Reporter'},{u:'https://www.santafenewmexican.com/news/local_news/report-says-former-lanl-director-mcmillan-killed-in-crash-when-other-driver-crossed-center-line/article_0deaf48a-7abd-11ef-b744-13b01392e4d9.html',l:'Crash report: other driver crossed center line, didn&rsquo;t remember why',s:'Santa Fe New Mexican'},{u:'https://www.nbcchicago.com/news/national-international/former-top-us-nuclear-weapons-official-dead-after-car-crash-in-new-mexico/3542328/',l:'AP: Former top US nuclear weapons official dead after crash',s:'AP via NBC'},{u:'https://www.exchangemonitor.com/unexplained-lane-departure-was-cause-of-fatal-crash-that-killed-former-lanl-director-police-say-3/',l:'Police: unexplained lane departure caused fatal crash',s:'ExchangeMonitor'},{u:'https://losalamosreporter.com/2025/07/18/das-office-says-insufficient-evidence-to-support-a-vehicular-homicide-by-reckless-driving-charge-for-driver-in-fatal-crash/',l:'DA: insufficient evidence for vehicular homicide charge',s:'Los Alamos Reporter'},{u:'https://losalamosreporter.com/2026/04/22/driver-in-2024-fatal-crash-sentenced-in-los-alamos-municipal-court-tuesday/',l:'Sentencing: fully suspended 90 days, $1,500 fines (Apr 2026)',s:'Los Alamos Reporter'},{u:'https://www.devargasfuneral.com/obituaries/charles-mcmillan',l:'Obituary &mdash; DeVargas Funeral Home',s:'DeVargas Funeral Home'},{u:'https://www.llnl.gov/community-education/employee-retirement-resources/in-memoriam/charles-f-mcmillan',l:'LLNL In Memoriam',s:'LLNL'},{u:'https://www.lanl.gov/media/publications/national-security-science/0325-remembrances',l:'LANL National Security Science: 27 remembrances',s:'LANL'},{u:'https://en.wikipedia.org/wiki/Charles_F._McMillan',l:'Wikipedia biography',s:'Wikipedia'}]},
+leonard:{n:'Dr. Philip William Leonard',r:'High Explosives Synthesis Chemist, LANL &middot; PhD Organic Chemistry, UC Berkeley (2007) &middot; 48 published papers',s:'DECEASED &middot; Feb 27, 2024 &middot; Age 44 &middot; NM-501, outside Los Alamos',sc:'dead',photo:'images/leonard.jpg',body:'Born March 19, 1979. BS/MS in chemistry from the University of Chicago (2001, magna cum laude), PhD in organic and organometallic chemistry from UC Berkeley (2007), where he co-authored the synthesis of hexaferrocenylbenzene &mdash; the most sterically crowded benzene ever made. Postdoc in energetic materials at Lawrence Livermore, then at LANL from 2009 in David Chavez&rsquo;s high-nitrogen energetics group; full staff scientist from 2011, later program manager for energetics R&amp;D &mdash; the explosive components used in nuclear weapon triggers. Killed in a three-vehicle crash on NM-501, the LANL truck route, at ~7:27 AM. His wife was pregnant; his daughter was born after his death.',pts:['High explosives synthesis = nuclear weapon trigger design &mdash; one of the most sensitive specialties at LANL','The driver who hit him head-on, Ayla Gustafson, crossed the double yellow line; investigators found she had sent two text messages shortly before the crash','She was cited for careless driving and failure to maintain lanes &mdash; citations only, no felony charges','Died February 27 &mdash; exactly 2 years to the day before McCasland vanished (Feb 27, 2026)','Postdoc at Lawrence Livermore in energetic materials before joining LANL in 2009','48 published papers; co-authored hexaferrocenylbenzene at Berkeley &mdash; the most crowded benzene ever synthesized','Two other drivers were airlifted to hospital; he was pronounced dead at Los Alamos Medical Center','Survived by wife Jamie, son Killian, and daughter Eiley &mdash; born after his death'],timeline:[{date:'Mar 19, 1979',type:'info',text:'Born'},{date:'2001',type:'info',text:'BS/MS Chemistry, University of Chicago, magna cum laude'},{date:'2007',type:'info',text:'PhD Organic Chemistry, UC Berkeley'},{date:'2007&ndash;09',type:'info',text:'Postdoc, Lawrence Livermore National Laboratory &mdash; energetic materials synthesis'},{date:'2009',type:'info',text:'Joins LANL &mdash; high-nitrogen energetics group; full staff scientist from 2011'},{date:'Feb 27, 2024',type:'dead',text:'Killed in a three-vehicle crash on NM-501 at ~7:27 AM. Age 44. Two other drivers airlifted.'},{date:'Feb 27, 2026',type:'miss',text:'Exactly two years later, Gen. Neil McCasland vanishes on the same calendar date'}],works:[{u:'https://laro.lanl.gov/esploro/profile/philip_leonard/output',l:'LANL research profile &mdash; publication output',s:'LANL Research Online'},{u:'https://pubs.rsc.org/en/content/articlelanding/2006/cc/b604844g',l:'Hexaferrocenylbenzene (Chem. Commun., 2006) &mdash; most crowded benzene ever made',s:'Royal Society of Chemistry'},{u:'https://www.osti.gov/biblio/1514955',l:'Nitrate Salt Based Melt Cast Materials (Propellants, Explosives, Pyrotechnics, 2018)',s:'OSTI.gov'},{u:'https://www.osti.gov/pages/biblio/1480037',l:'Synthesis and Evaluation of PATO Formulations (2018)',s:'OSTI.gov'},{u:'https://www.osti.gov/biblio/1891367',l:'Tetrazine-containing polymers via click chemistry (RSC Advances, 2022)',s:'OSTI.gov'},{u:'https://orcid.org/0000-0003-1851-2306',l:'ORCID record 0000-0003-1851-2306',s:'ORCID'}],investigation:'<strong>The driver, Ayla Gustafson, crossed the double yellow line</strong> on the truck route and struck Leonard&rsquo;s car head-on; a third vehicle then collided. Investigators found she had <strong>sent two text messages shortly before the crash</strong>.<br><br>She was <strong>cited for careless driving and failure to maintain lanes</strong> &mdash; traffic citations only. No felony charges were ever filed.<br><br>One week later, a four-vehicle crash on NM-502 hospitalized two more people; the DOE installed four traffic cameras on the corridor that spring after the NNSA field manager publicly acknowledged employee fear of the road.',note:'LANL explosives chemist killed on the same road network where McMillan died 7 months later &mdash; same institution Anthony Chavez worked at and where Melissa Casias&rsquo; remains were found. Died on the same calendar date (Feb 27) that McCasland disappears two years later. A texting driver received citations.',links:[{u:'https://losalamosreporter.com/2024/02/27/lapd-early-morning-three-car-crash-on-truck-route-results-in-death-of-santa-fe-man/',l:'LAPD: three-car crash on Truck Route kills Santa Fe man',s:'Los Alamos Reporter'},{u:'https://www.santafenewmexican.com/news/local_news/police-chemist-from-santa-fe-died-in-los-alamos-crash/article_3ab644f8-d7eb-11ee-9e48-337c7c9033a1.html',l:'Police: chemist died in Los Alamos crash',s:'Santa Fe New Mexican'},{u:'https://losalamosreporter.com/2024/09/26/road-to-zero-ending-acceptance-of-traffic-fatalities/',l:'Road To Zero follow-up: texting driver, citations issued',s:'Los Alamos Reporter'},{u:'https://ladailypost.com/obituary-dr-philip-william-leonard-march-19-1979-feb-27-2024/',l:'Obituary &mdash; Dr. Philip William Leonard',s:'Los Alamos Daily Post'},{u:'https://laro.lanl.gov/esploro/profile/philip_leonard',l:'LANL research profile',s:'LANL'},{u:'https://www.gofundme.com/f/phil-leonard-for-killian-and-eiley-leonard',l:'Memorial fund for his children ($38,216 raised)',s:'GoFundMe'}]},
+hardwick:{n:'Dallis Ann Hardwick',r:'Co-inventor of Mondaloy &middot; AFRL Materials Directorate, Wright-Patterson &middot; PhD Metallurgy, UNSW (1977)',s:'DECEASED &middot; Jan 5, 2014 &middot; Age 63 &middot; Cancer &middot; Dayton, OH',sc:'dead',photo:'images/hardwick.jpg',body:'Born June 26, 1950. Honours Metallurgy from UNSW (1972), then one of the first women to earn a PhD from UNSW&rsquo;s School of Metallurgy (1977). Career through Martin Marietta (Space Shuttle materials), Los Alamos National Laboratory, and Rockwell Science Center &mdash; where she co-invented the burn-resistant nickel superalloy Mondaloy with Monica Jacinto Reza, patented under Boeing in 2001. Moved to AFRL&rsquo;s Materials Directorate at Wright-Patterson, the same base McCasland commanded; by 2005 she led all materials research for advanced gas turbine engines. Meritorious Civilian Service Medal (2010). First woman to receive the TMS Structural Materials Division Distinguished Service Award. Retired 2012 after a breast cancer diagnosis; died January 5, 2014. AFRL published no memorial.',pts:['Co-invented Mondaloy &mdash; strategic US rocket alloy replacing Russian RD-180 dependency &mdash; now in ~12 AR1 engine components','Three US patent applications with Monica Jacinto (Reza): 2001 (Boeing), 2004, 2009 &mdash; assignment chain Boeing &rarr; United Technologies &rarr; Pratt &amp; Whitney Rocketdyne','Wright-Patterson &mdash; same base McCasland commanded as AFRL chief','Led ALL materials research for advanced gas turbine engines at AFRL by 2005','Meritorious Civilian Service Medal (2010); first woman to receive TMS Structural Materials Division Distinguished Service Award','AFRL published zero memorial for one of its most decorated civilian scientists','The only US records of her death are funeral home listings; UNSW in Australia published the only professional tribute','Earlier career at Martin Marietta (Space Shuttle materials) and Los Alamos National Laboratory'],timeline:[{date:'Jun 26, 1950',type:'info',text:'Born'},{date:'1972',type:'info',text:'Honours Metallurgy, University of New South Wales'},{date:'1977',type:'info',text:'PhD, UNSW School of Metallurgy &mdash; one of the first women to earn one there'},{date:'Career',type:'info',text:'Martin Marietta (Space Shuttle materials) &rarr; Los Alamos &rarr; Rockwell Science Center'},{date:'Sep 2001',type:'info',text:'Mondaloy patent application filed with Monica Jacinto (Reza), assignee Boeing'},{date:'2005',type:'info',text:'Leading all AFRL gas turbine materials research at Wright-Patterson'},{date:'2010',type:'info',text:'Meritorious Civilian Service Medal; TMS SMD Distinguished Service Award'},{date:'2012',type:'info',text:'Retires after breast cancer diagnosis'},{date:'Jan 5, 2014',type:'dead',text:'Dies in Dayton, OH, age 63. AFRL publishes no memorial.'},{date:'2025&ndash;26',type:'miss',text:'Reza (co-inventor) and McCasland (program funder) both vanish &mdash; every holder of complete Mondaloy knowledge is now gone'}],works:[{u:'https://patents.google.com/patent/US20030053926A1/en',l:'Burn-resistant, high tensile strength metal alloys (Mondaloy) &mdash; Jacinto &amp; Hardwick, 2001',s:'Google Patents'},{u:'https://patents.google.com/patent/US20100266442A1/en',l:'Ni-based burn-resistant alloy &mdash; 2009 refiling, Jacinto &amp; Hardwick',s:'Google Patents'},{u:'https://patents.google.com/patent/US20170082070A1/en',l:'Turbopump patent naming &ldquo;Mondaloy 100 or Mondaloy 200,&rdquo; citing Jacinto/Hardwick as prior art',s:'Google Patents'},{u:'https://link.springer.com/article/10.1007/BF02643313',l:'Hydrogen embrittlement in 2000-series aluminum (Metallurgical Transactions A, 1982)',s:'Springer'},{u:'https://www.osti.gov/servlets/purl/5550958',l:'D-T gas target vessels for muon-catalyzed fusion (LANL, 1989)',s:'OSTI.gov'}],investigation:'<strong>Cause of death: cancer</strong> &mdash; disclosed, and not in dispute.<br><br>What stands out is the <strong>institutional silence</strong>: AFRL published no memorial for one of its most decorated civilian scientists. Her US obituary record is a funeral home listing (Tobias Funeral Home, Dayton). UNSW in Australia published the only professional tribute to her career. No US aerospace institution acknowledged her death.',note:'First link in the Mondaloy chain. Co-invented the alloy with Reza, worked under McCasland&rsquo;s command at Wright-Patterson. All three people who held complete technical and institutional knowledge of this strategic alloy are now dead or missing. The near-total US institutional silence around her death &mdash; no AFRL memorial, no aerospace industry acknowledgment &mdash; is itself a data point.',links:[{u:'https://www.unsw.edu.au/science/engage-with-us/alumni/alumni-career-stories/dallis-hardwick',l:'UNSW tribute &mdash; the only professional memorial published',s:'UNSW Sydney'},{u:'https://www.dignitymemorial.com/obituaries/dayton-oh/dallis-hardwick-5803332',l:'Obituary &mdash; Tobias Funeral Home, Dayton OH',s:'Dignity Memorial'},{u:'https://spacenews.com/what-is-mondaloy-and-why-should-you-care/',l:'SpaceNews: What is Mondaloy and why should you care?',s:'SpaceNews'},{u:'https://patents.google.com/patent/US20030053926A1/en',l:'The original Mondaloy patent application (2001)',s:'Google Patents'},{u:'https://en.wikipedia.org/wiki/Monica_Reza',l:'Wikipedia: Monica Reza &mdash; names Hardwick as co-developer',s:'Wikipedia'}]},
+deininger:{n:'Dr. William &ldquo;Bill&rdquo; Deininger',r:'Technical Fellow, BAE Systems Space &amp; Mission Systems &middot; Former JPL Scientist &middot; Plasma Physicist &middot; AIAA Associate Fellow',s:'DECEASED &middot; Jun 21, 2025 &middot; Age 68 &middot; Cause not disclosed',sc:'dead',photo:'images/deininger.jpg',body:'Born 1956. BS Physics, SUNY Cortland (1979); MS Physics and Plasma Physics, Colorado State (1982); PhD Aerospace Engineering, University of Pisa (1995). Spent ~7 years at NASA JPL in the 1980s on electric propulsion &mdash; arcjet engines and plasma diagnostics &mdash; then 8 years as senior scientist at Italian aerospace giant Fiat Avio. Joined Ball Aerospace in 1998, where he worked on the Kepler space telescope flight system, was Chief Systems Engineer on the Green Propellant Infusion Mission, and led systems engineering on the IXPE X-ray observatory. Named Technical Fellow in 2021; the title became BAE Systems Technical Fellow in 2024 when BAE acquired Ball Aerospace &mdash; the maker of electronic warfare and directed energy systems. Died June 21, 2025 &mdash; one day before Monica Reza vanished.',pts:['Died June 21, 2025 &mdash; Monica Reza vanished June 22, 2025. One day apart.','No cause of death given in the AIAA memorial notice or his published obituary','JPL alumni &mdash; direct institutional connection to Hicks, Maiwald, Reza','Plasma physics + aerospace engineering &mdash; overlapping expertise with Loureiro (MIT Plasma Science &amp; Fusion)','At Ball Aerospace from 1998: Kepler, Green Propellant Infusion Mission (Chief Systems Engineer), IXPE','Became BAE Systems Technical Fellow in 2024 when BAE acquired Ball Aerospace &mdash; classified Space &amp; Mission Systems division','Active in AIAA Systems Engineering Technical Committee and ASCEND conference; AIAA Associate Fellow','Survived by wife Judy and four children; memorial service held August 2025'],timeline:[{date:'1956',type:'info',text:'Born'},{date:'1979',type:'info',text:'BS Physics, SUNY Cortland; MS Physics &amp; Plasma Physics, Colorado State (1982)'},{date:'1980s',type:'info',text:'~7 years at NASA JPL &mdash; electric propulsion, arcjet engines, plasma diagnostics'},{date:'1995',type:'info',text:'PhD Aerospace Engineering, University of Pisa; 8 years at Fiat Avio (Italy)'},{date:'1998',type:'info',text:'Joins Ball Aerospace &mdash; Kepler, GPIM Chief Systems Engineer, IXPE'},{date:'2024',type:'info',text:'BAE Systems acquires Ball Aerospace &mdash; becomes BAE Technical Fellow, Space &amp; Mission Systems'},{date:'Jun 21, 2025',type:'dead',text:'Dies, age 68. No cause given in the AIAA memorial notice.'},{date:'Jun 22, 2025',type:'miss',text:'Monica Reza vanishes &mdash; one day later'}],works:[{u:'https://scholar.google.com/citations?user=5syXED4AAAAJ&hl=en',l:'Google Scholar: 866 citations &mdash; electric propulsion &amp; space missions',s:'Google Scholar'},{u:'https://ntrs.nasa.gov/citations/19900015874',l:'The 30-kW ammonia arcjet technology (JPL, 1990) &mdash; first author',s:'NASA NTRS'},{u:'https://ntrs.nasa.gov/citations/19890059501',l:'JPL electric propulsion technology activities review (1989)',s:'NASA NTRS'},{u:'https://lweb.cfa.harvard.edu/kepler/papers/2004/SPIE.Glasgow.Koch.pdf',l:'Overview and Status of the Kepler Mission (SPIE, 2004) &mdash; Ball Aerospace',s:'Harvard CfA'},{u:'https://ntrs.nasa.gov/api/citations/20140016837/downloads/20140016837.pdf',l:'Green Propellant Infusion Mission &mdash; Chief Systems Engineer (AIAA, 2014)',s:'NASA NTRS'},{u:'https://arxiv.org/abs/2112.01269',l:'IXPE X-ray polarimetry observatory &mdash; pre-launch (2021)',s:'arXiv'}],investigation:'<strong>No cause of death</strong> was given in the AIAA memorial notice or in his obituary &mdash; unusual for a formal professional memorial.<br><br>His final role was <strong>Technical Fellow at BAE Systems&rsquo; Space and Mission Systems sector</strong> (formerly Ball Aerospace), which builds classified defense systems including space-based platforms.',note:'JPL alumni. Plasma physicist. Died the day before Monica Reza vanished. Neither the AIAA nor his obituary published a cause of death.',links:[{u:'https://aerospaceamerica.aiaa.org/aiaa-associate-fellow-deininger-died-in-june-2025/',l:'AIAA memorial: Associate Fellow Deininger died in June 2025',s:'Aerospace America (AIAA)'},{u:'https://www.legacy.com/us/obituaries/name/william-deininger-obituary?id=58779291',l:'Obituary &mdash; William Dwight Deininger (1956&ndash;2025), Longmont CO',s:'Legacy.com'},{u:'https://scholar.google.com/citations?user=5syXED4AAAAJ&hl=en',l:'Google Scholar profile',s:'Google Scholar'}]},
+ningli:{n:'Dr. Ning Li',r:'Antigravity Physicist &middot; University of Alabama in Huntsville (CSPAR) &middot; Founder, AC Gravity LLC &middot; DoD-funded classified researcher',s:'DECEASED &middot; Jul 27, 2021 &middot; Age 78 &middot; Huntsville, AL',sc:'dead',photo:'images/ning_li.jpg',body:'Born January 14, 1943. At UAH&rsquo;s Center for Space Plasma and Aeronomic Research in the early 1990s she published peer-reviewed papers with Douglas Torr in Physical Review D and B proposing gravitational effects from rotating superconductors, and a 1997 Physica C experimental paper with NASA Marshall scientists. Popular Mechanics profiled her work in &ldquo;Taming Gravity&rdquo; (2000). Founded AC Gravity LLC (1999) and received a $448,970 DoD grant (2001) &mdash; no results were ever published. In May 2003 she presented at a MITRE conference and claimed &ldquo;11 kilowatts of output effect&rdquo; in a private email &mdash; her last known communication about the research. Her son confirmed she obtained a top secret clearance. In 2014 she was struck by a vehicle on the UAH campus &mdash; permanent brain damage ended her research capacity. Her husband witnessed the accident and died of a heart attack the following year. She lived with Alzheimer&rsquo;s until her death in 2021.',pts:['Peer-reviewed antigravity theory: Physical Review D (1991) and Physical Review B (1992) with Douglas Torr; Physica C experimental test (1997) with NASA Marshall scientists','$448,970 DoD grant (2001) through AC Gravity LLC &mdash; grant period ended 2002, results never published','May 2003: presented &ldquo;Measurability of AC Gravity Fields&rdquo; at a MITRE conference, claimed &ldquo;11 kilowatts of output effect&rdquo; in a private email &mdash; then went dark','Son confirmed she obtained a top secret clearance: she &ldquo;wasn&rsquo;t allowed to share anything anymore with anyone&rdquo;','Struck by a vehicle on the UAH campus in 2014 &mdash; permanent brain damage ended all research','Husband witnessed the accident, suffered a heart attack, and died the following year','UAH Huntsville &mdash; same institution as Amy Eskridge (antigravity, died 2022) and the Moffatts (aerospace defense, died 2026)','A 2022 FOIA request for the DoD grant records was closed by DoD without producing documents','Newsweek (April 2026): no official finding of criminal activity in her case'],timeline:[{date:'Jan 14, 1943',type:'info',text:'Born'},{date:'1991&ndash;93',type:'info',text:'Publishes superconductor gravito-magnetism theory with Douglas Torr (Phys. Rev. D, Phys. Rev. B, Found. Phys. Lett.)'},{date:'1997',type:'info',text:'Physica C experimental paper with NASA Marshall scientists (Noever, Robertson, Koczor, Brantley)'},{date:'1999',type:'info',text:'Founds AC Gravity LLC after leaving UAH'},{date:'2001',type:'info',text:'$448,970 DoD grant for antigravity research'},{date:'May 2003',type:'info',text:'MITRE conference presentation + &ldquo;11 kilowatts&rdquo; email &mdash; last known research communication'},{date:'2014',type:'miss',text:'Struck by a vehicle on the UAH campus &mdash; permanent brain damage ends her research'},{date:'2015',type:'dead',text:'Husband, who witnessed the accident, dies of a heart attack'},{date:'Jul 27, 2021',type:'dead',text:'Dies in Huntsville, AL, after years with Alzheimer&rsquo;s'}],works:[{u:'https://doi.org/10.1103/PhysRevD.43.457',l:'Effects of a gravitomagnetic field on pure superconductors (Phys. Rev. D, 1991)',s:'Physical Review D'},{u:'https://doi.org/10.1103/PhysRevB.46.5489',l:'Gravitational effects on the magnetic attenuation of superconductors (Phys. Rev. B, 1992)',s:'Physical Review B'},{u:'https://doi.org/10.1007/BF00665654',l:'Gravitoelectric-electric coupling via superconductivity (Found. Phys. Lett., 1993)',s:'Springer'},{u:'https://doi.org/10.1016/S0921-4534(97)01462-7',l:'Static test for a gravitational force coupled to type II YBCO superconductors (Physica C, 1997)',s:'Elsevier'}],investigation:'The 2014 incident was a <strong>vehicle strike on the UAH campus</strong> that caused permanent brain damage and ended her research capacity. Her husband witnessed it and died of a heart attack the following year.<br><br>Her son confirmed she held a <strong>top secret clearance</strong> for classified DoD work: she &ldquo;wasn&rsquo;t allowed to share anything anymore with anyone. She became much quieter.&rdquo;<br><br>A 2022 <strong>MuckRock FOIA request</strong> for the AC Gravity LLC grant records was closed by DoD in November 2022. Newsweek reported in April 2026 that there is <strong>no official finding of criminal activity</strong> in her case.',note:'The original UAH antigravity researcher &mdash; predecessor to Amy Eskridge at the same institution. Huntsville, Alabama &mdash; home to UAH, NASA Marshall, and Redstone Arsenal &mdash; is one of the most concentrated nodes in this entire cluster: Eskridge, both Moffatts, and Ning Li.',links:[{u:'https://huntsvillebusinessjournal.com/news/2023/07/30/solving-the-mystery-of-huntsvilles-brilliant-scientist-disappearing/',l:'Huntsville Business Journal: the definitive long-form investigation (son interviewed)',s:'Huntsville Business Journal'},{u:'https://en.wikipedia.org/wiki/Ning_Li_(physicist)',l:'Wikipedia biography',s:'Wikipedia'},{u:'https://www.berryhillfh.com/obituary/ning-li',l:'Obituary &mdash; Berryhill Funeral Home, Huntsville',s:'Berryhill Funeral Home'},{u:'https://taminggravity.com/archive/taming-gravity-popular-mechanics/',l:'Popular Mechanics &ldquo;Taming Gravity&rdquo; (Oct 2000) &mdash; archived',s:'Popular Mechanics archive'},{u:'https://www.muckrock.com/foi/united-states-of-america-10/department-of-defense-grant-for-ac-gravity-llc-2001-department-of-defense-freedom-of-information-policy-office-135081/',l:'FOIA request for the $448,970 DoD grant &mdash; closed without documents',s:'MuckRock'},{u:'https://www.newsweek.com/missing-dead-scientists-congressman-raises-concerns-about-two-more-names-11854911',l:'Newsweek: Congressman raises concerns about additional names (Apr 2026)',s:'Newsweek'}]},
 hicks:{n:'Michael David Hicks',r:'Research Scientist, NASA JPL (1998&ndash;2022)',s:'DECEASED &middot; Jul 30, 2023 &middot; Age 59 &middot; Sunland, CA',sc:'dead',photo:'images/hicks.jpg',body:'Born 1964, Dayton, Ohio. B.S. from Boston University. PhD in Planetary Sciences from University of Arizona Lunar and Planetary Laboratory (1997). Dissertation: &ldquo;A Spectrophotometric Survey of Comets and Earth-Approaching Asteroids.&rdquo; NASA Postdoctoral Fellow at JPL (1998), then Research Scientist for 24 years. Published 80+ papers on comets and asteroids. Also a visual artist (woodblock prints, oil painting, metalwork) and ukulele player who performed during Mount Palomar observing sessions. Daughter Julia told CNN she was &ldquo;shaken&rdquo; by the speculation but noted he had &ldquo;known medical issues.&rdquo; NASA issued zero statements. No autopsy on record.',pts:['Born 1964, Dayton, Ohio &mdash; father Richard, six siblings, daughter Julia','B.S. Boston University; PhD Planetary Sciences, University of Arizona (1997)','NASA JPL Research Scientist for 24 years (1998&ndash;2022)','DART Mission: NASA asteroid deflection test','Deep Space 1: advanced autonomous spacecraft','Dawn Mission: Vesta/Ceres exploration','Near Earth Asteroid Tracking (NEAT) Project','Published 80+ papers; 3,400+ citations','No cause of death ever publicly disclosed','No autopsy conducted','NASA and JPL issued zero public statements','Daughter Julia: he had &ldquo;known medical issues&rdquo;'],note:'First case in the cluster. Largely unnoticed until the pattern emerged in 2026. A 24-year JPL veteran with 80+ publications &mdash; and NASA said nothing.',timeline:[{date:'1964',type:'info',text:'Born in Dayton, Ohio'},{date:'1997',type:'info',text:'PhD Planetary Sciences, University of Arizona'},{date:'1998',type:'info',text:'NASA Postdoctoral Fellow at JPL'},{date:'1998&ndash;2022',type:'info',text:'Research Scientist at NASA JPL (24 years)'},{date:'Jul 30, 2023',type:'dead',text:'Died in Sunland, CA. Age 59. No cause disclosed, no autopsy.'}],works:[{u:'https://scholar.google.com/citations?user=KHXx6fMAAAAJ&hl=en',l:'Google Scholar: 80+ publications',s:'Google Scholar'},{u:'https://ui.adsabs.harvard.edu/abs/1997Icar..127..307H/abstract',l:'Comet Hyakutake spectrophotometry (Icarus, 1997)',s:'NASA ADS'},{u:'https://ui.adsabs.harvard.edu/abs/2018MPBu...45..237H/abstract',l:'Lightcurve of NEA (297418) 2000 SP43 (2018)',s:'NASA ADS'},{u:'https://echo.jpl.nasa.gov/asteroids/magri.etal.2011.1996hw1.pdf',l:'Radar observations of asteroid (8567) 1996 HW1 (2011)',s:'JPL Echo'}],investigation:'<strong>No cause of death</strong> ever publicly disclosed.<br><br><strong>No autopsy</strong> conducted.<br><br><strong>NASA and JPL issued zero public statements</strong> about his death &mdash; anomalous for a 24-year veteran with 80+ publications.<br><br><strong>Daughter Julia</strong> told CNN she didn&rsquo;t &ldquo;understand the connection between my dad&rsquo;s death and the other missing scientists&rdquo; but was &ldquo;shaken&rdquo; by the speculation. She also said Hicks had &ldquo;known medical issues&rdquo; at the time of death.',links:[{u:'https://www.cnn.com/2026/04/21/us/deaths-disappearances-scientists-investigation',l:'CNN: Federal investigation',s:'CNN'},{u:'https://dps.aas.org/news/michael-david-hicks-1964-2023/',l:'AAS obituary',s:'AAS'},{u:'https://scholar.google.com/citations?user=KHXx6fMAAAAJ&hl=en',l:'Google Scholar: 80+ publications',s:'Google Scholar'},{u:'https://ui.adsabs.harvard.edu/abs/1997Icar..127..307H/abstract',l:'Paper: Comet Hyakutake spectrophotometry (Icarus, 1997)',s:'NASA ADS'},{u:'https://www.newsweek.com/list-dead-or-missing-scientists-suspicious-michael-david-hicks-11805585',l:'Newsweek: 11th case raised',s:'Newsweek'},{u:'https://pasadenanow.com/main/four-pasadena-area-scientist-deaths-or-disappearances-among-those-under-federal-review-officials-say',l:'Pasadena Now: Four JPL-area cases under federal review',s:'Pasadena Now'},{u:'https://lpl.arizona.edu/news/2023/fall/michael-david-hicks-1964-2023',l:'University of Arizona LPL memorial',s:'U of Arizona'}]},
 maiwald:{n:'Frank Maiwald',r:'JPL Principal Researcher &middot; Technical Group Supervisor',s:'DECEASED &middot; Jul 4, 2024 &middot; Age 61 &middot; Los Angeles, CA',sc:'dead',photo:'images/maiwald.jpg',body:'Full name Frank Werner Maiwald. Born June 24, 1963, Ratingen, Germany. Studied at University of Cologne. PhD in Applied Physics. Joined JPL as Post-Doctoral Fellow in April 1999, developing a 2.7 THz frequency tripler for the Herschel Space Observatory. Rose to &ldquo;JPL Principal&rdquo; &mdash; the highest individual contributor designation, awarded for &ldquo;making outstanding individual contributions.&rdquo; Also served as Technical Group Supervisor. Managed instruments including SBG-VSWIR, AMR-C (successfully delivered for Sentinel-6), HIFI Band 5 local oscillator, COWVR, and AMR/Jason 3. In June 2023, presented a breakthrough at JPL&rsquo;s annual research symposium on mass spectrometry that could detect biosignatures on Europa, Enceladus, and Ceres. 3,440+ citations. Wife Yeonjae. Described by colleagues as &ldquo;a hard-working colleague with a smile on his face and a warm heart.&rdquo; One obituary exists. NASA issued no public statement. JPL declined to confirm his employment to media in April 2026.',pts:['Born Jun 24, 1963, Ratingen, Germany &mdash; University of Cologne; PhD Applied Physics','Joined JPL April 1999 as Post-Doctoral Fellow','Rose to JPL Principal &mdash; highest individual contributor designation','Also served as Technical Group Supervisor','25 years at NASA JPL (1999&ndash;2024)','Managed: SBG-VSWIR, AMR-C (Sentinel-6), HIFI Band 5 (Herschel), COWVR, AMR/Jason 3','June 2023: biosignature detection breakthrough (Europa, Enceladus, Ceres)','3,440+ citations across THz, submillimeter-wave, mass spectrometry','No cause of death disclosed; no autopsy performed','NASA issued no public statement','JPL declined to confirm his employment to media (Apr 2026)','Second JPL death in 12 months (after Hicks)'],note:'Second JPL death in 12 months. NASA silence on both is anomalous for researchers of this stature. JPL actively declined to confirm his employment when media asked in 2026.',timeline:[{date:'Jun 24, 1963',type:'info',text:'Born in Ratingen, Germany'},{date:'University of Cologne',type:'info',text:'Studied physics; earned PhD in Applied Physics'},{date:'Apr 1999',type:'info',text:'Joined JPL as Post-Doctoral Fellow'},{date:'1999&ndash;2024',type:'info',text:'25 years at JPL &mdash; rose to JPL Principal and Technical Group Supervisor'},{date:'Jun 2023',type:'info',text:'Presented biosignature detection breakthrough at JPL symposium'},{date:'Jul 4, 2024',type:'dead',text:'Died in Los Angeles. Age 61. No cause disclosed, no autopsy.'}],works:[{u:'https://scholar.google.com/citations?user=PPfNthEAAAAJ&hl=en',l:'Google Scholar: 3,440+ citations',s:'Google Scholar'},{u:'https://ntrs.nasa.gov/citations/20020038961',l:'Design of a 2.7 THz Waveguide Tripler (NASA NTRS, 2002)',s:'NASA NTRS'},{u:'https://ntrs.nasa.gov/citations/20070023901',l:'Hot-Electron Bolometer Mixers for THz Frequencies (2007)',s:'NASA NTRS'},{u:'https://ntrs.nasa.gov/citations/20150008536',l:'High Power Local Oscillator Sources for 1&ndash;2 THz (2015)',s:'NASA NTRS'},{u:'https://ntrs.nasa.gov/citations/20210007663',l:'AMR-C Instrument for Sentinel-6 (2017)',s:'NASA NTRS'},{u:'https://ntrs.nasa.gov/search.jsp?R=20190026868',l:'COWVR Mission: Next-Gen Small Satellite Weather Sensors (2019)',s:'NASA NTRS'},{u:'https://www.researchgate.net/profile/Frank-Maiwald',l:'ResearchGate: Full publication list',s:'ResearchGate'},{u:'https://trs-new.jpl.nasa.gov/dspace/items-by-author?author=Maiwald%252C+Frank',l:'JPL Technical Reports Server',s:'JPL TRS'}],investigation:'<strong>No cause of death</strong> publicly disclosed.<br><br><strong>No autopsy</strong> performed.<br><br><strong>NASA issued no public statement.</strong><br><br><strong>JPL declined to confirm his employment</strong> when contacted by media in April 2026.<br><br>Only public record of his death is a single Legacy.com obituary.',links:[{u:'https://thelibertyline.com/2026/04/08/ufo-research-dead-missing-nine/',l:'Liberty Line: Count reaches nine',s:'Liberty Line'},{u:'https://scholar.google.com/citations?user=PPfNthEAAAAJ&hl=en',l:'Google Scholar: 3,400+ citations',s:'Google Scholar'},{u:'https://www.researchgate.net/profile/Frank-Maiwald',l:'ResearchGate: JPL/Caltech publications',s:'ResearchGate'},{u:'https://ntrs.nasa.gov/citations/20020038961',l:'NASA Technical Report: 2.7 THz waveguide tripler',s:'NASA NTRS'},{u:'https://pasadenanow.com/main/four-pasadena-area-scientist-deaths-or-disappearances-among-those-under-federal-review-officials-say',l:'Pasadena Now: Four JPL-area cases under federal review',s:'Pasadena Now'},{u:'https://www.legacy.com/us/obituaries/legacyremembers/frank-maiwald-obituary?id=55630404',l:'Obituary (1963&ndash;2024)',s:'Legacy.com'}]},
 reza:{n:'Monica Jacinto Reza',r:'Technical Fellow, Aerojet Rocketdyne (37 yrs) &middot; Director, JPL Materials Processing',s:'MISSING &middot; Vanished Jun 22, 2025 &middot; Age 60 &middot; 4&rsquo;11&rdquo;, 101 lbs',sc:'missing',photo:'images/reza.jpg',body:'B.S. Metallurgical Engineering, Columbia University. M.S. Materials Engineering, UCLA (1997). Started at Rocketdyne in 1988. Rose to Technical Fellow &mdash; the highest technical rank &mdash; over a 37-year career at Aerojet Rocketdyne. In the mid-1990s, co-invented the Mondaloy superalloy with Dallis Ann Hardwick at Rockwell Science Center, freeing US satellite launches from Russian RD-180 dependency. Won the inaugural HENAAC Luminary Award in 2004 (at Boeing). When L3Harris acquired Aerojet Rocketdyne for $4.7B in 2023, Reza transitioned to Director of Materials Processing at NASA JPL. Mondaloy is used in 12 components of the AR1 engine ($236.6M cumulative R&amp;D). Research directly funded by McCasland&rsquo;s AFRL from 1999. Vanished June 22, 2025, on Mount Waterman Trail in Angeles National Forest. Was ~30ft behind hiking companion, smiling and waving &mdash; then gone. Wearing red shirt and green pants (highly visible). Family (May 2026): &ldquo;Whoever did this, if it was not an accident, was a professional.&rdquo; &ldquo;We&rsquo;re scared for our safety.&rdquo;',pts:['B.S. Metallurgical Engineering, Columbia; M.S. Materials Engineering, UCLA (1997)','37-year career at Aerojet Rocketdyne (1988&ndash;2023) &mdash; rose to Technical Fellow (highest technical rank)','Transitioned to Director, Materials Processing at NASA JPL (2023&ndash;2025)','Co-invented Mondaloy superalloy with Dallis Ann Hardwick','Patent US 2003/0053926 A1: Burn-resistant high-tensile-strength metal alloys','Mondaloy composition: ~71.5% nickel, 16.5% cobalt, 8% chromium, 2.5% titanium, 1.5% aluminum','Mondaloy survives 10,000 psi gaseous oxygen; 170,000&ndash;195,000 psi tensile strength','12 components in AR1 engine ($236.6M R&amp;D); now linked to SpaceX &amp; Blue Origin','Won inaugural HENAAC Luminary Award (2004, Boeing)','McCasland&rsquo;s AFRL funded Mondaloy from 1999 &mdash; direct funding chain','Jun 22: vanished 30ft from companion on Mount Waterman Trail &mdash; smiling, waving, then gone','Jun 23: beanie found in steep ravine toward Devil&rsquo;s Canyon; scent dogs lost trail','Lip balm found far from last known position and beanie location','Jun 26: &ldquo;Green burial&rdquo; memorial created on Find a Grave (4 days after vanishing, search still active)','FLIR thermal imaging found no heat signature','Cell phone forensics obtained by LASD but never released','Family (May 2026): &ldquo;Whoever did this was a professional&rdquo; &amp; &ldquo;We&rsquo;re scared for our safety&rdquo;','No statements from Aerojet Rocketdyne, NASA, JPL, or any aerospace institution'],note:'The McCasland-Reza connection is the strongest documented link. Two people from the same funding chain &mdash; both gone. The &ldquo;green burial&rdquo; memorial created 4 days after her disappearance while the search was still active is unexplained. Her family&rsquo;s May 2026 statements &mdash; &ldquo;whoever did this was a professional&rdquo; and &ldquo;we&rsquo;re scared for our safety&rdquo; &mdash; are the strongest family accusations in any case.',timeline:[{date:'~1965',type:'info',text:'Born'},{date:'Columbia',type:'info',text:'B.S. Metallurgical Engineering, Columbia University'},{date:'1988',type:'info',text:'Started at Rocketdyne (Rockwell International)'},{date:'Mid-1990s',type:'info',text:'Co-invented Mondaloy superalloy with Dallis Ann Hardwick'},{date:'Sep 18, 2001',type:'info',text:'Filed patent application for burn-resistant alloys (assigned to Boeing)'},{date:'2004',type:'info',text:'Received inaugural HENAAC Luminary Award (Boeing)'},{date:'1997',type:'info',text:'M.S. Materials Engineering, UCLA'},{date:'2023',type:'info',text:'L3Harris acquires Aerojet Rocketdyne ($4.7B). Reza transitions to JPL as Director, Materials Processing.'},{date:'Jun 22, 2025',type:'miss',text:'Vanished on Mount Waterman Trail, Angeles National Forest'},{date:'Jun 23, 2025',type:'miss',text:'Beanie found in ravine toward Devil&rsquo;s Canyon. Scent dogs lost trail.'},{date:'Jun 26, 2025',type:'miss',text:'&ldquo;Green burial&rdquo; memorial created on Find a Grave &mdash; 4 days after vanishing, search still active'},{date:'Jun 29, 2025',type:'info',text:'Official search phase concluded. Case transferred to LASD Homicide Bureau Missing Persons Unit.'}],works:[{u:'https://patents.google.com/patent/US20030053926A1/en',l:'Patent: Burn-resistant high-tensile-strength metal alloys (Mondaloy)',s:'Google Patents'},{u:'https://boeing.mediaroom.com/2004-10-11-Two-Boeing-Employees-Receive-National-Recognition',l:'Boeing: HENAAC Luminary Award (2004)',s:'Boeing'},{u:'https://mondaloy.nowa.ca/',l:'Mondaloy open-source investigation',s:'Mondaloy.nowa.ca'}],videos:['https://www.youtube.com/embed/Kc6SAYmEazs','https://www.youtube.com/embed/MPfMm9BSzsI','https://www.youtube.com/embed/IeGQw5O932U'],investigation:'<strong>Jun 22, 2025:</strong> Vanished on Mount Waterman Trail, Angeles National Forest. Was ~30ft behind hiking companion, wearing red shirt and green pants (highly visible). Smiling and waving &mdash; then gone.<br><br><strong>Jun 23:</strong> Beanie found in steep ravine south of ridge, descending toward Devil&rsquo;s Canyon. Scent dogs tracked to beanie, then lost trail. Lip balm found far from last known position.<br><br><strong>FLIR:</strong> Thermal imaging found no heat signature. Aerial photography pixel-matching flagged only mylar balloons.<br><br><strong>Jun 26:</strong> &ldquo;Green burial&rdquo; memorial created on Find a Grave (ID 284387277) listing her as deceased &mdash; 4 days after disappearance while search still ongoing.<br><br><strong>Jun 29:</strong> Official search concluded. Case transferred to LASD Homicide Bureau Missing Persons Unit.<br><br><strong>Cell phone forensics:</strong> Obtained by LASD but never released.<br><br><strong>No death certificate</strong> accessible through public databases.<br><br><strong>LASD:</strong> Still lists as active missing person case (Mar 2026).<br><br><strong>Family (May 2026):</strong> &ldquo;Whoever did this, if it was not an accident, was a professional.&rdquo; &ldquo;We&rsquo;re scared for our safety.&rdquo;<br><br><strong>No public statements</strong> from Aerojet Rocketdyne, NASA, JPL, or any aerospace institution.',links:[{u:'https://fortune.com/2026/04/21/scientists-disappear-die-nasa-space-blue-origin-spacex/',l:'Fortune: SpaceX/Blue Origin connection',s:'Fortune'},{u:'https://en.wikipedia.org/wiki/Monica_Jacinto',l:'Wikipedia: Monica Jacinto Reza',s:'Wikipedia'},{u:'https://patents.google.com/patent/US20030053926A1/en',l:'Patent: Burn-resistant high-tensile-strength metal alloys (Mondaloy)',s:'Google Patents'},{u:'https://spacenews.com/what-is-mondaloy-and-why-should-you-care/',l:'SpaceNews: What is Mondaloy and why should you care?',s:'SpaceNews'},{u:'https://www.newsnationnow.com/missing/scientist-monica-reza-disappearance/',l:'NewsNation: Monica Reza disappearance',s:'NewsNation'},{u:'https://ktla.com/news/local-news/initial-search-phase-concludes-southern-california-hiker-still-missing/',l:'KTLA: Search phase concludes, hiker still missing',s:'KTLA'},{u:'https://thesentinel.network/p/the-green-burial-she-was-declared',l:'The Sentinel: Declared dead four days after vanishing',s:'The Sentinel'},{u:'https://thesentinel.network/p/the-phone-gap-monica-rezas-cell-phone',l:'The Sentinel: Cell phone gap investigation',s:'The Sentinel'},{u:'https://thesentinel.network/p/what-is-mondaloy-the-american-alloy',l:'The Sentinel: What is Mondaloy?',s:'The Sentinel'},{u:'https://www.solvethecase.org/case/2025-56/monica-reza',l:'Solve the Case: Missing Monica Reza',s:'Solve the Case'}]},
@@ -1311,9 +1408,9 @@ var nodes=[
   {id:'fbi',l:'FBI',s:'Active Investigation',t:'gov',c:'gov',cat:'congress',x:1750,y:680,r:22,i:'"Spearheading the effort to look for connections." Joined McCasland search.'},
   {id:'grusch',l:'David Grusch',s:'UAP Whistleblower',t:'gov',c:'gov',cat:'uap',x:1600,y:180,r:20,i:'Testified re: crash-retrieval programs. Now Burlison\'s senior adviser.'},
   // Candidate nodes (hidden by default)
-  {id:'mcmillan',l:'Charles McMillan',s:'LANL Director · Died 2024',t:'person',c:'dead',cat:'nuclear',x:1400,y:480,r:20,i:'10th LANL Director. Killed in head-on crash 5:16 AM on road to lab. Driver had no memory of crossing center line.',cand:true},
-  {id:'leonard',l:'Philip Leonard',s:'LANL · Died Feb 2024',t:'person',c:'dead',cat:'nuclear',x:1050,y:480,r:18,i:'LANL high explosives synthesis chemist. Nuclear weapon trigger design. Killed in crash on same road corridor as McMillan.',cand:true},
-  {id:'deininger',l:'Bill Deininger',s:'BAE Systems · Died Jun 2025',t:'person',c:'dead',cat:'jpl',x:300,y:520,r:18,i:'JPL alumni. Plasma physicist. BAE Systems. Died June 21 — one day before Reza vanished. No cause disclosed.',cand:true},
+  {id:'mcmillan',l:'Charles McMillan',s:'LANL Director · Died 2024',t:'person',c:'dead',cat:'nuclear',x:1400,y:480,r:20,i:'10th LANL Director. Killed in head-on crash 5:16 AM on road to lab. Driver had no memory of crossing center line.'},
+  {id:'leonard',l:'Philip Leonard',s:'LANL · Died Feb 2024',t:'person',c:'dead',cat:'nuclear',x:1050,y:480,r:18,i:'LANL high explosives synthesis chemist. Nuclear weapon trigger design. Killed in crash on same road corridor as McMillan.'},
+  {id:'deininger',l:'Bill Deininger',s:'BAE Systems · Died Jun 2025',t:'person',c:'dead',cat:'jpl',x:300,y:520,r:18,i:'JPL alumni. Plasma physicist. BAE Systems. Died June 21 — one day before Reza vanished. No cause disclosed.'},
   {id:'phillips',l:'Gary Phillips',s:'NRL · Died Jul 2025',t:'person',c:'dead',cat:'military',x:1600,y:800,r:16,i:'Naval Research Laboratory physicist. Died July 2025 in same summer window as cluster. No cause disclosed.',cand:true},
   {id:'young',l:'Frank Young',s:'NRL · Died Aug 2025',t:'person',c:'dead',cat:'military',x:1750,y:860,r:16,i:'NRL physicist. UMD Cyclotron (nuclear accelerator). Died August 2025. No cause disclosed.',cand:true},
   {id:'victor',l:'Andrew Victor',s:'Rocket Propulsion · Died Jul 2025',t:'person',c:'dead',cat:'military',x:720,y:400,r:16,i:'Rocket propulsion physicist. Died Jul 18 between Reza and Garcia vanishing. No employer or cause disclosed.',cand:true},
@@ -1338,9 +1435,9 @@ var edges=[
   {s:'leblanc',t:'hsv',cat:'jpl'},{s:'leblanc',t:'eskridge',cat:'jpl'},
   {s:'moffatt',t:'hsv',cat:'jpl'},{s:'moffatt',t:'eskridge',cat:'jpl'},{s:'moffatt',t:'leblanc',cat:'jpl'},{s:'moffatt',t:'moffatt_andrew',cat:'jpl'},{s:'moffatt_andrew',t:'hsv',cat:'jpl'},{s:'eskridge',t:'hsv',cat:'jpl'},
   // Candidate edges
-  {s:'mcmillan',t:'lanl',cat:'candidate',cand:true},{s:'mcmillan',t:'chavez',cat:'candidate',cand:true},{s:'mcmillan',t:'casias',cat:'candidate',cand:true},
-  {s:'leonard',t:'lanl',cat:'candidate',cand:true},{s:'leonard',t:'mcmillan',cat:'candidate',cand:true},
-  {s:'deininger',t:'jpl',cat:'candidate',cand:true},{s:'deininger',t:'reza',cat:'candidate',cand:true},{s:'deininger',t:'loureiro',cat:'candidate',cand:true},
+  {s:'mcmillan',t:'lanl',cat:'nuclear'},{s:'mcmillan',t:'chavez',cat:'nuclear'},{s:'mcmillan',t:'casias',cat:'nuclear'},
+  {s:'leonard',t:'lanl',cat:'nuclear'},{s:'leonard',t:'mcmillan',cat:'nuclear'},
+  {s:'deininger',t:'jpl',cat:'jpl'},{s:'deininger',t:'reza',cat:'jpl'},{s:'deininger',t:'loureiro',cat:'other'},
   {s:'phillips',t:'nrl',cat:'candidate',cand:true},{s:'young',t:'nrl',cat:'candidate',cand:true},
   {s:'victor',t:'reza',cat:'candidate',cand:true},{s:'victor',t:'mondaloy',cat:'candidate',cand:true},
 ];
@@ -1557,6 +1654,7 @@ window.imapToggle=function(cat){
 window.imapZoom=function(lat,lng,zoom){imap.flyTo([lat,lng],zoom,{duration:1});};
 })();
 </script>
+
 <script data-goatcounter="https://whokilledthescientists.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

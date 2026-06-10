@@ -1,0 +1,149 @@
+/* ============================================================
+   GLASS.CSS — dark glassmorphism overlay
+   Loaded after each page's inline <style>, so equal-specificity
+   rules here win the cascade. Colorway unchanged — surfaces only.
+   ============================================================ */
+
+:root{
+  --card: rgba(13, 18, 30, .52);
+  --border: rgba(255, 255, 255, .08);
+  --border2: rgba(255, 255, 255, .16);
+  --glass-blur: blur(18px) saturate(150%);
+}
+
+/* ---- Fixed background image + dark scrim ---- */
+body{background:#040810;}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:#040810 url("images/bg.jpg?v=2") center/cover no-repeat;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:linear-gradient(180deg, rgba(3,6,12,.05), rgba(3,6,12,.25));
+}
+
+/* ---- Chrome: header / nav / legend bar ---- */
+header{
+  background:rgba(5,9,16,.40);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  backdrop-filter:blur(20px) saturate(140%);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.site-nav{
+  background:rgba(4,7,13,.60);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  backdrop-filter:blur(20px) saturate(150%);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.legend-bar{
+  background:rgba(4,7,13,.35);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+/* ---- Glass surfaces (card classes from every page) ---- */
+.pcard,.ccard,.tcard,.icard,.inst-card,.dev,.legend,
+.assess-box,.ct-card,.cycle-body,.kf-card,.tension,
+.chain-item,.pattern-box,.step-card,
+.fed-card,.figure-card,.sci-card,
+.wp-notice,.candidates-btn{
+  background:var(--card);
+  -webkit-backdrop-filter:var(--glass-blur);
+  backdrop-filter:var(--glass-blur);
+  border-radius:16px;
+  box-shadow:0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.07);
+}
+.wp-notice{background:rgba(255,32,110,.08);}
+.candidates-btn{background:rgba(206,0,224,.08);}
+
+/* keep colored hover glows from the page styles layered on glass */
+.pcard:hover,.ccard:hover{
+  box-shadow:0 12px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.10);
+}
+.sc-dead:hover{box-shadow:0 0 28px rgba(255,32,110,.30), 0 12px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.10);}
+.sc-missing:hover{box-shadow:0 0 28px rgba(255,139,51,.30), 0 12px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.10);}
+.sc-closed:hover{box-shadow:0 0 28px rgba(0,245,212,.25), 0 12px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.10);}
+
+/* ---- Dossier overlay panel ---- */
+#dp{
+  background:rgba(7,11,20,.78);
+  -webkit-backdrop-filter:blur(28px) saturate(150%);
+  backdrop-filter:blur(28px) saturate(150%);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;
+}
+#dp-overlay{background:rgba(2,4,8,.7);}
+#cdp{
+  background:rgba(7,11,20,.85);
+  -webkit-backdrop-filter:blur(28px) saturate(150%);
+  backdrop-filter:blur(28px) saturate(150%);
+  border-left:1px solid rgba(255,255,255,.12);
+}
+
+/* ---- Network map / svg wrap ---- */
+.nmwrap{background:rgba(4,7,13,.30);}
+#nmsvgwrap{
+  background:rgba(3,6,12,.45);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:16px;
+}
+#nmtip{
+  background:rgba(7,11,20,.85);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:10px;
+}
+
+/* ---- Stream CTA ---- */
+.stream-inner{
+  background:rgba(6,9,17,.62);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  backdrop-filter:blur(20px) saturate(150%);
+}
+
+/* ---- Small controls ---- */
+.pcta,.nmbtn,.expand-btn,.fs-close-btn,#closebtn{
+  background:rgba(255,255,255,.05);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  border-radius:8px;
+}
+.tag,.pill,.dev-tag,.ipop-status{border-radius:6px;}
+
+/* ---- Leaflet popups ---- */
+.leaflet-popup-content-wrapper{
+  background:rgba(7,11,20,.82) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(255,255,255,.14) !important;
+  border-radius:14px !important;
+}
+.leaflet-popup-tip{background:rgba(7,11,20,.82) !important;}
+
+/* ---- Fullscreen panels keep a solid-ish glass base ---- */
+.is-fullscreen{
+  background:rgba(5,8,15,.85) !important;
+  -webkit-backdrop-filter:blur(24px) saturate(150%);
+  backdrop-filter:blur(24px) saturate(150%);
+}
+
+/* ---- Bare-prose sections get a glass panel ---- */
+.legal-section,.timeline{
+  background:var(--card);
+  -webkit-backdrop-filter:var(--glass-blur);
+  backdrop-filter:var(--glass-blur);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.07);
+}
+.legal-section{padding:20px 24px;}
+.timeline{padding:16px 24px 16px 24px;border-left:2px solid var(--border2);}
+
+/* ---- Mobile: lighter blur for performance ---- */
+@media(max-width:768px){
+  :root{--glass-blur:blur(12px) saturate(140%);}
+}
