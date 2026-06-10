@@ -669,8 +669,8 @@ header h1{font-size:28px;}
   <!-- Map legend -->
   <div id="imap-legend" style="position:absolute;bottom:16px;left:16px;z-index:800;background:rgba(14,15,22,.92);border:1px solid var(--border);border-radius:8px;padding:12px 16px;backdrop-filter:blur(8px);">
     <div style="font-family:'New Amsterdam',sans-serif;font-weight:700;font-size:14px;color:var(--ink);margin-bottom:8px;">Legend</div>
-    <div class="ileg" data-cat="dead" onclick="imapToggle('dead')" style="display:flex;align-items:center;gap:8px;margin-bottom:5px;cursor:pointer;transition:opacity .2s;"><div style="width:10px;height:10px;border-radius:50%;background:#FF206E;flex-shrink:0;"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink2);letter-spacing:.04em;">Deceased (7)</span></div>
-    <div class="ileg" data-cat="missing" onclick="imapToggle('missing')" style="display:flex;align-items:center;gap:8px;margin-bottom:5px;cursor:pointer;transition:opacity .2s;"><div style="width:10px;height:10px;border-radius:50%;background:#FF8B33;flex-shrink:0;"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink2);letter-spacing:.04em;">Missing (5)</span></div>
+    <div class="ileg" data-cat="dead" onclick="imapToggle('dead')" style="display:flex;align-items:center;gap:8px;margin-bottom:5px;cursor:pointer;transition:opacity .2s;"><div style="width:10px;height:10px;border-radius:50%;background:#FF206E;flex-shrink:0;"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink2);letter-spacing:.04em;">Deceased (13)</span></div>
+    <div class="ileg" data-cat="missing" onclick="imapToggle('missing')" style="display:flex;align-items:center;gap:8px;margin-bottom:5px;cursor:pointer;transition:opacity .2s;"><div style="width:10px;height:10px;border-radius:50%;background:#FF8B33;flex-shrink:0;"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink2);letter-spacing:.04em;">Missing (4)</span></div>
     <div class="ileg" data-cat="closed" onclick="imapToggle('closed')" style="display:flex;align-items:center;gap:8px;margin-bottom:5px;cursor:pointer;transition:opacity .2s;"><div style="width:10px;height:10px;border-radius:50%;background:#888;flex-shrink:0;"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink2);letter-spacing:.04em;">Case Closed (3)</span></div>
     <div class="ileg" data-cat="inst" onclick="imapToggle('inst')" style="display:flex;align-items:center;gap:8px;margin-bottom:5px;cursor:pointer;transition:opacity .2s;"><div style="width:10px;height:10px;border-radius:50%;background:#00BBF9;flex-shrink:0;"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink2);letter-spacing:.04em;">Institution</span></div>
     <div class="ileg" data-cat="incident" onclick="imapToggle('incident')" style="display:flex;align-items:center;gap:8px;cursor:pointer;transition:opacity .2s;"><div style="width:10px;height:10px;border-radius:50%;background:#E1FF00;flex-shrink:0;"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink2);letter-spacing:.04em;">Incident</span></div>
@@ -679,11 +679,11 @@ header h1{font-size:28px;}
   <div id="imap-clusters" style="position:absolute;top:16px;right:16px;z-index:800;display:flex;flex-direction:column;gap:8px;">
     <div style="background:rgba(14,15,22,.92);border:1px solid rgba(255,32,110,.3);border-radius:6px;padding:8px 12px;backdrop-filter:blur(8px);cursor:pointer;" onclick="imapZoom(34.73,-86.59,11)">
       <div style="font-family:'New Amsterdam',sans-serif;font-weight:700;font-size:14px;color:var(--pink);">Huntsville Cluster</div>
-      <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;">4 deaths · Eskridge · LeBlanc · Moffatts</div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;">5 deaths · Eskridge · LeBlanc · Moffatts · Ning Li</div>
     </div>
     <div style="background:rgba(14,15,22,.92);border:1px solid rgba(255,139,51,.3);border-radius:6px;padding:8px 12px;backdrop-filter:blur(8px);cursor:pointer;" onclick="imapZoom(35.5,-106.3,8)">
       <div style="font-family:'New Amsterdam',sans-serif;font-weight:700;font-size:14px;color:var(--orange);">New Mexico Cluster</div>
-      <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;">3 missing · 1 found dead · McCasland · Chavez · Casias · Garcia</div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;">3 missing · 3 dead · McMillan · Leonard · Chavez · Casias · Garcia · McCasland</div>
     </div>
     <div style="background:rgba(14,15,22,.92);border:1px solid rgba(0,187,249,.3);border-radius:6px;padding:8px 12px;backdrop-filter:blur(8px);cursor:pointer;" onclick="imapZoom(34.2,-118.1,10)">
       <div style="font-family:'New Amsterdam',sans-serif;font-weight:700;font-size:14px;color:var(--blue);">JPL / Caltech Cluster</div>
@@ -1408,7 +1408,9 @@ var nodes=[
   {id:'fbi',l:'FBI',s:'Active Investigation',t:'gov',c:'gov',cat:'congress',x:1750,y:680,r:22,i:'"Spearheading the effort to look for connections." Joined McCasland search.'},
   {id:'grusch',l:'David Grusch',s:'UAP Whistleblower',t:'gov',c:'gov',cat:'uap',x:1600,y:180,r:20,i:'Testified re: crash-retrieval programs. Now Burlison\'s senior adviser.'},
   // Candidate nodes (hidden by default)
-  {id:'mcmillan',l:'Charles McMillan',s:'LANL Director · Died 2024',t:'person',c:'dead',cat:'nuclear',x:1400,y:480,r:20,i:'10th LANL Director. Killed in head-on crash 5:16 AM on road to lab. Driver had no memory of crossing center line.'},
+  {id:'hardwick',l:'Dallis Hardwick',s:'AFRL \u00b7 Died 2014',t:'person',c:'dead',cat:'military',x:660,y:110,r:18,i:'Mondaloy co-inventor with Reza. Led AFRL turbine materials at Wright-Patterson. Cancer. AFRL published no memorial.'},
+{id:'ningli',l:'Dr. Ning Li',s:'UAH \u00b7 Died 2021',t:'person',c:'dead',cat:'uap',x:560,y:1190,r:18,i:'UAH antigravity physicist. DoD grant, top secret clearance, went dark 2003. 2014 UAH campus vehicle strike ended her research.'},
+{id:'mcmillan',l:'Charles McMillan',s:'LANL Director · Died 2024',t:'person',c:'dead',cat:'nuclear',x:1400,y:480,r:20,i:'10th LANL Director. Killed in head-on crash 5:16 AM on road to lab. Driver had no memory of crossing center line.'},
   {id:'leonard',l:'Philip Leonard',s:'LANL · Died Feb 2024',t:'person',c:'dead',cat:'nuclear',x:1050,y:480,r:18,i:'LANL high explosives synthesis chemist. Nuclear weapon trigger design. Killed in crash on same road corridor as McMillan.'},
   {id:'deininger',l:'Bill Deininger',s:'BAE Systems · Died Jun 2025',t:'person',c:'dead',cat:'jpl',x:300,y:520,r:18,i:'JPL alumni. Plasma physicist. BAE Systems. Died June 21 — one day before Reza vanished. No cause disclosed.'},
   {id:'phillips',l:'Gary Phillips',s:'NRL · Died Jul 2025',t:'person',c:'dead',cat:'military',x:1600,y:800,r:16,i:'Naval Research Laboratory physicist. Died July 2025 in same summer window as cluster. No cause disclosed.',cand:true},
@@ -1435,7 +1437,7 @@ var edges=[
   {s:'leblanc',t:'hsv',cat:'jpl'},{s:'leblanc',t:'eskridge',cat:'jpl'},
   {s:'moffatt',t:'hsv',cat:'jpl'},{s:'moffatt',t:'eskridge',cat:'jpl'},{s:'moffatt',t:'leblanc',cat:'jpl'},{s:'moffatt',t:'moffatt_andrew',cat:'jpl'},{s:'moffatt_andrew',t:'hsv',cat:'jpl'},{s:'eskridge',t:'hsv',cat:'jpl'},
   // Candidate edges
-  {s:'mcmillan',t:'lanl',cat:'nuclear'},{s:'mcmillan',t:'chavez',cat:'nuclear'},{s:'mcmillan',t:'casias',cat:'nuclear'},
+  {s:'hardwick',t:'mondaloy',cat:'military'},{s:'hardwick',t:'reza',cat:'military'},{s:'hardwick',t:'wpafb',cat:'military'},{s:'ningli',t:'hsv',cat:'jpl'},{s:'ningli',t:'eskridge',cat:'uap'},{s:'mcmillan',t:'lanl',cat:'nuclear'},{s:'mcmillan',t:'chavez',cat:'nuclear'},{s:'mcmillan',t:'casias',cat:'nuclear'},
   {s:'leonard',t:'lanl',cat:'nuclear'},{s:'leonard',t:'mcmillan',cat:'nuclear'},
   {s:'deininger',t:'jpl',cat:'jpl'},{s:'deininger',t:'reza',cat:'jpl'},{s:'deininger',t:'loureiro',cat:'other'},
   {s:'phillips',t:'nrl',cat:'candidate',cand:true},{s:'young',t:'nrl',cat:'candidate',cand:true},
@@ -1600,6 +1602,11 @@ addPt('dead',34.73,-86.59,mkIcon('#FF206E',16),'Amy Eskridge','Institute for Exo
 addPt('dead',34.74,-86.60,mkIcon('#FF206E',16),'Joshua LeBlanc','NASA Nuclear Propulsion','DIED JUL 22, 2025 · AGE 29','dead','DRACO mission team lead. Tesla tracked to airport, sat 4 hours, then crashed on back roads. Body burned beyond recognition.');
 addPt('dead',40.01,-105.27,mkIcon('#FF206E',16),'David Wilcock','UAP Disclosure Researcher','DIED APR 20, 2026 · AGE 53','dead','Posted video 2 days before death warning missing scientists were "scary." Biographer died 2 days before him.');
 addPt('dead',34.82,-81.63,mkIcon('#FF206E',16),'Tony Moffatt','NASA JSC · Aerospace Defense','DIED APR 18, 2026 · AGE 60','dead','Plane crash killed entire family of 4. Payload specialist on 14 Shuttle missions. UAH research engineer.');
+addPt('dead',35.83,-106.34,mkIcon('#FF206E',16),'Philip Leonard','LANL High Explosives Chemist','DIED FEB 27, 2024 · AGE 44','dead','Nuclear weapon trigger explosives. Killed head-on on the LANL truck route by a texting driver — citations only. Same calendar date McCasland vanished 2 years later.');
+addPt('dead',35.87,-106.24,mkIcon('#FF206E',16),'Charles McMillan','10th LANL Director','DIED SEP 6, 2024 · AGE 69','dead','Killed at 5:15 AM on the road to the lab — unexplained lane departure, fully suspended sentence. 9 months before Chavez vanished.');
+addPt('dead',39.74,-84.13,mkIcon('#FF206E',16),'Dallis Hardwick','Mondaloy Co-Inventor · AFRL','DIED JAN 5, 2014 · AGE 63','dead','Co-invented Mondaloy with Reza. Led AFRL gas turbine materials at Wright-Patterson. Cancer. AFRL published no memorial.');
+addPt('dead',40.17,-105.10,mkIcon('#FF206E',16),'Bill Deininger','BAE Systems · Former JPL','DIED JUN 21, 2025 · AGE 68','dead','Plasma physicist, JPL alumni. Died one day before Reza vanished. No cause disclosed in AIAA memorial.');
+addPt('dead',34.72,-86.66,mkIcon('#FF206E',16),'Dr. Ning Li','UAH Antigravity Physicist','DIED JUL 27, 2021 · AGE 78','dead','DoD-funded antigravity research under top secret clearance. 2014 UAH campus vehicle strike ended her research. Died 2021.');
 
 // MISSING
 addPt('missing',34.20,-118.18,mkPulse('#FF8B33',18),'Monica Reza','JPL Materials Processing','MISSING SINCE JUN 22, 2025','missing','Co-invented Mondaloy superalloy. Funded by McCasland\'s AFRL. Vanished 30ft from hiking companion.');
@@ -1639,7 +1646,7 @@ var conns=[
   {from:[35.88,-106.30],to:[36.41,-105.57],c:'#FF206E50'},
   {from:[35.88,-106.30],to:[35.08,-106.65],c:'#FF206E30'},
   {from:[34.73,-86.59],to:[34.74,-86.60],c:'#FF206E60'},
-  {from:[34.73,-86.59],to:[34.73,-86.63],c:'#00BBF940'}
+  {from:[35.83,-106.34],to:[35.84,-106.29],c:'#FF206E50'},{from:[35.87,-106.24],to:[35.84,-106.29],c:'#FF206E50'},{from:[39.74,-84.13],to:[39.82,-84.05],c:'#FF8B3360'},{from:[40.17,-105.10],to:[34.20,-118.17],c:'#00BBF950'},{from:[34.72,-86.66],to:[34.73,-86.63],c:'#CE00E060'},{from:[34.73,-86.59],to:[34.73,-86.63],c:'#00BBF940'}
 ];
 conns.forEach(function(c){L.polyline([c.from,c.to],{color:c.c,weight:1.5,dashArray:'6,4'}).addTo(imap);});
 

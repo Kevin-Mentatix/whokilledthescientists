@@ -101,8 +101,8 @@ a{color:var(--blue);text-decoration:none;}a:hover{text-decoration:underline;}
 </div>
 
 <div class="map-stats">
-  <div class="mstat"><div class="num" style="color:var(--pink)">7</div><div class="lbl">Dead</div></div>
-  <div class="mstat"><div class="num" style="color:var(--orange)">5</div><div class="lbl">Missing</div></div>
+  <div class="mstat"><div class="num" style="color:var(--pink)">13</div><div class="lbl">Dead</div></div>
+  <div class="mstat"><div class="num" style="color:var(--orange)">4</div><div class="lbl">Missing</div></div>
   <div class="mstat"><div class="num" style="color:var(--blue)">8</div><div class="lbl">Sites</div></div>
 </div>
 
@@ -168,6 +168,11 @@ addDead(34.73,-86.59,'Amy Eskridge','Co-founder, Institute for Exotic Science','
 addDead(34.73,-86.60,'Joshua LeBlanc','NASA Nuclear Propulsion Engineer','DIED JUL 22, 2025 · AGE 29','DRACO mission team lead. Tesla tracked to airport, sat 4 hours, then crashed on back roads. Body burned beyond recognition.');
 addDead(40.01,-105.27,'David Wilcock','UAP Disclosure Researcher','DIED APR 20, 2026 · AGE 53','Posted video 2 days before death warning missing scientists were "scary." Biographer Wynn Free died 2 days before him.');
 addDead(34.82,-81.63,'James "Tony" Moffatt','NASA JSC · Aerospace Defense Engineer','DIED APR 18, 2026 · AGE 60','Plane crash killed entire family of 4. NASA JSC payload specialist on 14 Shuttle missions. UAH research engineer. NTSB investigating.');
+addDead(35.83,-106.34,'Philip Leonard','LANL High Explosives Synthesis Chemist','DIED FEB 27, 2024 · AGE 44','Designed nuclear weapon trigger explosives. Killed head-on on the LANL truck route by a texting driver — citations only, no felony. Died Feb 27 — the same calendar date McCasland vanished two years later.');
+addDead(35.87,-106.24,'Charles McMillan','10th Director, Los Alamos National Laboratory','DIED SEP 6, 2024 · AGE 69','Former LANL director killed at 5:15 AM on the road to the lab. Police: unexplained lane departure by the other driver, who didn\'t remember what happened. Fully suspended sentence (2026).');
+addDead(39.74,-84.13,'Dallis Hardwick','Mondaloy Co-Inventor · AFRL Materials Directorate','DIED JAN 5, 2014 · AGE 63','Co-invented Mondaloy with Monica Reza. Led all AFRL gas turbine materials research at Wright-Patterson. Died of cancer. AFRL published no memorial.');
+addDead(40.17,-105.10,'Bill Deininger','BAE Systems · Former JPL · Plasma Physicist','DIED JUN 21, 2025 · AGE 68','JPL alumni, Kepler/IXPE systems engineer. Died one day before Monica Reza vanished. No cause of death disclosed in AIAA memorial.');
+addDead(34.72,-86.66,'Dr. Ning Li','UAH Antigravity Physicist · AC Gravity LLC','DIED JUL 27, 2021 · AGE 78','DoD-funded antigravity research under top secret clearance; went dark after 2003. Struck by a vehicle on the UAH campus in 2014 — ended her research. Died 2021.');
 
 // --- SCIENTISTS: MISSING ---
 function addMissing(lat,lng,name,role,status,body){
@@ -245,7 +250,7 @@ var connections=[
   {from:[35.88,-106.30],to:[35.08,-106.65],color:'#FF206E30'},
   // Huntsville cluster
   {from:[34.73,-86.59],to:[34.73,-86.60],color:'#FF206E60'},
-  {from:[34.73,-86.59],to:[34.73,-86.63],color:'#00BBF940'},
+  {from:[34.73,-86.59],to:[34.73,-86.63],color:'#00BBF940'},{from:[35.83,-106.34],to:[35.84,-106.29],color:'#FF206E50'},{from:[35.87,-106.24],to:[35.84,-106.29],color:'#FF206E50'},{from:[39.74,-84.13],to:[39.82,-84.05],color:'#FF8B3360'},{from:[40.17,-105.10],to:[34.20,-118.17],color:'#00BBF950'},{from:[34.72,-86.66],to:[34.73,-86.63],color:'#CE00E060'},
 ];
 
 connections.forEach(function(c){
