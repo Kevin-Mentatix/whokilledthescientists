@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Plutonium Network — Who Killed The Scientists?</title>
-<meta name="description" content="5 companies. 11 scientists. 1 federal decision. Mapping the network between the DOE surplus plutonium program, PCAST advisors, and the dead or missing scientists.">
+<meta name="description" content="5 companies. 13 scientists. 1 federal decision. Mapping the network between the DOE surplus plutonium program, PCAST advisors, Los Alamos, and the dead or missing scientists.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -139,6 +139,14 @@ header h1 span{color:var(--pink);}
 .sci-detail strong{color:var(--ink2);}
 .sci-badge{position:absolute;top:14px;right:14px;}
 
+/* Crash comparison table */
+.crash-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px;background:var(--card);border-radius:8px;overflow:hidden;}
+.crash-table th,.crash-table td{border:1px solid var(--border2);padding:9px 14px;text-align:left;color:var(--ink2);line-height:1.5;}
+.crash-table th{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--pink);background:rgba(255,32,110,.06);}
+.crash-table td:first-child{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);white-space:nowrap;}
+.crash-table strong{color:var(--ink);}
+@media(max-width:600px){.crash-table td:first-child{white-space:normal;}}
+
 /* Network map */
 .nmwrap{background:#000;padding:48px 40px 32px;}
 .nm-sh{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
@@ -195,7 +203,8 @@ footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:
   #pnsvgwrap{height:400px;}
 }
 </style>
-<link rel="stylesheet" href="glass.css?v=3">
+<link rel="stylesheet" href="glass.css?v=4">
+<script src="bg-video.js" defer></script>
 </head>
 <body>
 <nav class="site-nav">
@@ -213,14 +222,14 @@ footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:
 
 <header>
   <h1>The <span>Plutonium</span> Network</h1>
-  <div class="tagline">5 companies &middot; 11 scientists &middot; 1 federal decision &middot; filed may 27, 2026</div>
+  <div class="tagline">5 companies &middot; 13 scientists &middot; 1 federal decision &middot; filed may 27, 2026</div>
 </header>
 
 <div class="canvas">
 
   <!-- Credit -->
   <div class="credit-banner">
-    Research and network mapping by <a href="https://x.com/leahfiles" target="_blank">The Leah Files (@leahfiles on X)</a>. Deep dive available on <a href="https://theleahfiles.substack.com" target="_blank">theleahfiles.substack.com</a>.
+    Original research and network mapping by <a href="https://x.com/leahfiles" target="_blank">The Leah Files (@leahfiles on X)</a> &mdash; deep dive at <a href="https://theleahfiles.substack.com" target="_blank">theleahfiles.substack.com</a>. Additional case research by <a href="https://whokilledthescientists.com">whokilledthescientists.com</a>.
   </div>
 
   <!-- Expandable Image -->
@@ -240,7 +249,10 @@ footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:
     <a href="https://x.com/leahfiles" target="_blank">The Leah Files</a> followed the money through all five companies and found a web of <strong>conflicts of interest, revolving doors, and foreign entanglements</strong> connecting them to PCAST, the DOE, and each other. Oklo's CEO sits on PCAST while its stock surged 59%. The DOE Secretary sat on Oklo's board until months before taking office. Andreessen invests in Standard Nuclear through a16z &mdash; while also sitting on PCAST. One recipient, Exodys Energy, has raised only $2.47M and has no working reactor. Another, Standard Nuclear, is a joint venture with a French state company that has an active partnership with Russia's Rosatom.
   </p>
   <p class="intro">
-    Then there are the scientists. <strong>11 researchers connected to nuclear, fusion, and defense programs</strong> have turned up dead or missing &mdash; and their work traces directly back to the companies and leadership in this network. The most direct link: <strong>Nuno Loureiro</strong>, who directed the MIT lab that spun out Commonwealth Fusion Systems, was shot dead at home in December 2025. Three months later, Commonwealth Fusion's CEO Bob Mumgaard was named to PCAST. Two months after that, the plutonium deal was announced.
+    Then there are the scientists. <strong>13 researchers connected to nuclear, fusion, and defense programs</strong> have turned up dead or missing &mdash; and their work traces directly back to the companies and leadership in this network. The most direct link: <strong>Nuno Loureiro</strong>, who directed the MIT lab that spun out Commonwealth Fusion Systems, was shot dead at home in December 2025. Three months later, Commonwealth Fusion's CEO Bob Mumgaard was named to PCAST. Two months after that, the plutonium deal was announced.
+  </p>
+  <p class="intro">
+    And the lab that sources the plutonium itself &mdash; <strong>Los Alamos</strong> &mdash; has lost five connected people since February 2024, including former director <strong>Charles McMillan</strong> &mdash; the man who oversaw the nation&rsquo;s only plutonium-pit facility and certified the stockpile to the President for seven years &mdash; and nuclear-weapon-trigger chemist <strong>Philip Leonard</strong>. Both were killed in nearly identical head-on crashes on the lab&rsquo;s own road network, seven months apart.
   </p>
 
   <!-- THE FEDERAL DECISION -->
@@ -431,10 +443,88 @@ footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:
     </div>
   </div>
 
-  <!-- 11 SCIENTISTS -->
+  <!-- THE LOS ALAMOS CLUSTER -->
   <div class="sh">
     <div class="stripe" style="background:var(--pink);box-shadow:0 0 8px var(--pink);"></div>
-    <div><h2>11 Scientists Dead or Missing</h2>
+    <div><h2>The Los Alamos Cluster</h2>
+    <div class="sub">The lab that sources the plutonium &mdash; and keeps losing people</div></div>
+  </div>
+
+  <p class="intro" style="margin-bottom:24px;">
+    Los Alamos National Laboratory is a primary source of the surplus plutonium being transferred to the five companies above. Since February 2024 the lab has lost five connected people: <strong>two killed in head-on crashes on the lab&rsquo;s own road network within seven months</strong> &mdash; including its former director &mdash; followed by three NNSA-connected workers who vanished within a four-month window in 2025.
+  </p>
+
+  <div class="cgrid">
+
+    <!-- Charles McMillan — the central figure -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-direct">THE MAN WHO WOULD HAVE KNOWN</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#9762;</div>
+        <div>
+          <div class="ccard-title">Charles F. McMillan, 69</div>
+          <div class="ccard-date">10th Director, Los Alamos National Laboratory (2011&ndash;2017) &middot; Deceased 9/6/24</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        By multiple measures <strong>the most authoritative civilian voice on American nuclear weapons</strong> when he died. PhD physics, MIT. 23 years at Lawrence Livermore &mdash; W80 warhead project leader, helped establish the Stockpile Stewardship Program &mdash; then six years running LANL.<br><br>
+        As director he personally oversaw <strong>Plutonium Facility 4 (PF-4) &mdash; the only facility in America that produces plutonium pits for nuclear warheads</strong> &mdash; and signed <strong>seven annual assessment reports to the President and Congress</strong> certifying the stockpile was safe, secure, and reliable.<br><br>
+        The oversight didn&rsquo;t end at retirement. He sat on the Defense Science Board&rsquo;s <strong>Permanent Subcommittee on Nuclear Weapons Surety</strong> and was elected by his peers to lead the <strong>Nuclear Security Enterprise Integration Council</strong> &mdash; oversight spanning LANL, Livermore, Sandia, Pantex, and Y-12. <strong>His DSB appointment was scheduled to end September 6, 2024 &mdash; the day he died.</strong> Nine months earlier he had joined Sen. Schumer&rsquo;s AI &amp; National Security Insight Forum; Sen. Heinrich described being &ldquo;in deep conversation, mapping out America&rsquo;s leadership on artificial intelligence&rdquo; with him shortly before his death.<br><br>
+        Killed at ~5:15 AM on <strong>NM-502 &mdash; the road leading directly to LANL</strong> &mdash; when a 22-year-old driver crossed the double yellow line and told police she <strong>did not remember what led up to the crash</strong>. Gouge marks and a witness confirmed the lane departure. A <strong>293-page police report</strong> later, the DA found &ldquo;insufficient evidence&rdquo; for felony vehicular homicide. April 2026: fully suspended sentence, $1,500 in fines, no jail time.
+      </div>
+      <div class="ccard-intersection">He knew how much weapons-grade plutonium existed, where it was stored, how it was categorized as &ldquo;surplus&rdquo; vs. &ldquo;required&rdquo; &mdash; and whether any reclassification was legitimate. He died eight months before the executive orders creating the surplus plutonium program were signed. Nuclear Watch New Mexico had called him &ldquo;the poster child for why the profit motive should not run nuclear weapons facilities.&rdquo;</div>
+      <div class="ccard-tags">
+        <span class="tag nuclear">PF-4 PIT FACILITY</span>
+        <span class="tag gov">7 STOCKPILE CERTIFICATIONS</span>
+        <span class="tag gov">DSB &middot; NSEIC OVERSIGHT</span>
+        <span class="tag death">UNEXPLAINED CRASH</span>
+      </div>
+    </div>
+
+    <!-- Philip Leonard -->
+    <div class="ccard" style="border-top:3px solid var(--pink);">
+      <span class="ccard-tier"><span class="tier tier-deceased">DECEASED 2/27/24</span></span>
+      <div class="ccard-head">
+        <div class="ccard-icon" style="background:rgba(255,32,110,.12);border:1px solid rgba(255,32,110,.4);">&#9762;</div>
+        <div>
+          <div class="ccard-title">Dr. Philip Leonard, 44</div>
+          <div class="ccard-date">High Explosives Synthesis Chemist, LANL</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        PhD organic chemistry, UC Berkeley. At LANL from 2009 in the high-nitrogen energetics group, later program manager for energetics R&amp;D &mdash; <strong>the explosive components used in nuclear weapon triggers</strong>, one of the most sensitive specialties at the lab. 48 published papers.<br>
+        He held <strong>U.S. Patent 10,421,709 for the production of TATB &mdash; the primary insensitive high explosive used in nuclear weapon detonators and explosive lenses</strong>. His expertise was the weaponization layer: the capability that makes raw plutonium dangerous.<br>
+        Killed head-on at ~7:27 AM on <strong>NM-501, the LANL truck route</strong>, by a 21-year-old driver who crossed the double yellow line after sending two text messages &mdash; and who told police she <strong>did not remember what led up to the crash</strong>. A 199-page police report later: <strong>traffic citations only, no felony charges.</strong> No LANL press release, no national coverage &mdash; Leonard appears on no official &ldquo;missing scientists&rdquo; list.
+      </div>
+      <div class="ccard-intersection">Nuclear weapon trigger design &mdash; the exact technology layer between plutonium and a working bomb. Died Feb 27, 2024 &mdash; exactly two years to the day before Gen. McCasland vanished (Feb 27, 2026). McMillan was killed on the same road network 7 months later.</div>
+      <div class="ccard-tags">
+        <span class="tag nuclear">TATB PATENT &mdash; WEAPON TRIGGERS</span>
+        <span class="tag nuclear">LANL</span>
+        <span class="tag death">TEXTING DRIVER &mdash; CITATIONS ONLY</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Crash pattern comparison -->
+  <h3 style="font-family:'DM Mono',monospace;font-size:10px;color:var(--pink);letter-spacing:.15em;text-transform:uppercase;margin:28px 0 10px;">Two Crashes, One Pattern</h3>
+  <table class="crash-table">
+    <tr><th>Factor</th><th>Leonard &mdash; Feb 27, 2024</th><th>McMillan &mdash; Sep 6, 2024</th></tr>
+    <tr><td>Road</td><td>NM-501 (LANL truck route)</td><td>NM-502 (East Road, to the lab)</td></tr>
+    <tr><td>Mechanism</td><td><strong>Driver crossed the double yellow line</strong></td><td><strong>Driver crossed the double yellow line</strong></td></tr>
+    <tr><td>Other driver</td><td>Female, 21</td><td>Female, 22</td></tr>
+    <tr><td>Driver&rsquo;s account</td><td><strong>&ldquo;Did not remember&rdquo;</strong> the lead-up</td><td><strong>&ldquo;Did not remember&rdquo;</strong> the lead-up</td></tr>
+    <tr><td>Police report</td><td>199 pages</td><td>293 pages</td></tr>
+    <tr><td>Felony charges</td><td>None</td><td>DA: &ldquo;insufficient evidence&rdquo;</td></tr>
+    <tr><td>Outcome</td><td>2 traffic citations</td><td>3 petty misdemeanors &middot; $1,500 &middot; suspended jail</td></tr>
+    <tr><td>Victim&rsquo;s role</td><td>Nuclear weapons explosives expert</td><td>Nuclear weapons oversight authority</td></tr>
+  </table>
+  <div class="ccard-intersection" style="margin-top:16px;">Both NM-501 and NM-502 are the primary LANL access roads. Neither victim appears on any official &ldquo;missing scientists&rdquo; list. And the LANL disappearances that followed &mdash; Chavez (May 4, 2025) and Casias (June 26, 2025) &mdash; fell within weeks of the May 23, 2025 executive orders authorizing the surplus plutonium program.</div>
+
+  <!-- 13 SCIENTISTS -->
+  <div class="sh">
+    <div class="stripe" style="background:var(--pink);box-shadow:0 0 8px var(--pink);"></div>
+    <div><h2>13 Scientists Dead or Missing</h2>
     <div class="sub">FBI investigation &mdash; direct links to the network above</div></div>
   </div>
 
@@ -459,9 +549,10 @@ footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:
     </div>
 
     <div class="sci-card deceased">
-      <div class="sci-status deceased">Deceased</div>
-      <div class="sci-name">Joshua LeBlanc</div>
-      <div class="sci-detail">NASA-affiliated engineer. Body found in burned vehicle.</div>
+      <span class="sci-badge"><span class="tier tier-deceased">NUCLEAR PROPULSION</span></span>
+      <div class="sci-status deceased">Deceased 7/22/25</div>
+      <div class="sci-name">Joshua LeBlanc, 29</div>
+      <div class="sci-detail">NASA <strong>nuclear propulsion engineer</strong> &mdash; DRACO nuclear thermal rocket team lead, Marshall Space Flight Center. Body found in burned Tesla outside Huntsville &mdash; the same city where plutonium recipient Flibe Energy is headquartered.</div>
     </div>
 
     <div class="sci-card deceased">
@@ -484,6 +575,20 @@ footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:
 
     <div class="sci-card deceased">
       <span class="sci-badge"><span class="tier tier-deceased">LOS ALAMOS</span></span>
+      <div class="sci-status deceased">Deceased 2/27/24</div>
+      <div class="sci-name">Philip Leonard, 44</div>
+      <div class="sci-detail">LANL high explosives chemist &mdash; <strong>nuclear weapon trigger design</strong>. Killed head-on on the LANL truck route by a texting driver. Citations only. Full profile in the Los Alamos Cluster above.</div>
+    </div>
+
+    <div class="sci-card deceased">
+      <span class="sci-badge"><span class="tier tier-deceased">LOS ALAMOS</span></span>
+      <div class="sci-status deceased">Deceased 9/6/24</div>
+      <div class="sci-name">Charles McMillan, 69</div>
+      <div class="sci-detail"><strong>10th Director, Los Alamos National Lab</strong> &mdash; oversaw PF-4, the only US plutonium pit facility; certified the stockpile to the President for 7 years. Killed at 5:15 AM on the road to the lab &mdash; &ldquo;unexplained lane departure.&rdquo; Full profile in the Los Alamos Cluster above.</div>
+    </div>
+
+    <div class="sci-card deceased">
+      <span class="sci-badge"><span class="tier tier-deceased">LOS ALAMOS</span></span>
       <div class="sci-status deceased">Remains Found 5/30/26</div>
       <div class="sci-name">Melissa Casias, 53</div>
       <div class="sci-detail">Los Alamos National Lab employee. Remains found in Carson National Forest with handgun. Phones wiped. Cause of death pending.</div>
@@ -499,26 +604,27 @@ footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:
       <span class="sci-badge"><span class="tier tier-missing">CLASSIFIED</span></span>
       <div class="sci-status missing">Missing 2/27/26</div>
       <div class="sci-name">Maj Gen McCasland</div>
-      <div class="sci-detail">Retired Air Force. Oversaw classified research programs.</div>
+      <div class="sci-detail">Retired Air Force Major General &mdash; former AFRL commander; SAPOC Executive Secretary overseeing all DoD classified programs. Vanished Feb 27, 2026 &mdash; <strong>two years to the day after Leonard was killed</strong>.</div>
     </div>
 
     <div class="sci-card missing">
       <div class="sci-status missing">Missing 6/2025</div>
       <div class="sci-name">Monica Reza, 60</div>
-      <div class="sci-detail">NASA JPL aerospace engineer.</div>
+      <div class="sci-detail">Technical Fellow, Aerojet Rocketdyne (37 years) &middot; Director, JPL Materials Processing.</div>
     </div>
 
     <div class="sci-card missing">
       <span class="sci-badge"><span class="tier tier-missing">LOS ALAMOS</span></span>
       <div class="sci-status missing">Missing 5/2025</div>
       <div class="sci-name">Anthony Chavez, 78</div>
-      <div class="sci-detail">Los Alamos retiree. Former construction supervisor.</div>
+      <div class="sci-detail">Los Alamos retiree &mdash; former LANL foreman. Vanished <strong>nine months after McMillan died</strong> on the same road network.</div>
     </div>
 
     <div class="sci-card missing">
-      <div class="sci-status missing">Missing 8/2025</div>
-      <div class="sci-name">Steven Garcia</div>
-      <div class="sci-detail">Per FBI investigation review.</div>
+      <span class="sci-badge"><span class="tier tier-missing">NNSA</span></span>
+      <div class="sci-status missing">Missing 8/28/25</div>
+      <div class="sci-name">Steven Garcia, 48</div>
+      <div class="sci-detail">Property custodian, <strong>Kansas City National Security Campus</strong> &mdash; the NNSA plant that manufactures the non-nuclear components of US nuclear weapons. Top Secret clearance.</div>
     </div>
 
   </div>
@@ -568,7 +674,7 @@ footer a{color:var(--blue);text-decoration:none;}footer a:hover{text-decoration:
 
 <footer>
   <p>
-    Research by <a href="https://x.com/leahfiles" target="_blank">@leahfiles</a> &middot; <a href="https://theleahfiles.substack.com" target="_blank">theleahfiles.substack.com</a><br>
+    Research by <a href="https://x.com/leahfiles" target="_blank">The Leah Files (@leahfiles)</a> &middot; <a href="https://theleahfiles.substack.com" target="_blank">theleahfiles.substack.com</a> &middot; <a href="https://whokilledthescientists.com">whokilledthescientists.com</a><br>
     This page is part of <a href="index.html">Who Killed The Scientists?</a> &middot; an open-source investigation
   </p>
 </footer>
@@ -624,20 +730,25 @@ var nodes=[
   // Deceased Scientists
   {id:'loureiro',l:'Nuno Loureiro',s:'Deceased 12/15/25 · Age 47',t:'person',c:'dead',x:300,y:1200,r:24,i:'DIRECT LINK. Director, MIT PSFC. Shot at home. The lab that spun out Commonwealth Fusion (Mumgaard\'s company).'},
   {id:'grillmair',l:'Carl Grillmair',s:'Deceased 2/16/26 · Age 67',t:'person',c:'dead',x:700,y:1200,r:20,i:'Caltech astrophysicist. NASA NEOWISE / Surveyor.'},
-  {id:'leblanc',l:'Joshua LeBlanc',s:'Deceased · NASA Engineer',t:'person',c:'dead',x:1000,y:1200,r:20,i:'NASA-affiliated engineer. Body found in burned vehicle.'},
+  {id:'leblanc',l:'Joshua LeBlanc',s:'Deceased 7/22/25 · Nuclear Propulsion',t:'person',c:'dead',x:1000,y:1200,r:20,i:'NASA nuclear propulsion engineer — DRACO nuclear thermal rocket team lead at Marshall Space Flight Center. Body found in burned Tesla outside Huntsville — same city as plutonium recipient Flibe Energy.'},
   {id:'thomas',l:'Jason Thomas',s:'Deceased 3/2026',t:'person',c:'dead',x:1300,y:1200,r:18,i:'Pharmaceutical researcher.'},
   {id:'maiwald',l:'Frank Maiwald',s:'Deceased 2024 · Age 61',t:'person',c:'dead',x:1600,y:1200,r:20,i:'NASA JPL specialist. Died in Los Angeles.'},
   {id:'height',l:'Jude Height',s:'Deceased 2022',t:'person',c:'dead',x:1900,y:1200,r:18,i:'Army biochemist. Under FBI review.'},
+  {id:'mcmillan',l:'Charles McMillan',s:'Deceased 9/6/24 · The Man Who Would Have Known',t:'person',c:'dead',x:2200,y:1200,r:28,i:'10th LANL Director. Oversaw PF-4 — the only US plutonium pit facility. Signed 7 annual stockpile certifications to the President. DSB Nuclear Weapons Surety; led the Nuclear Security Enterprise Integration Council. Killed at 5:15 AM on the road to the lab — driver crossed the center line, did not remember why. Fully suspended sentence.'},
+  {id:'leonard',l:'Philip Leonard',s:'Deceased 2/27/24 · Age 44',t:'person',c:'dead',x:2500,y:1200,r:22,i:'LANL high explosives synthesis chemist — nuclear weapon trigger design. Killed head-on on NM-501, the LANL truck route, by a texting driver. Citations only. Died Feb 27 — the same calendar date McCasland vanished two years later.'},
 
   // Missing Scientists
   {id:'mccasland',l:'Maj Gen McCasland',s:'Missing 2/27/26',t:'person',c:'miss',x:500,y:1450,r:24,i:'Retired Air Force. Oversaw classified research programs. CLASSIFIED.'},
   {id:'reza',l:'Monica Reza',s:'Missing 6/2025 · Age 60',t:'person',c:'miss',x:900,y:1450,r:20,i:'NASA JPL aerospace engineer.'},
   {id:'casias',l:'Melissa Casias',s:'Remains Found 5/30/26 · Age 53',t:'person',c:'dead',x:1300,y:1450,r:20,i:'LANL employee. Remains found in Carson National Forest 5/28/26 with handgun. Phones wiped. Cause of death pending.'},
-  {id:'chavez',l:'Anthony Chavez',s:'Missing 5/2025 · Age 78',t:'person',c:'miss',x:1700,y:1450,r:20,i:'Los Alamos retiree. Former construction supervisor.'},
-  {id:'garcia',l:'Steven Garcia',s:'Missing 8/2025',t:'person',c:'miss',x:2100,y:1450,r:20,i:'Per FBI investigation review.'},
+  {id:'chavez',l:'Anthony Chavez',s:'Missing 5/2025 · Age 78',t:'person',c:'miss',x:1700,y:1450,r:20,i:'Los Alamos retiree — former LANL foreman. Vanished nine months after McMillan died on the same road network.'},
+  {id:'garcia',l:'Steven Garcia',s:'Missing 8/28/25 · KCNSC',t:'person',c:'miss',x:2100,y:1450,r:20,i:'Property custodian with Top Secret clearance at the Kansas City National Security Campus — the NNSA plant that manufactures the non-nuclear components of US nuclear weapons.'},
 
   // Institutions
-  {id:'lanl',l:'Los Alamos',s:'National Lab',t:'inst',c:'inst',x:1500,y:1600,r:22,i:'Manhattan Project institution. Casias and Chavez both connected.'},
+  {id:'lanl',l:'Los Alamos',s:'National Lab · Plutonium Source',t:'inst',c:'inst',x:1500,y:1600,r:26,i:'Manhattan Project institution and a primary source of the surplus plutonium. Five connected people dead or missing since Feb 2024: Leonard, McMillan, Chavez, Casias — plus Garcia at the NNSA Kansas City plant.'},
+  {id:'kcnsc',l:'KCNSC',s:'NNSA Kansas City Campus',t:'inst',c:'inst',x:2400,y:1600,r:18,i:'Kansas City National Security Campus — NNSA plant producing the non-nuclear components of US nuclear weapons. Steven Garcia vanished Aug 28, 2025.'},
+  {id:'pf4',l:'PF-4',s:'Only US Plutonium Pit Facility',t:'inst',c:'inst',x:1100,y:1600,r:20,i:'Plutonium Facility 4 at Los Alamos — the only facility in America producing plutonium pits for nuclear warheads. Directly overseen by McMillan as director. The surplus plutonium program draws on the material complex he certified.'},
+  {id:'marshall',l:'NASA Marshall',s:'Huntsville, AL',t:'inst',c:'inst',x:2000,y:900,r:18,i:'NASA Marshall Space Flight Center, Huntsville — home of the DRACO nuclear thermal propulsion program. LeBlanc worked here; plutonium recipient Flibe Energy is headquartered in the same city.'},
   {id:'framatome',l:'Framatome',s:'French State / Rosatom',t:'inst',c:'inst',x:1100,y:750,r:18,i:'French state-owned nuclear company. Active Rosatom partnership. JV with Standard Nuclear.'},
   {id:'lahague',l:'La Hague',s:'French Reprocessing',t:'inst',c:'inst',x:2400,y:750,r:16,i:'French nuclear fuel reprocessing facility. Co-founded Exodys Energy.'},
 ];
@@ -658,11 +769,15 @@ var edges=[
   {s:'framatome',t:'standard',cat:'french'},{s:'lahague',t:'exodys',cat:'french'},
   // Scientists to institutions/companies
   {s:'loureiro',t:'cfs',cat:'scientist'},
-  {s:'leblanc',t:'flibe',cat:'scientist'},
+  {s:'leblanc',t:'flibe',cat:'scientist'},{s:'leblanc',t:'marshall',cat:'scientist'},
   {s:'maiwald',t:'shine',cat:'scientist'},
   {s:'reza',t:'doe',cat:'scientist'},
   {s:'casias',t:'lanl',cat:'scientist'},{s:'chavez',t:'lanl',cat:'scientist'},
+  {s:'mcmillan',t:'lanl',cat:'scientist'},{s:'mcmillan',t:'pf4',cat:'scientist'},{s:'mcmillan',t:'doe',cat:'scientist'},{s:'leonard',t:'lanl',cat:'scientist'},{s:'leonard',t:'mcmillan',cat:'scientist'},
+  {s:'garcia',t:'kcnsc',cat:'scientist'},
   {s:'mccasland',t:'doe',cat:'scientist'},
+  // Institutions to the network
+  {s:'lanl',t:'doe_pu',cat:'company'},{s:'pf4',t:'lanl',cat:'company'},{s:'pf4',t:'doe_pu',cat:'company'},{s:'kcnsc',t:'doe',cat:'pcast'},{s:'marshall',t:'flibe',cat:'company'},
   // Cross-links
   {s:'doe_pu',t:'oklo',cat:'company'},{s:'doe_pu',t:'standard',cat:'company'},{s:'doe_pu',t:'shine',cat:'company'},{s:'doe_pu',t:'flibe',cat:'company'},{s:'doe_pu',t:'exodys',cat:'company'},
 ];
